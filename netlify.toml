@@ -1,0 +1,26 @@
+# LexFeed — static site, no build step needed
+[build]
+  publish = "."
+
+# The page is one self-contained HTML file, so Netlify's asset post-processing
+# (CSS/JS bundling + minifying, image compression, pretty-URL rewrites) only
+# slows deploys without benefit. Skip it.
+[build.processing]
+  skip_processing = true
+
+# Serverless function backing the shared admin-edit / flag store (Netlify Blobs)
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Serve the single-page app for the /admin route (handled client-side)
+[[redirects]]
+  from = "/admin"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

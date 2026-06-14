@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#0f1a30"/>
+  <g fill="none" stroke="#c9a227" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="256" y1="120" x2="256" y2="400"/>
+    <line x1="160" y1="400" x2="352" y2="400"/>
+    <line x1="120" y1="150" x2="392" y2="150"/>
+    <circle cx="256" cy="150" r="20" fill="#c9a227" stroke="none"/>
+    <path d="M120 150 L84 250 Q84 290 156 290 Q228 290 228 250 Z" fill="#1a2744"/>
+    <path d="M392 150 L356 250 Q356 290 428 290 Q500 290 500 250 Z" fill="#1a2744" transform="translate(-136,0)"/>
+  </g>
+  <text x="256" y="468" font-family="Georgia, serif" font-size="64" font-weight="bold" fill="#c9a227" text-anchor="middle">Lex</text>
+</svg>

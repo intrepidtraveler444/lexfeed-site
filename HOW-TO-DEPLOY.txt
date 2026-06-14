@@ -1,0 +1,47 @@
+LEXFEED — How to put it online (free) and use it on your phone
+================================================================
+
+EASIEST METHOD — drag & drop (no account signup needed beyond Netlify)
+----------------------------------------------------------------------
+1. Go to:  https://app.netlify.com/drop
+2. Drag this WHOLE folder (lexfeed-site) onto the page.
+3. Wait ~10 seconds. Netlify gives you a live URL like:
+      https://random-name-12345.netlify.app
+4. Open that URL on your phone's browser.
+
+PUT IT ON YOUR HOME SCREEN (so it opens like an app)
+----------------------------------------------------
+iPhone (Safari):
+   - Open the URL in Safari
+   - Tap the Share button (square with up-arrow)
+   - Tap "Add to Home Screen" -> Add
+Android (Chrome):
+   - Open the URL in Chrome
+   - Tap the three-dot menu
+   - Tap "Add to Home screen" / "Install app"
+
+It will get the LexFeed scales icon and open full-screen with no
+browser bars — just like a native app.
+
+RENAME YOUR SITE (optional)
+---------------------------
+In Netlify: Site settings -> Change site name
+   e.g. https://lexfeed-uk.netlify.app
+
+UPDATING LATER
+--------------
+When you change index.html, just drag the folder onto
+https://app.netlify.com/drop again (or, if you made an account,
+go to your site's Deploys tab and drag it there to redeploy).
+
+WHAT'S IN THIS FOLDER
+---------------------
+  index.html            <- the app (this is what loads)
+  manifest.webmanifest  <- makes it installable as an app
+  icon.svg              <- the home-screen icon
+  netlify.toml          <- tells Netlify how to serve it
+  HOW-TO-DEPLOY.txt     <- this file
+
+NOTE: Hosting on Netlify (https://) instead of opening the file
+directly also makes the live news/case/article feeds load more
+reliably than from your computer.

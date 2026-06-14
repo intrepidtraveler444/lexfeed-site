@@ -1,0 +1,19 @@
+{
+  "name": "LexFeed — UK Legal Education & News",
+  "short_name": "LexFeed",
+  "description": "A vertically scrolling legal news and education feed for UK law students.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f1a30",
+  "theme_color": "#0f1a30",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
