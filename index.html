@@ -8236,7 +8236,7 @@ function openEditor(root,id){ openCardEditor(root,{id}); }
 //  case/statute already curated can never re-appear.
 // ══════════════════════════════════════════════
 const CANON_LAUNCH_DAY=Math.floor(Date.UTC(2026,5,14)/86400000); // 2026-06-14
-const CANON_CADENCE_DAYS=3;   // release one further post every N days
+const CANON_CADENCE_DAYS=1;   // release one further post every N days
 const CANON_INITIAL=2;        // posts unlocked on launch day
 
 function canonNorm(t){        // citation-insensitive title key for de-duping
