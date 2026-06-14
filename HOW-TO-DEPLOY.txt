@@ -45,3 +45,5 @@ WHAT'S IN THIS FOLDER
 NOTE: Hosting on Netlify (https://) instead of opening the file
 directly also makes the live news/case/article feeds load more
 reliably than from your computer.
+
+update
