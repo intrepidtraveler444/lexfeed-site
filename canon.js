@@ -165,5 +165,50 @@
     ratio:'The purpose of relief for proprietary estoppel is to remedy the unconscionability of going back on a promise — normally by satisfying the claimant’s expectation. The court may award a lesser remedy where fulfilling the expectation would be out of all proportion to the detriment suffered, and must allow for accelerated receipt where the benefit is given early.',
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2022/27.html' },
 
+  // ── 13. Tort — case ──
+  { id:'k13', type:'curated', cat:'case-law', area:'Tort',
+    title:'Airedale NHS Trust v Bland [1993] UKHL 17',
+    court:'House of Lords',
+    facts:'Anthony Bland suffered severe anoxic brain damage in the Hillsborough Stadium disaster in 1989, leaving him in a persistent vegetative state. He could breathe unaided but had no awareness, sensation or capacity for recovery. The NHS Trust applied to court for a declaration that artificial nutrition and hydration could lawfully be withdrawn.',
+    judgment:'The House of Lords unanimously granted the declaration. Withdrawal of life-sustaining treatment from a PVS patient was lawful as an omission where continued treatment was no longer in the patient\'s best interests and could confer no benefit on him.',
+    ratio:'A doctor\'s duty to keep a patient alive is not absolute. Where a patient is in a hopeless, irreversible persistent vegetative state and further treatment cannot benefit them, there is no duty to continue it. Withdrawal of artificial nutrition and hydration is characterised as an omission rather than a positive act; since no duty to act exists in such circumstances, no criminal or civil liability attaches to withdrawal.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1993/17.html' },
+
+  // ── 14. Criminal — case ──
+  { id:'k14', type:'curated', cat:'case-law', area:'Criminal',
+    title:'Sweet v Parsley [1969] UKHL 1',
+    court:'House of Lords',
+    facts:'A landlady let her farmhouse to students while retaining one room for her own occasional use. Without her knowledge, the students used the premises to smoke cannabis. She was charged under the Dangerous Drugs Act 1965 with being "concerned in the management of premises used for smoking cannabis resin."',
+    judgment:'The House of Lords unanimously quashed her conviction. The offence was not one of strict liability; knowledge of the prohibited use was an essential ingredient that the prosecution had to prove.',
+    ratio:'Where a statutory offence is truly criminal in character and carries significant social stigma, there is a strong presumption that Parliament intended mens rea to be required. The graver the offence, the stronger that presumption. The presumption is not displaced merely because strict liability would assist in enforcement; clear and unambiguous statutory language is needed to exclude the requirement of a guilty mind.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1969/1.html' },
+
+  // ── 15. Criminal — case ──
+  { id:'k15', type:'curated', cat:'case-law', area:'Criminal',
+    title:'Bratty v Attorney General for Northern Ireland [1961] UKHL 3',
+    court:'House of Lords',
+    facts:'Bratty strangled a young woman and was charged with murder. At trial he raised two alternative defences — insanity and automatism — both based on a claimed episode of psychomotor epilepsy. The trial judge left only insanity to the jury and declined to direct on automatism as a separate defence. The jury convicted of murder.',
+    judgment:'The House of Lords dismissed the appeal. The judge had been right to withhold a standalone automatism direction: the only evidential foundation for the alleged involuntary act was the epilepsy, which itself amounted to a disease of the mind, so the sole available defence on those facts was insanity.',
+    ratio:'Automatism requires a truly involuntary act, in the sense that the defendant had no conscious control over his conduct. Where the only alleged cause of involuntariness is a disease of the mind, there is no evidential basis for an automatism defence running independently of insanity. The two defences cannot be put to the jury as genuine alternatives on identical facts.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1961/3.html' },
+
+  // ── 16. Company — case ──
+  { id:'k16', type:'curated', cat:'case-law', area:'Company',
+    title:'O\'Neill v Phillips [1999] UKHL 24',
+    court:'House of Lords',
+    facts:'Phillips gave O\'Neill 25% of the shares in his asbestos-stripping company and informally arranged equal profit-sharing, treating him as a de facto equal partner. When the business ran into difficulties Phillips withdrew the equal-profit arrangement and resumed majority control. O\'Neill petitioned under s 459 of the Companies Act 1985 for relief from unfair prejudice.',
+    judgment:'The House of Lords dismissed the petition. Lord Hoffmann held that there had been no legally enforceable agreement to equalise shareholdings, and that running the company in accordance with its articles and the actual terms agreed was not unfairly prejudicial conduct.',
+    ratio:'Unfair prejudice under s 459 Companies Act 1985 (now s 994 Companies Act 2006) requires conduct that is both unfair and prejudicial to the petitioner\'s interests as a member. Fairness is measured by reference to the terms — legal and equitable — on which the parties actually agreed to associate. The disappointment of a mere hope or expectation that falls short of a legal or equitable obligation does not constitute unfairly prejudicial conduct.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1999/24.html' },
+
+  // ── 17. Employment — case ──
+  { id:'k17', type:'curated', cat:'case-law', area:'Employment',
+    title:'Uber BV v Aslam [2021] UKSC 5',
+    court:'UK Supreme Court',
+    facts:'Drivers working through the Uber app claimed they were "workers" within the statutory definition under the Employment Rights Act 1996, entitling them to the national minimum wage and paid annual leave. Uber argued the drivers were independent contractors running their own businesses and pointed to contractual documentation to that effect.',
+    judgment:'The Supreme Court unanimously dismissed Uber\'s appeal. The drivers were workers within the statutory definition whenever they were logged into the Uber app in their territory and ready to accept trips.',
+    ratio:'Employment protection legislation requires tribunals to look beyond written contractual terms and have regard to the purpose of the legislation and the reality of the working relationship. Where contractual documentation does not reflect the true agreement, it must be disregarded. The degree of control exercised by Uber — setting fares, prescribing how services were to be performed, and holding power over the driver\'s relationship with customers — was incompatible with the drivers genuinely carrying on business on their own account during the time they were working the app.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2021/5.html' },
+
   ];
 });
