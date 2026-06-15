@@ -8206,9 +8206,19 @@ function openEditor(root,id){ openCardEditor(root,{id}); }
 //  De-dupes against the existing library by id AND normalised title, so a
 //  case/statute already curated can never re-appear.
 // ══════════════════════════════════════════════
-const CANON_LAUNCH_DAY=Math.floor(Date.UTC(2026,5,14)/86400000); // 2026-06-14
+const CANON_DRIP_HOUR=7;      // new cases unlock at 07:00 UK time (Europe/London) each day
 const CANON_CADENCE_DAYS=1;   // release one further post every N days
 const CANON_INITIAL=2;        // posts unlocked on launch day
+
+// Day counter that rolls over at 07:00 UK time, DST-safe and independent of the device's timezone.
+function canonDayNum(when){
+  const p=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hourCycle:'h23',
+    year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit'})
+    .formatToParts(when||new Date()).reduce((a,x)=>(a[x.type]=x.value,a),{});
+  const ms=Date.UTC(+p.year,+p.month-1,+p.day,+p.hour)-CANON_DRIP_HOUR*3600000;
+  return Math.floor(ms/86400000);
+}
+const CANON_LAUNCH_DAY=canonDayNum(new Date(Date.UTC(2026,5,14,12,0,0))); // 2026-06-14, anchored to drip hour
 
 function canonNorm(t){        // citation-insensitive title key for de-duping
   return String(t||'').toLowerCase()
@@ -8217,7 +8227,7 @@ function canonNorm(t){        // citation-insensitive title key for de-duping
     .replace(/[^a-z0-9 ]+/g,' ').replace(/\s+/g,' ').trim();
 }
 function canonReleaseCount(bankLen){
-  const elapsed=dayIndex()-CANON_LAUNCH_DAY;
+  const elapsed=canonDayNum()-CANON_LAUNCH_DAY;
   const n=CANON_INITIAL+(elapsed>0?Math.floor(elapsed/CANON_CADENCE_DAYS):0);
   return Math.max(0,Math.min(n,bankLen));
 }
