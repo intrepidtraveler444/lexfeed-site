@@ -6982,45 +6982,15 @@ function renderSavedView(){
   }
   items.forEach((card,i)=>{
     const el=window.buildCard(card,i*40);
-    addRemoveButton(el,card);
     grid.appendChild(el);
   });
   // Honour any active category / live-only filter within the saved set
   (window.applyFilter||applyFilter)();
 }
 
-// Remove a saved item from storage, the badge counts, and the DOM
-function removeFromSaved(id){
-  saves.delete(id);
-  delete savedData[id];
-  LS.set('saves',[...saves]);
-  LS.set('savedData',savedData);
-  const cnt=document.getElementById('savedCnt');
-  if(cnt) cnt.textContent=saves.size;
-  refreshStats&&refreshStats();
-}
-
-// Add a ✕ remove control to a card shown in the Saved view
-function addRemoveButton(el,card){
-  const btn=document.createElement('button');
-  btn.className='saved-remove';
-  btn.title='Remove from saved';
-  btn.textContent='✕';
-  btn.addEventListener('click',e=>{
-    e.stopPropagation();
-    removeFromSaved(card.id);
-    el.classList.add('removing');
-    setTimeout(()=>{
-      el.remove();
-      // If nothing left, show the empty state
-      if(![...saves].map(id=>savedData[id]).filter(Boolean).length){
-        showEmptyState('🔖 No saved posts yet.<br><span style="font-size:12px;color:#64748b">Tap “Save” on any card to keep it here — your saves persist across visits.</span>');
-      }
-      updateCount&&updateCount();
-    },250);
-  });
-  el.appendChild(btn);
-}
+// Saved cards are removed by clicking their gold "Saved" button, which calls
+// onSave() — it unsaves the card and re-renders the Saved view (showing the
+// empty state when the last one goes). No separate remove control is needed.
 
 // ══════════════════════════════════════════════
 //  SPACED REPETITION ENGINE (SM-2 inspired, simplified)
