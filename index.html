@@ -8207,7 +8207,8 @@ function openEditor(root,id){ openCardEditor(root,{id}); }
 //  case/statute already curated can never re-appear.
 // ══════════════════════════════════════════════
 const CANON_DRIP_HOUR=7;      // new cases unlock at 07:00 UK time (Europe/London) each day
-const CANON_CADENCE_DAYS=1;   // release one further post every N days
+const CANON_CADENCE_DAYS=1;   // a drip happens every N days
+const CANON_PER_DRIP=2;       // posts released per drip
 const CANON_INITIAL=2;        // posts unlocked on launch day
 
 // Day counter that rolls over at 07:00 UK time, DST-safe and independent of the device's timezone.
@@ -8228,7 +8229,7 @@ function canonNorm(t){        // citation-insensitive title key for de-duping
 }
 function canonReleaseCount(bankLen){
   const elapsed=canonDayNum()-CANON_LAUNCH_DAY;
-  const n=CANON_INITIAL+(elapsed>0?Math.floor(elapsed/CANON_CADENCE_DAYS):0);
+  const n=CANON_INITIAL+(elapsed>0?CANON_PER_DRIP*Math.floor(elapsed/CANON_CADENCE_DAYS):0);
   return Math.max(0,Math.min(n,bankLen));
 }
 function applyCanonDrip(){
