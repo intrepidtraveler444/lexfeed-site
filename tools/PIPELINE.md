@@ -67,6 +67,25 @@ Two halves of one loop:
 
 6. **Deploy** — drag the folder to Netlify. Done. The drip takes it from there.
 
+## Extras: 1 journal article + 1 glossary term per day (`extras.js`)
+
+A second drip pool runs in parallel to the canon (`extras.js` → `window.LEXFEED_EXTRAS = {articles:[], terms:[]}`; revealed by `applyExtrasDrip()` in `index.html`, **1 of each on launch day, then +1 of each per day**). Same dedupe + admin-removal safety net as the canon drip. Top it up the same way; gate with `node tools/verify-extras.mjs` (**must end "0 fail"**).
+
+* **Journal articles** (`articles[]`, ids `xa…`): groundbreaking, **well-received**, and from the **last 20 years** (2006–2026 — the year must appear in the title). Pick from your own knowledge of the modern UK canon; confirm each via web search and link to a **stable publisher / DOI / SSRN landing page** (the verifier's host allowlist: doi.org, cambridge.org, academic.oup.com, ssrn.com/papers.ssrn.com, journals.sagepub.com, tandfonline.com, onlinelibrary.wiley.com, link.springer.com, jstor.org, heinonline.org). **Never** a Google-Scholar/search link. Write your own 1-paragraph `body` summary — don't copy the abstract. Schema:
+  ```js
+  { id:'xa15', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Author — 'Title' (YYYY) … citation", body:'…',
+    src:'Journal Name', link:'https://doi.org/…' }
+  ```
+* **Glossary terms** (`terms[]`, ids `xt…`): real **LexisNexis glossary** entries. Confirm the slug exists by searching `lexisnexis.co.uk "legal/glossary" <term>` (not every term has a glossary page — drop those that don't). Link `https://www.lexisnexis.co.uk/legal/glossary/<slug>`, and **don't reuse a slug already in `lt1`–`lt59`** or an `xt…` slug. Write original `body` + `example`. Schema:
+  ```js
+  { id:'xt15', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Term', body:'…', example:'…',
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/<slug>' }
+  ```
+
+Target **≥ ~7 verified of each per month** so this pool never runs dry. The weekly refill agent should top up `extras.js` alongside `canon.js`.
+
 ## Recognised `area` values (use one so filters work)
 Criminal · Contract · Property · Tort · Constitutional · Public Law · Public ·
 Human Rights · EU Law · Equity · Trusts · Family · Company · Employment · Evidence
