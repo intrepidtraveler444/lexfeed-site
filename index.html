@@ -867,6 +867,7 @@ html{scroll-padding-top:118px}
 
 <!-- Verified landmark cases/statutes drip-released over time (see "CANON DRIP" below) -->
 <script src="canon.js"></script>
+<script src="extras.js"></script>
 <script>
 'use strict';
 // ══════════════════════════════════════════════
@@ -8249,11 +8250,45 @@ function applyCanonDrip(){
   }
 }
 
+// ── EXTRAS DRIP ──
+// A second bank (extras.js → window.LEXFEED_EXTRAS = {articles:[],terms:[]}) that
+// reveals ONE groundbreaking journal article + ONE LexisNexis glossary term per
+// day, in parallel with the canon case/statute drip. Same DST-safe day counter,
+// cadence, and de-dup (by id + citation-insensitive title vs. the whole library).
+const EXTRAS_PER_DRIP=1;   // 1 article + 1 term released per drip
+const EXTRAS_INITIAL=1;    // 1 of each unlocked on launch day
+const EXTRAS_LAUNCH_DAY=canonDayNum(new Date(Date.UTC(2026,5,16,12,0,0))); // ship date 2026-06-16
+function extrasReleaseCount(len){
+  const elapsed=canonDayNum()-EXTRAS_LAUNCH_DAY;
+  const n=EXTRAS_INITIAL+(elapsed>0?EXTRAS_PER_DRIP*Math.floor(elapsed/CANON_CADENCE_DAYS):0);
+  return Math.max(0,Math.min(n,len));
+}
+function applyExtrasDrip(){
+  const bank=(typeof window!=='undefined'&&window.LEXFEED_EXTRAS)?window.LEXFEED_EXTRAS:null;
+  if(!bank) return;
+  const haveId=new Set(CURATED.map(c=>c.id));
+  const haveTitle=new Set(CURATED.map(c=>canonNorm(c.title)));
+  const removed=new Set(getRemoved());
+  [bank.articles,bank.terms].forEach(arr=>{
+    if(!Array.isArray(arr)) return;
+    const n=extrasReleaseCount(arr.length);
+    for(let i=0;i<n;i++){
+      const card=arr[i];
+      if(!card||!card.id) continue;
+      if(haveId.has(card.id)||removed.has(card.id)) continue;     // already present / admin-removed
+      if(haveTitle.has(canonNorm(card.title))) continue;          // duplicate of existing curated post
+      CURATED.push(Object.assign({type:'curated'},card));
+      haveId.add(card.id); haveTitle.add(canonNorm(card.title));
+    }
+  });
+}
+
 // ══════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════
 applyNewCards();      // merge any admin-added posts into the curated set
 applyCanonDrip();     // reveal date-gated verified landmark posts from the bank
+applyExtrasDrip();    // reveal 1 journal article + 1 glossary term per day from extras.js
 applyRemovedCards();  // drop any admin-removed posts
 applyCardEdits();
 syncRemote();         // pull globally-persisted new posts, removals + edits (best-effort)
