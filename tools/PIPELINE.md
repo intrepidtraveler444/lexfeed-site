@@ -9,12 +9,16 @@ Two halves of one loop:
 ```
 
 * **DRIP** (already live, no work needed) — `applyCanonDrip()` in `index.html`
-  reveals bank entries by calendar date: **2 on launch day, then +1 per day**.
-  It de-dupes by id *and* citation-insensitive title, so nothing already
-  curated can re-appear, and respects admin removals.
+  reveals bank entries by calendar date: **1 per day** (`CANON_PER_DRIP=1`;
+  lowered from 2/day on 2026-06-16 to match how fast genuinely-new landmarks
+  can actually be found). It de-dupes by id *and* citation-insensitive title,
+  so nothing already curated can re-appear, and respects admin removals.
 * **SOURCING** — the steps below top `canon.js` up so the drip never runs dry.
-  Run them periodically (by hand, or on a schedule — see bottom). As long as
-  you add **≥ ~10 verified cases/month**, the library grows forever.
+  Run them periodically (by hand, or on a schedule — see bottom). The drip now
+  consumes ~1/day ≈ **30/month**, so aim to add **≥ ~30 verified cases/month**.
+  ⚠️ If real new landmarks can't honestly be found that fast, **lower the drip
+  rate further** (`CANON_PER_DRIP` / raise `CANON_CADENCE_DAYS`) — never pad the
+  bank with non-landmarks or let it silently run dry.
 
 ## The sourcing run (your lawteacher pathway, step by step)
 
