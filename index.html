@@ -8209,8 +8209,11 @@ function openEditor(root,id){ openCardEditor(root,{id}); }
 // ══════════════════════════════════════════════
 const CANON_DRIP_HOUR=7;      // new cases unlock at 07:00 UK time (Europe/London) each day
 const CANON_CADENCE_DAYS=1;   // a drip happens every N days
-const CANON_PER_DRIP=2;       // posts released per drip
-const CANON_INITIAL=2;        // posts unlocked on launch day
+const CANON_PER_DRIP=1;       // posts released per drip (lowered from 2 on 2026-06-16 to match the
+                              // sustainable supply of genuinely-new landmarks — see tools/PIPELINE.md)
+const CANON_INITIAL=6;        // posts already released as of the re-anchor date below (6 were out by
+                              // 2026-06-16 under the old 2/day rate; this keeps the count monotonic so
+                              // nothing already shown disappears when the rate drops)
 
 // Day counter that rolls over at 07:00 UK time, DST-safe and independent of the device's timezone.
 function canonDayNum(when){
@@ -8220,7 +8223,7 @@ function canonDayNum(when){
   const ms=Date.UTC(+p.year,+p.month-1,+p.day,+p.hour)-CANON_DRIP_HOUR*3600000;
   return Math.floor(ms/86400000);
 }
-const CANON_LAUNCH_DAY=canonDayNum(new Date(Date.UTC(2026,5,14,12,0,0))); // 2026-06-14, anchored to drip hour
+const CANON_LAUNCH_DAY=canonDayNum(new Date(Date.UTC(2026,5,16,12,0,0))); // re-anchored 2026-06-16 when rate dropped to 1/day (was 2026-06-14); CANON_INITIAL carries the 6 already released
 
 function canonNorm(t){        // citation-insensitive title key for de-duping
   return String(t||'').toLowerCase()
