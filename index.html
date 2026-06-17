@@ -7752,6 +7752,12 @@ window.appendBatch=function(batch,showDivider=false){
     if(curFilter==='legal-news'&&newsLoading) return;
     if(curFilter==='journal-article'&&articlesLoading) return;
     if(fallbackLoading) return;   // archive fallback in progress — keep its status visible
+    // Free plan: out of NEW posts because the 50-new limit is reached (intercept
+    // BEFORE the archive fallback so capped users aren't served more new posts).
+    if(window.LF_AUTH&&window.LF_AUTH.atNewLimit()){
+      showEmptyState('You’ve reached the free limit of 50 new posts. <b>Go Premium</b> for unlimited scroll — open your account menu (top-right) to upgrade.');
+      return;
+    }
 
     if(curFilter==='legal-news'&&!newsLoaded){
       showEmptyState(`📰 Fetching UK legal news from ${NEWS_FEEDS.length} sources…`);
@@ -7797,12 +7803,14 @@ window.appendBatch=function(batch,showDivider=false){
     } else {
       el=window.buildCard(card,i*50);
       if(freshCardIds.has(card.id)) markCardNew(el);
+      lfNoteSeen(card.id);   // count this live/curated post toward the free 50-new limit
     }
     if(el) grid.appendChild(el);
   });
   window.applyFilter();
   updateCount();
   maybeShowCaughtUp();
+  lfStateChanged();
 };
 
 // ── Override loadMore to use patched functions─
