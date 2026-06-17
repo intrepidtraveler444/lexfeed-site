@@ -171,6 +171,20 @@
     return Promise.resolve();
   }
 
+  // Test helpers — let you flip back to Free and reset the counter from the UI,
+  // so the free cap can be tried without editing Firestore by hand.
+  function resetSeen() {
+    state.seen = new Set();
+    try { localStorage.removeItem('lf_seen'); } catch (e) {}
+    persist();
+  }
+  function setPlanFree() {
+    state.plan = 'free';
+    resetSeen();          // start the free allowance from zero
+    renderBadge();
+    persist();
+  }
+
   // ════════════════════════════════════════════════════════════════════════
   //  UI  (badge in header + modal injected from JS)
   // ════════════════════════════════════════════════════════════════════════
@@ -237,7 +251,9 @@
         + (state.plan !== 'premium'
             ? '<div class="lf-row"><span>New posts seen</span><b>' + state.seen.size + ' / ' + FREE_NEW_LIMIT + '</b></div>'
               + '<input id="lf-code" placeholder="Redeem code (e.g. ' + PREMIUM_CODE + ')"><div class="lf-err" id="lf-err"></div><button class="lf-go" data-redeem>Unlock Premium</button>'
-            : '<p style="font-size:.9rem;color:#1a5">Unlimited access enabled. 🎉</p>')
+              + '<button class="lf-go" style="background:#888;margin-top:.6rem" data-resetseen>Reset seen count (test)</button>'
+            : '<p style="font-size:.9rem;color:#1a5">Unlimited access enabled. 🎉</p>'
+              + '<button class="lf-go" style="background:#888;margin-top:.6rem" data-tofree>Switch to Free (test)</button>')
         + '<button class="lf-go" style="background:#666;margin-top:1rem" data-signout>Sign out</button>';
     } else {
       var tab = view === 'signup' ? 'signup' : 'signin';
@@ -279,6 +295,8 @@
     on('[data-redeem]', function () {
       redeem(q('#lf-code').value).then(function () { openModal('profile'); }).catch(function (e) { err(e.message || 'Invalid code'); });
     });
+    on('[data-tofree]', function () { setPlanFree(); openModal('profile'); });
+    on('[data-resetseen]', function () { resetSeen(); openModal('profile'); });
   }
 
   function humanErr(e) {
