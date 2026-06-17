@@ -775,6 +775,7 @@ html{scroll-padding-top:118px}
       <div class="val" id="streakVal">0</div>
       <div>🔥 day streak</div>
     </div>
+    <button class="acct-btn" id="acctBtn" title="Sign in to save your progress across devices">Sign in</button>
   </div>
 </header>
 
@@ -867,6 +868,7 @@ html{scroll-padding-top:118px}
 
 <!-- Verified landmark cases/statutes drip-released over time (see "CANON DRIP" below) -->
 <script src="canon.js"></script>
+<script src="extras.js"></script>
 <script>
 'use strict';
 // ══════════════════════════════════════════════
@@ -4639,8 +4641,8 @@ function getBatch(size=12){
   // term — including ones deep in the shuffle like "Undertaking" — is reachable
   // without endless scrolling. All other post types load incrementally.
   if(curFilter==='legal-term'){
-    const all=curQueue.filter(c=>!curShown.has(c.id)&&c.cat===curFilter&&matchArea(c))
-      .concat(livePool.filter(c=>!liveShown.has(c.id)&&c.cat===curFilter&&matchArea(c)));
+    const all=curQueue.filter(c=>!curShown.has(c.id)&&c.cat===curFilter&&matchArea(c)&&lfCanServe(c.id))
+      .concat(livePool.filter(c=>!liveShown.has(c.id)&&c.cat===curFilter&&matchArea(c)&&lfCanServe(c.id)));
     all.forEach(c=>{ if(c.type==='live') liveShown.add(c.id); else curShown.add(c.id); });
     return all;
   }
@@ -4649,8 +4651,8 @@ function getBatch(size=12){
   let slot=0;
 
   while(batch.length<size){
-    const liveAvail=livePool.filter(c=>!liveShown.has(c.id)&&(curFilter==='all'||c.cat===curFilter)&&matchArea(c));
-    const curAvail =curQueue.filter(c=>!curShown.has(c.id)&&(curFilter==='all'||c.cat===curFilter)&&matchArea(c));
+    const liveAvail=livePool.filter(c=>!liveShown.has(c.id)&&(curFilter==='all'||c.cat===curFilter)&&matchArea(c)&&lfCanServe(c.id));
+    const curAvail =curQueue.filter(c=>!curShown.has(c.id)&&(curFilter==='all'||c.cat===curFilter)&&matchArea(c)&&lfCanServe(c.id));
 
     const liveEvery=isReturner?2:3;   // returning visitors get a higher live ratio (fresher mix)
     const pickLive=liveAvail.length>0&&(slot%liveEvery===liveEvery-1||curAvail.length===0);
@@ -4694,6 +4696,11 @@ function removeEmptyState(){
 function appendBatch(batch, showDivider=false){
   removeEmptyState();
   if(!batch.length){
+    // Free plan: no more NEW posts because the 50-new limit is reached.
+    if(window.LF_AUTH&&window.LF_AUTH.atNewLimit()){
+      showEmptyState('You’ve reached the free limit of 50 new posts. <b>Go Premium</b> for unlimited scroll — open your account menu to upgrade.');
+      return;
+    }
     // Show a helpful message if live feeds haven't landed yet
     if(!feedsDone){
       showEmptyState('Live content loading — check back in a moment, or scroll to see curated cards.');
@@ -4713,9 +4720,11 @@ function appendBatch(batch, showDivider=false){
     const el=buildCard(card, i*50);
     if(freshCardIds.has(card.id)) markCardNew(el);
     grid.appendChild(el);
+    lfNoteSeen(card.id);   // count toward the free 50-new limit / sync history
   });
   applyFilter();
   updateCount();
+  lfStateChanged();
 }
 
 function updateCount(){
@@ -6566,6 +6575,30 @@ function onLike(id,btn){
 // render posts even after a refresh, before they're re-fetched.
 let savedData=LS.get('savedData',{});
 
+// ── Account bridge + plan gates (auth.js plugs into these) ──────────────────
+// All gate helpers are PERMISSIVE until a user is signed in on a configured
+// Firebase project, so the site behaves exactly as before for guests.
+window.LF_STATE={
+  snapshot:function(){return{saves:[...saves],savedData:savedData,ach:[...achEarned],total:totalRead,streak:LS.get('streak',{date:'',count:0})};},
+  hydrate:function(d){
+    d=d||{};
+    if(Array.isArray(d.saves)) d.saves.forEach(id=>saves.add(id));
+    if(d.savedData) Object.assign(savedData,d.savedData);
+    if(Array.isArray(d.ach)) d.ach.forEach(a=>achEarned.add(a));
+    if(typeof d.total==='number') totalRead=Math.max(totalRead,d.total);
+    if(d.streak) LS.set('streak',d.streak);
+    LS.set('saves',[...saves]); LS.set('savedData',savedData); LS.set('ach',[...achEarned]); LS.set('total',totalRead);
+    const sc=document.getElementById('savedCnt'); if(sc) sc.textContent=saves.size;
+    const av=document.getElementById('achVal'); if(av) av.textContent=achEarned.size;
+    try{ if(typeof refreshStats==='function') refreshStats(); }catch(e){}
+    try{ if(showSaved && typeof renderSavedView==='function') renderSavedView(); }catch(e){}
+  }
+};
+function lfCanServe(id){ return !window.LF_AUTH || window.LF_AUTH.canServe(id); }
+function lfNoteSeen(id){ if(window.LF_AUTH) window.LF_AUTH.noteSeen(id); }
+function lfCanSave(){ return !window.LF_AUTH || window.LF_AUTH.canSave(saves.size); }
+function lfStateChanged(){ if(window.LF_AUTH) window.LF_AUTH.pushState(); }
+
 // Backfill fields that were added to curated cards AFTER they were saved (e.g.
 // the worked examples now on legal terms), so older saves show the new content
 // in both the Saved view and Quiz Me.
@@ -6588,6 +6621,7 @@ function onSave(id,btn,card){
     btn.innerHTML='<span class="ico">🔖</span> Save';
     delete savedData[id];
   } else {
+    if(!lfCanSave()){ if(window.LF_AUTH) window.LF_AUTH.showUpgrade('save'); return; }
     saves.add(id);btn.classList.add('saved');
     btn.innerHTML='<span class="ico">🔖</span> Saved';
     if(card){
@@ -6603,6 +6637,7 @@ function onSave(id,btn,card){
   LS.set('savedData',savedData);
   document.getElementById('savedCnt').textContent=saves.size;
   if(showSaved) renderSavedView();
+  lfStateChanged();
 }
 
 // ── OSCOLA citation builder ───────────────────
@@ -6697,6 +6732,7 @@ const readObserver=new IntersectionObserver(entries=>{
       if(!e.target.classList.contains('quiz-card')) goalReadInc();
       refreshStats();
       checkAchievements();
+      lfStateChanged();   // sync read count + achievements to the user's account
       readObserver.unobserve(e.target);
     }
   });
@@ -8208,8 +8244,13 @@ function openEditor(root,id){ openCardEditor(root,{id}); }
 // ══════════════════════════════════════════════
 const CANON_DRIP_HOUR=7;      // new cases unlock at 07:00 UK time (Europe/London) each day
 const CANON_CADENCE_DAYS=1;   // a drip happens every N days
-const CANON_PER_DRIP=2;       // posts released per drip
-const CANON_INITIAL=2;        // posts unlocked on launch day
+const CANON_PER_DRIP=1;       // posts released per drip (lowered from 2 on 2026-06-16 to match the
+                              // sustainable supply of genuinely-new landmarks — see tools/PIPELINE.md)
+const CANON_INITIAL=6;        // baseline count carried by the anchor below; with the anchor moved one
+                              // day earlier (2026-06-15) the schedule is shifted forward by a day, so
+                              // each 07:00 rollover reveals what would otherwise be the NEXT day's entry
+                              // (e.g. Friday's lands Thursday). Moving the anchor earlier only ever adds
+                              // entries, so nothing already shown disappears.
 
 // Day counter that rolls over at 07:00 UK time, DST-safe and independent of the device's timezone.
 function canonDayNum(when){
@@ -8219,7 +8260,7 @@ function canonDayNum(when){
   const ms=Date.UTC(+p.year,+p.month-1,+p.day,+p.hour)-CANON_DRIP_HOUR*3600000;
   return Math.floor(ms/86400000);
 }
-const CANON_LAUNCH_DAY=canonDayNum(new Date(Date.UTC(2026,5,14,12,0,0))); // 2026-06-14, anchored to drip hour
+const CANON_LAUNCH_DAY=canonDayNum(new Date(Date.UTC(2026,5,15,12,0,0))); // anchor pulled back to 2026-06-15 on 2026-06-17 to shift the drip one day earlier (each batch lands a day sooner)
 
 function canonNorm(t){        // citation-insensitive title key for de-duping
   return String(t||'').toLowerCase()
@@ -8249,11 +8290,45 @@ function applyCanonDrip(){
   }
 }
 
+// ── EXTRAS DRIP ──
+// A second bank (extras.js → window.LEXFEED_EXTRAS = {articles:[],terms:[]}) that
+// reveals ONE groundbreaking journal article + ONE LexisNexis glossary term per
+// day, in parallel with the canon case/statute drip. Same DST-safe day counter,
+// cadence, and de-dup (by id + citation-insensitive title vs. the whole library).
+const EXTRAS_PER_DRIP=1;   // 1 article + 1 term released per drip
+const EXTRAS_INITIAL=1;    // 1 of each unlocked on launch day
+const EXTRAS_LAUNCH_DAY=canonDayNum(new Date(Date.UTC(2026,5,15,12,0,0))); // anchored 2026-06-15 (pulled back one day on 2026-06-17 to shift the article+term drip a day earlier, in step with canon)
+function extrasReleaseCount(len){
+  const elapsed=canonDayNum()-EXTRAS_LAUNCH_DAY;
+  const n=EXTRAS_INITIAL+(elapsed>0?EXTRAS_PER_DRIP*Math.floor(elapsed/CANON_CADENCE_DAYS):0);
+  return Math.max(0,Math.min(n,len));
+}
+function applyExtrasDrip(){
+  const bank=(typeof window!=='undefined'&&window.LEXFEED_EXTRAS)?window.LEXFEED_EXTRAS:null;
+  if(!bank) return;
+  const haveId=new Set(CURATED.map(c=>c.id));
+  const haveTitle=new Set(CURATED.map(c=>canonNorm(c.title)));
+  const removed=new Set(getRemoved());
+  [bank.articles,bank.terms].forEach(arr=>{
+    if(!Array.isArray(arr)) return;
+    const n=extrasReleaseCount(arr.length);
+    for(let i=0;i<n;i++){
+      const card=arr[i];
+      if(!card||!card.id) continue;
+      if(haveId.has(card.id)||removed.has(card.id)) continue;     // already present / admin-removed
+      if(haveTitle.has(canonNorm(card.title))) continue;          // duplicate of existing curated post
+      CURATED.push(Object.assign({type:'curated'},card));
+      haveId.add(card.id); haveTitle.add(canonNorm(card.title));
+    }
+  });
+}
+
 // ══════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════
 applyNewCards();      // merge any admin-added posts into the curated set
 applyCanonDrip();     // reveal date-gated verified landmark posts from the bank
+applyExtrasDrip();    // reveal 1 journal article + 1 glossary term per day from extras.js
 applyRemovedCards();  // drop any admin-removed posts
 applyCardEdits();
 syncRemote();         // pull globally-persisted new posts, removals + edits (best-effort)
@@ -8415,5 +8490,13 @@ function maybeStartTour(){
 setTimeout(maybeStartTour,850);
 }
 </script>
+
+<!-- Accounts + free/premium plans (Firebase). Loads AFTER the main script so the
+     LF_STATE bridge exists. Until you paste real keys into auth.js, this is inert
+     and the site behaves exactly as before. -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="auth.js"></script>
 </body>
 </html>
