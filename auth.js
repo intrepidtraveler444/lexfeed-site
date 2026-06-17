@@ -1,25 +1,4 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDj2vXz1htBUX13VyBISVDqMIY7BKsFu0s",
-  authDomain: "gen-lang-client-0810817787.firebaseapp.com",
-  databaseURL: "https://gen-lang-client-0810817787-default-rtdb.firebaseio.com",
-  projectId: "gen-lang-client-0810817787",
-  storageBucket: "gen-lang-client-0810817787.firebasestorage.app",
-  messagingSenderId: "1013512407067",
-  appId: "1:1013512407067:web:c99384090d60bc8ce5d0be",
-  measurementId: "G-C1J2E0TTC3"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);/* ════════════════════════════════════════════════════════════════════════
+/* ════════════════════════════════════════════════════════════════════════
    LexFeed — Accounts, persistence & free/premium plans (Firebase)
 
    Cost: Firebase Spark (free) tier — Auth (email/password) + Cloud Firestore.
@@ -44,14 +23,15 @@ const analytics = getAnalytics(app);/* ═════════════�
 (function () {
   'use strict';
 
-  // ── PASTE YOUR FIREBASE CONFIG HERE ──────────────────────────────────────
+  // ── FIREBASE CONFIG (values only — compat SDK, no import statements) ──────
   var FIREBASE_CONFIG = {
-    apiKey:            "YOUR_API_KEY",
-    authDomain:        "YOUR_PROJECT.firebaseapp.com",
-    projectId:         "YOUR_PROJECT",
-    storageBucket:     "YOUR_PROJECT.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId:             "YOUR_APP_ID"
+    apiKey:            "AIzaSyDj2vXz1htBUX13VyBISVDqMIY7BKsFu0s",
+    authDomain:        "gen-lang-client-0810817787.firebaseapp.com",
+    projectId:         "gen-lang-client-0810817787",
+    storageBucket:     "gen-lang-client-0810817787.firebasestorage.app",
+    messagingSenderId: "1013512407067",
+    appId:             "1:1013512407067:web:c99384090d60bc8ce5d0be",
+    measurementId:     "G-C1J2E0TTC3"
   };
 
   // ── Plan limits ──────────────────────────────────────────────────────────
