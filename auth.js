@@ -79,6 +79,7 @@
       state.seen.add(id);
       persistSeenLocal();   // instant + reload-proof (per device)
       scheduleSave();       // cloud copy (debounced; no-op if signed out)
+      renderBadge();        // live "Free N/50" counter in the header
     },
 
     // May a free user add one more save? `count` = current saves.size in index.html.
@@ -213,9 +214,11 @@
     var btn = document.getElementById('acctBtn');
     if (!btn) return;
     if (state.user) {
+      var label = state.plan === 'premium'
+        ? 'Premium'
+        : 'Free ' + Math.min(state.seen.size, FREE_NEW_LIMIT) + '/' + FREE_NEW_LIMIT;  // live counter
       btn.innerHTML = '👤 ' + esc(state.username) +
-        ' <span class="lf-badge ' + (state.plan === 'premium' ? 'prem' : '') + '">' +
-        (state.plan === 'premium' ? 'Premium' : 'Free') + '</span>';
+        ' <span class="lf-badge ' + (state.plan === 'premium' ? 'prem' : '') + '">' + label + '</span>';
     } else {
       btn.textContent = 'Sign in';
     }
