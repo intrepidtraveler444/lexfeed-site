@@ -75,9 +75,10 @@
     // restoring the session; the 50 limit is only ENFORCED for signed-in free
     // users (see canServe). scheduleSave() is a no-op until signed in.
     noteSeen: function (id) {
-      if (!id || state.seen.has(id)) return;
+      if (!id || state.plan === 'premium' || state.seen.has(id)) return;
       state.seen.add(id);
-      scheduleSave();
+      persistSeenLocal();   // instant + reload-proof (per device)
+      scheduleSave();       // cloud copy (debounced; no-op if signed out)
     },
 
     // May a free user add one more save? `count` = current saves.size in index.html.
@@ -122,6 +123,13 @@
     userRef().set(data, { merge: true }).catch(function (e) { console.warn('[auth] save failed', e); });
   }
 
+  // Seen-set durability: localStorage is written instantly so the limit survives a
+  // reload even before Firestore confirms; Firestore is the cross-device copy.
+  function persistSeenLocal(){ try { localStorage.setItem('lf_seen', JSON.stringify(Array.from(state.seen))); } catch (e) {} }
+  function loadSeenLocal(){ try { var a = JSON.parse(localStorage.getItem('lf_seen') || '[]'); if (Array.isArray(a)) for (var i=0;i<a.length;i++) state.seen.add(a[i]); } catch (e) {} }
+  function backfillSeenFromDOM(){ if (state.plan === 'premium') return; try { document.querySelectorAll('#grid .card[data-id]').forEach(function (el) { if (!el.classList.contains('quiz-card')) state.seen.add(el.dataset.id); }); persistSeenLocal(); } catch (e) {} }
+  function flushSeen(){ if (saveTimer) { clearTimeout(saveTimer); saveTimer = null; } persist(); }
+
   // Pull the cloud doc, merge with whatever is already local, hydrate the page.
   function loadProfile() {
     return userRef().get().then(function (doc) {
@@ -137,6 +145,8 @@
         total: d.totalRead, streak: d.streak
       });
       if (!doc.exists) persist();                 // first login → seed the doc from local state
+      backfillSeenFromDOM();                       // count cards already on screen (rendered before auth loaded)
+      persistSeenLocal();
       renderBadge();
     });
   }
@@ -285,8 +295,13 @@
   // ════════════════════════════════════════════════════════════════════════
   function boot() {
     injectStyles();
+    loadSeenLocal();   // restore this device's seen-set immediately (reload-proof)
     var btn = document.getElementById('acctBtn');
     if (btn) btn.addEventListener('click', function () { openModal(state.user ? 'profile' : 'signin'); });
+
+    // Persist the latest count when the tab is hidden/closed so a reload can't hand back new posts.
+    window.addEventListener('pagehide', flushSeen);
+    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') flushSeen(); });
 
     if (!CONFIGURED || typeof firebase === 'undefined') {
       if (btn) { btn.title = 'Accounts are not configured yet (add Firebase keys in auth.js).'; }

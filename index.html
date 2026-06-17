@@ -7794,6 +7794,7 @@ window.appendBatch=function(batch,showDivider=false){
     d.className='divider';d.textContent='More Curated Content';
     grid.appendChild(d);
   }
+  let lfCapHit=false;
   batch.forEach((card,i)=>{
     let el;
     if(card._isFlair){
@@ -7801,6 +7802,10 @@ window.appendBatch=function(batch,showDivider=false){
     } else if(card._isQuiz){
       el=buildQuizCard(card,i*50);
     } else {
+      // Precise free-plan cap: refuse the NEW post that would exceed the limit
+      // (checked per-card with the live count, so it stops exactly at 50 rather
+      // than overshooting by a whole batch).
+      if(window.LF_AUTH && !window.LF_AUTH.canServe(card.id)){ lfCapHit=true; return; }
       el=window.buildCard(card,i*50);
       if(freshCardIds.has(card.id)) markCardNew(el);
       lfNoteSeen(card.id);   // count this live/curated post toward the free 50-new limit
@@ -7811,6 +7816,9 @@ window.appendBatch=function(batch,showDivider=false){
   updateCount();
   maybeShowCaughtUp();
   lfStateChanged();
+  if(lfCapHit && window.LF_AUTH && window.LF_AUTH.atNewLimit()){
+    showEmptyState('You’ve reached the free limit of 50 new posts. <b>Go Premium</b> for unlimited scroll — open your account menu (top-right) to upgrade.');
+  }
 };
 
 // ── Override loadMore to use patched functions─
