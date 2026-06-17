@@ -70,10 +70,14 @@
     atNewLimit: function () {
       return !!state.user && state.plan !== 'premium' && state.seen.size >= FREE_NEW_LIMIT;
     },
-    // Record a post as seen (only matters for logged-in users).
+    // Count any card shown (live OR curated) that the user hasn't seen before.
+    // Counted unconditionally so the tally is robust even before Firebase finishes
+    // restoring the session; the 50 limit is only ENFORCED for signed-in free
+    // users (see canServe). scheduleSave() is a no-op until signed in.
     noteSeen: function (id) {
-      if (!state.user || state.plan === 'premium') return;
-      if (!state.seen.has(id)) { state.seen.add(id); scheduleSave(); }
+      if (!id || state.seen.has(id)) return;
+      state.seen.add(id);
+      scheduleSave();
     },
 
     // May a free user add one more save? `count` = current saves.size in index.html.
