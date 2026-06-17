@@ -7755,7 +7755,7 @@ window.appendBatch=function(batch,showDivider=false){
     // Free plan: out of NEW posts because the 50-new limit is reached (intercept
     // BEFORE the archive fallback so capped users aren't served more new posts).
     if(window.LF_AUTH&&window.LF_AUTH.atNewLimit()){
-      showEmptyState('You’ve reached the free limit of 50 new posts. <b>Go Premium</b> for unlimited scroll — open your account menu (top-right) to upgrade.');
+      lfShowFreeWall();   // free + over 50 seen: only today's highlights, no more regular posts
       return;
     }
 
@@ -7817,9 +7817,26 @@ window.appendBatch=function(batch,showDivider=false){
   maybeShowCaughtUp();
   lfStateChanged();
   if(lfCapHit && window.LF_AUTH && window.LF_AUTH.atNewLimit()){
-    showEmptyState('You’ve reached the free limit of 50 new posts. <b>Go Premium</b> for unlimited scroll — open your account menu (top-right) to upgrade.');
+    lfShowFreeWall();   // free + over 50 seen: only today's highlights, no more regular posts
   }
 };
+
+// ── Free plan, over the 50-post limit: the only further content is the day's
+//    highlights — Today's Key Case, the Question of the Day, and the star picks
+//    (Term / Statute / Article of the Day). Rendered once, then an upgrade prompt.
+let lfDailyShown=false;
+function lfShowFreeWall(){
+  const grid=document.getElementById('grid');
+  if(!lfDailyShown){
+    lfDailyShown=true;
+    const d=document.createElement('div'); d.className='divider'; d.textContent='Your free daily highlights'; grid.appendChild(d);
+    try{ grid.appendChild(buildFeaturedCard()); }catch(e){}                              // ⭐ Today's Key Case
+    try{ const q=buildQuizCard(getDailyQuiz(),0); if(q) grid.appendChild(q); }catch(e){} // Question of the Day
+    try{ const p=buildFlairCard('picks',0); if(p) grid.appendChild(p); }catch(e){}       // Term / Statute / Article of the Day
+    window.applyFilter(); updateCount();
+  }
+  showEmptyState("You've reached the free limit of 50 posts. Free members still get today's highlights above — <b>Go Premium</b> for unlimited scroll (open your account menu, top-right).");
+}
 
 // ── Override loadMore to use patched functions─
 const _origLoadMore=loadMore;
