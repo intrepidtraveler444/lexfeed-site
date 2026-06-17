@@ -775,7 +775,6 @@ html{scroll-padding-top:118px}
       <div class="val" id="streakVal">0</div>
       <div>🔥 day streak</div>
     </div>
-    <button class="acct-btn" id="acctBtn" title="Sign in to save your progress across devices">Sign in</button>
   </div>
 </header>
 
@@ -4641,8 +4640,8 @@ function getBatch(size=12){
   // term — including ones deep in the shuffle like "Undertaking" — is reachable
   // without endless scrolling. All other post types load incrementally.
   if(curFilter==='legal-term'){
-    const all=curQueue.filter(c=>!curShown.has(c.id)&&c.cat===curFilter&&matchArea(c)&&lfCanServe(c.id))
-      .concat(livePool.filter(c=>!liveShown.has(c.id)&&c.cat===curFilter&&matchArea(c)&&lfCanServe(c.id)));
+    const all=curQueue.filter(c=>!curShown.has(c.id)&&c.cat===curFilter&&matchArea(c))
+      .concat(livePool.filter(c=>!liveShown.has(c.id)&&c.cat===curFilter&&matchArea(c)));
     all.forEach(c=>{ if(c.type==='live') liveShown.add(c.id); else curShown.add(c.id); });
     return all;
   }
@@ -4651,8 +4650,8 @@ function getBatch(size=12){
   let slot=0;
 
   while(batch.length<size){
-    const liveAvail=livePool.filter(c=>!liveShown.has(c.id)&&(curFilter==='all'||c.cat===curFilter)&&matchArea(c)&&lfCanServe(c.id));
-    const curAvail =curQueue.filter(c=>!curShown.has(c.id)&&(curFilter==='all'||c.cat===curFilter)&&matchArea(c)&&lfCanServe(c.id));
+    const liveAvail=livePool.filter(c=>!liveShown.has(c.id)&&(curFilter==='all'||c.cat===curFilter)&&matchArea(c));
+    const curAvail =curQueue.filter(c=>!curShown.has(c.id)&&(curFilter==='all'||c.cat===curFilter)&&matchArea(c));
 
     const liveEvery=isReturner?2:3;   // returning visitors get a higher live ratio (fresher mix)
     const pickLive=liveAvail.length>0&&(slot%liveEvery===liveEvery-1||curAvail.length===0);
@@ -4696,11 +4695,6 @@ function removeEmptyState(){
 function appendBatch(batch, showDivider=false){
   removeEmptyState();
   if(!batch.length){
-    // Free plan: no more NEW posts because the 50-new limit is reached.
-    if(window.LF_AUTH&&window.LF_AUTH.atNewLimit()){
-      showEmptyState('You’ve reached the free limit of 50 new posts. <b>Go Premium</b> for unlimited scroll — open your account menu to upgrade.');
-      return;
-    }
     // Show a helpful message if live feeds haven't landed yet
     if(!feedsDone){
       showEmptyState('Live content loading — check back in a moment, or scroll to see curated cards.');
@@ -4720,11 +4714,9 @@ function appendBatch(batch, showDivider=false){
     const el=buildCard(card, i*50);
     if(freshCardIds.has(card.id)) markCardNew(el);
     grid.appendChild(el);
-    lfNoteSeen(card.id);   // count toward the free 50-new limit / sync history
   });
   applyFilter();
   updateCount();
-  lfStateChanged();
 }
 
 function updateCount(){
@@ -6575,30 +6567,6 @@ function onLike(id,btn){
 // render posts even after a refresh, before they're re-fetched.
 let savedData=LS.get('savedData',{});
 
-// ── Account bridge + plan gates (auth.js plugs into these) ──────────────────
-// All gate helpers are PERMISSIVE until a user is signed in on a configured
-// Firebase project, so the site behaves exactly as before for guests.
-window.LF_STATE={
-  snapshot:function(){return{saves:[...saves],savedData:savedData,ach:[...achEarned],total:totalRead,streak:LS.get('streak',{date:'',count:0})};},
-  hydrate:function(d){
-    d=d||{};
-    if(Array.isArray(d.saves)) d.saves.forEach(id=>saves.add(id));
-    if(d.savedData) Object.assign(savedData,d.savedData);
-    if(Array.isArray(d.ach)) d.ach.forEach(a=>achEarned.add(a));
-    if(typeof d.total==='number') totalRead=Math.max(totalRead,d.total);
-    if(d.streak) LS.set('streak',d.streak);
-    LS.set('saves',[...saves]); LS.set('savedData',savedData); LS.set('ach',[...achEarned]); LS.set('total',totalRead);
-    const sc=document.getElementById('savedCnt'); if(sc) sc.textContent=saves.size;
-    const av=document.getElementById('achVal'); if(av) av.textContent=achEarned.size;
-    try{ if(typeof refreshStats==='function') refreshStats(); }catch(e){}
-    try{ if(showSaved && typeof renderSavedView==='function') renderSavedView(); }catch(e){}
-  }
-};
-function lfCanServe(id){ return !window.LF_AUTH || window.LF_AUTH.canServe(id); }
-function lfNoteSeen(id){ if(window.LF_AUTH) window.LF_AUTH.noteSeen(id); }
-function lfCanSave(){ return !window.LF_AUTH || window.LF_AUTH.canSave(saves.size); }
-function lfStateChanged(){ if(window.LF_AUTH) window.LF_AUTH.pushState(); }
-
 // Backfill fields that were added to curated cards AFTER they were saved (e.g.
 // the worked examples now on legal terms), so older saves show the new content
 // in both the Saved view and Quiz Me.
@@ -6621,7 +6589,6 @@ function onSave(id,btn,card){
     btn.innerHTML='<span class="ico">🔖</span> Save';
     delete savedData[id];
   } else {
-    if(!lfCanSave()){ if(window.LF_AUTH) window.LF_AUTH.showUpgrade('save'); return; }
     saves.add(id);btn.classList.add('saved');
     btn.innerHTML='<span class="ico">🔖</span> Saved';
     if(card){
@@ -6637,7 +6604,6 @@ function onSave(id,btn,card){
   LS.set('savedData',savedData);
   document.getElementById('savedCnt').textContent=saves.size;
   if(showSaved) renderSavedView();
-  lfStateChanged();
 }
 
 // ── OSCOLA citation builder ───────────────────
@@ -6732,7 +6698,6 @@ const readObserver=new IntersectionObserver(entries=>{
       if(!e.target.classList.contains('quiz-card')) goalReadInc();
       refreshStats();
       checkAchievements();
-      lfStateChanged();   // sync read count + achievements to the user's account
       readObserver.unobserve(e.target);
     }
   });
@@ -7752,12 +7717,6 @@ window.appendBatch=function(batch,showDivider=false){
     if(curFilter==='legal-news'&&newsLoading) return;
     if(curFilter==='journal-article'&&articlesLoading) return;
     if(fallbackLoading) return;   // archive fallback in progress — keep its status visible
-    // Free plan: out of NEW posts because the 50-new limit is reached (intercept
-    // BEFORE the archive fallback so capped users aren't served more new posts).
-    if(window.LF_AUTH&&window.LF_AUTH.atNewLimit()){
-      lfShowFreeWall();   // free + over 50 seen: only today's highlights, no more regular posts
-      return;
-    }
 
     if(curFilter==='legal-news'&&!newsLoaded){
       showEmptyState(`📰 Fetching UK legal news from ${NEWS_FEEDS.length} sources…`);
@@ -7794,7 +7753,6 @@ window.appendBatch=function(batch,showDivider=false){
     d.className='divider';d.textContent='More Curated Content';
     grid.appendChild(d);
   }
-  let lfCapHit=false;
   batch.forEach((card,i)=>{
     let el;
     if(card._isFlair){
@@ -7802,41 +7760,15 @@ window.appendBatch=function(batch,showDivider=false){
     } else if(card._isQuiz){
       el=buildQuizCard(card,i*50);
     } else {
-      // Precise free-plan cap: refuse the NEW post that would exceed the limit
-      // (checked per-card with the live count, so it stops exactly at 50 rather
-      // than overshooting by a whole batch).
-      if(window.LF_AUTH && !window.LF_AUTH.canServe(card.id)){ lfCapHit=true; return; }
       el=window.buildCard(card,i*50);
       if(freshCardIds.has(card.id)) markCardNew(el);
-      lfNoteSeen(card.id);   // count this live/curated post toward the free 50-new limit
     }
     if(el) grid.appendChild(el);
   });
   window.applyFilter();
   updateCount();
   maybeShowCaughtUp();
-  lfStateChanged();
-  if(lfCapHit && window.LF_AUTH && window.LF_AUTH.atNewLimit()){
-    lfShowFreeWall();   // free + over 50 seen: only today's highlights, no more regular posts
-  }
 };
-
-// ── Free plan, over the 50-post limit: the only further content is the day's
-//    highlights — Today's Key Case, the Question of the Day, and the star picks
-//    (Term / Statute / Article of the Day). Rendered once, then an upgrade prompt.
-let lfDailyShown=false;
-function lfShowFreeWall(){
-  const grid=document.getElementById('grid');
-  if(!lfDailyShown){
-    lfDailyShown=true;
-    const d=document.createElement('div'); d.className='divider'; d.textContent='Your free daily highlights'; grid.appendChild(d);
-    try{ grid.appendChild(buildFeaturedCard()); }catch(e){}                              // ⭐ Today's Key Case
-    try{ const q=buildQuizCard(getDailyQuiz(),0); if(q) grid.appendChild(q); }catch(e){} // Question of the Day
-    try{ const p=buildFlairCard('picks',0); if(p) grid.appendChild(p); }catch(e){}       // Term / Statute / Article of the Day
-    window.applyFilter(); updateCount();
-  }
-  showEmptyState("You've reached the free limit of 50 posts. Free members still get today's highlights above — <b>Go Premium</b> for unlimited scroll (open your account menu, top-right).");
-}
 
 // ── Override loadMore to use patched functions─
 const _origLoadMore=loadMore;
@@ -8523,13 +8455,5 @@ function maybeStartTour(){
 setTimeout(maybeStartTour,850);
 }
 </script>
-
-<!-- Accounts + free/premium plans (Firebase). Loads AFTER the main script so the
-     LF_STATE bridge exists. Until you paste real keys into auth.js, this is inert
-     and the site behaves exactly as before. -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="auth.js"></script>
 </body>
 </html>
