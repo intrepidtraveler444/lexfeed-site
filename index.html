@@ -10,6 +10,20 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="LexFeed">
 <title>LexFeed — UK Legal News &amp; Education</title>
+<meta name="description" content="LexFeed is a daily feed of UK law for students and SQE candidates — landmark cases, statutes, key terms, journal articles, legal news and exam practice, all in one scrollable place.">
+<link rel="canonical" href="https://lexfeedai.netlify.app/">
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LexFeed">
+<meta property="og:title" content="LexFeed — a daily feed of UK law for students">
+<meta property="og:description" content="Landmark cases, statutes, key terms, journal articles, legal news and SQE practice — UK law in 10 minutes a day.">
+<meta property="og:url" content="https://lexfeedai.netlify.app/">
+<meta property="og:image" content="https://lexfeedai.netlify.app/icon.svg">
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LexFeed — a daily feed of UK law for students">
+<meta name="twitter:description" content="Landmark cases, statutes, key terms, journal articles, legal news and SQE practice — UK law in 10 minutes a day.">
+<meta name="twitter:image" content="https://lexfeedai.netlify.app/icon.svg">
 <style>
 :root{
   --navy:#1a2744;--navy-dk:#0f1a30;--gold:#c9a227;
@@ -1158,7 +1172,7 @@ const CURATED = [
     facts:'Woolmington was convicted of murdering his wife, claiming the gun went off accidentally. The trial judge directed that once a killing was proved the defendant had to prove it was not murder.',
     judgment:'The House of Lords quashed the conviction, holding the burden of proving guilt rests throughout on the prosecution.',
     ratio:"Viscount Sankey's 'golden thread': the prosecution must prove both the actus reus and mens rea beyond reasonable doubt. The defendant bears no burden to prove innocence (subject to insanity and statutory exceptions).",
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Woolmington+v+DPP' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1935/1.html' },
 
   { id:'cc2', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Brown [1993] UKHL 19',
@@ -1166,7 +1180,7 @@ const CURATED = [
     facts:'A group of men engaged in consensual sado-masochistic activity causing actual bodily harm. They were charged under the Offences Against the Person Act 1861.',
     judgment:'The House of Lords held (3:2) that consent was no defence to charges under ss.20 and 47 where actual bodily harm was intended and caused.',
     ratio:'Consent is not a defence to the deliberate infliction of actual bodily harm or above, save for recognised exceptions (surgery, sport, tattooing). Public policy limits the harms to which a person may validly consent.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Brown+1993' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1993/19.html' },
 
   { id:'cc3', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Blaue [1975] 1 WLR 1411',
@@ -1174,7 +1188,7 @@ const CURATED = [
     facts:'The defendant stabbed a woman who, as a Jehovah\'s Witness, refused a blood transfusion that would have saved her life. She died and he argued her refusal broke the chain of causation.',
     judgment:'The Court of Appeal upheld the manslaughter conviction; the refusal of treatment did not break the chain of causation.',
     ratio:"The 'thin skull' rule applies in criminal law: a defendant must take their victim as they find them, including their religious beliefs. The victim\'s refusal of treatment did not relieve the defendant of liability for the death.",
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Blaue' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Crim/1975/3.html' },
 
   { id:'cc4', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Jogee [2016] UKSC 8',
@@ -1182,7 +1196,7 @@ const CURATED = [
     facts:'Jogee was convicted of murder on a joint enterprise basis for a killing carried out by his associate, on the footing that he foresaw the possibility his associate might kill.',
     judgment:'The Supreme Court held that the law on joint enterprise had taken a wrong turn, and that foresight is not the same as intent.',
     ratio:'To be liable as an accessory, a secondary party must intend to assist or encourage the principal\'s crime; foresight of what the principal might do is evidence of intent but not, by itself, sufficient. This corrected the law from Chan Wing-Siu.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Jogee' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/8.html' },
 
   { id:'cc5', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Shivpuri [1986] UKHL 2',
@@ -1190,7 +1204,7 @@ const CURATED = [
     facts:'Shivpuri was convicted of attempting to deal in prohibited drugs, but the substance he handled turned out to be a harmless vegetable matter, not a controlled drug.',
     judgment:'The House of Lords upheld the conviction and, using the 1966 Practice Statement, overruled its own recent decision in Anderton v Ryan.',
     ratio:'A person can be guilty of an attempt to commit an offence even where the full offence was, on the true facts, impossible to commit (Criminal Attempts Act 1981). What matters is the defendant\'s intention and acts that are more than merely preparatory.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Shivpuri' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1986/2.html' },
 
   { id:'cc6', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Miller [1983] 2 AC 161',
@@ -1198,7 +1212,7 @@ const CURATED = [
     facts:'A squatter fell asleep with a lit cigarette, woke to find the mattress smouldering, but simply moved to another room and went back to sleep, leaving the fire to spread.',
     judgment:'The House of Lords upheld his conviction for arson, founding liability on his failure to act once he became aware of the danger he had created.',
     ratio:"Where a defendant creates a dangerous situation, they come under a duty to take reasonable steps to counteract it. Failure to do so (the 'continuing act'/duty principle) can supply the actus reus of an offence committed by omission.",
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Miller+1983+arson' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1982/6.html' },
 
   { id:'cc7', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Kennedy (No 2) [2007] UKHL 38',
@@ -1206,7 +1220,7 @@ const CURATED = [
     facts:'Kennedy prepared a syringe of heroin and handed it to the deceased, who freely and voluntarily injected himself and died. Kennedy was convicted of manslaughter.',
     judgment:'The House of Lords quashed the manslaughter conviction, holding the deceased\'s free and informed choice to inject broke the chain of causation.',
     ratio:'A free, deliberate and informed act of an adult of sound mind (here, self-injection) breaks the chain of causation. The supplier does not "cause" the administration of the drug where the victim makes that choice.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Kennedy+No+2' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2007/38.html' },
 
   { id:'cc8', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Hinks [2000] UKHL 53',
@@ -1214,7 +1228,7 @@ const CURATED = [
     facts:'Hinks influenced a man of limited intelligence into giving her large sums of money and a television, said to be valid gifts. She was charged with theft.',
     judgment:'The House of Lords upheld the theft conviction, holding that the acceptance of a valid gift can amount to an appropriation.',
     ratio:'"Appropriation" under s.3 Theft Act 1968 is a neutral act of assuming the rights of an owner; it can occur even where the owner consents and even where civil law would regard ownership as validly transferred. Dishonesty does the principal work.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Hinks' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2000/53.html' },
 
   { id:'cc9', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Ireland [1997] UKHL 34',
@@ -1222,7 +1236,7 @@ const CURATED = [
     facts:'Ireland made repeated silent telephone calls to three women, causing them psychiatric illness. He was convicted of assault occasioning actual bodily harm.',
     judgment:'The House of Lords upheld the conviction, holding silence can constitute an assault and psychiatric injury can be bodily harm.',
     ratio:"Recognised psychiatric illness can amount to 'actual bodily harm' under s.47 OAPA 1861. An assault may be committed by words alone, or even silence, if it causes the victim to apprehend immediate unlawful violence.",
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Ireland+Burstow' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1997/34.html' },
 
   { id:'cc10', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Ahluwalia [1992] 4 All ER 889',
@@ -1230,7 +1244,7 @@ const CURATED = [
     facts:'After years of domestic violence, Ahluwalia killed her husband by setting fire to him while he slept. Her defence of provocation failed at trial and she was convicted of murder.',
     judgment:'The Court of Appeal ordered a retrial on the basis of fresh evidence of diminished responsibility; the conviction was later reduced to manslaughter.',
     ratio:"Provocation does not require an immediate loss of control: a 'slow-burn' reaction in an abused defendant may still qualify. The case was pivotal in recognising the effects of sustained domestic abuse in the criminal law.",
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Ahluwalia' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Crim/1992/1.html' },
 
   { id:'cc11', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Thornton (No 2) [1996] 1 WLR 1174',
@@ -1238,7 +1252,7 @@ const CURATED = [
     facts:'Thornton killed her violent, alcoholic husband and was convicted of murder. She appealed on the basis of evidence about the cumulative effect of the abuse she had suffered.',
     judgment:'The Court of Appeal ordered a retrial, allowing the jury to consider battered woman syndrome as relevant to provocation.',
     ratio:'Evidence of a recognised psychological condition such as battered woman syndrome may be relevant both to whether the defendant lost self-control and to the characteristics of the reasonable person against whom the defendant\'s reaction is measured.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Thornton+No+2' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Crim/1995/6.html' },
 
   { id:'cc12', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Smith (Morgan) [2000] UKHL 49',
@@ -1246,7 +1260,7 @@ const CURATED = [
     facts:'Smith, suffering from clinical depression, killed a friend during a quarrel and raised provocation. The issue was whether his depression could be attributed to the reasonable person.',
     judgment:'The House of Lords held (controversially) that the defendant\'s mental characteristics could be taken into account in assessing the standard of self-control.',
     ratio:"Characteristics affecting the defendant\'s power of self-control could be considered in the provocation defence. (This approach was later disapproved in Attorney General for Jersey v Holley and the defence was reformed by the Coroners and Justice Act 2009.)",
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Smith+Morgan+James' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2000/49.html' },
 
   { id:'cc13', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Dudley and Stephens (1884) 14 QBD 273',
@@ -1254,7 +1268,7 @@ const CURATED = [
     facts:'Shipwrecked and starving, two sailors killed and ate the weakest cabin boy to survive, and were rescued days later. They were charged with murder.',
     judgment:'The court convicted them of murder, rejecting necessity as a defence to killing (their death sentences were later commuted).',
     ratio:'Necessity is not a defence to murder. One cannot lawfully take an innocent life to preserve one\'s own, however dire the circumstances — a foundational limit on the necessity defence in English criminal law.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Dudley+and+Stephens' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWHC/QB/1884/2.html' },
 
   { id:'cc14', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Pagett (1983) 76 Cr App R 279',
@@ -1262,7 +1276,7 @@ const CURATED = [
     facts:'Pagett used his pregnant girlfriend as a human shield while firing at armed police; the police returned fire and killed her. He was convicted of manslaughter.',
     judgment:'The Court of Appeal upheld the conviction, holding the police response was a reasonable and foreseeable act that did not break the chain of causation.',
     ratio:'A reasonable act of self-preservation or lawful duty by a third party (here, police returning fire) does not break the chain of causation. The defendant\'s unlawful act remained a substantial and operating cause of death.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Pagett' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Crim/1983/1.html' },
 
   { id:'cc15', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Howe [1987] UKHL 17',
@@ -1270,7 +1284,7 @@ const CURATED = [
     facts:'The defendants participated in torture and killings, claiming they acted under duress through fear of a violent associate. They were convicted of murder.',
     judgment:'The House of Lords held that duress is no defence to murder, whether for a principal or a secondary party.',
     ratio:'Duress is not available as a defence to murder. The law does not permit a person to choose that an innocent should die rather than face threats to themselves — overruling DPP for Northern Ireland v Lynch.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Howe+1987' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1987/17.html' },
 
   { id:'cc16', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Gotts [1992] UKHL 4',
@@ -1278,7 +1292,7 @@ const CURATED = [
     facts:'A 16-year-old, ordered by his father on pain of death to kill his mother, seriously injured but did not kill her. He was charged with attempted murder and raised duress.',
     judgment:'The House of Lords held that duress is not a defence to attempted murder, extending the principle in Howe.',
     ratio:'Duress is no defence to attempted murder. Since the defendant intends to kill in an attempt, there is no reason to treat it more leniently than the completed offence of murder.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Gotts' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1992/4.html' },
 
   { id:'cc17', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Hasan [2005] UKHL 22',
@@ -1286,7 +1300,7 @@ const CURATED = [
     facts:'Hasan committed burglary, claiming he acted under duress from a violent drug dealer with whom he had voluntarily associated. The issue was the scope of the duress defence.',
     judgment:'The House of Lords restricted the defence, holding it unavailable where the defendant foresaw or should have foreseen the risk of being coerced.',
     ratio:'Duress fails where the defendant voluntarily associates with criminals and foresaw, or ought reasonably to have foreseen, the risk of compulsion to commit crimes. The threat must also be of death or serious injury and operate on the mind at the time.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Hasan+2005' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/22.html' },
 
   { id:'cc18', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Collins [1972] 2 QB 100',
@@ -1294,7 +1308,7 @@ const CURATED = [
     facts:'Collins, partly clothed, climbed a ladder to a young woman\'s window intending sex; she, mistaking him for her boyfriend, invited him in. He was convicted of burglary with intent to rape.',
     judgment:'The Court of Appeal quashed the conviction because it was unclear whether he was a trespasser at the moment of entry.',
     ratio:'Burglary under s.9 Theft Act 1968 requires an effective and substantial entry as a trespasser, and the defendant must know of or be reckless as to the facts making him a trespasser. Entry by invitation negates trespass.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+v+Collins+1972+burglary' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Crim/1972/1.html' },
 
   // ══ CONTRACT LAW ══
   { id:'ct1', type:'curated', cat:'case-law', area:'Contract',
@@ -1303,7 +1317,7 @@ const CURATED = [
     facts:'Partridge advertised bramblefinches for sale in a magazine and was prosecuted for "offering for sale" a protected wild bird.',
     judgment:'The Divisional Court quashed the conviction, holding the advertisement was an invitation to treat, not an offer.',
     ratio:'An advertisement of goods for sale is generally an invitation to treat, not an offer. Treating advertisements as offers would expose advertisers to unlimited contractual liability beyond their stock.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Partridge+v+Crittenden' },
+    src:'Wikipedia', link:'https://en.wikipedia.org/wiki/Partridge_v_Crittenden' },
 
   { id:'ct2', type:'curated', cat:'case-law', area:'Contract',
     title:'Pharmaceutical Society of GB v Boots [1953] 1 QB 401',
@@ -1311,7 +1325,7 @@ const CURATED = [
     facts:'Boots operated a self-service chemist. The question was whether the sale of listed medicines occurred when goods were taken from the shelf or at the till, where a pharmacist supervised.',
     judgment:'The Court of Appeal held the contract was concluded at the cashier\'s desk, so the sale was properly supervised.',
     ratio:'The display of goods on a shelf is an invitation to treat. The customer makes the offer by presenting goods at the till, which the shopkeeper may accept or reject — the contract forms at acceptance.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Pharmaceutical+Society+Boots' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1953/6.html' },
 
   { id:'ct3', type:'curated', cat:'case-law', area:'Contract',
     title:'Entores Ltd v Miles Far East Corp [1955] 2 QB 327',
@@ -1319,7 +1333,7 @@ const CURATED = [
     facts:'A contract was negotiated by telex between a London company and one in Amsterdam. The question was where and when the contract was formed for jurisdiction purposes.',
     judgment:'The Court of Appeal held the contract was made where and when acceptance was received — in London.',
     ratio:'For instantaneous forms of communication (telex, telephone), the postal rule does not apply; acceptance takes effect when and where it is received by the offeror. The contract is formed at that place.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Entores+v+Miles+Far+East' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1955/3.html' },
 
   { id:'ct4', type:'curated', cat:'case-law', area:'Contract',
     title:'Felthouse v Bindley (1862) 11 CB (NS) 869',
@@ -1327,7 +1341,7 @@ const CURATED = [
     facts:'An uncle offered to buy his nephew\'s horse, saying that if he heard no more he would consider it his. The auctioneer mistakenly sold the horse; the uncle sued in conversion.',
     judgment:'The court held there was no contract because acceptance had not been communicated.',
     ratio:'Silence cannot constitute acceptance. An offeror cannot impose a contract by stipulating that silence will be taken as assent; acceptance must generally be communicated by positive conduct or words.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Felthouse+v+Bindley' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWHC/CP/1862/J35.html' },
 
   { id:'ct5', type:'curated', cat:'case-law', area:'Contract',
     title:'Foakes v Beer (1884) 9 App Cas 605',
@@ -1335,7 +1349,7 @@ const CURATED = [
     facts:'Dr Foakes owed Mrs Beer a judgment debt and agreed to pay by instalments; she later claimed the interest. He argued their agreement settled the matter.',
     judgment:'The House of Lords held Mrs Beer could still claim the interest, as part-payment of a debt is not good consideration for a promise to forgo the balance.',
     ratio:'Payment of a lesser sum cannot discharge a debt for a greater sum without fresh consideration (the rule in Pinnel\'s Case). A promise to accept part-payment in full settlement is not binding at common law.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Foakes+v+Beer' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1884/1.html' },
 
   { id:'ct6', type:'curated', cat:'case-law', area:'Contract',
     title:'Merritt v Merritt [1970] 1 WLR 1211',
@@ -1343,7 +1357,7 @@ const CURATED = [
     facts:'A separated husband signed a written agreement to transfer the matrimonial home to his wife once she paid off the mortgage. He later refused to honour it.',
     judgment:'The Court of Appeal held the agreement was legally binding and enforceable.',
     ratio:'The presumption against intention to create legal relations in domestic agreements does not apply where the parties are separating or no longer amicable. Such arrangements are presumed to be intended to be legally binding (distinguishing Balfour v Balfour).',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Merritt+v+Merritt' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1970/6.html' },
 
   { id:'ct7', type:'curated', cat:'case-law', area:'Contract',
     title:'Currie v Misa (1875) LR 10 Ex 153',
@@ -1351,7 +1365,7 @@ const CURATED = [
     facts:'The case concerned whether a banker who received a bill of exchange in respect of a pre-existing debt was a holder for value.',
     judgment:'The court provided the classic definition of valuable consideration in the course of its reasoning.',
     ratio:"Consideration consists of 'some right, interest, profit or benefit accruing to the one party, or some forbearance, detriment, loss or responsibility given, suffered or undertaken by the other'. This remains the leading definition of consideration.",
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Currie+v+Misa' },
+    src:'Wikipedia', link:'https://en.wikipedia.org/wiki/Currie_v_Misa' },
 
   { id:'ct8', type:'curated', cat:'case-law', area:'Contract',
     title:'Chappell & Co Ltd v Nestlé Co Ltd [1960] AC 87',
@@ -1359,7 +1373,7 @@ const CURATED = [
     facts:'Nestlé offered a record to customers who sent money plus three chocolate bar wrappers. The dispute concerned whether the wrappers formed part of the consideration for copyright royalty purposes.',
     judgment:'The House of Lords held the wrappers were part of the consideration, even though Nestlé threw them away.',
     ratio:"Consideration must be sufficient but need not be adequate. A thing of trivial economic value (a chocolate wrapper) can be valid consideration: 'a peppercorn does not cease to be good consideration if it is established that the promisee does not like pepper.'",
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Chappell+v+Nestle' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1959/1.html' },
 
   { id:'ct9', type:'curated', cat:'case-law', area:'Contract',
     title:'Hong Kong Fir Shipping v Kawasaki Kisen Kaisha [1962] 2 QB 26',
@@ -1367,7 +1381,7 @@ const CURATED = [
     facts:'A ship was chartered as "seaworthy" but suffered engine problems and incompetent crew, losing about 20 weeks. The charterers purported to terminate the contract.',
     judgment:'The Court of Appeal held the term was not a condition and the breach was not serious enough to justify termination; the charterers were in repudiatory breach.',
     ratio:'Some contractual terms are "innominate": the right to terminate depends not on labelling the term a condition or warranty, but on whether the breach deprives the innocent party of substantially the whole benefit of the contract.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Hong+Kong+Fir+Shipping' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1961/7.html' },
 
   { id:'ct10', type:'curated', cat:'case-law', area:'Contract',
     title:'Photo Production Ltd v Securicor Transport Ltd [1980] UKHL 2',
@@ -1375,7 +1389,7 @@ const CURATED = [
     facts:'A Securicor guard deliberately started a fire that destroyed the claimant\'s factory. Securicor relied on a clause excluding liability for its employees\' acts.',
     judgment:'The House of Lords held the exclusion clause, on its true construction, was clear enough to cover even this fundamental breach.',
     ratio:'There is no rule of law that an exclusion clause cannot cover a fundamental breach; the question is one of construction of the clause. Parties of equal bargaining power are free to allocate risk as they choose.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Photo+Production+v+Securicor' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1980/2.html' },
 
   { id:'ct11', type:'curated', cat:'case-law', area:'Contract',
     title:'Transfield Shipping v Mercator (The Achilleas) [2008] UKHL 48',
@@ -1383,7 +1397,7 @@ const CURATED = [
     facts:'Charterers returned a ship late, causing the owners to lose a lucrative follow-on charter. The owners claimed the full loss of profit on that lost fixture.',
     judgment:'The House of Lords limited the damages to the difference between the charter and market rate for the overrun period, not the lost follow-on fixture.',
     ratio:'Remoteness in contract depends not only on whether loss is foreseeable, but on whether the defendant can reasonably be taken to have assumed responsibility for that type of loss. This refined the rule in Hadley v Baxendale.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Transfield+Shipping+Achilleas' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2008/48.html' },
 
   { id:'ct12', type:'curated', cat:'case-law', area:'Contract',
     title:'Chartbrook Ltd v Persimmon Homes Ltd [2009] UKHL 38',
@@ -1391,7 +1405,7 @@ const CURATED = [
     facts:'A development agreement contained a payment formula the parties interpreted very differently, producing wildly different sums. The wording appeared to favour one reading but produced a commercially odd result.',
     judgment:'The House of Lords adopted the commercially sensible interpretation, correcting the literal wording as an obvious mistake.',
     ratio:'In contractual interpretation, the court ascertains what a reasonable person with the relevant background knowledge would understand the parties to have meant. Clear drafting mistakes producing irrational results may be corrected by construction.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Chartbrook+v+Persimmon' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2009/38.html' },
 
   { id:'ct13', type:'curated', cat:'case-law', area:'Contract',
     title:'ParkingEye Ltd v Beavis [2015] UKSC 67',
@@ -1399,7 +1413,7 @@ const CURATED = [
     facts:'A driver overstayed a free two-hour car park and was charged £85. He argued the charge was an unenforceable penalty.',
     judgment:'The Supreme Court (hearing the case with Cavendish v Makdessi) upheld the charge as enforceable.',
     ratio:'The penalty rule is not engaged merely because a sum is not a genuine pre-estimate of loss. A clause is penal only if it imposes a detriment out of all proportion to any legitimate interest of the innocent party in enforcement.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=ParkingEye+v+Beavis' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2015/67.html' },
 
   { id:'ct14', type:'curated', cat:'case-law', area:'Contract',
     title:'Cavendish Square Holding BV v Makdessi [2015] UKSC 67',
@@ -1407,7 +1421,7 @@ const CURATED = [
     facts:'A share-sale agreement allowed the buyer to withhold deferred payments and force a sale at a low price if the seller breached restrictive covenants. The seller argued these clauses were penalties.',
     judgment:'The Supreme Court held the clauses were not penalties but protected the buyer\'s legitimate commercial interests.',
     ratio:'The modern test: a clause is an unenforceable penalty if it imposes a detriment on the contract-breaker out of all proportion to any legitimate interest of the innocent party. This reformulated the law from Dunlop v New Garage.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Cavendish+Square+Makdessi' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2015/67.html' },
 
   // ══ PROPERTY LAW ══
   { id:'pr1', type:'curated', cat:'case-law', area:'Property',
@@ -1416,7 +1430,7 @@ const CURATED = [
     facts:'An agreement granted exclusive occupation of rooms for a weekly sum but was labelled a "licence". The occupier claimed it was in truth a tenancy attracting Rent Act protection.',
     judgment:'The House of Lords held it was a tenancy despite the label, because it granted exclusive possession for a term at a rent.',
     ratio:'The hallmark of a lease is the grant of exclusive possession for a term at a rent. The label the parties attach is not decisive — substance prevails over form. (Lord Templeman\'s "spade is a spade" reasoning.)',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Street+v+Mountford' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1985/4.html' },
 
   { id:'pr2', type:'curated', cat:'case-law', area:'Property',
     title:"Williams & Glyn's Bank v Boland [1980] UKHL 4",
@@ -1424,7 +1438,7 @@ const CURATED = [
     facts:'A wife contributed to the purchase of the matrimonial home, held in her husband\'s sole name. He mortgaged it without her knowledge; the bank sought possession.',
     judgment:'The House of Lords held the wife\'s equitable interest, coupled with her actual occupation, was an overriding interest binding the bank.',
     ratio:'A person in actual occupation with a beneficial interest in registered land has an overriding interest (now Sch.3 LRA 2002) binding a mortgagee or purchaser, even without registration. Occupation gives constructive notice.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Williams+Glyns+Bank+v+Boland' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1980/4.html' },
 
   { id:'pr3', type:'curated', cat:'case-law', area:'Property',
     title:'National Provincial Bank v Ainsworth [1965] UKHL 1',
@@ -1432,7 +1446,7 @@ const CURATED = [
     facts:'A deserted wife claimed a right to remain in the matrimonial home that would bind the bank to which her husband had mortgaged it.',
     judgment:'The House of Lords held her "deserted wife\'s equity" was a personal right against her husband, not a property right binding third parties.',
     ratio:'To be a property right capable of binding third parties, a right must be definable, identifiable, capable of assumption by third parties, and have some degree of permanence or stability. A purely personal right does not qualify.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=National+Provincial+Bank+v+Ainsworth' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1965/1.html' },
 
   { id:'pr4', type:'curated', cat:'case-law', area:'Property',
     title:'Lloyds Bank plc v Rosset [1990] UKHL 14',
@@ -1440,7 +1454,7 @@ const CURATED = [
     facts:'A wife claimed a beneficial interest in a property in her husband\'s name based on her supervision of renovation works, against a bank seeking possession.',
     judgment:'The House of Lords held she had no beneficial interest, as there was neither a common intention agreement nor a qualifying contribution.',
     ratio:'A common intention constructive trust requires either (1) an express agreement to share, with detrimental reliance, or (2) direct financial contributions to the purchase price. (This was later relaxed for the family context by Stack v Dowden.)',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Lloyds+Bank+v+Rosset' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1990/14.html' },
 
   { id:'pr5', type:'curated', cat:'case-law', area:'Property',
     title:'Stack v Dowden [2007] UKHL 17',
@@ -1448,7 +1462,7 @@ const CURATED = [
     facts:'An unmarried couple bought a home in joint names without declaring their beneficial shares. On separation, they disputed the proportions in which they owned it.',
     judgment:'The House of Lords held the shares were not equal, departing from the presumption of joint beneficial ownership on the unusual facts.',
     ratio:'Where a family home is in joint names, equity follows the law and beneficial ownership is presumed joint. That presumption can be displaced by evidence of a contrary common intention, assessed from the whole course of dealing.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Stack+v+Dowden' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2007/17.html' },
 
   { id:'pr6', type:'curated', cat:'case-law', area:'Property',
     title:'Jones v Kernott [2011] UKSC 53',
@@ -1456,7 +1470,7 @@ const CURATED = [
     facts:'A separated couple held their home jointly. After separation one party stopped contributing for many years, and they disputed their respective beneficial shares.',
     judgment:'The Supreme Court held the beneficial shares had altered to 90:10 to reflect their changed common intentions.',
     ratio:'Where joint owners\' common intention as to shares cannot be deduced, the court may impute an intention and award shares it considers fair having regard to the whole course of dealing. Beneficial interests can change over time.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Jones+v+Kernott' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2011/53.html' },
 
   { id:'pr7', type:'curated', cat:'case-law', area:'Property',
     title:'Walsh v Lonsdale (1882) 21 Ch D 9',
@@ -1464,7 +1478,7 @@ const CURATED = [
     facts:'A tenant took possession under an agreement for a seven-year lease that was never completed by deed. A dispute arose over rent payable in advance.',
     judgment:'The Court of Appeal held the tenant was bound as if a formal lease existed, because equity treated the agreement as effective.',
     ratio:'"Equity regards as done that which ought to be done." An enforceable agreement for a lease is treated in equity as effective as a formal lease, giving the parties equitable rights and obligations corresponding to the intended grant.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Walsh+v+Lonsdale' },
+    src:'Wikipedia', link:'https://en.wikipedia.org/wiki/Walsh_v_Lonsdale' },
 
   { id:'pr8', type:'curated', cat:'case-law', area:'Property',
     title:'Tulk v Moxhay (1848) 41 ER 1143',
@@ -1472,7 +1486,7 @@ const CURATED = [
     facts:'The owner of Leicester Square sold it subject to a covenant to keep it as a garden. A later purchaser, who knew of the covenant, proposed to build on it.',
     judgment:'The Court of Chancery granted an injunction restraining the building, enforcing the covenant against the successor.',
     ratio:'A restrictive (negative) covenant can run with the land in equity and bind successors who take with notice, provided it benefits the covenantee\'s retained land. This founded the modern law of restrictive covenants.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Tulk+v+Moxhay' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWHC/Ch/1848/J34.html' },
 
   { id:'pr9', type:'curated', cat:'case-law', area:'Property',
     title:'Wheeldon v Burrows (1879) 12 Ch D 31',
@@ -1480,7 +1494,7 @@ const CURATED = [
     facts:'A landowner sold part of his land; the buyer claimed the right to light over the retained land that the seller had previously enjoyed.',
     judgment:'The Court of Appeal set out the rule under which certain quasi-easements pass automatically on a sale of part.',
     ratio:'On a sale of part of land, the buyer acquires as easements those quasi-easements that are continuous and apparent, necessary for reasonable enjoyment, and used by the seller at the time of the grant for the benefit of the part sold.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Wheeldon+v+Burrows' },
+    src:'Wikipedia', link:'https://en.wikipedia.org/wiki/Wheeldon_v_Burrows' },
 
   { id:'pr10', type:'curated', cat:'case-law', area:'Property',
     title:'Moncrieff v Jamieson [2007] UKHL 42',
@@ -1488,7 +1502,7 @@ const CURATED = [
     facts:'Owners of land accessible only from the sea or across a neighbour\'s property claimed that their right of way included a right to park vehicles.',
     judgment:'The House of Lords held that a right to park could exist as ancillary to a right of access.',
     ratio:'A right to park may be a valid easement, including where ancillary to a right of way, provided it does not leave the servient owner without any reasonable use of their land. It rejected a strict "ouster" test based on sole use.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Moncrieff+v+Jamieson' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2007/42.html' },
 
   { id:'pr11', type:'curated', cat:'case-law', area:'Property',
     title:'Miller v Emcer Products Ltd [1956] Ch 304',
@@ -1496,7 +1510,7 @@ const CURATED = [
     facts:'A tenant of office premises was interrupted in the use of a shared lavatory by acts of the landlord and other occupiers, and complained of interference with the tenancy.',
     judgment:'The Court of Appeal confirmed that a covenant for quiet enjoyment is implied into every lease.',
     ratio:'Every lease contains an implied covenant for quiet enjoyment: the landlord undertakes that the tenant\'s lawful possession will not be substantially interfered with by the landlord or those claiming under them.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Miller+v+Emcer+Products' },
+    src:'swarb.co.uk', link:'https://swarb.co.uk/miller-v-emcer-products-ltd-ca-20-dec-1955/' },
 
   { id:'pr12', type:'curated', cat:'case-law', area:'Property',
     title:'Ashburn Anstalt v Arnold [1989] Ch 1',
@@ -1504,7 +1518,7 @@ const CURATED = [
     facts:'An occupier remained in premises rent-free until required to give possession. The question was whether this was a lease or a mere licence, and whether it bound a purchaser.',
     judgment:'The Court of Appeal held the arrangement satisfied the requirements of a lease (later doubted on a different point in Prudential Assurance v London Residuary Body).',
     ratio:'A lease requires certainty of term and exclusive possession; the absence of rent does not prevent a lease. A contractual licence does not by itself create a proprietary interest binding third parties.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Ashburn+Anstalt+v+Arnold' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1988/14.html' },
 
   { id:'pr13', type:'curated', cat:'case-law', area:'Property',
     title:'Manchester Airport plc v Dutton [1999] EWCA Civ 844',
@@ -1512,7 +1526,7 @@ const CURATED = [
     facts:'Manchester Airport held only a licence to enter National Trust land to fell trees. Protesters occupied the land and the airport sought possession against them.',
     judgment:'The Court of Appeal held that a licensee not yet in occupation could obtain possession against trespassers.',
     ratio:'A contractual licensee with a right to occupy may bring possession proceedings against trespassers to give effect to that right, even before taking actual occupation — a controversial extension of the possession remedy.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Manchester+Airport+v+Dutton' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1999/844.html' },
 
   { id:'pr14', type:'curated', cat:'case-law', area:'Property',
     title:'Thorner v Major [2009] UKHL 18',
@@ -1520,7 +1534,7 @@ const CURATED = [
     facts:'A farm worker worked unpaid for years on his relative\'s farm, encouraged by oblique assurances that he would inherit it. The relative died without leaving it to him.',
     judgment:'The House of Lords found a proprietary estoppel and awarded him the farm.',
     ratio:'Proprietary estoppel requires a representation or assurance, reliance on it, and detriment, such that it would be unconscionable to deny the claimant a remedy. Assurances may be implied from conduct and need not be expressly stated.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Thorner+v+Major' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2009/18.html' },
 
   { id:'pr15', type:'curated', cat:'case-law', area:'Property',
     title:"Cobbe v Yeoman's Row Management Ltd [2008] UKHL 55",
@@ -1528,7 +1542,7 @@ const CURATED = [
     facts:'A developer spent time and money obtaining planning permission relying on an "in principle" oral agreement to sell, which the owner then resiled from.',
     judgment:'The House of Lords held there was no proprietary estoppel; the developer was confined to a quantum meruit for his services.',
     ratio:'Proprietary estoppel will not assist a party who knew the agreement was not yet legally binding and took a commercial risk. A claimant must believe they have, or will acquire, a certain interest in identified property.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Cobbe+v+Yeomans+Row' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2008/55.html' },
 
   { id:'pr16', type:'curated', cat:'case-law', area:'Property',
     title:'Abbey National Building Society v Cann [1990] UKHL 3',
@@ -1536,7 +1550,7 @@ const CURATED = [
     facts:'A mother claimed an overriding interest by actual occupation against a mortgagee, based on her presence in the property around the time of completion and mortgage.',
     judgment:'The House of Lords held there was no overriding interest, as the relevant date for occupation was completion, and acquisition and mortgage were indivisible.',
     ratio:'Actual occupation for an overriding interest is assessed at the date of completion of the disposition. Where purchase money is provided by a mortgage, acquisition and charge are a single indivisible transaction (the "scintilla temporis" doctrine rejected).',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Abbey+National+v+Cann' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1990/3.html' },
 
   { id:'pr17', type:'curated', cat:'case-law', area:'Property',
     title:'Midland Bank Trust Co v Green [1981] UKHL 7',
@@ -1544,7 +1558,7 @@ const CURATED = [
     facts:'A father granted his son an option to buy a farm but, to defeat it, sold the farm to his wife for a nominal £500. The son had not registered the option as a land charge.',
     judgment:'The House of Lords held the unregistered option was void against the wife as a purchaser, despite her knowledge of it.',
     ratio:'An unregistered estate contract (a registrable land charge) is void against a purchaser of a legal estate for money or money\'s worth, regardless of actual notice. The statutory registration scheme is to be applied strictly.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Midland+Bank+v+Green' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1981/7.html' },
 
   { id:'pr18', type:'curated', cat:'case-law', area:'Property',
     title:'Halifax Building Society v Clark [1973] Ch 307',
@@ -1552,7 +1566,7 @@ const CURATED = [
     facts:'A mortgagor fell into arrears and the building society sought possession; the question was the scope of the court\'s power to delay possession under the Administration of Justice Act 1970.',
     judgment:'The court held that relief under s.36 was only available where the mortgagor could clear the arrears within a reasonable period.',
     ratio:'Under s.36 AJA 1970, a court may only postpone possession if satisfied the borrower can pay the arrears (and maintain instalments) within a reasonable period. It cannot suspend possession where there is no realistic prospect of repayment.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Halifax+Building+Society+v+Clark' },
+    src:'swarb.co.uk', link:'https://swarb.co.uk/halifax-building-society-v-clark-chd-1973/' },
 
   { id:'pr19', type:'curated', cat:'case-law', area:'Property',
     title:'Cheltenham & Gloucester BS v Norgan [1996] 1 WLR 343',
@@ -1560,7 +1574,7 @@ const CURATED = [
     facts:'A borrower in long-term mortgage arrears sought to spread repayment of the arrears over a lengthy period to avoid possession.',
     judgment:'The Court of Appeal held the "reasonable period" for repaying arrears could, in principle, be the whole remaining term of the mortgage.',
     ratio:'When exercising the s.36 AJA 1970 power to postpone possession, the starting point for a "reasonable period" to clear arrears may be the entire remaining term of the mortgage, subject to the lender\'s legitimate interests.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Cheltenham+Gloucester+v+Norgan' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1995/11.html' },
 
   // ══ TORT LAW ══
   { id:'to1', type:'curated', cat:'case-law', area:'Tort',
@@ -1569,7 +1583,7 @@ const CURATED = [
     facts:'Tenants sued a local council for negligently approving defective foundations. The case concerned the test for when a duty of care arises.',
     judgment:'The House of Lords set out a broad two-stage test for the duty of care (later overruled in Murphy v Brentwood and Caparo).',
     ratio:"The (now-rejected) Anns two-stage test: a duty arises where there is sufficient proximity such that harm was foreseeable, unless there are policy reasons to negate it. It was overruled by Murphy v Brentwood for over-extending liability.",
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Anns+v+Merton' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1977/4.html' },
 
   { id:'to2', type:'curated', cat:'case-law', area:'Tort',
     title:'Bolam v Friern Hospital Management Committee [1957] 1 WLR 582',
@@ -1577,7 +1591,7 @@ const CURATED = [
     facts:'A patient suffered fractures during electro-convulsive therapy given without relaxant drugs or restraints. He alleged the doctor was negligent.',
     judgment:'The court held the doctor was not negligent because a responsible body of medical opinion supported his approach.',
     ratio:"The Bolam test: a professional is not negligent if they acted in accordance with a practice accepted as proper by a responsible body of opinion skilled in that field, even if others would have acted differently.",
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Bolam+v+Friern' },
+    src:'Wikipedia', link:'https://en.wikipedia.org/wiki/Bolam_v_Friern_Hospital_Management_Committee' },
 
   { id:'to3', type:'curated', cat:'case-law', area:'Tort',
     title:'Bolitho v City and Hackney HA [1997] UKHL 46',
@@ -1585,7 +1599,7 @@ const CURATED = [
     facts:'A child died after a doctor failed to attend and intubate. The defence relied on a body of opinion that intubation would not have been carried out anyway.',
     judgment:'The House of Lords upheld the defence on the facts but qualified the Bolam test.',
     ratio:'A body of professional opinion relied on under Bolam must withstand logical analysis; the court can reject it if it is not capable of withstanding scrutiny. This added a requirement that the practice be reasonable and responsible.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Bolitho+v+City+Hackney' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1997/46.html' },
 
   { id:'to4', type:'curated', cat:'case-law', area:'Tort',
     title:'Montgomery v Lanarkshire Health Board [2015] UKSC 11',
@@ -1593,7 +1607,7 @@ const CURATED = [
     facts:'A diabetic mother was not warned of the risk of shoulder dystocia in vaginal birth; her baby was born with serious disability. She argued she should have been told and offered a caesarean.',
     judgment:'The Supreme Court held the doctor was negligent for failing to disclose the material risk.',
     ratio:'A doctor must take reasonable care to ensure a patient is aware of material risks and reasonable alternatives. A risk is material if a reasonable patient in that position would attach significance to it. This replaced Bolam for risk disclosure.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Montgomery+v+Lanarkshire' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2015/11.html' },
 
   { id:'to5', type:'curated', cat:'case-law', area:'Tort',
     title:'Nettleship v Weston [1971] EWCA Civ 6',
@@ -1601,7 +1615,7 @@ const CURATED = [
     facts:'A learner driver injured her instructor during a lesson. The question was whether she should be judged by the standard of a learner or a competent driver.',
     judgment:'The Court of Appeal held the learner was liable, judged by the standard of a reasonably competent driver.',
     ratio:'The standard of care in negligence is objective and impersonal; it does not vary with the defendant\'s inexperience. A learner driver is held to the same standard as any competent qualified driver.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Nettleship+v+Weston' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1971/6.html' },
 
   { id:'to6', type:'curated', cat:'case-law', area:'Tort',
     title:'White v Chief Constable of South Yorkshire [1998] UKHL 45',
@@ -1609,7 +1623,7 @@ const CURATED = [
     facts:'Police officers who assisted at the Hillsborough disaster claimed damages for psychiatric injury suffered as a result of their involvement.',
     judgment:'The House of Lords rejected their claims, holding they were not primary victims and could not recover as rescuers or employees.',
     ratio:'Rescuers and employees are not, by virtue of that status alone, primary victims for psychiatric injury; they must have been in physical danger. Policy considerations restrict recovery for pure psychiatric harm.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=White+v+Chief+Constable+South+Yorkshire' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1998/45.html' },
 
   { id:'to7', type:'curated', cat:'case-law', area:'Tort',
     title:'Alcock v Chief Constable of South Yorkshire [1991] UKHL 5',
@@ -1617,7 +1631,7 @@ const CURATED = [
     facts:'Relatives of victims of the Hillsborough disaster, who witnessed events live or on television, claimed damages for psychiatric injury as secondary victims.',
     judgment:'The House of Lords rejected the claims, setting out strict control mechanisms for secondary-victim claims.',
     ratio:'A secondary victim claiming for psychiatric injury must show: a close tie of love and affection with the primary victim; proximity in time and space to the event or its immediate aftermath; and perception by their own unaided senses.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Alcock+v+Chief+Constable+South+Yorkshire' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1991/5.html' },
 
   { id:'to8', type:'curated', cat:'case-law', area:'Tort',
     title:'Hunter v Canary Wharf Ltd [1997] UKHL 14',
@@ -1625,7 +1639,7 @@ const CURATED = [
     facts:'Residents claimed the Canary Wharf tower interfered with their television reception and that construction dust was a nuisance. Many claimants had no proprietary interest in their homes.',
     judgment:'The House of Lords held interference with TV reception was not an actionable nuisance, and only those with a proprietary interest could sue.',
     ratio:'Private nuisance protects rights in land; a claimant must have a proprietary interest (or exclusive possession) to sue. Interference with a purely recreational facility such as television reception is not generally actionable.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Hunter+v+Canary+Wharf' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1997/14.html' },
 
   { id:'to9', type:'curated', cat:'case-law', area:'Tort',
     title:'Cambridge Water Co v Eastern Counties Leather [1994] UKHL 5',
@@ -1633,7 +1647,7 @@ const CURATED = [
     facts:'Chemicals spilled over years at a tannery seeped into groundwater, contaminating a borehole over a mile away. The water company claimed under nuisance and Rylands v Fletcher.',
     judgment:'The House of Lords held the defendant not liable because the type of damage was not foreseeable.',
     ratio:'Foreseeability of the relevant type of harm is a prerequisite of liability under Rylands v Fletcher, as it is in nuisance. Liability does not attach to wholly unforeseeable consequences of an escape.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Cambridge+Water+v+Eastern+Counties+Leather' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1994/5.html' },
 
   { id:'to10', type:'curated', cat:'case-law', area:'Tort',
     title:'Tomlinson v Congleton Borough Council [2003] UKHL 47',
@@ -1641,7 +1655,7 @@ const CURATED = [
     facts:'A young man dived into a shallow lake in a country park, ignoring prohibition signs, and was severely injured. He sued the occupier.',
     judgment:'The House of Lords held the council owed no duty in respect of the obvious risk he freely chose to run.',
     ratio:'Occupiers are not generally liable for injuries arising from obvious risks that visitors freely choose to run. The social value of the activity and freedom of action weigh against imposing a duty to guard against self-inflicted obvious dangers.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Tomlinson+v+Congleton' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2003/47.html' },
 
   { id:'to11', type:'curated', cat:'case-law', area:'Tort',
     title:'British Railways Board v Herrington [1972] UKHL 1',
@@ -1649,7 +1663,7 @@ const CURATED = [
     facts:'A six-year-old child was electrocuted on a railway line after passing through a broken fence the Board knew was in disrepair near a play area.',
     judgment:'The House of Lords held the Board liable, recognising a limited duty owed to trespassers.',
     ratio:'An occupier owes trespassers a duty of "common humanity" to take reasonable steps to prevent injury where they know of the danger and the likelihood of trespass. (This was later put on a statutory footing by the Occupiers\' Liability Act 1984.)',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=British+Railways+Board+v+Herrington' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1972/1.html' },
 
   { id:'to12', type:'curated', cat:'case-law', area:'Tort',
     title:'Robinson v Chief Constable of West Yorkshire [2018] UKSC 4',
@@ -1657,7 +1671,7 @@ const CURATED = [
     facts:'An elderly woman was injured when police officers, arresting a suspect, knocked her over in the street. The question was whether the police owed her a duty of care.',
     judgment:'The Supreme Court held the police owed and breached a duty of care to her.',
     ratio:'There is no special immunity for the police in negligence. The Caparo "fair, just and reasonable" stage is not applied to every case; in established categories, duty is determined by precedent and ordinary principles. Public bodies owe ordinary duties for positive acts causing harm.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Robinson+v+Chief+Constable+West+Yorkshire' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2018/4.html' },
 
   // ══ PUBLIC / CONSTITUTIONAL LAW ══
   { id:'pl1', type:'curated', cat:'case-law', area:'Constitutional',
@@ -1666,7 +1680,7 @@ const CURATED = [
     facts:'King James I sought to create new offences and prohibit new buildings in London by royal proclamation, without Parliament.',
     judgment:'Sir Edward Coke CJ held that the King had no power to create new offences by proclamation.',
     ratio:'"The King hath no prerogative but that which the law of the land allows him." The Crown cannot change the law or create offences by proclamation; the prerogative is limited by and subordinate to the law.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Case+of+Proclamations' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWHC/KB/1610/J22.html' },
 
   { id:'pl2', type:'curated', cat:'case-law', area:'Public Law',
     title:'Ridge v Baldwin [1963] UKHL 2',
@@ -1674,7 +1688,7 @@ const CURATED = [
     facts:'A chief constable was dismissed without being given notice of the charges or an opportunity to be heard. He challenged the dismissal as void.',
     judgment:'The House of Lords held the dismissal void for breach of natural justice.',
     ratio:'The principles of natural justice (the right to a fair hearing) apply to administrative decisions affecting a person\'s rights, not just judicial ones. This case revived natural justice as a ground of review across public law.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Ridge+v+Baldwin' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1963/2.html' },
 
   { id:'pl3', type:'curated', cat:'case-law', area:'Public Law',
     title:'Associated Provincial Picture Houses v Wednesbury Corp [1947] EWCA Civ 1',
@@ -1682,7 +1696,7 @@ const CURATED = [
     facts:'A cinema licence was granted subject to a condition that no children under 15 be admitted on Sundays. The cinema challenged the condition as unreasonable.',
     judgment:'The Court of Appeal upheld the condition, while setting out the test for reviewing the reasonableness of administrative decisions.',
     ratio:'A decision is unlawful for "Wednesbury unreasonableness" only if it is so unreasonable that no reasonable authority could ever have come to it. Courts will not substitute their own view for that of the decision-maker on the merits.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Associated+Provincial+Picture+Houses+Wednesbury' },
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1947/1.html' },
 
   { id:'pl4', type:'curated', cat:'case-law', area:'Constitutional',
     title:'R v Secretary of State for the Home Dept, ex parte Simms [1999] UKHL 33',
@@ -1690,7 +1704,7 @@ const CURATED = [
     facts:'Prisoners challenged a policy preventing them from giving interviews to journalists investigating alleged miscarriages of justice.',
     judgment:'The House of Lords held the blanket restriction unlawful as an unjustified interference with free speech.',
     ratio:"The principle of legality: fundamental rights cannot be overridden by general or ambiguous statutory words. Parliament must squarely confront and expressly authorise any interference with basic rights (Lord Hoffmann).",
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=ex+parte+Simms' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1999/33.html' },
 
   { id:'pl5', type:'curated', cat:'case-law', area:'Constitutional',
     title:'R v SoS for Transport, ex parte Factortame (No 2) [1991] UKHL 7',
@@ -1698,7 +1712,7 @@ const CURATED = [
     facts:'Spanish fishermen challenged the Merchant Shipping Act 1988 as incompatible with EU law and sought to disapply it pending a ruling.',
     judgment:'The House of Lords, following the ECJ, granted an injunction disapplying the Act.',
     ratio:'While the UK was an EU member, directly effective EU law prevailed over inconsistent domestic statutes, and UK courts could disapply such statutes. A landmark on the (then) relationship between parliamentary sovereignty and EU law.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Factortame+No+2' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1991/7.html' },
 
   { id:'pl6', type:'curated', cat:'case-law', area:'Constitutional',
     title:'Jackson v Attorney General [2005] UKHL 56',
@@ -1706,7 +1720,7 @@ const CURATED = [
     facts:'Opponents of the Hunting Act 2004 challenged its validity, arguing the Parliament Act 1949 (used to pass it without the Lords) was itself invalid.',
     judgment:'The House of Lords upheld the validity of the 1949 Act and the Hunting Act.',
     ratio:'The Parliament Acts produce valid primary legislation. Several Law Lords made influential obiter remarks questioning whether parliamentary sovereignty is truly absolute, suggesting courts might not uphold legislation abolishing fundamental constitutional principles.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Jackson+v+Attorney+General' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/56.html' },
 
   { id:'pl7', type:'curated', cat:'case-law', area:'Human Rights',
     title:'A v Secretary of State for the Home Dept [2004] UKHL 56 (Belmarsh)',
@@ -1714,7 +1728,7 @@ const CURATED = [
     facts:'Foreign nationals were detained indefinitely without trial under anti-terrorism legislation. They challenged the detention as incompatible with the ECHR.',
     judgment:'The House of Lords held the detention scheme unlawful and issued a declaration of incompatibility.',
     ratio:'Indefinite detention of foreign terror suspects was disproportionate and discriminatory (Articles 5 and 14 ECHR), as it did not apply to British nationals. The courts can scrutinise even national-security measures for compatibility with rights.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=A+v+Secretary+of+State+Home+Department+Belmarsh' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/56.html' },
 
   { id:'pl8', type:'curated', cat:'case-law', area:'Public Law',
     title:'R (Daly) v Secretary of State for the Home Dept [2001] UKHL 26',
@@ -1722,7 +1736,7 @@ const CURATED = [
     facts:'A prisoner challenged a policy requiring his absence during cell searches that examined his legally privileged correspondence.',
     judgment:'The House of Lords held the policy unlawful as a disproportionate interference with the prisoner\'s rights.',
     ratio:'Interferences with fundamental rights must be proportionate. The proportionality test under the HRA is more demanding than traditional Wednesbury review, requiring the court to assess the balance struck and whether the measure goes no further than necessary.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+Daly+v+Secretary+of+State+Home+Department' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2001/26.html' },
 
   { id:'pl9', type:'curated', cat:'case-law', area:'Public Law',
     title:'R (Corner House Research) v Director of the SFO [2008] UKHL 60',
@@ -1730,7 +1744,7 @@ const CURATED = [
     facts:'The SFO halted a corruption investigation into an arms deal after threats that Saudi Arabia would withdraw security cooperation. Campaigners sought judicial review.',
     judgment:'The House of Lords held the Director\'s decision to discontinue was lawful.',
     ratio:'A prosecutor\'s decision to discontinue an investigation in the face of threats to national security and life is reviewable but attracts a wide margin of discretion. Courts are slow to interfere with prosecutorial judgment on such matters.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Corner+House+Research+SFO' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2008/60.html' },
 
   { id:'pl10', type:'curated', cat:'case-law', area:'Constitutional',
     title:'R (Evans) v Attorney General [2015] UKSC 21',
@@ -1738,7 +1752,7 @@ const CURATED = [
     facts:'After a tribunal ordered disclosure of Prince Charles\'s "black spider" letters to ministers, the Attorney General issued a veto certificate to block disclosure.',
     judgment:'The Supreme Court quashed the veto as unlawful.',
     ratio:'A member of the executive cannot override a binding judicial decision merely because they disagree with it; to do so offends the rule of law and the separation of powers. Statutory override powers are construed narrowly against the executive.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+Evans+v+Attorney+General' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2015/21.html' },
 
   { id:'pl11', type:'curated', cat:'case-law', area:'Constitutional',
     title:'R (Miller) v Prime Minister [2019] UKSC 41 (Prorogation)',
@@ -1746,7 +1760,7 @@ const CURATED = [
     facts:'The Prime Minister advised the Queen to prorogue Parliament for five weeks during the Brexit process. The lawfulness of that advice was challenged.',
     judgment:'The Supreme Court held unanimously that the prorogation was unlawful, null and of no effect.',
     ratio:'The exercise of prerogative power is unlawful if it frustrates or prevents, without reasonable justification, Parliament\'s ability to carry out its constitutional functions of legislating and holding the executive to account. Such power is justiciable.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+Miller+v+Prime+Minister+prorogation' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2019/41.html' },
 
   { id:'pl12', type:'curated', cat:'case-law', area:'Public Law',
     title:'R (UNISON) v Lord Chancellor [2017] UKSC 51',
@@ -1754,7 +1768,7 @@ const CURATED = [
     facts:'A trade union challenged the introduction of fees for bringing employment tribunal claims, which had caused a steep fall in claims.',
     judgment:'The Supreme Court held the fees order unlawful.',
     ratio:'Access to justice is a fundamental constitutional right inherent in the rule of law. Fees that effectively prevent access to the courts and tribunals are unlawful unless clearly authorised by primary legislation, which this order was not.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+UNISON+v+Lord+Chancellor' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2017/51.html' },
 
   { id:'pl13', type:'curated', cat:'case-law', area:'Public Law',
     title:'Privacy International v Investigatory Powers Tribunal [2019] UKSC 22',
@@ -1762,7 +1776,7 @@ const CURATED = [
     facts:'A statutory clause appeared to oust judicial review of decisions of the Investigatory Powers Tribunal. Privacy International challenged whether the clause prevented review for error of law.',
     judgment:'The Supreme Court held the ouster clause did not exclude judicial review for errors of law.',
     ratio:'Ouster clauses are construed extremely narrowly; clear words are needed to exclude the supervisory jurisdiction of the High Court, and even then the courts may resist total ouster as contrary to the rule of law (developing Anisminic).',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Privacy+International+Investigatory+Powers+Tribunal' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2019/22.html' },
 
   { id:'pl14', type:'curated', cat:'case-law', area:'Human Rights',
     title:'R (Begum) v Denbigh High School [2006] UKHL 15',
@@ -1770,7 +1784,7 @@ const CURATED = [
     facts:'A pupil was refused permission to wear the jilbab in breach of the school uniform policy and claimed a breach of her freedom to manifest her religion (Article 9 ECHR).',
     judgment:'The House of Lords held there was no unlawful interference with her rights.',
     ratio:'Where a person can avoid interference with religious practice by other means (here, attending another school permitting the dress), there may be no interference with Article 9 at all; and any interference was justified and proportionate.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+Begum+v+Denbigh+High+School' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2006/15.html' },
 
   { id:'pl15', type:'curated', cat:'case-law', area:'Constitutional',
     title:'R (Nicklinson) v Ministry of Justice [2014] UKSC 38',
@@ -1778,7 +1792,7 @@ const CURATED = [
     facts:'Sufferers of locked-in syndrome challenged the blanket ban on assisted suicide as incompatible with their Article 8 right to private life.',
     judgment:'The Supreme Court declined (by a majority) to make a declaration of incompatibility, but several Justices signalled the issue was for Parliament.',
     ratio:'On sensitive moral and social questions such as assisted dying, the courts may defer to Parliament as the appropriate constitutional forum, while reserving the power to consider declarations of incompatibility if Parliament fails to address the issue.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=R+Nicklinson+v+Ministry+of+Justice' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/38.html' },
 
   { id:'pl16', type:'curated', cat:'case-law', area:'Constitutional',
     title:'Ahmed v HM Treasury [2010] UKSC 2',
@@ -1786,7 +1800,7 @@ const CURATED = [
     facts:'Individuals had their assets frozen under Orders in Council made under the United Nations Act 1946 to implement UN terrorism sanctions, without effective means of challenge.',
     judgment:'The Supreme Court quashed the Orders as ultra vires.',
     ratio:'The executive cannot use general statutory powers to make subordinate legislation that overrides fundamental rights (here, by freezing assets without due process). Such drastic interferences require clear, specific authority from Parliament.',
-    src:'BAILII', link:'https://www.bailii.org/cgi-bin/lucy_search_1.cgi?query=Ahmed+v+HM+Treasury' },
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2010/2.html' },
 
   { id:'cn1', type:'curated', cat:'case-law', area:'Criminal',
     title:'R v Adomako [1994] UKHL 6',
@@ -3454,6 +3468,9 @@ function safe(s){ if(!s)return''; const d=document.createElement('div'); d.textC
 function safeUrl(u){ if(!u)return'#'; try{ const p=new URL(u); if(p.protocol==='http:'||p.protocol==='https:')return p.href }catch{} return'#' }
 function strip(s){ return s?s.replace(/<[^>]+>/g,' ').replace(/&[a-z]+;/gi,' ').replace(/\s+/g,' ').trim():'' }
 function trunc(s,n=360){ const t=strip(s); if(t.length<=n)return t; const c=t.lastIndexOf(' ',n); return(c>0?t.slice(0,c):t.slice(0,n))+'…' }
+// Remove <i>…</i> italic tags (academic article titles from CrossRef/OpenAlex/
+// Semantic Scholar often embed them); the \b stops it matching <img>, <input> etc.
+function deItalic(s){ return String(s==null?'':s).replace(/<\/?i\b[^>]*>/gi,''); }
 function fmtDate(s){ if(!s)return''; try{ const d=new Date(s); if(isNaN(d))return''; return d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}) }catch{return''} }
 
 // ══════════════════════════════════════════════
@@ -3652,7 +3669,7 @@ function isUKLegalArticle(title='', abstract='', journal=''){
 
 // Shared mapper for OpenAlex result items → card object
 function oaToCard(item){
-  const title=item.title||'Untitled Article';
+  const title=deItalic(item.title||'Untitled Article');
   const authors=(item.authorships||[]).slice(0,3)
     .map(a=>a.author?.display_name).filter(Boolean).join(', ');
   const journal=item.primary_location?.source?.display_name||'';
@@ -3760,7 +3777,7 @@ async function fetchCrossRef(){
     .then(r=>r.ok?r.json():{message:{items:[]}})
     .then(d=>{
       return (d.message?.items||[]).map(item=>{
-        const title=(Array.isArray(item.title)?item.title[0]:item.title)||'';
+        const title=deItalic((Array.isArray(item.title)?item.title[0]:item.title)||'');
         if(!title) return null;
         const authors=(item.author||[]).slice(0,3)
           .map(a=>[a.given,a.family].filter(Boolean).join(' ')).join(', ');
@@ -3809,7 +3826,7 @@ async function fetchSemanticScholar(){
     )
     .then(r=>r.ok?r.json():{data:[]})
     .then(d=>(d.data||[]).map(item=>{
-      const title=item.title||'';
+      const title=deItalic(item.title||'');
       if(!title) return null;
       const authors=(item.authors||[]).slice(0,3).map(a=>a.name).filter(Boolean).join(', ');
       const journal=item.publicationVenue?.name||'';
