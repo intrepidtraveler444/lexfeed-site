@@ -20,6 +20,13 @@ if (!process.env.SESSION_SECRET) console.warn('[account] SESSION_SECRET not set 
 const TOKEN_TTL = 90 * 24 * 3600 * 1000;        // 90 days
 const MAX_BODY  = 256 * 1024;                    // 256 KB cap on synced data
 const USER_RE   = /^[a-zA-Z0-9_]{3,30}$/;
+const EMAIL_RE  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// One-time recovery code (XXXX-XXXX-XXXX-XXXX) — lets a user reset their own
+// password with no email service required. Stored only as a scrypt hash.
+function genRecoveryCode() {
+  return randomBytes(8).toString('hex').toUpperCase().match(/.{4}/g).join('-');
+}
 
 const b64url   = buf => Buffer.from(buf).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 const b64urlDe = s => Buffer.from(String(s).replace(/-/g, '+').replace(/_/g, '/'), 'base64');
@@ -50,7 +57,8 @@ function verifyToken(token) {
   return data.u;
 }
 
-const publicUser = rec => ({ username: rec.username, plan: rec.plan || 'free', data: rec.data || {} });
+const publicUser = rec => ({ username: rec.username, plan: rec.plan || 'free', data: rec.data || {},
+  email: rec.email || '', hasRecovery: !!(rec.recovery && rec.recovery.hash) });
 
 export default async (req) => {
   if (req.method === 'OPTIONS') return new Response('', { headers: CORS });
@@ -83,10 +91,15 @@ export default async (req) => {
 
     if (action === 'signup') {
       if (existing) return new Response('that username is taken', { status: 409, headers: CORS });
+      const email = String(b.email || '').trim().toLowerCase();
+      if (email && !EMAIL_RE.test(email)) return new Response('that email address looks invalid', { status: 400, headers: CORS });
       const { salt, hash } = hashPassword(password);
-      const rec = { username, salt, hash, plan: 'free', data: {}, createdAt: new Date().toISOString() };
+      const recoveryCode = genRecoveryCode();
+      const rec = { username, salt, hash, email, recovery: hashPassword(recoveryCode),
+        plan: 'free', data: {}, createdAt: new Date().toISOString() };
       await store.setJSON(k, rec);
-      return Response.json({ token: signToken(username), ...publicUser(rec) }, { headers: CORS });
+      // recoveryCode is returned ONCE, on signup, for the user to save.
+      return Response.json({ token: signToken(username), ...publicUser(rec), recoveryCode }, { headers: CORS });
     }
 
     // login
@@ -110,6 +123,49 @@ export default async (req) => {
     rec.updatedAt = new Date().toISOString();
     await store.setJSON(k, rec);
     return Response.json({ ok: true, plan: rec.plan }, { headers: CORS });
+  }
+
+  // Self-service password reset via the recovery code (no email needed).
+  if (action === 'reset') {
+    const username = String(b.username || '').trim();
+    const code = String(b.code || '').trim().toUpperCase();
+    const np = String(b.newPassword || '');
+    if (!USER_RE.test(username)) return new Response('enter your username', { status: 400, headers: CORS });
+    if (np.length < 6) return new Response('new password must be at least 6 characters', { status: 400, headers: CORS });
+    const k = key(username);
+    const rec = await store.get(k, { type: 'json' });
+    if (!rec || !rec.recovery || !verifyPassword(code, rec.recovery.salt, rec.recovery.hash))
+      return new Response('wrong username or recovery code', { status: 401, headers: CORS });
+    const ph = hashPassword(np); rec.salt = ph.salt; rec.hash = ph.hash;
+    const recoveryCode = genRecoveryCode(); rec.recovery = hashPassword(recoveryCode);  // rotate (single-use)
+    rec.updatedAt = new Date().toISOString();
+    await store.setJSON(k, rec);
+    return Response.json({ token: signToken(username), ...publicUser(rec), recoveryCode }, { headers: CORS });
+  }
+
+  // Logged-in: (re)generate a recovery code — covers accounts created before this existed.
+  if (action === 'setRecovery') {
+    const u = verifyToken(b.token);
+    if (!u) return new Response('unauthorized', { status: 401, headers: CORS });
+    const k = key(u); const rec = await store.get(k, { type: 'json' });
+    if (!rec) return new Response('not found', { status: 404, headers: CORS });
+    const recoveryCode = genRecoveryCode(); rec.recovery = hashPassword(recoveryCode);
+    rec.updatedAt = new Date().toISOString();
+    await store.setJSON(k, rec);
+    return Response.json({ ok: true, recoveryCode }, { headers: CORS });
+  }
+
+  // Logged-in: add/update a recovery email (optional; for support + future reset).
+  if (action === 'setEmail') {
+    const u = verifyToken(b.token);
+    if (!u) return new Response('unauthorized', { status: 401, headers: CORS });
+    const email = String(b.email || '').trim().toLowerCase();
+    if (email && !EMAIL_RE.test(email)) return new Response('that email address looks invalid', { status: 400, headers: CORS });
+    const k = key(u); const rec = await store.get(k, { type: 'json' });
+    if (!rec) return new Response('not found', { status: 404, headers: CORS });
+    rec.email = email; rec.updatedAt = new Date().toISOString();
+    await store.setJSON(k, rec);
+    return Response.json({ ok: true, email }, { headers: CORS });
   }
 
   if (action === 'me') {
