@@ -12,7 +12,9 @@ const CORS = {
 };
 
 export default async (req) => {
-  const ADMIN = process.env.ADMIN_PASSWORD || 'Code4';
+  // Fail closed: if no admin password is configured, admin writes are disabled
+  // entirely (no guessable default). Set ADMIN_PASSWORD in the Netlify env.
+  const ADMIN = process.env.ADMIN_PASSWORD || null;
   const store = getStore('lexfeed');
 
   if (req.method === 'OPTIONS') return new Response('', { headers: CORS });
@@ -47,6 +49,8 @@ export default async (req) => {
     }
 
     // Admin-only actions below.
+    if (!ADMIN)
+      return new Response('admin not configured', { status: 503, headers: CORS });
     if (b.password !== ADMIN)
       return new Response('unauthorized', { status: 401, headers: CORS });
 
