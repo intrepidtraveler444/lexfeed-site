@@ -6533,18 +6533,47 @@ function flushSync(){
 function hydrateFromProfile(resp){
   AUTH.plan = (resp && resp.plan) || 'free'; LS.set('plan', AUTH.plan);
   const d = (resp && resp.data) || {};
-  (d.seen||[]).forEach(id=>seenIds.add(id));      LS.set('seen',[...seenIds]);
-  (d.saves||[]).forEach(id=>saves.add(id));        LS.set('saves',[...saves]);
-  if(d.savedData){ Object.assign(savedData, d.savedData); LS.set('savedData', savedData); }
-  (d.ach||[]).forEach(id=>achEarned.add(id));       LS.set('ach',[...achEarned]);
+
+  // Append-only state (you never "un-read" a post or "un-earn" an achievement):
+  // always MERGE so history/achievements only ever grow.
+  (d.seen||[]).forEach(id=>seenIds.add(id));
+  (d.ach||[]).forEach(id=>achEarned.add(id));
   const localStreak = (LS.get('streak',{count:0})||{}).count||0;
   if(d.streak && (d.streak.count||0) >= localStreak) LS.set('streak', d.streak);
   if(d.goal && !LS.get('goal',null)) LS.set('goal', d.goal);
-  // Reflect merged state in the UI.
+
+  // Saved cards are AUTHORITATIVE from the account so removals propagate across
+  // devices. The very first time this device links to this account we merge the
+  // device's existing saves UP (so nothing pre-account is lost); after that the
+  // account is the source of truth and we adopt it wholesale.
+  const linked = LS.get('syncedAccount',null) === AUTH.username;
+  if(!linked){
+    (d.saves||[]).forEach(id=>saves.add(id));
+    if(d.savedData) Object.assign(savedData, d.savedData);
+    LS.set('syncedAccount', AUTH.username);
+  } else {
+    saves = new Set(d.saves||[]);
+    savedData = d.savedData ? Object.assign({}, d.savedData) : {};
+  }
+
+  LS.set('seen',[...seenIds]); LS.set('ach',[...achEarned]);
+  LS.set('saves',[...saves]);  LS.set('savedData', savedData);
+
   try{ const av=document.getElementById('achVal'); if(av) av.textContent=achEarned.size; }catch{}
+  try{ const sc=document.getElementById('savedCnt'); if(sc) sc.textContent=saves.size; }catch{}
   try{ if(showSaved) renderSavedView(); }catch{}
   refreshAccountUI();
-  flushSync();   // push the merged result back so anonymous progress is saved
+  if(!linked) flushSync();   // push the merged union up the first time we link
+}
+
+// Pull the latest profile from the account (throttled). Adopts server saves so
+// a removal made on another device shows up here too.
+let _lastPull = 0;
+function pullRemote(){
+  if(!AUTH.token) return;
+  if(Date.now() - _lastPull < 8000) return;   // throttle focus/visibility bursts
+  _lastPull = Date.now();
+  accountApi('me', {token:AUTH.token}).then(hydrateFromProfile).catch(()=>{});
 }
 
 // ── Account UI ──
@@ -6649,7 +6678,11 @@ document.getElementById('acctModal').addEventListener('click', e=>{ if(e.target.
 refreshAccountUI();
 if(AUTH.token){ setTimeout(()=>{ accountApi('me',{token:AUTH.token}).then(hydrateFromProfile).catch(()=>{}); }, 0); }
 window.addEventListener('pagehide', flushSync);
-document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='hidden') flushSync(); });
+window.addEventListener('focus', pullRemote);
+document.addEventListener('visibilitychange', ()=>{
+  if(document.visibilityState==='hidden') flushSync();   // push local changes before leaving
+  else pullRemote();                                     // adopt remote changes on return (e.g. a removal)
+});
 
 // Streak tracking
 function updateStreak(){
