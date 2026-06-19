@@ -906,6 +906,9 @@ html{scroll-padding-top:118px}
   background:linear-gradient(180deg,#f7f9ff,#eef2ff)}
 .upsell-card h3{margin:0 0 6px;font-size:1.1rem}
 .upsell-card p{margin:0 0 12px;color:#555;font-size:.9rem;line-height:1.5}
+.rec-code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1.2rem;font-weight:700;
+  letter-spacing:2px;text-align:center;background:#f4f6ff;border:1px dashed var(--accent,#3b5bdb);
+  border-radius:10px;padding:14px;margin:10px 0;word-break:break-all;user-select:all}
 </style>
 
 <div id="acctModal" class="ach-modal">
@@ -6504,7 +6507,8 @@ let showSaved = false;
 // ══════════════════════════════════════════════
 const FREE_DAILY_VIEWS = 50;   // distinct new posts a Free user can see per day
 const FREE_MAX_SAVES    = 20;   // saved posts a Free user can keep in total
-const AUTH = { token: LS.get('token',null), username: LS.get('username',null), plan: LS.get('plan','free') };
+const AUTH = { token: LS.get('token',null), username: LS.get('username',null), plan: LS.get('plan','free'),
+               email: LS.get('email',''), hasRecovery: false };
 function isPremium(){ return AUTH.plan === 'premium'; }
 
 async function accountApi(action, body){
@@ -6549,6 +6553,8 @@ function flushSync(){
 }
 function hydrateFromProfile(resp){
   AUTH.plan = (resp && resp.plan) || 'free'; LS.set('plan', AUTH.plan);
+  if(resp && 'email' in resp){ AUTH.email = resp.email || ''; LS.set('email', AUTH.email); }
+  if(resp && 'hasRecovery' in resp){ AUTH.hasRecovery = !!resp.hasRecovery; }
   const d = (resp && resp.data) || {};
 
   // Append-only state (you never "un-read" a post or "un-earn" an achievement):
@@ -6609,66 +6615,166 @@ function refreshAccountUI(){
 function openAccount(){ renderAccountModal(); document.getElementById('acctModal').classList.add('show'); }
 function closeAccount(){ document.getElementById('acctModal').classList.remove('show'); }
 
+function escAttr(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+
+// One-time display of a recovery code. onDone runs after the user confirms.
+function showRecovery(code, onDone){
+  const body=document.getElementById('acctBody'); if(!body) return;
+  body.innerHTML =
+    '<div class="acct-row"><span class="who">🔑 Your recovery code</span></div>'+
+    '<p class="acct-note">Save this somewhere safe — it is the <b>only</b> way to reset your password if you forget it, and it won\'t be shown again.</p>'+
+    '<div class="rec-code" id="recCode">'+escAttr(code)+'</div>'+
+    '<button class="acct-btn sec" id="recCopy">Copy code</button>'+
+    '<button class="acct-btn" id="recDone" style="margin-top:8px">I\'ve saved it</button>';
+  body.querySelector('#recCopy').onclick=()=>{ try{ navigator.clipboard.writeText(code); body.querySelector('#recCopy').textContent='Copied ✓'; }catch{} };
+  body.querySelector('#recDone').onclick=onDone||closeAccount;
+}
+
 function renderAccountModal(){
   const body=document.getElementById('acctBody'); if(!body) return;
   const u = (AUTH.username||'').replace(/[^a-zA-Z0-9_]/g,'');
+
+  // ── Logged-in: profile (edit email + manage recovery code + plan) ──
   if(AUTH.username){
+    const recBlock = AUTH.hasRecovery
+      ? '<p class="acct-note">🔑 Password recovery is set up. <a href="#" id="acctGenRec">Generate a new code</a> — replaces the old one.</p>'
+      : '<div class="upsell-card" style="text-align:left;padding:14px;margin:8px 0">'+
+          '<h3 style="font-size:1rem;margin-bottom:4px">⚠️ Set up password recovery</h3>'+
+          '<p>You have no recovery code yet — without one, a forgotten password can\'t be reset. Generate one and keep it safe.</p>'+
+          '<button class="acct-btn" id="acctGenRec" style="max-width:240px;margin:0">Generate recovery code</button>'+
+        '</div>';
+    const codeBlock = isPremium() ? '' :
+      '<hr style="border:none;border-top:1px solid #ececf3;margin:14px 0">'+
+      '<input class="acct-field" id="acctCode" placeholder="Access code (Premium)" autocomplete="off">'+
+      '<button class="acct-btn" id="acctCodeBtn">Unlock Premium</button>';
     body.innerHTML =
       '<div class="acct-row"><span class="who">'+u+'</span>'+
         '<span class="plan-badge '+(isPremium()?'premium':'')+'">'+(isPremium()?'Premium':'Free')+'</span></div>'+
-      (isPremium()
-        ? '<p class="acct-note">You have full access — unlimited scroll and unlimited saves. 🎉</p>'
-        : '<p class="acct-note">Free plan: '+FREE_DAILY_VIEWS+' new posts per day and up to '+FREE_MAX_SAVES+' saved posts. Enter an access code to unlock Premium.</p>'+
-          '<input class="acct-field" id="acctCode" placeholder="Access code" autocomplete="off">'+
-          '<button class="acct-btn" id="acctCodeBtn">Unlock Premium</button>')+
+      recBlock+
+      '<label class="acct-note" style="display:block;margin-top:8px">Recovery email (optional)</label>'+
+      '<input class="acct-field" id="acctEmail" type="email" placeholder="you@example.com" value="'+escAttr(AUTH.email)+'" autocomplete="email">'+
+      '<button class="acct-btn sec" id="acctSaveEmail">Save email</button>'+
+      codeBlock+
       '<div class="acct-msg" id="acctMsg"></div>'+
       '<button class="acct-btn sec" id="acctSignout" style="margin-top:14px">Sign out</button>';
+    body.querySelector('#acctGenRec').onclick=e=>{ e.preventDefault(); genRecovery(); };
+    body.querySelector('#acctSaveEmail').onclick=saveEmail;
     if(!isPremium()){
       body.querySelector('#acctCodeBtn').onclick=()=>applyCode(body.querySelector('#acctCode').value);
       body.querySelector('#acctCode').addEventListener('keydown',e=>{ if(e.key==='Enter') applyCode(e.target.value); });
     }
     body.querySelector('#acctSignout').onclick=signOut;
-  } else {
-    body.innerHTML =
-      '<div class="acct-tabs">'+
-        '<button class="acct-tab '+(acctTab==='login'?'on':'')+'" data-tab="login">Sign in</button>'+
-        '<button class="acct-tab '+(acctTab==='signup'?'on':'')+'" data-tab="signup">Create account</button>'+
-      '</div>'+
-      '<input class="acct-field" id="acctUser" placeholder="Username" autocomplete="username" maxlength="30">'+
-      '<input class="acct-field" id="acctPass" type="password" placeholder="Password (min 6 chars)" autocomplete="current-password">'+
-      '<button class="acct-btn" id="acctGo">'+(acctTab==='login'?'Sign in':'Create account')+'</button>'+
-      '<div class="acct-msg" id="acctMsg"></div>'+
-      '<p class="acct-note">Optional — keep browsing as a Free guest if you prefer. Signing in saves your progress (saved posts, achievements, history) and syncs it across devices.</p>';
-    body.querySelectorAll('.acct-tab').forEach(t=>t.onclick=()=>{ acctTab=t.dataset.tab; renderAccountModal(); });
-    body.querySelector('#acctGo').onclick=submitAuth;
-    body.querySelector('#acctPass').addEventListener('keydown',e=>{ if(e.key==='Enter') submitAuth(); });
+    return;
   }
+
+  // ── Logged-out: reset via recovery code ──
+  if(acctTab==='reset'){
+    body.innerHTML =
+      '<div class="acct-row"><span class="who">Reset your password</span></div>'+
+      '<input class="acct-field" id="acctUser" placeholder="Username" autocomplete="username" maxlength="30">'+
+      '<input class="acct-field" id="acctCodeR" placeholder="Recovery code (XXXX-XXXX-XXXX-XXXX)" autocomplete="off">'+
+      '<input class="acct-field" id="acctNewPass" type="password" placeholder="New password (min 6 chars)" autocomplete="new-password">'+
+      '<button class="acct-btn" id="acctGo">Reset password</button>'+
+      '<div class="acct-msg" id="acctMsg"></div>'+
+      '<p class="acct-note">Enter the recovery code you saved when you created your account. <a href="#" id="acctBack">Back to sign in</a></p>';
+    body.querySelector('#acctGo').onclick=doReset;
+    body.querySelector('#acctBack').onclick=e=>{ e.preventDefault(); acctTab='login'; renderAccountModal(); };
+    return;
+  }
+
+  // ── Logged-out: sign in / create account ──
+  const signup = acctTab==='signup';
+  body.innerHTML =
+    '<div class="acct-tabs">'+
+      '<button class="acct-tab '+(!signup?'on':'')+'" data-tab="login">Sign in</button>'+
+      '<button class="acct-tab '+(signup?'on':'')+'" data-tab="signup">Create account</button>'+
+    '</div>'+
+    '<input class="acct-field" id="acctUser" placeholder="Username" autocomplete="username" maxlength="30">'+
+    '<input class="acct-field" id="acctPass" type="password" placeholder="Password (min 6 chars)" autocomplete="'+(signup?'new-password':'current-password')+'">'+
+    (signup?'<input class="acct-field" id="acctEmail" type="email" placeholder="Recovery email (optional)" autocomplete="email">':'')+
+    '<button class="acct-btn" id="acctGo">'+(signup?'Create account':'Sign in')+'</button>'+
+    '<div class="acct-msg" id="acctMsg"></div>'+
+    (signup
+      ? '<p class="acct-note">You\'ll get a one-time <b>recovery code</b> to save — it\'s how you reset your password if you forget it. Email is optional. Your progress syncs across devices.</p>'
+      : '<p class="acct-note"><a href="#" id="acctForgot">Forgot your password?</a> · Or keep browsing as a Free guest. Signing in syncs your saves, achievements and history across devices.</p>');
+  body.querySelectorAll('.acct-tab').forEach(t=>t.onclick=()=>{ acctTab=t.dataset.tab; renderAccountModal(); });
+  body.querySelector('#acctGo').onclick=submitAuth;
+  body.querySelector('#acctPass').addEventListener('keydown',e=>{ if(e.key==='Enter') submitAuth(); });
+  const fp=body.querySelector('#acctForgot'); if(fp) fp.onclick=e=>{ e.preventDefault(); acctTab='reset'; renderAccountModal(); };
 }
 
 async function submitAuth(){
   const u=document.getElementById('acctUser').value.trim();
   const p=document.getElementById('acctPass').value;
+  const emailEl=document.getElementById('acctEmail');
+  const email=emailEl?emailEl.value.trim():'';
   const msg=document.getElementById('acctMsg'), btn=document.getElementById('acctGo');
   msg.className='acct-msg'; msg.textContent='';
   if(!u||!p){ msg.className='acct-msg err'; msg.textContent='Enter a username and password.'; return; }
   btn.disabled=true; btn.textContent='Please wait…';
   try{
-    const resp=await accountApi(acctTab, {username:u, password:p});
+    const reqBody={username:u, password:p};
+    if(acctTab==='signup' && email) reqBody.email=email;
+    const resp=await accountApi(acctTab, reqBody);
     AUTH.token=resp.token; AUTH.username=resp.username;
     LS.set('token',AUTH.token); LS.set('username',AUTH.username);
     hydrateFromProfile(resp);
     if(isPremium()) liftFreeGate();
-    closeAccount();
+    if(resp.recoveryCode){ showRecovery(resp.recoveryCode, closeAccount); }  // signup → show the code once
+    else closeAccount();
   }catch(e){
     msg.className='acct-msg err'; msg.textContent=String(e.message||e);
     btn.disabled=false; btn.textContent=acctTab==='login'?'Sign in':'Create account';
   }
 }
 
+async function doReset(){
+  const u=document.getElementById('acctUser').value.trim();
+  const code=document.getElementById('acctCodeR').value.trim();
+  const np=document.getElementById('acctNewPass').value;
+  const msg=document.getElementById('acctMsg'), btn=document.getElementById('acctGo');
+  msg.className='acct-msg'; msg.textContent='';
+  if(!u||!code||!np){ msg.className='acct-msg err'; msg.textContent='Fill in all three fields.'; return; }
+  btn.disabled=true; btn.textContent='Please wait…';
+  try{
+    const resp=await accountApi('reset', {username:u, code, newPassword:np});
+    AUTH.token=resp.token; AUTH.username=resp.username;
+    LS.set('token',AUTH.token); LS.set('username',AUTH.username);
+    hydrateFromProfile(resp);
+    if(isPremium()) liftFreeGate();
+    // reset rotates the recovery code (single-use) → show the new one
+    if(resp.recoveryCode) showRecovery(resp.recoveryCode, closeAccount);
+    else closeAccount();
+  }catch(e){
+    msg.className='acct-msg err'; msg.textContent=String(e.message||e);
+    btn.disabled=false; btn.textContent='Reset password';
+  }
+}
+
+async function saveEmail(){
+  const email=document.getElementById('acctEmail').value.trim();
+  const msg=document.getElementById('acctMsg');
+  try{
+    const r=await accountApi('setEmail', {token:AUTH.token, email});
+    AUTH.email=r.email||''; LS.set('email',AUTH.email);
+    if(msg){ msg.className='acct-msg ok'; msg.textContent='Email saved.'; }
+  }catch(e){ if(msg){ msg.className='acct-msg err'; msg.textContent=String(e.message||e); } }
+}
+
+async function genRecovery(){
+  const msg=document.getElementById('acctMsg');
+  try{
+    const r=await accountApi('setRecovery', {token:AUTH.token});
+    AUTH.hasRecovery=true;
+    showRecovery(r.recoveryCode, renderAccountModal);   // back to profile after saving
+  }catch(e){ if(msg){ msg.className='acct-msg err'; msg.textContent=String(e.message||e); } }
+}
+
 function signOut(){
   flushSync();
-  AUTH.token=null; AUTH.username=null; AUTH.plan='free';
-  LS.set('token',null); LS.set('username',null); LS.set('plan','free');
+  AUTH.token=null; AUTH.username=null; AUTH.plan='free'; AUTH.email=''; AUTH.hasRecovery=false;
+  LS.set('token',null); LS.set('username',null); LS.set('plan','free'); LS.set('email','');
+  acctTab='login';
   refreshAccountUI(); renderAccountModal();
 }
 
