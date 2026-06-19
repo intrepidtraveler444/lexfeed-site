@@ -8604,7 +8604,8 @@ window.loadMore();
 deferSecondaryFeeds();
 
 // ══════════════════════════════════════════════
-//  FIRST-RUN GUIDED TOUR (plays once per device)
+//  GUIDED TOUR — shown to logged-out visitors on every visit (incl. a plans
+//  overview at the end); hidden once the user is signed in.
 // ══════════════════════════════════════════════
 const TOUR_STEPS=[
   { center:true, emoji:'⚖️', title:'Welcome to LexFeed 👋',
@@ -8627,6 +8628,8 @@ const TOUR_STEPS=[
     body:'Read a little each day to grow your streak and unlock achievements 🏆 — small habits, real progress.' },
   { center:true, emoji:'🎉', title:'You’re all set!',
     body:'Scroll, tap a tag, save what matters, and test yourself. Welcome aboard — happy learning. 🎓' },
+  { center:true, emoji:'💎', title:'Free & Premium',
+    body:`Browse for free with up to <b>${FREE_DAILY_VIEWS} new posts a day</b> and <b>${FREE_MAX_SAVES} saved cards</b>. Upgrade to <b>Premium</b> for unlimited scrolling, unlimited saves and full access. Create an account or sign in to keep your saves, streak and achievements synced across all your devices.` },
 ];
 let tourIdx=0, tourEls=null;
 
@@ -8725,7 +8728,8 @@ function tourKey(e){ if(e.key==='Escape') endTour(); }
 function tourResize(){ if(tourEls) showTourStep(); }
 
 function maybeStartTour(){
-  if(tourEls||LS.get('tourDone',false)) return;
+  if(tourEls) return;
+  if(AUTH.username) return;                 // logged-in users never see the tour
   if(showSaved||quizMode) return;          // only on the normal feed
   tourIdx=0;
   tourEls=buildTourDom();
@@ -8733,7 +8737,7 @@ function maybeStartTour(){
   window.addEventListener('resize',tourResize);
   showTourStep();
 }
-// Give the first cards a moment to render, then run the one-time tour
+// Give the first cards a moment to render, then run the tour (logged-out only)
 setTimeout(maybeStartTour,850);
 }
 </script>
