@@ -108,6 +108,24 @@ function pickDiverse(itemsDesc, n) {
   if (out.length < n) for (const it of itemsDesc) { if (out.length >= n) break; if (!out.includes(it)) out.push(it); }
   return out.slice(0, n);
 }
+// For the daily digest: one most-recent story per source within the last `days`
+// days, then backfill from any date if too few sources — so the picks
+// consistently span more than one outlet even on quiet news days.
+function diverseRecent(itemsDesc, n, days) {
+  const cutoff = Date.now() - days * 86400000;
+  const recentBySrc = new Map(), anyBySrc = new Map();
+  for (const it of itemsDesc) {
+    if (!anyBySrc.has(it.src)) anyBySrc.set(it.src, it);
+    if ((Date.parse(it.date) || 0) >= cutoff && !recentBySrc.has(it.src)) recentBySrc.set(it.src, it);
+  }
+  const byDate = arr => arr.sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0));
+  const picks = byDate([...recentBySrc.values()]);
+  if (picks.length < n) for (const it of byDate([...anyBySrc.values()])) {
+    if (picks.length >= n) break;
+    if (!picks.some(p => p.src === it.src)) picks.push(it);
+  }
+  return picks.slice(0, n);
+}
 
 async function compute(dd) {
   let lead = null, otherCases = 0, news = [];
@@ -123,10 +141,10 @@ async function compute(dd) {
   } catch {}
   try {
     const items = (await Promise.all(NEWS.map(async f => {
-      try { return parseRss(await fetchText(f.url)).filter(i => ldnDateOf(i.date) === dd).map(i => ({ ...i, src: f.src })); }
+      try { return parseRss(await fetchText(f.url)).map(i => ({ ...i, src: f.src })); }
       catch { return []; }
-    }))).flat().sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0));
-    news = pickDiverse(items, 3).map(i => ({ title: i.title, link: i.link, src: i.src }));
+    }))).flat();
+    news = diverseRecent(items, 3, 3).map(i => ({ title: i.title, link: i.link, src: i.src }));
   } catch {}
   return { date: dd, lead, otherCases, news, builtAt: new Date().toISOString() };
 }
@@ -183,7 +201,7 @@ export default async (req) => {
   const store = getStore('lexfeed-digest');
   const weekly = new URL(req.url).searchParams.get('type') === 'weekly';
 
-  const V = 'v3:';   // bump to discard any stale cached digests after a logic fix
+  const V = 'v4:';   // bump to discard any stale cached digests after a logic fix
 
   if (weekly) {
     const range = weekRange();
