@@ -909,6 +909,19 @@ html{scroll-padding-top:118px}
 .rec-code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:1.2rem;font-weight:700;
   letter-spacing:2px;text-align:center;background:#f4f6ff;border:1px dashed var(--accent,#3b5bdb);
   border-radius:10px;padding:14px;margin:10px 0;word-break:break-all;user-select:all}
+/* ── Daily digest card ── */
+.digest-k{font-size:.72rem;font-weight:700;color:#3b5bdb;text-transform:uppercase;letter-spacing:.03em;margin:2px 0 4px}
+.digest-lead{display:block;text-decoration:none;color:inherit;border:1px solid #e6e9f5;border-radius:12px;
+  padding:12px;margin:4px 0;background:#fafbff}
+.digest-lead:hover{background:#f2f5ff}
+.digest-t{font-weight:700;font-size:.98rem;line-height:1.35;color:var(--navy,#1a2744)}
+.digest-d{font-size:.85rem;color:#5a6472;margin-top:4px;line-height:1.45}
+.digest-more{font-size:.8rem;color:#888;margin:2px 0 6px}
+.digest-news{display:flex;justify-content:space-between;gap:10px;align-items:baseline;text-decoration:none;
+  color:var(--navy,#1a2744);font-size:.9rem;padding:7px 0;border-top:1px solid #eef0f7}
+.digest-news:hover{color:#3b5bdb}
+.digest-src{font-size:.72rem;color:#9aa3b2;white-space:nowrap}
+.digest-empty{font-size:.88rem;color:#5a6472;line-height:1.5}
 </style>
 
 <div id="acctModal" class="ach-modal">
@@ -1313,7 +1326,7 @@ const CURATED = [
     ratio:'Burglary under s.9 Theft Act 1968 requires an effective and substantial entry as a trespasser, and the defendant must know of or be reckless as to the facts making him a trespasser. Entry by invitation negates trespass.',
     src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Crim/1972/1.html' },
 
-  // ══ CONTRACT LAW ══
+  // ══ CONTRACT LAW ══
 
   { id:'ct2', type:'curated', cat:'case-law', area:'Contract',
     title:'Pharmaceutical Society of GB v Boots [1953] 1 QB 401',
@@ -1354,7 +1367,7 @@ const CURATED = [
     judgment:'The Court of Appeal held the agreement was legally binding and enforceable.',
     ratio:'The presumption against intention to create legal relations in domestic agreements does not apply where the parties are separating or no longer amicable. Such arrangements are presumed to be intended to be legally binding (distinguishing Balfour v Balfour).',
     src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1970/6.html' },
-
+
 
   { id:'ct8', type:'curated', cat:'case-law', area:'Contract',
     title:'Chappell & Co Ltd v Nestlé Co Ltd [1960] AC 87',
@@ -1460,7 +1473,7 @@ const CURATED = [
     judgment:'The Supreme Court held the beneficial shares had altered to 90:10 to reflect their changed common intentions.',
     ratio:'Where joint owners\' common intention as to shares cannot be deduced, the court may impute an intention and award shares it considers fair having regard to the whole course of dealing. Beneficial interests can change over time.',
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2011/53.html' },
-
+
 
   { id:'pr8', type:'curated', cat:'case-law', area:'Property',
     title:'Tulk v Moxhay (1848) 41 ER 1143',
@@ -1469,7 +1482,7 @@ const CURATED = [
     judgment:'The Court of Chancery granted an injunction restraining the building, enforcing the covenant against the successor.',
     ratio:'A restrictive (negative) covenant can run with the land in equity and bind successors who take with notice, provided it benefits the covenantee\'s retained land. This founded the modern law of restrictive covenants.',
     src:'BAILII', link:'https://www.bailii.org/ew/cases/EWHC/Ch/1848/J34.html' },
-
+
 
   { id:'pr10', type:'curated', cat:'case-law', area:'Property',
     title:'Moncrieff v Jamieson [2007] UKHL 42',
@@ -1478,7 +1491,7 @@ const CURATED = [
     judgment:'The House of Lords held that a right to park could exist as ancillary to a right of access.',
     ratio:'A right to park may be a valid easement, including where ancillary to a right of way, provided it does not leave the servient owner without any reasonable use of their land. It rejected a strict "ouster" test based on sole use.',
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2007/42.html' },
-
+
 
   { id:'pr12', type:'curated', cat:'case-law', area:'Property',
     title:'Ashburn Anstalt v Arnold [1989] Ch 1',
@@ -1527,7 +1540,7 @@ const CURATED = [
     judgment:'The House of Lords held the unregistered option was void against the wife as a purchaser, despite her knowledge of it.',
     ratio:'An unregistered estate contract (a registrable land charge) is void against a purchaser of a legal estate for money or money\'s worth, regardless of actual notice. The statutory registration scheme is to be applied strictly.',
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1981/7.html' },
-
+
 
   { id:'pr19', type:'curated', cat:'case-law', area:'Property',
     title:'Cheltenham & Gloucester BS v Norgan [1996] 1 WLR 343',
@@ -1545,7 +1558,7 @@ const CURATED = [
     judgment:'The House of Lords set out a broad two-stage test for the duty of care (later overruled in Murphy v Brentwood and Caparo).',
     ratio:"The (now-rejected) Anns two-stage test: a duty arises where there is sufficient proximity such that harm was foreseeable, unless there are policy reasons to negate it. It was overruled by Murphy v Brentwood for over-extending liability.",
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1977/4.html' },
-
+
 
   { id:'to3', type:'curated', cat:'case-law', area:'Tort',
     title:'Bolitho v City and Hackney HA [1997] UKHL 46',
@@ -4792,6 +4805,7 @@ function startFeedsInBackground(){
       n>0?`${n} live items — National Archives · legislation.gov.uk · BAILII · news feeds`
          :'Curated content — live feeds unavailable';
     updateWelcomeNew();   // fill in the "N new since last visit" count
+    try{ refreshDigest(); }catch{}   // today's judgments are now in livePool
     // Always trigger a reload when feeds complete so live cards
     // replace the loading placeholder regardless of which filter is active
     if(!isLoading) loadMore();
@@ -4940,6 +4954,7 @@ async function loadNewsFeeds(force=false){
   newsLoading=false;
   newsLoaded=true;
   livePool=shuffle(livePool);
+  try{ refreshDigest(); }catch{}   // today's news is now in livePool
 
   if(curFilter==='legal-news'){
     removeEmptyState();
@@ -7172,6 +7187,64 @@ function planToast(msg){
   clearTimeout(t._h); t._h=setTimeout(()=>{ t.style.opacity='0'; },4000);
 }
 
+// ── Daily digest ("Today in UK Law") — replaces Today's Picks, shown 17:00–05:00 UK ──
+function _ldnParts(when){
+  const p=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/London',hourCycle:'h23',
+    year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit'})
+    .formatToParts(when||new Date()).reduce((a,x)=>(a[x.type]=x.value,a),{});
+  return { y:+p.year, m:+p.month, d:+p.day, hour:+p.hour };
+}
+function _ldnDateStr(when){ const p=_ldnParts(when); return p.y+'-'+String(p.m).padStart(2,'0')+'-'+String(p.d).padStart(2,'0'); }
+// The calendar day whose developments the digest covers, or null when outside
+// the 17:00→05:00 window (after midnight it still shows the day that just ended).
+function digestDate(){
+  const p=_ldnParts();
+  if(p.hour>=17) return p.y+'-'+String(p.m).padStart(2,'0')+'-'+String(p.d).padStart(2,'0');
+  if(p.hour<5){ const dt=new Date(Date.UTC(p.y,p.m-1,p.d)); dt.setUTCDate(dt.getUTCDate()-1);
+    return dt.getUTCFullYear()+'-'+String(dt.getUTCMonth()+1).padStart(2,'0')+'-'+String(dt.getUTCDate()).padStart(2,'0'); }
+  return null;
+}
+function _courtTier(court){
+  const c=String(court||'').toLowerCase();
+  if(/supreme|uksc|privy council|ukpc/.test(c)) return 0;
+  if(/court of appeal|ewca/.test(c))            return 1;
+  if(/high court|ewhc/.test(c))                 return 2;
+  if(/tribunal|ukut|ukftt/.test(c))             return 4;
+  return 3;
+}
+function buildDigestData(){
+  const dd=digestDate(); if(!dd) return null;
+  const onDay=c=>{ const t=Date.parse(c.date||''); return !isNaN(t) && _ldnDateStr(new Date(t))===dd; };
+  const cases=livePool.filter(c=>c.cat==='case-law' && onDay(c))
+    .sort((a,b)=>_courtTier(a.court)-_courtTier(b.court));
+  const news=livePool.filter(c=>c.cat==='legal-news' && onDay(c)).slice(0,3);
+  return { dd, lead:cases[0]||null, otherCases:Math.max(0,cases.length-1), news };
+}
+function renderDigestInner(){
+  const D=buildDigestData();
+  const dd=D?D.dd:digestDate();
+  const label=dd?new Date(dd+'T12:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}):'';
+  let html=`<div class="flair-tag">📋 Today in UK Law${label?` · ${safe(label)}`:''}</div>`;
+  if(!D) return html+`<div class="digest-empty">Today's digest appears here each evening from 5pm.</div>`;
+  if(D.lead){
+    const c=D.lead;
+    html+=`<a class="digest-lead" href="${safeUrl(c.link)}" target="_blank" rel="noopener">`+
+      `<div class="digest-k">⚖️ Top judgment today${c.court?` · ${safe(c.court)}`:''}</div>`+
+      `<div class="digest-t">${safe(c.title)}</div>`+
+      (c.desc?`<div class="digest-d">${safe(trunc(c.desc,170))}</div>`:'')+
+      `</a>`;
+    if(D.otherCases>0) html+=`<div class="digest-more">＋ ${D.otherCases} other judgment${D.otherCases>1?'s':''} handed down today</div>`;
+  }
+  if(D.news.length){
+    html+=`<div class="digest-k" style="margin-top:10px">📰 In the news today</div>`;
+    D.news.forEach(n=>{ html+=`<a class="digest-news" href="${safeUrl(n.link)}" target="_blank" rel="noopener"><span>${safe(n.title)}</span><span class="digest-src">${safe(n.src||'')}</span></a>`; });
+  }
+  if(!D.lead && !D.news.length)
+    html+=`<div class="digest-empty">A quiet day so far — judgments and news will appear here as they're published.</div>`;
+  return html;
+}
+function refreshDigest(){ const el=document.querySelector('.flair-digest'); if(el) el.innerHTML=renderDigestInner(); }
+
 function buildFlairCard(kind,delayMs=0){
   const el=document.createElement('div');
   el.className='card flair-card flair-'+kind;
@@ -7205,10 +7278,10 @@ function buildFlairCard(kind,delayMs=0){
       <div class="wb-new">Pulling fresh news & judgments…</div>
       <button class="wb-qotd">Jump to today's question →</button>`;
     setTimeout(updateWelcomeNew,1600);
-  } else if(kind==='picks'){
-    const t=dailyPick('legal-term'), s=dailyPick('statute'), a=dailyPick('journal-article');
-    const row=(emoji,label,c)=>c?`<a class="pick-row" href="${safeUrl(c.link)}" target="_blank" rel="noopener"><span class="pick-label">${emoji} ${label}</span><span class="pick-title">${safe(c.title)}</span></a>`:'';
-    el.innerHTML=`<div class="flair-tag">⭐ Today's Picks</div>${row('🔤','Term of the Day',t)}${row('📜','Statute of the Day',s)}${row('📚','Article of the Day',a)}`;
+  } else if(kind==='digest'){
+    el.innerHTML=renderDigestInner();
+    // Live feeds load asynchronously — refresh the card as today's items arrive.
+    setTimeout(refreshDigest,1500); setTimeout(refreshDigest,4000); setTimeout(refreshDigest,9000);
   } else if(kind==='upgrade'){
     el.innerHTML=`<div class="upsell-card">
       <h3>🔒 You've reached today's free limit</h3>
@@ -7967,7 +8040,7 @@ let dailyQuizInjected=false;
 //   history → second post overall
 //   fact, quote → one each, spaced out at flair slots
 let historyShown=false;
-let welcomeShown=false, picksShown=false;
+let welcomeShown=false, digestShown=false;
 const flairQueue=['quote','fact'];   // injected once each, in order, at flair slots
 
 // ── Return-visitor freshness ──
@@ -8019,10 +8092,10 @@ window.getBatch=function(size=12){
     result.push(getDailyQuiz());
   }
 
-  // Today's Picks — rotating Term / Statute / Article of the day (once per session).
-  if(!picksShown&&curFilter==='all'){
-    picksShown=true;
-    if(dailyPick('legal-term')||dailyPick('statute')||dailyPick('journal-article')) result.push({_isFlair:true,kind:'picks'});
+  // Daily digest — replaces "Today's Picks"; only shown 17:00→05:00 UK.
+  if(!digestShown&&curFilter==='all'){
+    digestShown=true;
+    if(digestDate()) result.push({_isFlair:true,kind:'digest'});
   }
 
   // Free plan: cap NEW posts at FREE_DAILY_VIEWS per day (repeats can't recur;
