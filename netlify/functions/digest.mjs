@@ -115,15 +115,72 @@ async function compute(dd) {
   return { date: dd, lead, otherCases, news, builtAt: new Date().toISOString() };
 }
 
+// The Mon–Fri range the weekend round-up covers (the week that just ended).
+function weekRange() {
+  const p = ldnParts();
+  const dow = new Date(Date.UTC(p.y, p.m - 1, p.d)).getUTCDay();   // 0=Sun … 6=Sat
+  const back = (dow + 1) % 7;                                       // days back to the most recent Saturday
+  const sat = new Date(Date.UTC(p.y, p.m - 1, p.d)); sat.setUTCDate(sat.getUTCDate() - back);
+  const fmt = dt => dt.getUTCFullYear() + '-' + pad(dt.getUTCMonth() + 1) + '-' + pad(dt.getUTCDate());
+  const fri = new Date(sat); fri.setUTCDate(fri.getUTCDate() - 1);
+  const mon = new Date(sat); mon.setUTCDate(mon.getUTCDate() - 5);
+  return { from: fmt(mon), to: fmt(fri) };
+}
+function legType(link) {
+  if (/\/ukpga\//.test(link)) return 'UK Act';
+  if (/\/uksi\//.test(link))  return 'Statutory Instrument';
+  if (/\/asp\//.test(link))   return 'Act of the Scottish Parliament';
+  if (/\/ssi\//.test(link))   return 'Scottish SI';
+  if (/\/nia\//.test(link))   return 'NI Act';
+  if (/\/(anaw|asc|wsi)\//.test(link)) return 'Welsh legislation';
+  return 'Legislation';
+}
+
+async function computeWeekly({ from, to }) {
+  const inRange = iso => { const ds = ldnDateOf(iso); return ds >= from && ds <= to; };
+  let cases = [], legislation = null, news = [];
+  try {
+    cases = parseAtom(await fetchText('https://caselaw.nationalarchives.gov.uk/atom.xml?order=-date&per_page=100'))
+      .filter(e => inRange(e.date) && validNA(e.link))
+      .sort((a, b) => courtTier(a.court) - courtTier(b.court))
+      .slice(0, 2)
+      .map(c => ({ title: c.title, court: shortCourt(c.court), link: c.link }));
+  } catch {}
+  try {
+    const leg = parseAtom(await fetchText('https://www.legislation.gov.uk/new/data.feed'))
+      .filter(e => inRange(e.date))
+      .sort((a, b) => (/\/ukpga\//.test(a.link) ? 0 : 1) - (/\/ukpga\//.test(b.link) ? 0 : 1));
+    if (leg[0]) legislation = { title: leg[0].title, link: leg[0].link, type: legType(leg[0].link) };
+  } catch {}
+  try {
+    const items = (await Promise.all(NEWS.map(async f => {
+      try { return parseRss(await fetchText(f.url)).filter(i => inRange(i.date)).map(i => ({ ...i, src: f.src })); }
+      catch { return []; }
+    }))).flat().sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0));
+    news = items.slice(0, 3).map(i => ({ title: i.title, link: i.link, src: i.src }));
+  } catch {}
+  return { from, to, cases, legislation, news, builtAt: new Date().toISOString() };
+}
+
 export default async (req) => {
   if (req.method === 'OPTIONS') return new Response('', { headers: CORS });
   const store = getStore('lexfeed-digest');
+  const weekly = new URL(req.url).searchParams.get('type') === 'weekly';
+
+  if (weekly) {
+    const range = weekRange();
+    const k = 'weekly:' + range.from + '_' + range.to;
+    const cached = await store.get(k, { type: 'json' });
+    if (cached) return Response.json(cached, { headers: CORS });
+    const payload = await computeWeekly(range);
+    if (payload.cases.length || payload.legislation || payload.news.length) await store.setJSON(k, payload);
+    return Response.json(payload, { headers: CORS });
+  }
+
   const dd = digestDate();
   const k = 'daily:' + dd;
-
   const cached = await store.get(k, { type: 'json' });
   if (cached) return Response.json(cached, { headers: CORS });
-
   const payload = await compute(dd);
   // Freeze it for the day once there's real content; otherwise allow a later
   // request to recompute (e.g. if judgments hadn't been published yet).
