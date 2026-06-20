@@ -7236,7 +7236,7 @@ function renderDailyInner(data){
     if(data.otherCases>0) html+=`<div class="digest-more">＋ ${data.otherCases} other judgment${data.otherCases>1?'s':''} handed down today</div>`;
   }
   if(data.news && data.news.length){
-    html+=`<div class="digest-k" style="margin-top:10px">📰 In the news</div>`;
+    html+=`<div class="digest-k" style="margin-top:10px">📰 In the news today</div>`;
     data.news.forEach(n=>{ html+=`<a class="digest-news" href="${safeUrl(n.link)}" target="_blank" rel="noopener"><span>${safe(n.title)}</span><span class="digest-src">${safe(n.src||'')}</span></a>`; });
   }
   if(!data.lead && (!data.news||!data.news.length))
@@ -8400,6 +8400,7 @@ function saveCardEdit(id,ov){
 //   cache/offline fallback so the site still works if the backend is absent —
 const STORE_API='/api/store';
 function adminPw(){ return sessionStorage.getItem('lf_apw')||''; }
+async function adminCheck(pw){ const r=await remotePost({action:'checkAuth',password:pw}); return !!(r&&r.ok); }
 async function remoteGet(){ try{ const r=await fetch(STORE_API,{cache:'no-store'}); return r.ok?await r.json():null; }catch(_){ return null; } }
 async function remotePost(p){ try{ const r=await fetch(STORE_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)}); return r.ok?await r.json():null; }catch(_){ return null; } }
 let _flagsCache=null;
@@ -8478,7 +8479,11 @@ function initAdmin(){
     .forEach(sel=>document.querySelectorAll(sel).forEach(n=>n.style.display='none'));
   let root=document.getElementById('adminRoot');
   if(!root){ root=document.createElement('div'); root.id='adminRoot'; document.body.appendChild(root); }
-  if(sessionStorage.getItem('lf_admin')==='1') renderAdminPanel(root); else renderAdminGate(root);
+  // Re-validate any stored login against the server (a stale/wrong password — e.g.
+  // an old default — must be re-prompted, not silently trusted).
+  const pw=adminPw();
+  if(pw){ adminCheck(pw).then(ok=>{ if(ok) renderAdminPanel(root); else { sessionStorage.removeItem('lf_admin'); sessionStorage.removeItem('lf_apw'); renderAdminGate(root); } }); }
+  else renderAdminGate(root);
 }
 function renderAdminGate(root){
   root.innerHTML=`<div class="adm-gate"><div class="adm-gate-box">
@@ -8488,9 +8493,16 @@ function renderAdminGate(root){
     <div class="adm-err">Incorrect password — access denied.</div>
     <button class="adm-btn adm-enter" style="width:100%">Enter</button>
   </div></div>`;
-  const inp=root.querySelector('.adm-pass'), err=root.querySelector('.adm-err');
-  const go=()=>{ if(inp.value==='Code4'){ sessionStorage.setItem('lf_admin','1'); sessionStorage.setItem('lf_apw',inp.value); renderAdminPanel(root); } else { err.style.display='block'; inp.value=''; inp.focus(); } };
-  root.querySelector('.adm-enter').onclick=go;
+  const inp=root.querySelector('.adm-pass'), err=root.querySelector('.adm-err'), btn=root.querySelector('.adm-enter');
+  const go=async()=>{
+    const pw=inp.value; if(!pw) return;
+    btn.disabled=true; btn.textContent='Checking…'; err.style.display='none';
+    const ok=await adminCheck(pw);
+    btn.disabled=false; btn.textContent='Enter';
+    if(ok){ sessionStorage.setItem('lf_admin','1'); sessionStorage.setItem('lf_apw',pw); renderAdminPanel(root); }
+    else { err.style.display='block'; inp.value=''; inp.focus(); }
+  };
+  btn.onclick=go;
   inp.addEventListener('keydown',e=>{ if(e.key==='Enter') go(); });
   setTimeout(()=>inp.focus(),60);
 }
