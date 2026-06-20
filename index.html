@@ -8433,7 +8433,13 @@ async function loadFlags(){
 async function dismissFlagAt(i){
   const res=await remotePost({action:'dismissFlag',password:adminPw(),index:i});
   if(res&&Array.isArray(res.flags)){ _flagsCache=res.flags; }
-  else { const f=getLocalFlags(); f.splice(i,1); LS.set('flags',f); }
+  else {
+    // Server unreachable/unauthorised — drop it from the working copy so the UI
+    // still updates (it will return on a full reload if not dismissed globally).
+    if(Array.isArray(_flagsCache)){ _flagsCache=_flagsCache.slice(); _flagsCache.splice(i,1); }
+    const f=getLocalFlags(); f.splice(i,1); LS.set('flags',f);
+  }
+  return _flagsCache || getLocalFlags();
 }
 
 // — flag modal (public feed) —
@@ -8532,10 +8538,11 @@ function adminCardPreview(c){
   if(c.link) p.push('<span class="adm-mut">'+admText(c.link)+'</span>');
   return p.join('<br>')||'<em>(no preview)</em>';
 }
-async function renderAdmFlags(root){
+async function renderAdmFlags(root, preFlags){
   const box=root.querySelector('#admFlags'); if(!box) return;
-  box.innerHTML=`<div class="adm-empty">Loading flagged posts…</div>`;
-  const flags=await loadFlags();
+  let flags;
+  if(Array.isArray(preFlags)){ flags=preFlags; }              // render the authoritative list (post-dismiss) — avoids a stale re-read
+  else { box.innerHTML=`<div class="adm-empty">Loading flagged posts…</div>`; flags=await loadFlags(); }
   const cnt=root.querySelector('#admFlagCount'); if(cnt) cnt.textContent=flags.length;
   if(!flags.length){ box.innerHTML=`<div class="adm-empty">No flagged posts right now. 🎉</div>`; return; }
   box.innerHTML='';
@@ -8550,12 +8557,12 @@ async function renderAdmFlags(root){
     if(c) row.querySelector('.adm-edit').onclick=()=>openEditor(root,c.id);
     if(c) row.querySelector('.adm-remove').onclick=()=>admConfirm(`Permanently remove “${admText(c.title||c.id)}”?<br><span style="font-size:12px;color:#64748b">This removes it from the feed for everyone and cannot be undone.</span>`,async()=>{
       removeCardPermanently(c.id);
-      await dismissFlagAt(idx);
+      const nf=await dismissFlagAt(idx);
       showToast('🗑 Post removed from the feed.');
-      renderAdmFlags(root); renderAdmList(root,(root.querySelector('.adm-search')||{}).value||'');
+      renderAdmFlags(root,nf); renderAdmList(root,(root.querySelector('.adm-search')||{}).value||'');
       const lc=root.querySelector('#admListCount'); if(lc) lc.textContent=CURATED.length;
     });
-    row.querySelector('.adm-dismiss').onclick=async()=>{ await dismissFlagAt(idx); renderAdmFlags(root); };
+    row.querySelector('.adm-dismiss').onclick=async()=>{ const nf=await dismissFlagAt(idx); renderAdmFlags(root,nf); };
     box.appendChild(row);
   });
 }
