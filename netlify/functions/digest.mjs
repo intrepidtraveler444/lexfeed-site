@@ -9,7 +9,7 @@ const CORS = {
   'Access-Control-Allow-Methods': 'GET,OPTIONS',
   'Cache-Control': 'public, max-age=600'   // identical payload anyway; eases load
 };
-const UA = 'Mozilla/5.0 (compatible; LexFeedDigest/1.0; +https://lexfeedai.netlify.app)';
+const UA = 'Mozilla/5.0 (compatible; LexFeedDigest/1.0; +https://lexfeeduk.netlify.app)';
 
 const NA_GENERAL = 'https://caselaw.nationalarchives.gov.uk/atom.xml?order=-date&per_page=50';
 const NEWS = [
