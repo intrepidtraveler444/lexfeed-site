@@ -56,13 +56,20 @@ async function fetchText(url) {
   return r.text();
 }
 
+// Pick the human-readable page link from an <entry>. Atom puts href/rel in any
+// order and lists several alternates (page, /data.xml, PDF on assets host); we
+// want the clean page URL, never the data.xml/pdf or the internal /id/ URI.
+function pickLink(e) {
+  const hrefs = [...e.matchAll(/<link\b[^>]*\bhref="([^"]+)"/g)].map(m => m[1]);
+  return (hrefs.find(h => !/\/data\.\w+$|\.pdf$|\.xml$/i.test(h) && !/assets\.caselaw/i.test(h))
+       || hrefs[0] || (e.match(/<id>([^<]+)<\/id>/) || [])[1] || '').trim();
+}
 function parseAtom(xml) {
   return (xml.match(/<entry\b[\s\S]*?<\/entry>/g) || []).map(e => ({
     title: decode((e.match(/<title[^>]*>([\s\S]*?)<\/title>/) || [])[1]),
     date: ((e.match(/<published>([^<]+)<\/published>/) || [])[1] || (e.match(/<updated>([^<]+)<\/updated>/) || [])[1] || '').trim(),
     court: decode((e.match(/<author>[\s\S]*?<name>([\s\S]*?)<\/name>/) || [])[1]),
-    link: ((e.match(/<link[^>]*rel="alternate"[^>]*href="([^"]+)"/) || [])[1]
-        || (e.match(/<id>([^<]+)<\/id>/) || [])[1] || '').trim(),
+    link: pickLink(e),
     summary: decode((e.match(/<summary[^>]*>([\s\S]*?)<\/summary>/) || [])[1]),
   })).filter(x => x.title && x.link);
 }
@@ -167,9 +174,11 @@ export default async (req) => {
   const store = getStore('lexfeed-digest');
   const weekly = new URL(req.url).searchParams.get('type') === 'weekly';
 
+  const V = 'v2:';   // bump to discard any stale cached digests after a logic fix
+
   if (weekly) {
     const range = weekRange();
-    const k = 'weekly:' + range.from + '_' + range.to;
+    const k = 'weekly:' + V + range.from + '_' + range.to;
     const cached = await store.get(k, { type: 'json' });
     if (cached) return Response.json(cached, { headers: CORS });
     const payload = await computeWeekly(range);
@@ -178,13 +187,13 @@ export default async (req) => {
   }
 
   const dd = digestDate();
-  const k = 'daily:' + dd;
+  const k = 'daily:' + V + dd;
   const cached = await store.get(k, { type: 'json' });
   if (cached) return Response.json(cached, { headers: CORS });
   const payload = await compute(dd);
-  // Freeze it for the day once there's real content; otherwise allow a later
-  // request to recompute (e.g. if judgments hadn't been published yet).
-  if (payload.lead || payload.news.length) await store.setJSON(k, payload);
+  // The daily digest only covers weekdays, so a judgment is expected — only
+  // freeze once we actually have one (don't cache a transient empty result).
+  if (payload.lead) await store.setJSON(k, payload);
   return Response.json(payload, { headers: CORS });
 };
 
