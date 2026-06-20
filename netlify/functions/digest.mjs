@@ -126,6 +126,18 @@ function diverseRecent(itemsDesc, n, days) {
   }
   return picks.slice(0, n);
 }
+// For the weekly digest: n stories each from a DIFFERENT day (and a different
+// source where the week allows), so they span the week rather than cluster.
+function pickByDistinctDay(itemsDesc, n) {
+  const out = [], days = new Set(), srcs = new Set();
+  const take = it => { out.push(it); days.add(ldnDateOf(it.date)); srcs.add(it.src); };
+  const has = it => out.includes(it);
+  for (const it of itemsDesc) { if (out.length >= n) break; if (!days.has(ldnDateOf(it.date)) && !srcs.has(it.src)) take(it); }   // distinct day + source
+  if (out.length < n) for (const it of itemsDesc) { if (out.length >= n) break; if (!has(it) && !days.has(ldnDateOf(it.date))) take(it); } // distinct day
+  if (out.length < n) for (const it of itemsDesc) { if (out.length >= n) break; if (!has(it) && !srcs.has(it.src)) take(it); }            // distinct source
+  if (out.length < n) for (const it of itemsDesc) { if (out.length >= n) break; if (!has(it)) take(it); }                                 // anything
+  return out.slice(0, n);
+}
 
 async function compute(dd) {
   let lead = null, otherCases = 0, news = [];
@@ -192,7 +204,7 @@ async function computeWeekly({ from, to }) {
       try { return parseRss(await fetchText(f.url)).filter(i => inRange(i.date)).map(i => ({ ...i, src: f.src })); }
       catch { return []; }
     }))).flat().sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0));
-    news = pickDiverse(items, 3).map(i => ({ title: i.title, link: i.link, src: i.src }));
+    news = pickByDistinctDay(items, 3).map(i => ({ title: i.title, link: i.link, src: i.src }));
   } catch {}
   return { from, to, cases, legislation, news, builtAt: new Date().toISOString() };
 }
@@ -202,7 +214,7 @@ export default async (req) => {
   const store = getStore('lexfeed-digest');
   const weekly = new URL(req.url).searchParams.get('type') === 'weekly';
 
-  const V = 'v5:';   // bump to discard any stale cached digests after a logic fix
+  const V = 'v6:';   // bump to discard any stale cached digests after a logic fix
 
   if (weekly) {
     const range = weekRange();
