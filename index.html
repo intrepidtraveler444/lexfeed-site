@@ -7279,7 +7279,7 @@ async function loadWeeklyDigest(){
 }
 function renderWeeklyInner(data){
   const label=(data&&data.from&&data.to)?_fmtRange(data.from,data.to):'';
-  let html=`<div class="flair-tag">🗞️ This Week in UK Law${label?` · ${safe(label)}`:''}</div>`;
+  let html=`<div class="flair-tag">🗞️ Weekly Digest${label?` · ${safe(label)}`:''}</div>`;
   if(!data) return html+`<div class="digest-empty">Loading this week's round-up…</div>`;
   if(data.cases && data.cases.length){
     html+=`<div class="digest-k">⚖️ Key judgments</div>`;
