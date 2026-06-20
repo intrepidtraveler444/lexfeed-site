@@ -100,6 +100,15 @@ function validNA(link) {
   } catch { return false; }
 }
 
+// Pick up to n items favouring source diversity: the most recent item from each
+// distinct source first, then backfill with the next-most-recent if needed.
+function pickDiverse(itemsDesc, n) {
+  const out = [], seen = new Set();
+  for (const it of itemsDesc) { if (!seen.has(it.src)) { seen.add(it.src); out.push(it); if (out.length >= n) break; } }
+  if (out.length < n) for (const it of itemsDesc) { if (out.length >= n) break; if (!out.includes(it)) out.push(it); }
+  return out.slice(0, n);
+}
+
 async function compute(dd) {
   let lead = null, otherCases = 0, news = [];
   try {
@@ -117,7 +126,7 @@ async function compute(dd) {
       try { return parseRss(await fetchText(f.url)).filter(i => ldnDateOf(i.date) === dd).map(i => ({ ...i, src: f.src })); }
       catch { return []; }
     }))).flat().sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0));
-    news = items.slice(0, 3).map(i => ({ title: i.title, link: i.link, src: i.src }));
+    news = pickDiverse(items, 3).map(i => ({ title: i.title, link: i.link, src: i.src }));
   } catch {}
   return { date: dd, lead, otherCases, news, builtAt: new Date().toISOString() };
 }
@@ -164,7 +173,7 @@ async function computeWeekly({ from, to }) {
       try { return parseRss(await fetchText(f.url)).filter(i => inRange(i.date)).map(i => ({ ...i, src: f.src })); }
       catch { return []; }
     }))).flat().sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0));
-    news = items.slice(0, 3).map(i => ({ title: i.title, link: i.link, src: i.src }));
+    news = pickDiverse(items, 3).map(i => ({ title: i.title, link: i.link, src: i.src }));
   } catch {}
   return { from, to, cases, legislation, news, builtAt: new Date().toISOString() };
 }
@@ -174,7 +183,7 @@ export default async (req) => {
   const store = getStore('lexfeed-digest');
   const weekly = new URL(req.url).searchParams.get('type') === 'weekly';
 
-  const V = 'v2:';   // bump to discard any stale cached digests after a logic fix
+  const V = 'v3:';   // bump to discard any stale cached digests after a logic fix
 
   if (weekly) {
     const range = weekRange();
