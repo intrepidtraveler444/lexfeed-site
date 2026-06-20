@@ -140,11 +140,12 @@ async function compute(dd) {
     otherCases = Math.max(0, today.length - 1);
   } catch {}
   try {
+    // Strictly that day's news, but spread across sources where the day offers more than one.
     const items = (await Promise.all(NEWS.map(async f => {
-      try { return parseRss(await fetchText(f.url)).map(i => ({ ...i, src: f.src })); }
+      try { return parseRss(await fetchText(f.url)).filter(i => ldnDateOf(i.date) === dd).map(i => ({ ...i, src: f.src })); }
       catch { return []; }
-    }))).flat();
-    news = diverseRecent(items, 3, 3).map(i => ({ title: i.title, link: i.link, src: i.src }));
+    }))).flat().sort((a, b) => (Date.parse(b.date) || 0) - (Date.parse(a.date) || 0));
+    news = pickDiverse(items, 3).map(i => ({ title: i.title, link: i.link, src: i.src }));
   } catch {}
   return { date: dd, lead, otherCases, news, builtAt: new Date().toISOString() };
 }
@@ -201,7 +202,7 @@ export default async (req) => {
   const store = getStore('lexfeed-digest');
   const weekly = new URL(req.url).searchParams.get('type') === 'weekly';
 
-  const V = 'v4:';   // bump to discard any stale cached digests after a logic fix
+  const V = 'v5:';   // bump to discard any stale cached digests after a logic fix
 
   if (weekly) {
     const range = weekRange();

@@ -54,6 +54,9 @@ export default async (req) => {
     if (b.password !== ADMIN)
       return new Response('unauthorized', { status: 401, headers: CORS });
 
+    // Password is valid → used by the admin gate to verify the entered password.
+    if (b.action === 'checkAuth') return Response.json({ ok: true }, { headers: CORS });
+
     if (b.action === 'saveEdit') {
       const edits = (await store.get('cardEdits', { type: 'json' })) || {};
       edits[b.id] = Object.assign(edits[b.id] || {}, b.overrides || {});
