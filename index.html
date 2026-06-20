@@ -7269,41 +7269,39 @@ function _fmtRange(monStr,friStr){
     ? `${mon.toLocaleDateString('en-GB',{day:'numeric'})}–${dF}`
     : `${mon.toLocaleDateString('en-GB',{day:'numeric',month:'long'})} – ${dF}`;
 }
-function buildWeeklyData(){
-  const wr=weekRange(); if(!wr) return null;
-  const inRange=c=>{ const t=Date.parse(c.date||''); if(isNaN(t)) return false; const ds=_ldnDateStr(new Date(t)); return ds>=wr.monStr && ds<=wr.friStr; };
-  const cases=livePool.filter(c=>c.cat==='case-law'&&inRange(c)).sort((a,b)=>_courtTier(a.court)-_courtTier(b.court)).slice(0,2);
-  const stat =livePool.filter(c=>c.cat==='statute'&&inRange(c)).sort((a,b)=>(a.legType==='Act'?0:1)-(b.legType==='Act'?0:1))[0]||null;
-  const news =livePool.filter(c=>c.cat==='legal-news'&&inRange(c)).slice(0,3);
-  return { wr, cases, stat, news };
+// The weekly round-up is also computed server-side (/api/digest?type=weekly) and
+// cached per week, so it's identical for everyone and stable across reloads.
+let _weeklyDigest=null;
+async function loadWeeklyDigest(){
+  if(_weeklyDigest) return _weeklyDigest;
+  try{ const r=await fetch('/api/digest?type=weekly'); if(r.ok) _weeklyDigest=await r.json(); }catch{}
+  return _weeklyDigest;
 }
-function renderWeeklyInner(){
-  const wr=weekRange();
-  const label=wr?_fmtRange(wr.monStr,wr.friStr):'';
+function renderWeeklyInner(data){
+  const label=(data&&data.from&&data.to)?_fmtRange(data.from,data.to):'';
   let html=`<div class="flair-tag">🗞️ This Week in UK Law${label?` · ${safe(label)}`:''}</div>`;
-  const D=buildWeeklyData();
-  if(!D) return html+`<div class="digest-empty">The weekly round-up appears here each weekend.</div>`;
-  if(D.cases.length){
+  if(!data) return html+`<div class="digest-empty">Loading this week's round-up…</div>`;
+  if(data.cases && data.cases.length){
     html+=`<div class="digest-k">⚖️ Key judgments</div>`;
-    D.cases.forEach(c=>{ html+=`<a class="digest-lead" href="${safeUrl(c.link)}" target="_blank" rel="noopener">`+
+    data.cases.forEach(c=>{ html+=`<a class="digest-lead" href="${safeUrl(c.link)}" target="_blank" rel="noopener">`+
       (c.court?`<div class="digest-k" style="margin:0 0 2px">${safe(c.court)}</div>`:'')+
       `<div class="digest-t">${safe(c.title)}</div></a>`; });
   }
-  if(D.stat){
+  if(data.legislation){
     html+=`<div class="digest-k" style="margin-top:10px">📜 New legislation</div>`+
-      `<a class="digest-news" href="${safeUrl(D.stat.link)}" target="_blank" rel="noopener"><span>${safe(D.stat.title)}</span><span class="digest-src">${safe(D.stat.legType||'')}</span></a>`;
+      `<a class="digest-news" href="${safeUrl(data.legislation.link)}" target="_blank" rel="noopener"><span>${safe(data.legislation.title)}</span><span class="digest-src">${safe(data.legislation.type||'')}</span></a>`;
   }
-  if(D.news.length){
+  if(data.news && data.news.length){
     html+=`<div class="digest-k" style="margin-top:10px">📰 Top stories</div>`;
-    D.news.forEach(n=>{ html+=`<a class="digest-news" href="${safeUrl(n.link)}" target="_blank" rel="noopener"><span>${safe(n.title)}</span><span class="digest-src">${safe(n.src||'')}</span></a>`; });
+    data.news.forEach(n=>{ html+=`<a class="digest-news" href="${safeUrl(n.link)}" target="_blank" rel="noopener"><span>${safe(n.title)}</span><span class="digest-src">${safe(n.src||'')}</span></a>`; });
   }
-  if(!D.cases.length && !D.stat && !D.news.length)
-    html+=`<div class="digest-empty">This week's round-up will fill in as the week's judgments, legislation and news load.</div>`;
+  if(!(data.cases&&data.cases.length) && !data.legislation && !(data.news&&data.news.length))
+    html+=`<div class="digest-empty">A quiet week — judgments, legislation and news from the week will appear here.</div>`;
   return html;
 }
-// Only the weekly card is still computed client-side from livePool; the daily
-// card is server-driven and populates itself.
-function refreshDigest(){ const w=document.querySelector('.flair-weekly'); if(w) w.innerHTML=renderWeeklyInner(); }
+// Both digest cards are now server-driven and populate themselves on fetch, so
+// the feed-load hooks have nothing to re-render. Kept as a no-op for those calls.
+function refreshDigest(){}
 
 function buildFlairCard(kind,delayMs=0){
   const el=document.createElement('div');
@@ -7342,8 +7340,8 @@ function buildFlairCard(kind,delayMs=0){
     el.innerHTML=renderDailyInner(null);   // placeholder while the server pick loads
     loadDailyDigest().then(d=>{ try{ el.innerHTML=renderDailyInner(d); }catch{} });
   } else if(kind==='weekly'){
-    el.innerHTML=renderWeeklyInner();
-    setTimeout(refreshDigest,1500); setTimeout(refreshDigest,4000); setTimeout(refreshDigest,9000);
+    el.innerHTML=renderWeeklyInner(null);   // placeholder while the server round-up loads
+    loadWeeklyDigest().then(d=>{ try{ el.innerHTML=renderWeeklyInner(d); }catch{} });
   } else if(kind==='upgrade'){
     el.innerHTML=`<div class="upsell-card">
       <h3>🔒 You've reached today's free limit</h3>
