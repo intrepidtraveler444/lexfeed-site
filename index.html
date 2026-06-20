@@ -910,6 +910,7 @@ html{scroll-padding-top:118px}
   letter-spacing:2px;text-align:center;background:#f4f6ff;border:1px dashed var(--accent,#3b5bdb);
   border-radius:10px;padding:14px;margin:10px 0;word-break:break-all;user-select:all}
 /* ── Daily digest card ── */
+.digest-head{font-size:1.15rem;font-weight:800;color:var(--navy,#1a2744);margin:0 0 10px;line-height:1.3}
 .digest-k{font-size:.72rem;font-weight:700;color:#3b5bdb;text-transform:uppercase;letter-spacing:.03em;margin:2px 0 4px}
 .digest-lead{display:block;text-decoration:none;color:inherit;border:1px solid #e6e9f5;border-radius:12px;
   padding:12px;margin:4px 0;background:#fafbff}
@@ -7224,7 +7225,7 @@ async function loadDailyDigest(){
 function renderDailyInner(data){
   const dd=(data&&data.date)||digestDate();
   const label=dd?new Date(dd+'T12:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}):'';
-  let html=`<div class="flair-tag">Daily Digest${label?` · ${safe(label)}`:''}</div>`;
+  let html=`<div class="digest-head">Daily Digest${label?` · ${safe(label)}`:''}</div>`;
   if(!data) return html+`<div class="digest-empty">Loading today's digest…</div>`;
   if(data.lead){
     const c=data.lead;
@@ -7279,7 +7280,7 @@ async function loadWeeklyDigest(){
 }
 function renderWeeklyInner(data){
   const label=(data&&data.from&&data.to)?_fmtRange(data.from,data.to):'';
-  let html=`<div class="flair-tag">Weekly Digest${label?` · ${safe(label)}`:''}</div>`;
+  let html=`<div class="digest-head">Weekly Digest${label?` · ${safe(label)}`:''}</div>`;
   if(!data) return html+`<div class="digest-empty">Loading this week's round-up…</div>`;
   if(data.cases && data.cases.length){
     html+=`<div class="digest-k">⚖️ Key judgments</div>`;
