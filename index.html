@@ -7212,35 +7212,35 @@ function _courtTier(court){
   if(/tribunal|ukut|ukftt/.test(c))             return 4;
   return 3;
 }
-function buildDigestData(){
-  const dd=digestDate(); if(!dd) return null;
-  const onDay=c=>{ const t=Date.parse(c.date||''); return !isNaN(t) && _ldnDateStr(new Date(t))===dd; };
-  const cases=livePool.filter(c=>c.cat==='case-law' && onDay(c))
-    .sort((a,b)=>_courtTier(a.court)-_courtTier(b.court));
-  const news=livePool.filter(c=>c.cat==='legal-news' && onDay(c)).slice(0,3);
-  return { dd, lead:cases[0]||null, otherCases:Math.max(0,cases.length-1), news };
+// The daily digest is computed server-side (/api/digest) and cached per day, so
+// it's identical for every visitor and stable across reloads.
+let _dailyDigest=null, _dailyDigestKey=null;
+async function loadDailyDigest(){
+  const dd=digestDate();
+  if(_dailyDigest && _dailyDigestKey===dd) return _dailyDigest;
+  try{ const r=await fetch('/api/digest'); if(r.ok){ _dailyDigest=await r.json(); _dailyDigestKey=dd; } }catch{}
+  return _dailyDigest;
 }
-function renderDigestInner(){
-  const D=buildDigestData();
-  const dd=D?D.dd:digestDate();
+function renderDailyInner(data){
+  const dd=(data&&data.date)||digestDate();
   const label=dd?new Date(dd+'T12:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}):'';
-  let html=`<div class="flair-tag">📋 Today in UK Law${label?` · ${safe(label)}`:''}</div>`;
-  if(!D) return html+`<div class="digest-empty">Today's digest appears here each evening from 5pm.</div>`;
-  if(D.lead){
-    const c=D.lead;
+  let html=`<div class="flair-tag">📋 Daily Digest${label?` · ${safe(label)}`:''}</div>`;
+  if(!data) return html+`<div class="digest-empty">Loading today's digest…</div>`;
+  if(data.lead){
+    const c=data.lead;
     html+=`<a class="digest-lead" href="${safeUrl(c.link)}" target="_blank" rel="noopener">`+
       `<div class="digest-k">⚖️ Top judgment today${c.court?` · ${safe(c.court)}`:''}</div>`+
       `<div class="digest-t">${safe(c.title)}</div>`+
-      (c.desc?`<div class="digest-d">${safe(trunc(c.desc,170))}</div>`:'')+
+      (c.desc?`<div class="digest-d">${safe(c.desc)}</div>`:'')+
       `</a>`;
-    if(D.otherCases>0) html+=`<div class="digest-more">＋ ${D.otherCases} other judgment${D.otherCases>1?'s':''} handed down today</div>`;
+    if(data.otherCases>0) html+=`<div class="digest-more">＋ ${data.otherCases} other judgment${data.otherCases>1?'s':''} handed down today</div>`;
   }
-  if(D.news.length){
+  if(data.news && data.news.length){
     html+=`<div class="digest-k" style="margin-top:10px">📰 In the news today</div>`;
-    D.news.forEach(n=>{ html+=`<a class="digest-news" href="${safeUrl(n.link)}" target="_blank" rel="noopener"><span>${safe(n.title)}</span><span class="digest-src">${safe(n.src||'')}</span></a>`; });
+    data.news.forEach(n=>{ html+=`<a class="digest-news" href="${safeUrl(n.link)}" target="_blank" rel="noopener"><span>${safe(n.title)}</span><span class="digest-src">${safe(n.src||'')}</span></a>`; });
   }
-  if(!D.lead && !D.news.length)
-    html+=`<div class="digest-empty">A quiet day so far — judgments and news will appear here as they're published.</div>`;
+  if(!data.lead && (!data.news||!data.news.length))
+    html+=`<div class="digest-empty">No senior-court judgment or major story has been published today yet.</div>`;
   return html;
 }
 function _ldnDow(p){ return new Date(Date.UTC(p.y,p.m-1,p.d)).getUTCDay(); } // 0=Sun … 6=Sat
@@ -7301,10 +7301,9 @@ function renderWeeklyInner(){
     html+=`<div class="digest-empty">This week's round-up will fill in as the week's judgments, legislation and news load.</div>`;
   return html;
 }
-function refreshDigest(){
-  const d=document.querySelector('.flair-digest'); if(d) d.innerHTML=renderDigestInner();
-  const w=document.querySelector('.flair-weekly'); if(w) w.innerHTML=renderWeeklyInner();
-}
+// Only the weekly card is still computed client-side from livePool; the daily
+// card is server-driven and populates itself.
+function refreshDigest(){ const w=document.querySelector('.flair-weekly'); if(w) w.innerHTML=renderWeeklyInner(); }
 
 function buildFlairCard(kind,delayMs=0){
   const el=document.createElement('div');
@@ -7340,9 +7339,8 @@ function buildFlairCard(kind,delayMs=0){
       <button class="wb-qotd">Jump to today's question →</button>`;
     setTimeout(updateWelcomeNew,1600);
   } else if(kind==='digest'){
-    el.innerHTML=renderDigestInner();
-    // Live feeds load asynchronously — refresh the card as today's items arrive.
-    setTimeout(refreshDigest,1500); setTimeout(refreshDigest,4000); setTimeout(refreshDigest,9000);
+    el.innerHTML=renderDailyInner(null);   // placeholder while the server pick loads
+    loadDailyDigest().then(d=>{ try{ el.innerHTML=renderDailyInner(d); }catch{} });
   } else if(kind==='weekly'){
     el.innerHTML=renderWeeklyInner();
     setTimeout(refreshDigest,1500); setTimeout(refreshDigest,4000); setTimeout(refreshDigest,9000);
