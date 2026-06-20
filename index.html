@@ -7243,7 +7243,68 @@ function renderDigestInner(){
     html+=`<div class="digest-empty">A quiet day so far — judgments and news will appear here as they're published.</div>`;
   return html;
 }
-function refreshDigest(){ const el=document.querySelector('.flair-digest'); if(el) el.innerHTML=renderDigestInner(); }
+function _ldnDow(p){ return new Date(Date.UTC(p.y,p.m-1,p.d)).getUTCDay(); } // 0=Sun … 6=Sat
+// Which digest to show: weekly across the weekend (Sat 05:00 → Mon 05:00), else
+// the daily digest (17:00 → 05:00), else nothing (weekday daytime).
+function digestMode(){
+  const p=_ldnParts(), dow=_ldnDow(p);
+  if((dow===6 && p.hour>=5) || dow===0 || (dow===1 && p.hour<5)) return 'weekly';
+  if(p.hour>=17 || p.hour<5) return 'daily';
+  return null;
+}
+// The Mon–Fri range the weekend round-up covers (the week that just ended).
+function weekRange(){
+  const p=_ldnParts(), dow=_ldnDow(p);
+  let back; if(dow===6) back=0; else if(dow===0) back=1; else if(dow===1) back=2; else return null;
+  const sat=new Date(Date.UTC(p.y,p.m-1,p.d)); sat.setUTCDate(sat.getUTCDate()-back);   // the Saturday that opened this weekend
+  const fmt=dt=>dt.getUTCFullYear()+'-'+String(dt.getUTCMonth()+1).padStart(2,'0')+'-'+String(dt.getUTCDate()).padStart(2,'0');
+  const fri=new Date(sat); fri.setUTCDate(fri.getUTCDate()-1);
+  const mon=new Date(sat); mon.setUTCDate(mon.getUTCDate()-5);
+  return { monStr:fmt(mon), friStr:fmt(fri) };
+}
+function _fmtRange(monStr,friStr){
+  const mon=new Date(monStr+'T12:00:00'), fri=new Date(friStr+'T12:00:00');
+  const dF=fri.toLocaleDateString('en-GB',{day:'numeric',month:'long'});
+  return mon.getMonth()===fri.getMonth()
+    ? `${mon.toLocaleDateString('en-GB',{day:'numeric'})}–${dF}`
+    : `${mon.toLocaleDateString('en-GB',{day:'numeric',month:'long'})} – ${dF}`;
+}
+function buildWeeklyData(){
+  const wr=weekRange(); if(!wr) return null;
+  const inRange=c=>{ const t=Date.parse(c.date||''); if(isNaN(t)) return false; const ds=_ldnDateStr(new Date(t)); return ds>=wr.monStr && ds<=wr.friStr; };
+  const cases=livePool.filter(c=>c.cat==='case-law'&&inRange(c)).sort((a,b)=>_courtTier(a.court)-_courtTier(b.court)).slice(0,2);
+  const stat =livePool.filter(c=>c.cat==='statute'&&inRange(c)).sort((a,b)=>(a.legType==='Act'?0:1)-(b.legType==='Act'?0:1))[0]||null;
+  const news =livePool.filter(c=>c.cat==='legal-news'&&inRange(c)).slice(0,3);
+  return { wr, cases, stat, news };
+}
+function renderWeeklyInner(){
+  const wr=weekRange();
+  const label=wr?_fmtRange(wr.monStr,wr.friStr):'';
+  let html=`<div class="flair-tag">🗞️ This Week in UK Law${label?` · ${safe(label)}`:''}</div>`;
+  const D=buildWeeklyData();
+  if(!D) return html+`<div class="digest-empty">The weekly round-up appears here each weekend.</div>`;
+  if(D.cases.length){
+    html+=`<div class="digest-k">⚖️ Key judgments</div>`;
+    D.cases.forEach(c=>{ html+=`<a class="digest-lead" href="${safeUrl(c.link)}" target="_blank" rel="noopener">`+
+      (c.court?`<div class="digest-k" style="margin:0 0 2px">${safe(c.court)}</div>`:'')+
+      `<div class="digest-t">${safe(c.title)}</div></a>`; });
+  }
+  if(D.stat){
+    html+=`<div class="digest-k" style="margin-top:10px">📜 New legislation</div>`+
+      `<a class="digest-news" href="${safeUrl(D.stat.link)}" target="_blank" rel="noopener"><span>${safe(D.stat.title)}</span><span class="digest-src">${safe(D.stat.legType||'')}</span></a>`;
+  }
+  if(D.news.length){
+    html+=`<div class="digest-k" style="margin-top:10px">📰 Top stories</div>`;
+    D.news.forEach(n=>{ html+=`<a class="digest-news" href="${safeUrl(n.link)}" target="_blank" rel="noopener"><span>${safe(n.title)}</span><span class="digest-src">${safe(n.src||'')}</span></a>`; });
+  }
+  if(!D.cases.length && !D.stat && !D.news.length)
+    html+=`<div class="digest-empty">This week's round-up will fill in as the week's judgments, legislation and news load.</div>`;
+  return html;
+}
+function refreshDigest(){
+  const d=document.querySelector('.flair-digest'); if(d) d.innerHTML=renderDigestInner();
+  const w=document.querySelector('.flair-weekly'); if(w) w.innerHTML=renderWeeklyInner();
+}
 
 function buildFlairCard(kind,delayMs=0){
   const el=document.createElement('div');
@@ -7281,6 +7342,9 @@ function buildFlairCard(kind,delayMs=0){
   } else if(kind==='digest'){
     el.innerHTML=renderDigestInner();
     // Live feeds load asynchronously — refresh the card as today's items arrive.
+    setTimeout(refreshDigest,1500); setTimeout(refreshDigest,4000); setTimeout(refreshDigest,9000);
+  } else if(kind==='weekly'){
+    el.innerHTML=renderWeeklyInner();
     setTimeout(refreshDigest,1500); setTimeout(refreshDigest,4000); setTimeout(refreshDigest,9000);
   } else if(kind==='upgrade'){
     el.innerHTML=`<div class="upsell-card">
@@ -8092,10 +8156,13 @@ window.getBatch=function(size=12){
     result.push(getDailyQuiz());
   }
 
-  // Daily digest — replaces "Today's Picks"; only shown 17:00→05:00 UK.
+  // Daily/weekly digest (replaces "Today's Picks"). Weekly across the weekend
+  // (Sat 05:00→Mon 05:00), daily otherwise (17:00→05:00), nothing weekday daytime.
   if(!digestShown&&curFilter==='all'){
     digestShown=true;
-    if(digestDate()) result.push({_isFlair:true,kind:'digest'});
+    const mode=digestMode();
+    if(mode==='weekly') result.push({_isFlair:true,kind:'weekly'});
+    else if(mode==='daily') result.push({_isFlair:true,kind:'digest'});
   }
 
   // Free plan: cap NEW posts at FREE_DAILY_VIEWS per day (repeats can't recur;
