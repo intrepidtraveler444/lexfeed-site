@@ -7224,7 +7224,7 @@ async function loadDailyDigest(){
 function renderDailyInner(data){
   const dd=(data&&data.date)||digestDate();
   const label=dd?new Date(dd+'T12:00:00').toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}):'';
-  let html=`<div class="flair-tag">📋 Daily Digest${label?` · ${safe(label)}`:''}</div>`;
+  let html=`<div class="flair-tag">Daily Digest${label?` · ${safe(label)}`:''}</div>`;
   if(!data) return html+`<div class="digest-empty">Loading today's digest…</div>`;
   if(data.lead){
     const c=data.lead;
@@ -7236,7 +7236,7 @@ function renderDailyInner(data){
     if(data.otherCases>0) html+=`<div class="digest-more">＋ ${data.otherCases} other judgment${data.otherCases>1?'s':''} handed down today</div>`;
   }
   if(data.news && data.news.length){
-    html+=`<div class="digest-k" style="margin-top:10px">📰 In the news today</div>`;
+    html+=`<div class="digest-k" style="margin-top:10px">📰 In the news</div>`;
     data.news.forEach(n=>{ html+=`<a class="digest-news" href="${safeUrl(n.link)}" target="_blank" rel="noopener"><span>${safe(n.title)}</span><span class="digest-src">${safe(n.src||'')}</span></a>`; });
   }
   if(!data.lead && (!data.news||!data.news.length))
@@ -7279,7 +7279,7 @@ async function loadWeeklyDigest(){
 }
 function renderWeeklyInner(data){
   const label=(data&&data.from&&data.to)?_fmtRange(data.from,data.to):'';
-  let html=`<div class="flair-tag">🗞️ Weekly Digest${label?` · ${safe(label)}`:''}</div>`;
+  let html=`<div class="flair-tag">Weekly Digest${label?` · ${safe(label)}`:''}</div>`;
   if(!data) return html+`<div class="digest-empty">Loading this week's round-up…</div>`;
   if(data.cases && data.cases.length){
     html+=`<div class="digest-k">⚖️ Key judgments</div>`;
