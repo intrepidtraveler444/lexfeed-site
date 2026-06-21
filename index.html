@@ -7149,12 +7149,24 @@ window.buildCard=function(card,delayMs=0){
 };
 
 // ── Featured card (daily hero) ────────────────
+// Snapshot of the base case pool, pinned in INIT BEFORE admin-added / dripped
+// cards are merged. Selecting from this fixed pool means adding (or removing) a
+// post never shifts "Today's Key Case" — it stays identical for everyone.
+let FEATURED_POOL=null;
 function buildFeaturedCard(){
-  const cases=CURATED.filter(c=>c.cat==='case-law'&&c.facts);
+  const pool=(FEATURED_POOL&&FEATURED_POOL.length)?FEATURED_POOL:CURATED.filter(c=>c.cat==='case-law'&&c.facts);
+  if(!pool.length) return null;
   // dayIndex() = whole days since epoch, so the key case advances by exactly
   // one each calendar day and cycles through the whole list over time.
-  const idx=((typeof dayIndex==='function'?dayIndex():Math.floor(Date.now()/86400000))%cases.length+cases.length)%cases.length;
-  const c=cases[idx];
+  const di=(typeof dayIndex==='function'?dayIndex():Math.floor(Date.now()/86400000));
+  const n=pool.length;
+  let idx=((di%n)+n)%n;
+  let c=pool[idx];
+  // If today's pick happens to have been admin-removed, step to the next one —
+  // without changing the pool length (so the global pick stays stable).
+  const rm=new Set(typeof getRemoved==='function'?getRemoved():[]);
+  for(let k=0;k<n && c && rm.has(c.id);k++){ idx=(idx+1)%n; c=pool[idx]; }
+  if(!c) return null;
   const el=window.buildCard(c,0);
   el.classList.add('featured');
   el.dataset.c='case-law';
@@ -8803,6 +8815,9 @@ function applyExtrasDrip(){
 // ══════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════
+// Pin the base case pool for "Today's Key Case" before any admin/drip cards are
+// merged, so adding a post never changes today's key case for anyone.
+FEATURED_POOL=CURATED.filter(c=>c.cat==='case-law'&&c.facts);
 applyNewCards();      // merge any admin-added posts into the curated set
 applyCanonDrip();     // reveal date-gated verified landmark posts from the bank
 applyExtrasDrip();    // reveal 1 journal article + 1 glossary term per day from extras.js
