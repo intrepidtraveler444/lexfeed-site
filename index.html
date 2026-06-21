@@ -924,10 +924,11 @@ html{scroll-padding-top:118px}
 .digest-src{font-size:.72rem;color:#9aa3b2;white-space:nowrap}
 .digest-empty{font-size:.88rem;color:#5a6472;line-height:1.5}
 /* ── Case snapshot enhancers ── */
+.case-meta-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 9px}
 .case-outcome{display:inline-block;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;
-  background:var(--navy,#1a2744);color:#fff;border-radius:999px;padding:3px 11px;margin:0 0 8px}
-.case-tldr{font-size:.92rem;line-height:1.5;background:#f7f9ff;border-left:3px solid var(--gold,#c9a227);
-  padding:8px 11px;border-radius:6px;margin:0 0 10px;color:var(--navy,#1a2744)}
+  background:var(--navy,#1a2744);color:#fff;border-radius:999px;padding:3px 11px;margin:0}
+.case-readtime{display:inline-block;font-size:.7rem;font-weight:600;color:#5a6472;background:#eef1f7;
+  border-radius:999px;padding:3px 9px;margin:0}
 .case-topics{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 9px}
 .case-topic{font-size:.7rem;font-weight:600;background:#eef1fb;color:#3b5bdb;border-radius:999px;padding:2px 9px}
 .xref{color:var(--accent,#3b5bdb);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
@@ -3897,12 +3898,6 @@ function caseOutcome(text){
   for(const [re,label] of R){ if(re.test(t)) return label; }
   return '';
 }
-// #4 — the first sentence (used as a one-line "Principle" takeaway).
-function firstSentence(text){
-  if(!text) return '';
-  const m=String(text).match(/^.*?[.!?](?:\s|$)/);
-  return (m?m[0]:String(text)).trim();
-}
 // #3 — cross-reference index: authority name → its card, used to auto-link cited
 // cases/statutes that exist in the library to their source.
 let _xref=null;
@@ -3937,14 +3932,6 @@ function crossLink(rawText, selfId){
   }
   return out+safe(rawText.slice(last));
 }
-// Assemble the top-of-card snapshot (outcome chip + one-line principle) for a case.
-function caseSnapshot(card){
-  const oc=caseOutcome(card.judgment||card.desc||'');
-  const tldr=firstSentence(card.ratio||'');
-  return (oc?`<div class="case-outcome">⚖ ${safe(oc)}</div>`:'')
-       + (tldr?`<div class="case-tldr"><b>Principle:</b> ${crossLink(tldr,card.id)}</div>`:'');
-}
-
 async function enrichNACard(cardEl){
   if(cardEl.dataset.enriched) return;
   cardEl.dataset.enriched='1';
@@ -4010,12 +3997,17 @@ async function enrichNACard(cardEl){
     const frag=document.createDocumentFragment();
     const selfId=co?co.id:'';
     const oc=caseOutcome(judgment);
-    if(oc||topics.length){
-      const head=document.createElement('div');
-      head.innerHTML=(oc?`<div class="case-outcome">⚖ ${safe(oc)}</div>`:'')+
-        (topics.length?`<div class="case-topics">${topics.map(t=>`<span class="case-topic">${safe(t)}</span>`).join('')}</div>`:'');
-      frag.appendChild(head);
-    }
+    // Reading-time estimate for the FULL judgment (~200 words/min) — live only.
+    const words=(texts.join(' ').match(/\S+/g)||[]).length;
+    const readMin=Math.max(1,Math.round(words/200));
+    const head=document.createElement('div');
+    head.innerHTML=
+      `<div class="case-meta-row">`+
+        (oc?`<span class="case-outcome">⚖ ${safe(oc)}</span>`:'')+
+        `<span class="case-readtime">📖 ~${readMin} min read</span>`+
+      `</div>`+
+      (topics.length?`<div class="case-topics">${topics.map(t=>`<span class="case-topic">${safe(t)}</span>`).join('')}</div>`:'');
+    frag.appendChild(head);
     [{label:'Facts',text:facts},{label:'Judgment',text:judgment},
      {label:'Ratio Decidendi',text:'See full judgment for ratio decidendi.'}]
     .forEach(s=>{
@@ -4579,8 +4571,8 @@ function buildCard(card,delayMs=0){
   // ── Case Law ──
   if(card.cat==='case-law'){
     if(card.facts){
-      // Structured curated — snapshot (outcome + principle) on top, then detail.
-      inner=caseSnapshot(card)+`
+      // Structured curated — Facts / Judgment / Ratio with cited authorities linked.
+      inner=`
         <div class="sl"><div class="sl-label">Facts</div><div class="sl-text">${crossLink(card.facts,card.id)}</div></div>
         <div class="sl"><div class="sl-label">Judgment</div><div class="sl-text">${crossLink(card.judgment,card.id)}</div></div>
         <div class="sl"><div class="sl-label">Ratio Decidendi</div><div class="sl-text">${crossLink(card.ratio,card.id)}</div></div>`;
