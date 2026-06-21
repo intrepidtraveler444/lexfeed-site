@@ -3587,10 +3587,14 @@ async function fetchNewsFeed(feed){
       : rssDesc(n);
     const date=(n.querySelector('pubDate')||n.querySelector('published')||n.querySelector('updated'))
       ?.textContent?.trim()||'';
+    // Read-time from the FULL story text (RSS usually carries the whole piece),
+    // not the truncated preview — so the pill reflects the actual article length.
+    const words=(desc.match(/\S+/g)||[]).length;
     return{
       id:uid('news',link||title),type:'live',cat:'legal-news',
       src:feed.src,link:safeUrl(link),date,title,
-      body:trunc(desc,360)||'Tap to read the full story on '+safe(feed.src)+'.'
+      body:trunc(desc,360)||'Tap to read the full story on '+safe(feed.src)+'.',
+      readMin: words?Math.max(1,Math.round(words/200)):0
     };
   }).filter(Boolean);
 }
@@ -4622,9 +4626,16 @@ function buildCard(card,delayMs=0){
       inner=`${typeHtml}<div class="card-body">${safe(card.body||'New legislation published on legislation.gov.uk.')}</div>`;
     }
   }
-  // ── Everything else ──
+  // ── Everything else (journal articles, news, legal terms) ──
   else {
-    inner=`<div class="card-body">${safe(card.body||card.description||'No preview available. Click to read the full article.')}</div>`;
+    // Read-time pill for LIVE news only (computed from the full story at parse
+    // time), shown the same way as on live case cards.
+    let rtPill='';
+    if(card.type==='live'&&card.cat==='legal-news'){
+      const m=card.readMin||Math.max(1,Math.round(((String(card.body||'').match(/\S+/g)||[]).length)/200));
+      if(m) rtPill=`<div class="case-meta-row"><span class="case-readtime">📖 ~${m} min read</span></div>`;
+    }
+    inner=rtPill+`<div class="card-body">${safe(card.body||card.description||'No preview available. Click to read the full article.')}</div>`;
     // Legal terms carry a plain-English worked example
     if(card.cat==='legal-term'&&card.example){
       inner+=`<div class="term-eg"><span class="eg-label">💡 Example</span>${safe(card.example)}</div>`;
