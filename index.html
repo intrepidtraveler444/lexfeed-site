@@ -4171,6 +4171,13 @@ async function fetchNationalArchives(feed){
     const link=safeUrl(linkEl?.getAttribute('href')||'https://caselaw.nationalarchives.gov.uk');
     const summary=strip(entry.querySelector('summary')?.textContent||'');
 
+    // Neutral citation (e.g. "[2026] EWHC 1390 (Comm)") lives in the ukncn identifier;
+    // append it to the case name so the card title matches the National Archives listing.
+    const ncnEl=[...entry.getElementsByTagNameNS('*','identifier')].find(el=>el.getAttribute('type')==='ukncn');
+    const cite=ncnEl?(ncnEl.textContent||'').trim():'';
+    const name=title.length>90?title.slice(0,88)+'…':title;
+    const fullTitle=cite?`${name} ${cite}`:name;
+
     // Shorten verbose court names for the court-tag display
     const courtShort=court
       .replace('United Kingdom ','UK ')
@@ -4183,7 +4190,7 @@ async function fetchNationalArchives(feed){
       id:uid('na',link||title),
       type:'live',
       cat:'case-law',
-      title: title.length>110?title.slice(0,100)+'…':title,
+      title: fullTitle,
       court: courtShort,
       desc: summary||'Loading preview…',
       date,
