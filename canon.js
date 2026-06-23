@@ -40,8 +40,8 @@
       { num:'1', head:'The Principles', text:'A person must be assumed to have capacity unless established otherwise; they are not to be treated as unable to decide until all practicable help has failed; an unwise decision does not itself prove incapacity; and any act done for them must be in their best interests and the least restrictive option.' },
       { num:'2', head:'People Who Lack Capacity', text:'A person lacks capacity if, at the material time, they cannot make a decision because of an impairment of, or disturbance in, the functioning of the mind or brain.' },
       { num:'3', head:'Inability to Make Decisions', text:'A person is unable to decide if they cannot understand, retain, or use and weigh the relevant information, or cannot communicate their decision.' },
-      { num:'4', head:'Best Interests', text:'The decision-maker must consider all relevant circumstances, including the person’s past and present wishes, beliefs and values, and the views of those close to them.' },
-      { num:'5', head:'Acts in Connection with Care or Treatment', text:'Protects carers and professionals from liability for acts reasonably done in a person’s best interests where they reasonably believe the person lacks capacity.' },
+      { num:'4', head:'Best Interests', text:'The decision-maker must consider all relevant circumstances, including the person's past and present wishes, beliefs and values, and the views of those close to them.' },
+      { num:'5', head:'Acts in Connection with Care or Treatment', text:'Protects carers and professionals from liability for acts reasonably done in a person's best interests where they reasonably believe the person lacks capacity.' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2005/9/contents' },
 
@@ -51,18 +51,18 @@
     court:'House of Lords',
     facts:'An asylum seeker, M, was removed from the UK in breach of an undertaking given to a judge and a subsequent injunction. The Home Secretary argued that ministers of the Crown were immune from injunctions and from contempt proceedings in their official capacity.',
     judgment:'The House of Lords rejected the immunity argument and held the Home Secretary to be in contempt, the first such finding against a Minister of the Crown.',
-    ratio:'The rule of law binds the Crown’s ministers: courts may grant injunctions against, and make findings of contempt against, a minister acting in an official capacity. The executive obeys the law as a matter of necessity, not of grace.',
+    ratio:'The rule of law binds the Crown\'s ministers: courts may grant injunctions against, and make findings of contempt against, a minister acting in an official capacity. The executive obeys the law as a matter of necessity, not of grace.',
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1993/5.html' },
 
   // ── 4. Criminal — statute ──
   { id:'k4', type:'curated', cat:'statute', area:'Criminal',
     title:'Bribery Act 2010',
-    body:"Modernised and consolidated UK anti-bribery law, replacing a patchwork of common law and older statutes. Notable for its broad offences, extensive extraterritorial reach, and a distinctive corporate ‘failure to prevent’ offence.",
+    body:"Modernised and consolidated UK anti-bribery law, replacing a patchwork of common law and older statutes. Notable for its broad offences, extensive extraterritorial reach, and a distinctive corporate 'failure to prevent' offence.",
     sections:[
       { num:'1', head:'Bribing Another Person', text:'Offering, promising or giving a financial or other advantage to induce or reward improper performance of a relevant function.' },
       { num:'2', head:'Being Bribed', text:'Requesting, agreeing to receive or accepting an advantage in connection with the improper performance of a function or activity.' },
       { num:'6', head:'Bribery of Foreign Public Officials', text:'A separate offence of bribing a foreign public official to obtain or retain business or a business advantage.' },
-      { num:'7', head:'Failure of Commercial Organisations to Prevent Bribery', text:'A strict-liability corporate offence committed where a person associated with an organisation bribes another to benefit it — subject to the “adequate procedures” defence.' },
+      { num:'7', head:'Failure of Commercial Organisations to Prevent Bribery', text:'A strict-liability corporate offence committed where a person associated with an organisation bribes another to benefit it — subject to the "adequate procedures" defence.' },
       { num:'9', head:'Guidance', text:'Requires the Secretary of State to publish guidance on procedures organisations can put in place to prevent bribery.' },
       { num:'12', head:'Territorial Application', text:'Offences may be prosecuted even where the conduct occurs wholly abroad, provided the person has a close connection with the UK.' },
     ],
@@ -72,9 +72,9 @@
   { id:'k5', type:'curated', cat:'case-law', area:'Tort',
     title:'Spartan Steel & Alloys Ltd v Martin & Co (Contractors) Ltd [1972] EWCA Civ 3',
     court:'Court of Appeal',
-    facts:'Contractors negligently cut a power cable supplying the claimant’s steel factory. The claimant lost the metal melt in progress (and the profit on it) and also lost profit on further melts it could not process during the 14-hour power cut.',
+    facts:'Contractors negligently cut a power cable supplying the claimant\'s steel factory. The claimant lost the metal melt in progress (and the profit on it) and also lost profit on further melts it could not process during the 14-hour power cut.',
     judgment:'The Court of Appeal (Lord Denning MR) allowed recovery for the damaged melt and the profit on it, but refused the lost profit on the melts that could not be processed during the outage.',
-    ratio:'Pure economic loss not consequent on physical damage to the claimant’s own property is generally irrecoverable in negligence. The boundary is drawn as a matter of policy to keep liability within acceptable limits.',
+    ratio:'Pure economic loss not consequent on physical damage to the claimant\'s own property is generally irrecoverable in negligence. The boundary is drawn as a matter of policy to keep liability within acceptable limits.',
     src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1972/3.html' },
 
   // ── 6. Criminal — statute ──
@@ -108,7 +108,7 @@
   // ── 8. Public Law — statute ──
   { id:'k8', type:'curated', cat:'statute', area:'Public Law',
     title:'Mental Health Act 1983',
-    body:"Governs the compulsory admission (“sectioning”), detention, treatment and after-care of people with mental disorder in England and Wales. A core statute for medical and public law, much amended by the Mental Health Act 2007.",
+    body:"Governs the compulsory admission (\"sectioning\"), detention, treatment and after-care of people with mental disorder in England and Wales. A core statute for medical and public law, much amended by the Mental Health Act 2007.",
     sections:[
       { num:'2', head:'Admission for Assessment', text:'Allows detention for assessment for up to 28 days on the application of an approved mental health professional and two medical recommendations.' },
       { num:'3', head:'Admission for Treatment', text:'Allows detention for treatment for up to 6 months, renewable, where appropriate medical treatment is available.' },
@@ -129,14 +129,14 @@
       { num:'3', head:'Civil Remedy', text:'An actual or apprehended breach may found a civil claim, allowing damages (including for anxiety) and an injunction.' },
       { num:'4', head:'Fear of Violence', text:'A more serious offence where the course of conduct causes another to fear, on at least two occasions, that violence will be used against them.' },
       { num:'4A', head:'Stalking Involving Fear or Distress', text:'Targets stalking that causes fear of violence or serious alarm or distress with a substantial adverse effect on daily activities.' },
-      { num:'7', head:'Interpretation', text:'Defines a “course of conduct” (conduct on at least two occasions) and provides that references to harassing a person include alarming them or causing distress.' },
+      { num:'7', head:'Interpretation', text:'Defines a "course of conduct" (conduct on at least two occasions) and provides that references to harassing a person include alarming them or causing distress.' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1997/40/contents' },
 
   // ── 10. Constitutional / EU — statute ──
   { id:'k10', type:'curated', cat:'statute', area:'Constitutional',
     title:'European Union (Withdrawal) Act 2018',
-    body:"The principal statute giving domestic legal effect to Brexit. It repealed the European Communities Act 1972 and converted the body of EU law applying in the UK into a new category of “retained EU law”.",
+    body:"The principal statute giving domestic legal effect to Brexit. It repealed the European Communities Act 1972 and converted the body of EU law applying in the UK into a new category of \"retained EU law\".",
     sections:[
       { num:'1', head:'Repeal of the ECA 1972', text:'Repealed the European Communities Act 1972 on exit day, ending the constitutional conduit for EU law in the UK.' },
       { num:'2', head:'Saving for EU-derived Domestic Legislation', text:'Preserves domestic legislation that had been made to implement EU obligations.' },
@@ -151,18 +151,18 @@
   { id:'k11', type:'curated', cat:'case-law', area:'Tort',
     title:'Fearn & Ors v Board of Trustees of the Tate Gallery [2023] UKSC 4',
     court:'UK Supreme Court',
-    facts:'Residents of glass-walled flats next to Tate Modern were overlooked by hundreds of thousands of visitors using the gallery’s public viewing platform, who could see directly into their living spaces and frequently photographed them. The residents sued in private nuisance.',
+    facts:'Residents of glass-walled flats next to Tate Modern were overlooked by hundreds of thousands of visitors using the gallery\'s public viewing platform, who could see directly into their living spaces and frequently photographed them. The residents sued in private nuisance.',
     judgment:'The Supreme Court held (3:2) that the visual intrusion was an actionable private nuisance and allowed the appeal, reversing the courts below.',
-    ratio:'Private nuisance can extend to overlooking where there is a substantial interference with the ordinary use and enjoyment of land. The test is whether the defendant’s own use of its land is a common and ordinary use, judged by the locality; a claimant is not required to take defensive self-help measures (such as blinds) to avoid an abnormal intrusion.',
+    ratio:'Private nuisance can extend to overlooking where there is a substantial interference with the ordinary use and enjoyment of land. The test is whether the defendant\'s own use of its land is a common and ordinary use, judged by the locality; a claimant is not required to take defensive self-help measures (such as blinds) to avoid an abnormal intrusion.',
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2023/4.html' },
 
   // ── 12. Property/Equity — case (sourced via the lawteacher pathway) ──
   { id:'k12', type:'curated', cat:'case-law', area:'Property',
     title:'Guest & Anor v Guest [2022] UKSC 27',
     court:'UK Supreme Court',
-    facts:'A son worked for decades at low wages on the family farm relying on his parents’ repeated assurances that he would inherit a substantial share of it. After the relationship broke down he was effectively disinherited, and he claimed proprietary estoppel.',
-    judgment:'The Supreme Court (3:2) upheld the estoppel and clarified the correct approach to the remedy, allowing the parents’ appeal only on the form of relief.',
-    ratio:'The purpose of relief for proprietary estoppel is to remedy the unconscionability of going back on a promise — normally by satisfying the claimant’s expectation. The court may award a lesser remedy where fulfilling the expectation would be out of all proportion to the detriment suffered, and must allow for accelerated receipt where the benefit is given early.',
+    facts:'A son worked for decades at low wages on the family farm relying on his parents\' repeated assurances that he would inherit a substantial share of it. After the relationship broke down he was effectively disinherited, and he claimed proprietary estoppel.',
+    judgment:'The Supreme Court (3:2) upheld the estoppel and clarified the correct approach to the remedy, allowing the parents\' appeal only on the form of relief.',
+    ratio:'The purpose of relief for proprietary estoppel is to remedy the unconscionability of going back on a promise — normally by satisfying the claimant\'s expectation. The court may award a lesser remedy where fulfilling the expectation would be out of all proportion to the detriment suffered, and must allow for accelerated receipt where the benefit is given early.',
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2022/27.html' },
 
   // ── 13. Criminal — case ──
@@ -232,7 +232,7 @@
   { id:'m2', type:'curated', cat:'case-law', area:'Tort',
     title:'Vedanta Resources plc & Anor v Lungowe & Ors [2019] UKSC 20',
     court:'UK Supreme Court',
-    facts:'Zambian villagers sued a UK-domiciled parent company and its Zambian mining subsidiary in the English courts over pollution, raising whether England was the proper place to try the claim and whether a parent could owe a duty of care for its subsidiary’s operations.',
+    facts:'Zambian villagers sued a UK-domiciled parent company and its Zambian mining subsidiary in the English courts over pollution, raising whether England was the proper place to try the claim and whether a parent could owe a duty of care for its subsidiary\'s operations.',
     judgment:'The Supreme Court allowed the claim to proceed in England, holding it was arguable that the parent owed a relevant duty of care.',
     ratio:'There is no distinct category of parent-company liability; ordinary negligence principles apply. A parent may owe a duty to those harmed by its subsidiary where, in fact, it took over or held itself out as exercising supervision and control of the relevant operations — the question turns on the degree of intervention, not corporate structure.',
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2019/20.html' },
@@ -269,18 +269,18 @@
     title:'Pimlico Plumbers Ltd & Anor v Smith [2018] UKSC 29',
     court:'UK Supreme Court',
     facts:'A plumber engaged on ostensibly self-employed terms — VAT-registered and providing his own tools, but working solely for the company under its rules and branding — claimed he was in fact a worker entitled to associated rights.',
-    judgment:'The Supreme Court unanimously upheld the tribunal’s conclusion that he was a worker.',
+    judgment:'The Supreme Court unanimously upheld the tribunal\'s conclusion that he was a worker.',
     ratio:'Worker status depends on whether the individual undertook to perform the work personally and whether the counterparty was a client or customer of a business run by the individual. A narrow, fettered right of substitution — limited to colleagues bound on similar terms — is consistent with an obligation of personal performance.',
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2018/29.html' },
 
   // ── Criminal — statute ──
   { id:'m7', type:'curated', cat:'statute', area:'Criminal',
     title:'Sentencing Act 2020',
-    body:"Consolidated the law on sentencing procedure in England and Wales into a single ‘Sentencing Code’, bringing together the powers of the criminal courts when dealing with offenders. It restates rather than reforms the law, aiming to make sentencing more accessible and to cut the errors caused by scattered, frequently-amended provisions.",
+    body:"Consolidated the law on sentencing procedure in England and Wales into a single 'Sentencing Code', bringing together the powers of the criminal courts when dealing with offenders. It restates rather than reforms the law, aiming to make sentencing more accessible and to cut the errors caused by scattered, frequently-amended provisions.",
     sections:[
       { num:'1', head:'The Sentencing Code', text:'Introduces the Sentencing Code as the consolidated framework governing the sentencing of offenders in the criminal courts.' },
       { num:'57', head:'Purposes of Sentencing', text:'For offenders aged 18 or over, the court must have regard to the punishment of offenders, the reduction of crime (including by deterrence), reform and rehabilitation, the protection of the public, and reparation by offenders.' },
-      { num:'63', head:'Assessing Seriousness', text:'In considering the seriousness of an offence the court must consider the offender’s culpability and any harm which the offence caused, was intended to cause, or might foreseeably have caused.' },
+      { num:'63', head:'Assessing Seriousness', text:'In considering the seriousness of an offence the court must consider the offender\'s culpability and any harm which the offence caused, was intended to cause, or might foreseeably have caused.' },
       { num:'73', head:'Reduction for Guilty Pleas', text:'The court must take into account the stage in proceedings at which the offender indicated an intention to plead guilty and the circumstances in which that indication was given.' },
       { num:'230', head:'Threshold for Custody', text:'A court must not pass a custodial sentence unless the offence (or combination of offences) was so serious that neither a fine alone nor a community sentence can be justified.' },
     ],
@@ -291,10 +291,10 @@
     title:'Domestic Abuse Act 2021',
     body:"Created the first statutory definition of domestic abuse in England and Wales, recognising that abuse extends well beyond physical violence. It strengthened protections for victims, treated children exposed to abuse as victims in their own right, and closed gaps in the criminal law.",
     sections:[
-      { num:'1', head:'Definition of “Domestic Abuse”', text:'Defines domestic abuse between persons aged 16 or over who are personally connected, covering physical or sexual abuse, violent or threatening behaviour, controlling or coercive behaviour, economic abuse, and psychological, emotional or other abuse.' },
-      { num:'2', head:'Definition of “Personally Connected”', text:'Sets out the relationships that count — including partners, former partners, those who are or were married or in a civil partnership, and certain relatives.' },
+      { num:'1', head:'Definition of \"Domestic Abuse\"', text:'Defines domestic abuse between persons aged 16 or over who are personally connected, covering physical or sexual abuse, violent or threatening behaviour, controlling or coercive behaviour, economic abuse, and psychological, emotional or other abuse.' },
+      { num:'2', head:'Definition of \"Personally Connected\"', text:'Sets out the relationships that count — including partners, former partners, those who are or were married or in a civil partnership, and certain relatives.' },
       { num:'3', head:'Children as Victims', text:'A child who sees, hears or experiences the effects of domestic abuse, and is related to the perpetrator or victim, is also to be regarded as a victim of domestic abuse.' },
-      { num:'71', head:'Consent to Serious Harm for Sexual Gratification', text:'Confirms that a person cannot consent to the infliction of serious harm for the purposes of sexual gratification, so such consent is not a defence to the resulting offence (the so-called “rough sex” defence).' },
+      { num:'71', head:'Consent to Serious Harm for Sexual Gratification', text:'Confirms that a person cannot consent to the infliction of serious harm for the purposes of sexual gratification, so such consent is not a defence to the resulting offence (the so-called \"rough sex\" defence).' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2021/17/contents' },
 
@@ -313,14 +313,124 @@
   // ── Public Law — statute ──
   { id:'m10', type:'curated', cat:'statute', area:'Public Law',
     title:'Investigatory Powers Act 2016',
-    body:"Overhauled and avowed the legal framework governing the use of interception and surveillance powers by the intelligence agencies and law enforcement, following revelations about bulk data collection. Dubbed the ‘Snoopers’ Charter’, it introduced new oversight in exchange for placing sweeping powers on a clear statutory footing.",
+    body:"Overhauled and avowed the legal framework governing the use of interception and surveillance powers by the intelligence agencies and law enforcement, following revelations about bulk data collection. Dubbed the 'Snoopers\' Charter', it introduced new oversight in exchange for placing sweeping powers on a clear statutory footing.",
     sections:[
       { num:'Pt 2', head:'Lawful Interception', text:'Sets out the warrant regime for intercepting the content of communications and makes intentional interception without lawful authority a criminal offence.' },
       { num:'Pt 4', head:'Retention of Communications Data', text:'Allows the Secretary of State to require telecommunications operators to retain communications data — including internet connection records — for up to 12 months.' },
       { num:'Pt 6', head:'Bulk Powers', text:'Authorises bulk interception, bulk acquisition of communications data, and bulk equipment interference, subject to statutory safeguards and warrants.' },
-      { num:'227', head:'The Investigatory Powers Commissioner', text:'Creates the Investigatory Powers Commissioner and Judicial Commissioners, who must approve the most intrusive warrants under a “double-lock” alongside the Secretary of State.' },
+      { num:'227', head:'The Investigatory Powers Commissioner', text:'Creates the Investigatory Powers Commissioner and Judicial Commissioners, who must approve the most intrusive warrants under a "double-lock" alongside the Secretary of State.' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
+
+  // ── Tort — case ──
+  { id:'r20260623a', type:'curated', cat:'case-law', area:'Tort',
+    title:'Lister v Hesley Hall Ltd [2001] UKHL 22',
+    court:'House of Lords',
+    facts:'Boys resident at a school for children with serious behavioural difficulties were systematically sexually abused by the warden of the school\'s boarding house. The school accepted that the warden was employed by it but denied it was vicariously liable because his acts of abuse were not acts it had authorised.',
+    judgment:'The House of Lords held the school vicariously liable for the warden\'s abuse, reversing the Court of Appeal.',
+    ratio:'Vicarious liability is not confined to acts the employer has authorised; it extends to torts so closely connected with the employment that it would be fair and just to hold the employer liable. Where the employee\'s tortious acts are inextricably interwoven with the duties entrusted to him — here, the day-to-day care of vulnerable residents — the necessary close connection is established, even though the acts were criminal and prohibited. The old Salmond test, asking whether the act was a mode of doing something authorised, was too narrow; the court must ask whether the tort was so closely connected to what the defendant was employed to do that it is fair and just to hold the employer liable.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2001/22.html' },
+
+  // ── Contract — case ──
+  { id:'r20260623b', type:'curated', cat:'case-law', area:'Contract',
+    title:'Patel v Mirza [2016] UKSC 42',
+    court:'UK Supreme Court',
+    facts:'Mr Patel paid £620,000 to Mr Mirza to bet on shares using inside information that Mirza claimed to have about government policy affecting a bank\'s share price. The information never materialised, the bet was never placed, and Patel sought to recover his money. Mirza argued the claim was barred by illegality, the proposed arrangement being a conspiracy to commit insider dealing.',
+    judgment:'The Supreme Court held (6–3) that Patel was entitled to recover the money paid. The illegality defence did not bar his restitutionary claim.',
+    ratio:'The rigid rule-based approach under which courts refused relief whenever the claimant had participated in an unlawful act is replaced by a range-of-factors test: (1) what is the underlying purpose of the prohibition, and would that purpose be enhanced by denying the relief sought? (2) are there any other relevant public policy considerations pointing the other way? (3) having regard to those matters, would it be disproportionate and unjust to deny the relief? The law\'s condemnation of an illegal transaction does not automatically require that a party who paid money under it be left without a restitutionary remedy.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/42.html' },
+
+  // ── Criminal — case ──
+  { id:'r20260623c', type:'curated', cat:'case-law', area:'Criminal',
+    title:'Ivey v Genting Casinos (UK) Ltd t/a Crockfords [2017] UKSC 67',
+    court:'UK Supreme Court',
+    facts:'A professional gambler used "edge sorting" — exploiting tiny asymmetric imperfections in card-back patterns to identify high-value cards — to accumulate approximately £7.7 million at baccarat. The casino refused to pay, asserting that he had cheated. The case turned on whether edge sorting amounted to cheating under s.42 Gambling Act 2005, and raised the question of what test for dishonesty applies in English law.',
+    judgment:'The Supreme Court unanimously held that the gambler had cheated and was not entitled to his winnings. The court also, obiter but authoritatively, reformulated the test for dishonesty for criminal law generally.',
+    ratio:'The two-stage Ghosh test for dishonesty in criminal law — which included a subjective limb asking whether the defendant appreciated that his conduct was dishonest by ordinary standards — is wrong and must no longer be followed. The correct test has one, objective stage: having first established what the defendant actually knew, believed and intended, the court asks whether that conduct was dishonest by the standards of ordinary decent people. The defendant\'s own assessment of the morality of his conduct is irrelevant.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2017/67.html' },
+
+  // ── Tort — case ──
+  { id:'r20260623d', type:'curated', cat:'case-law', area:'Tort',
+    title:'Coventry & Anor v Lawrence & Anor [2014] UKSC 13',
+    court:'UK Supreme Court',
+    facts:'The Lawrences purchased a cottage near a speedway and stock-car stadium that had operated under planning permission for decades, generating significant noise. They sued in private nuisance. The defendants argued that the claimants had "come to the nuisance" after it was established, that planning permission authorised the activities, and that any injunction should be refused given the long-standing lawful use.',
+    judgment:'The Supreme Court upheld the nuisance finding and delivered landmark guidance on coming to the nuisance, the effect of planning permission, and the court\'s discretion to award damages in lieu of an injunction.',
+    ratio:'Coming to a nuisance is not a complete defence: a claimant does not forfeit a remedy merely by moving near an existing nuisance, though the claimant\'s own activities and the character of the neighbourhood are relevant. Planning permission does not of itself authorise a nuisance, but may over time alter the character of the locality if the permitted development is carried out. Courts have a genuine discretion to award damages in lieu of an injunction under Lord Cairns\'s Act; the Shelfer test should not be applied mechanically or so as to make injunctions the invariable remedy in nuisance.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/13.html' },
+
+  // ── Equity — case ──
+  { id:'r20260623e', type:'curated', cat:'case-law', area:'Equity',
+    title:'FHR European Ventures LLP & Ors v Cedar Capital Partners LLC [2014] UKSC 45',
+    court:'UK Supreme Court',
+    facts:'Cedar Capital acted as agent for FHR in negotiating the purchase of a Monte Carlo hotel. Unknown to FHR, Cedar also received a secret commission of €10 million from the vendor as a reward for facilitating the sale. FHR sued to recover the commission. The central issue was whether the bribe was held on constructive trust — giving FHR a proprietary claim priority over Cedar\'s other creditors — or merely gave rise to a personal liability to account.',
+    judgment:'The Supreme Court unanimously held that a bribe or secret commission received by an agent in breach of fiduciary duty is held on constructive trust for the principal.',
+    ratio:'Where an agent acquires property in breach of fiduciary duty owed to the principal, the agent holds that property on constructive trust for the principal — not merely a personal liability to account. This resolves a long-standing disagreement in the authorities. The consequence is that the principal has a proprietary interest, takes priority over the agent\'s general creditors in the event of insolvency, and may trace the property (and any profit generated by it) into its substitute or product.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/45.html' },
+
+  // ── Tort — case ──
+  { id:'r20260623f', type:'curated', cat:'case-law', area:'Tort',
+    title:'Woodland v Swimming Teachers Association & Ors [2013] UKSC 66',
+    court:'UK Supreme Court',
+    facts:'A ten-year-old pupil suffered serious brain damage during a swimming lesson organised by her local education authority but conducted by an independent swimming teacher and lifeguard under a contract. The authority had provided the lesson as part of the national curriculum but delegated the teaching and supervision to independent contractors. The pupil\'s family sued the council, which argued it had discharged any duty by selecting competent contractors.',
+    judgment:'The Supreme Court held that the local education authority owed the pupil a non-delegable duty of care in respect of the swimming lesson, not discharged by delegation to independent contractors.',
+    ratio:'There is a distinct, limited category of non-delegable duty of care arising where: (i) the claimant is particularly vulnerable; (ii) an antecedent relationship gives the defendant responsibility for the claimant\'s safety in a relevant context; (iii) the claimant has no control over how the task is performed; and (iv) the defendant has delegated performance to a third party. Schools and hospitals are paradigm examples. A defendant subject to such a duty must ensure that reasonable care is actually taken; it cannot escape liability simply by delegating to a careful contractor.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2013/66.html' },
+
+  // ── Human Rights — statute ──
+  { id:'r20260623g', type:'curated', cat:'statute', area:'Human Rights',
+    title:'Human Rights Act 1998',
+    body:'Brought the rights and freedoms set out in the European Convention on Human Rights into domestic law. It is unlawful for public authorities to act incompatibly with Convention rights, and courts must read all legislation compatibly with those rights so far as possible. One of the most constitutionally significant statutes of the modern era, it transformed the approach of UK courts to fundamental rights and generated a substantial body of case law spanning every field of practice.',
+    sections:[
+      { num:'2', head:'Interpretation of Convention Rights', text:'A court or tribunal determining a question in connection with a Convention right must take into account judgments, decisions, declarations and opinions of the European Court of Human Rights so far as they are relevant.' },
+      { num:'3', head:'Interpretation of Legislation', text:'So far as it is possible to do so, primary and subordinate legislation must be read and given effect in a way that is compatible with the Convention rights.' },
+      { num:'4', head:'Declaration of Incompatibility', text:'Where a court cannot read legislation compatibly under s.3, it may make a declaration of incompatibility — which does not affect the validity or continuing operation of the provision but signals to Parliament that amendment is required.' },
+      { num:'6', head:'Acts of Public Authorities', text:'It is unlawful for a public authority to act in a way that is incompatible with a Convention right, unless primary legislation compels the incompatible act.' },
+      { num:'7', head:'Proceedings', text:'A person who claims that a public authority has acted contrary to s.6 may bring proceedings or rely on the right as a defence, provided they are or would be a victim for the purposes of Art 34 ECHR.' },
+      { num:'8', head:'Judicial Remedies', text:'Where a court finds that a public authority has acted unlawfully under s.6, it may grant such relief or remedy within its powers as it considers just and appropriate, including an award of damages.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1998/42/contents' },
+
+  // ── Employment — statute ──
+  { id:'r20260623h', type:'curated', cat:'statute', area:'Employment',
+    title:'Equality Act 2010',
+    body:'Consolidated and replaced the previous patchwork of anti-discrimination statutes — including the Sex Discrimination Act 1975, Race Relations Act 1976 and Disability Discrimination Act 1995 — into a single coherent framework applying across employment, services, education and the exercise of public functions. It defines nine protected characteristics and four main forms of prohibited conduct, and is the principal reference for all discrimination law in Great Britain.',
+    sections:[
+      { num:'4', head:'Protected Characteristics', text:'Lists the nine protected characteristics: age, disability, gender reassignment, marriage and civil partnership, pregnancy and maternity, race, religion or belief, sex, and sexual orientation.' },
+      { num:'13', head:'Direct Discrimination', text:'A person directly discriminates against another if, because of a protected characteristic, they treat that other less favourably than they treat or would treat others.' },
+      { num:'19', head:'Indirect Discrimination', text:'Indirect discrimination arises where a person applies a provision, criterion or practice which is facially neutral but puts those sharing the claimant\'s protected characteristic at a particular disadvantage, and which cannot be justified as a proportionate means of achieving a legitimate aim.' },
+      { num:'26', head:'Harassment', text:'Unwanted conduct related to a protected characteristic that has the purpose or effect of violating dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment.' },
+      { num:'27', head:'Victimisation', text:'Subjects a person to a detriment because they have done, or are suspected of doing, a protected act such as bringing or supporting proceedings or giving evidence under the Act.' },
+      { num:'136', head:'Burden of Proof', text:'If facts are established from which discrimination could be inferred, the burden shifts to the respondent to show that the less favourable treatment was not caused by the protected characteristic.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2010/15/contents' },
+
+  // ── Criminal — statute ──
+  { id:'r20260623i', type:'curated', cat:'statute', area:'Criminal',
+    title:'Fraud Act 2006',
+    body:'Replaced the multiple deception offences scattered across the Theft Acts 1968 and 1978 with a single, broadly framed fraud offence committed in three ways, together with separate offences of obtaining services dishonestly and possessing articles for use in fraud. The Act covers paper and electronic fraud alike and is central to the prosecution of financial crime, cybercrime and identity fraud.',
+    sections:[
+      { num:'1', head:'Fraud', text:'The general offence of fraud, which may be committed in any of the three ways set out in ss.2–4; triable either way, with a maximum sentence of 10 years on indictment.' },
+      { num:'2', head:'Fraud by False Representation', text:'Dishonestly making a false representation — one that is untrue or misleading and which the defendant knows is, or might be, so — with intent to make a gain or cause a loss or risk of loss to another.' },
+      { num:'3', head:'Fraud by Failing to Disclose Information', text:'Dishonestly failing to disclose information which one is under a legal duty to disclose, with intent to make a gain or cause a loss.' },
+      { num:'4', head:'Fraud by Abuse of Position', text:'Dishonestly abusing a position in which one is expected to safeguard, or not to act against, the financial interests of another, with intent to make a gain or cause a loss.' },
+      { num:'6', head:'Possession of Articles for Use in Fraud', text:'A preparatory offence of having any article for use in connection with any fraud.' },
+      { num:'11', head:'Obtaining Services Dishonestly', text:'Dishonestly obtaining services for which payment is required, by a dishonest act, intending not to pay as required.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2006/35/contents' },
+
+  // ── Criminal — statute ──
+  { id:'r20260623j', type:'curated', cat:'statute', area:'Criminal',
+    title:'Police and Criminal Evidence Act 1984',
+    body:'Codified and modernised police powers and criminal procedure in England and Wales, replacing a patchwork of common law and earlier statutory provisions with a comprehensive statutory code. Together with its Codes of Practice (Codes A–H), PACE governs stop and search, entry and search of premises, arrest, detention and treatment of suspects, and the admissibility of confessions and other evidence. It remains the cornerstone of English criminal procedure, balancing effective policing against the rights of individuals.',
+    sections:[
+      { num:'1', head:'Power to Stop and Search', text:'Confers power to stop and search a person or vehicle in a public place where there are reasonable grounds to suspect that stolen or prohibited articles will be found.' },
+      { num:'24', head:'Arrest Without Warrant', text:'A constable may arrest without warrant any person they reasonably suspect of being guilty of, or about to commit, an indictable offence, provided the arrest is necessary for one of the specified purposes (e.g. preventing harm, enabling a prompt investigation, or preventing disappearance).' },
+      { num:'56', head:'Right to Have Someone Informed of Arrest', text:'A detained person is entitled to have one person of their choice informed of their detention as soon as practicable.' },
+      { num:'58', head:'Access to Legal Advice', text:'A person detained at a police station has the right to consult a solicitor privately at any time. Delay may be authorised in limited circumstances for indictable offences on specified grounds.' },
+      { num:'76', head:'Confessions', text:'A confession is inadmissible unless the prosecution proves beyond reasonable doubt that it was not obtained by oppression or in circumstances likely to render it unreliable.' },
+      { num:'78', head:'Exclusion of Unfair Evidence', text:'The court has a discretion to refuse to allow prosecution evidence if, having regard to all the circumstances including the manner in which it was obtained, admission would have such an adverse effect on the fairness of the proceedings that it ought not to be admitted.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1984/60/contents' },
 
   ];
 });
