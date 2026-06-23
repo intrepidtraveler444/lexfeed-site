@@ -322,5 +322,59 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── 19. Public Law — case ──
+  { id:'k19', type:'curated', cat:'case-law', area:'Public Law',
+    title:'Associated Provincial Picture Houses Ltd v Wednesbury Corporation [1947] EWCA Civ 1',
+    court:'Court of Appeal',
+    facts:'Wednesbury Corporation granted the claimant company a licence to open a cinema on Sundays but attached a condition prohibiting the admission of children under 15 unaccompanied by an adult. The company challenged the condition as unreasonable and beyond the corporation\'s statutory powers.',
+    judgment:'The Court of Appeal dismissed the appeal, upholding the condition as a lawful exercise of the licensing authority\'s discretion. The court declined to substitute its own view for that of the body entrusted with the decision.',
+    ratio:'Lord Greene MR identified the circumstances in which a court may interfere with a public body\'s exercise of discretion: where it has taken into account matters it should have ignored, ignored matters it should have taken into account, acted in bad faith, or reached a conclusion so unreasonable that no reasonable authority could ever have arrived at it. This last limb — commonly called Wednesbury unreasonableness or irrationality — became the foundational common-law standard of substantive review in judicial review proceedings.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1947/1.html' },
+
+  // ── 20. Contract — case ──
+  { id:'k20', type:'curated', cat:'case-law', area:'Contract',
+    title:'Ruxley Electronics & Construction Ltd v Forsyth [1995] UKHL 8',
+    court:'House of Lords',
+    facts:'Forsyth contracted for a swimming pool to be built to a depth of 7 ft 6 in to allow safe diving. The pool was completed to only 6 ft. It was equally safe for diving in practice and had the same market value as one built to specification. Forsyth claimed the full cost of demolishing and rebuilding the pool (approximately £21,560). The trial judge awarded £2,500 for loss of amenity, while the Court of Appeal awarded the full reinstatement cost.',
+    judgment:'The House of Lords restored the trial judge\'s award of £2,500, rejecting the full cost of cure.',
+    ratio:'Where a breach of contract produces no difference in the market value of the subject matter, and reinstatement would require expenditure wholly disproportionate to any conceivable benefit, the court will not award the cost of cure. Instead, a sum reflecting the claimant\'s loss of the pleasurable performance they contracted for — loss of amenity or consumer surplus — may be awarded. The appropriate measure of damages is that which is reasonable and proportionate to the actual loss suffered, not necessarily reinstatement cost.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1995/8.html' },
+
+  // ── 21. Trusts — case ──
+  { id:'k21', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Re Baden (No 1) McPhail v Doulton [1970] UKHL 1',
+    court:'House of Lords',
+    facts:'Baden established a fund by deed for the benefit of employees of a company, their relatives and dependants, and conferred on trustees an absolute discretion as to the amounts and timing of payments. The question was whether this arrangement created a valid discretionary trust (imposing a duty to distribute) or merely a power of appointment (conferring a discretion), and, if a trust, whether it satisfied the test for certainty of objects.',
+    judgment:'The House of Lords held the arrangement constituted a discretionary trust. It overruled the "complete list" test for certainty of objects in discretionary trusts established in Inland Revenue Commissioners v Broadway Cottages Trust [1955].',
+    ratio:'The correct test for certainty of objects in a discretionary trust is the same as that for a mere power: whether it can be said with certainty of any given individual whether they are or are not a member of the class of objects. It is not necessary to draw up a complete list of every potential beneficiary. The trustee\'s duty to act means this test must be rigorously applied, but it no longer demands exhaustive ascertainability. The case was remitted to assess whether the class was sufficiently certain under the new test.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1970/1.html' },
+
+  // ── 22. Trusts — case ──
+  { id:'k22', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Westdeutsche Landesbank Girozentrale v Islington LBC [1996] UKHL 12',
+    court:'House of Lords',
+    facts:'Westdeutsche entered into an interest rate swap agreement with Islington London Borough Council. The agreement was subsequently held to be void ab initio as outside the council\'s statutory powers. The bank, having paid a net sum to the council, sought recovery of that sum together with compound interest on the ground that the council held it on resulting trust.',
+    judgment:'The House of Lords held the bank was entitled to recover the principal under the law of unjust enrichment but was limited to simple interest; compound interest was unavailable because no trust or fiduciary relationship existed.',
+    ratio:'Lord Browne-Wilkinson reformulated the basis of the resulting trust: a resulting trust arises where the recipient\'s conscience is affected at the time of receipt, not merely where money passes under a void transaction. A contract that is void ab initio does not create a trust because the transferee\'s conscience is not bound by any knowledge of wrongdoing at receipt. Compound interest is available in equity only where a trust or fiduciary relationship exists; unjust enrichment alone does not give rise to such a relationship. The case is also authority for the distinction between resulting trusts and the law of restitution.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1996/12.html' },
+
+  // ── 23. Public Law — case ──
+  { id:'k23', type:'curated', cat:'case-law', area:'Public Law',
+    title:'R v Secretary of State for the Home Department, ex parte Daly [2001] UKHL 26',
+    court:'House of Lords',
+    facts:'Daly, a long-term prisoner, challenged a standing Prison Service policy requiring all prisoners to be absent from their cells while officers searched them for contraband and examined legally privileged correspondence. He argued the policy unlawfully interfered with the right to respect for confidential legal correspondence.',
+    judgment:'The House of Lords unanimously allowed the appeal and declared the policy unlawful, holding it interfered with the prisoners\' right of access to legal advice beyond what was necessary.',
+    ratio:'Lord Steyn articulated the relationship between Wednesbury reasonableness and the proportionality standard demanded by Convention rights under the Human Rights Act 1998. While the two often yield the same result, proportionality analysis requires a more structured inquiry into whether the interference with a right is no greater than necessary to achieve the legitimate aim. The intensity of review is higher where a fundamental right is engaged, and a policy that passes Wednesbury may still fail on proportionality grounds. Courts must not, however, usurp the role of the primary decision-maker.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2001/26.html' },
+
+  // ── 24. Tort — case ──
+  { id:'k24', type:'curated', cat:'case-law', area:'Tort',
+    title:'Derry v Peek [1889] UKHL 1',
+    court:'House of Lords',
+    facts:'Directors of a tramway company issued a prospectus stating that the company had the right to use steam-powered carriages on its tramway. In fact only horse-drawn carriages had been authorised; the consent of the Board of Trade for steam power was still required and was subsequently refused. Peek purchased shares in reliance on the prospectus and, after the company wound up, brought an action for deceit.',
+    judgment:'The House of Lords held that the directors were not liable in deceit because they honestly, if carelessly, believed the statement in the prospectus to be true.',
+    ratio:'Fraud in the tort of deceit requires proof that the defendant made a false statement knowing it to be false, or without any belief in its truth, or recklessly — not caring whether it was true or false. An honest belief in the truth of a representation defeats a claim in deceit even if that belief was unreasonable or negligently formed. Negligent misrepresentation is not fraud, and was not, at the time, actionable in the absence of a special relationship (the latter gap was partly filled by Hedley Byrne v Heller).',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1889/1.html' },
+
   ];
 });
