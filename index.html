@@ -308,6 +308,16 @@ header{
 .qm-match-sel.correct{border-color:#22c55e;background:#f0fdf4;color:#166534}
 .qm-match-sel.wrong{border-color:#ef4444;background:#fef2f2;color:#991b1b}
 
+/* "Pick the facts" question — case name shown, choose the correct facts of 3 */
+.qm-pick-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:6px}
+.qm-pick{text-align:left;width:100%;border:1px solid rgba(26,39,68,.12);border-left:3px solid var(--gold);
+  border-radius:9px;padding:10px 12px;background:#fffdf5;font-family:inherit;font-size:12.5px;line-height:1.6;
+  color:#3a4a6b;cursor:pointer;transition:transform .12s,filter .12s,border-color .15s}
+.qm-pick:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.02)}
+.qm-pick:disabled{cursor:default}
+.qm-pick.correct{border-color:#22c55e;border-left-color:#22c55e;background:#f0fdf4;color:#166534}
+.qm-pick.wrong{border-color:#ef4444;border-left-color:#ef4444;background:#fef2f2;color:#991b1b}
+
 /* Confidence buttons (replace single Check for richer self-rating) */
 .qm-rate{display:flex;gap:6px;margin-top:8px}
 .qm-rate button{
@@ -3620,12 +3630,6 @@ const CURATED = [
     body:"Legal professional privilege protects certain communications from disclosure in legal proceedings, so that clients can speak frankly with their lawyers. It has two limbs: legal advice privilege, covering confidential lawyer–client communications for the purpose of giving or obtaining legal advice; and litigation privilege, covering communications with lawyers or third parties whose dominant purpose is pending or contemplated litigation. The privilege belongs to the client and is lost where the communication furthers a crime or fraud.",
     example:"A client's confidential email seeking advice from her solicitor about a dispute is protected by legal professional privilege and cannot be demanded by the other side on disclosure, which encourages full and frank instructions.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/legal-professional-privilege' },
-
-  { id:'lt60', type:'curated', cat:'legal-term', area:'Family',
-    title:'Non-Molestation Order',
-    body:"A non-molestation order is an injunction issued by the family court under the Family Law Act 1996 and enforceable by the police, which protects a person (and any children involved) from domestic abuse. It can prohibit the respondent from using or threatening violence, harassing, intimidating or contacting the applicant directly or indirectly, damaging their property, or coming near their home, workplace or the children's school. It is available against an 'associated person' — including a current or former spouse or civil partner, a current or former cohabitant or intimate partner, a relative, or someone with whom the applicant shares parental responsibility for a child. Because breach of the order is a criminal offence, a respondent who disobeys it can be arrested and may face a fine or imprisonment.",
-    example:"A woman who has separated from her partner is being repeatedly threatened and followed by him. As a former cohabitant she is an 'associated person', so she can apply to the family court (using Form FL401, with no court fee) for a non-molestation order; if he then contacts or approaches her in breach of it, the police can arrest him and he may be prosecuted.",
-    src:'Howells Legal', link:'https://www.howellslegal.co.uk/news/how-to-apply-for-non-molestation-order-in-the-uk/' },
 
   // ── JOURNAL ARTICLES ──
   { id:'ja1', type:'curated', cat:'journal-article',
@@ -8106,8 +8110,15 @@ function qmPickType(card){
       types.push('keysection');                                    // fill-in-the-blank provisions
       if(card.sections.length>=3) types.push('match');             // match section titles to numbers
     }
+  } else if(card.cat==='case-law'){
+    types.push('name');                                            // recall the case name
+    // "Pick the facts" needs ≥2 OTHER same-area cases (with facts) as wrong
+    // options; only offer it when that distractor pool exists.
+    const pool=(typeof CURATED!=='undefined'?CURATED:[])
+      .filter(c=>c&&c.cat==='case-law'&&c.id!==card.id&&c.facts&&c.area===card.area);
+    if(card.facts && card.area && pool.length>=2) types.push('pickfacts');
   } else {
-    // cases & legal terms — recall only
+    // legal terms — recall only
     types.push('name');
   }
   return types[Math.floor(Math.random()*types.length)];
@@ -8217,6 +8228,82 @@ function buildQuizModeCard(card,i,forcedType,subset){
       wrap.appendChild(sum);
       // Only the missed sub-sections come back next round
       finishQuestion(wrong===0, missed);
+    });
+    return el;
+  }
+
+  // ── PICK THE FACTS (case-law): the case NAME is shown; the user chooses ──
+  // which of three Facts blurbs belongs to it. The two wrong options are the
+  // facts of OTHER case-law cards in the SAME area of law. The quizzed case's
+  // own name is masked with asterisks wherever it appears in a facts blurb, so
+  // it cannot give the answer away (mirrors redactAnswer's style).
+  if(type==='pickfacts'){
+    const pool=(typeof CURATED!=='undefined'?CURATED:[])
+      .filter(c=>c&&c.cat==='case-law'&&c.id!==card.id&&c.facts&&c.area===card.area);
+    // Need two same-area distractors; otherwise fall back to "name it".
+    if(!card.facts || !card.area || pool.length<2){
+      qmTypeForRound.set(card.id,'name');
+      return buildQuizModeCard(card,i,'name',subset);
+    }
+    const distractors=shuffle([...pool]).slice(0,2);
+
+    // Words to mask in the facts: the full case name (minus citation), the key
+    // party (caseKeyFirstWord), and the first word of each side of the " v ".
+    const noCite=card.title.replace(/\[.*?\]|\(.*?\)/g,' ').replace(/\s+/g,' ').trim();
+    const cand=[noCite, caseKeyFirstWord(card.title)];
+    noCite.split(/\sv\s/i).forEach(p=>{
+      const w=p.replace(/^re\s+/i,'').trim().split(/\s+/)[0];
+      if(w) cand.push(w);
+    });
+    const seen=new Set(), masks=[];
+    cand.forEach(t=>{ const k=(t||'').toLowerCase(); if(t&&t.length>=2&&!seen.has(k)){ seen.add(k); masks.push(t); } });
+    const maskName=txt=>{
+      let out=safe(txt);
+      masks.forEach(n=>{
+        const esc=n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+        out=out.replace(new RegExp(`\\b(${esc})\\b`,'gi'), s=>`<span class="qm-redact">${s.replace(/\S/g,'*')}</span>`);
+      });
+      return out;
+    };
+
+    const opts=shuffle([
+      {facts:card.facts, correct:true},
+      {facts:distractors[0].facts, correct:false},
+      {facts:distractors[1].facts, correct:false}
+    ]);
+    el.querySelector('.card-body')?.style.setProperty('display','none');
+    el.querySelectorAll('.stat-intro, .stat-sections').forEach(n=>n.style.display='none');
+
+    const wrap=document.createElement('div');
+    wrap.innerHTML=`
+      <div class="card-title" style="margin-bottom:6px">${safe(card.title)}</div>
+      <span class="qm-qtype">Pick the Facts</span>
+      <div class="qm-hint">Which set of facts belongs to this case?</div>
+      <div class="qm-pick-opts"></div>`;
+    titleEl.replaceWith(wrap);
+
+    const optWrap=wrap.querySelector('.qm-pick-opts');
+    const correctIdx=opts.findIndex(o=>o.correct);
+    let answered=false;
+    opts.forEach(o=>{
+      const b=document.createElement('button');
+      b.className='qm-pick'; b.type='button';
+      b.innerHTML=maskName(o.facts);
+      optWrap.appendChild(b);
+      b.addEventListener('click',()=>{
+        if(answered) return; answered=true;
+        const btns=[...optWrap.children];
+        btns.forEach(x=>x.disabled=true);
+        b.classList.add(o.correct?'correct':'wrong');
+        if(!o.correct) btns[correctIdx].classList.add('correct');
+        const rev=document.createElement('div');
+        rev.className='qm-reveal '+(o.correct?'ok':'no');
+        rev.innerHTML=o.correct?`<span class="qm-mark">✓</span>Correct!`
+                               :`<span class="qm-mark">✗</span>Not quite — the highlighted facts are this case's.`;
+        wrap.appendChild(rev);
+        tally(o.correct?1:0,o.correct?0:1);
+        finishQuestion(o.correct);
+      });
     });
     return el;
   }
