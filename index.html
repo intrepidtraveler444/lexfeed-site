@@ -8253,13 +8253,6 @@ function buildQuizModeCard(card,i,forcedType,subset){
   if(type==='pickfacts'){
     const pool=(typeof CURATED!=='undefined'?CURATED:[])
       .filter(c=>c&&c.cat==='case-law'&&c.id!==card.id&&c.facts&&c.area===card.area);
-    // Need two same-area distractors; otherwise fall back to "name it".
-    if(!card.facts || !card.area || pool.length<2){
-      qmTypeForRound.set(card.id,'name');
-      return buildQuizModeCard(card,i,'name',subset);
-    }
-    const distractors=shuffle([...pool]).slice(0,2);
-
     // Derive the words to redact for a case: EVERY word of the case name (the
     // part of the title before the year citation), so any party-name word in the
     // facts is hidden — not just the lead surnames. We deliberately skip the
@@ -8279,6 +8272,25 @@ function buildQuizModeCard(card,i,forcedType,subset){
       });
       return out;
     };
+    // Will a case's facts actually show asterisks — i.e. do they contain one of
+    // that case's own party names?
+    const factsHaveParty=c=>maskTokens(c.title).some(n=>{
+      const esc=n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+      return new RegExp(`\\b(${esc})\\b`,'i').test(c.facts||'');
+    });
+    // Decoys must MATCH the correct option on whether the facts carry asterisks,
+    // so the presence/absence of masking can never be used as a context clue: if
+    // the correct facts name a party (→ asterisks), pick decoys whose facts also
+    // name a party; if the correct facts have no party name (→ no asterisks),
+    // pick decoys whose facts likewise have none.
+    const wantMask=factsHaveParty(card);
+    const matched=pool.filter(c=>factsHaveParty(c)===wantMask);
+    // Need two MATCHING same-area distractors; otherwise fall back to "name it".
+    if(!card.facts || !card.area || matched.length<2){
+      qmTypeForRound.set(card.id,'name');
+      return buildQuizModeCard(card,i,'name',subset);
+    }
+    const distractors=shuffle([...matched]).slice(0,2);
     // Mask each option's OWN party names within its OWN facts. Doing this for the
     // decoys too — not just the correct card — is essential: if only the correct
     // facts carried asterisks, those asterisks would give the answer away.
