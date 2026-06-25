@@ -7182,14 +7182,30 @@ document.addEventListener('visibilitychange', ()=>{
 });
 
 // Streak tracking
+// The day streak now advances ONLY when the user completes ALL of that day's
+// goals (see advanceStreakForToday, called from refreshGoalRing on completion).
+// updateStreak() is a pure reader: it returns the current streak if it is still
+// "alive" (the last completed day was today or yesterday), or 0 if it lapsed.
 function updateStreak(){
   const today=new Date().toISOString().slice(0,10);
-  const s=LS.get('streak',{date:'',count:0});
   const yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
-  if(s.date===today) return s.count;
-  if(s.date===yesterday){s.count++;s.date=today;}
-  else{s.count=1;s.date=today;}
+  const s=LS.get('streak',{date:'',count:0});
+  if(s.date===today||s.date===yesterday) return s.count||0;
+  return 0;
+}
+// Count today toward the streak — called once today's goals are all complete.
+// Idempotent for the day; extends the run if yesterday was also completed,
+// otherwise (re)starts it at 1.
+function advanceStreakForToday(){
+  const today=new Date().toISOString().slice(0,10);
+  const yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
+  const s=LS.get('streak',{date:'',count:0});
+  if(s.date===today) return s.count;     // already counted today
+  s.count=(s.date===yesterday?(s.count||0)+1:1);
+  s.date=today;
   LS.set('streak',s);
+  const sv=document.getElementById('streakVal'); if(sv) sv.textContent=s.count;
+  if(typeof queueSync==='function') queueSync();   // persist to a signed-in account
   return s.count;
 }
 
@@ -7749,7 +7765,7 @@ function buildFlairCard(kind,delayMs=0){
       <div class="flair-foot">— ${safe(q.a)}</div>`;
   } else if(kind==='welcome'){
     const days=Math.floor((Date.now()-prevVisit)/86400000);
-    const streak=(LS.get('streak',{count:0})||{}).count||0;
+    const streak=updateStreak();   // current streak (0 if it has lapsed)
     const gapText=days>=1?`It's been ${days} day${days>1?'s':''} — welcome back`:`Good to see you again`;
     el.innerHTML=`<div class="flair-tag">👋 Welcome back</div>
       <div class="wb-line">${safe(gapText)}${streak>0?` · 🔥 ${streak}-day streak`:''}</div>
@@ -7838,6 +7854,7 @@ function refreshGoalRing(){
     card.classList.add('complete');
     title.textContent='✅ Daily goal complete!';
     sub.textContent='Nice work — you\'ve hit today\'s target. Keep your streak alive tomorrow.';
+    advanceStreakForToday();   // completing ALL daily goals is what extends the streak
     if(!g.celebrated){ g.celebrated=true; saveGoalState(g); showAchievement({ico:'🎯',title:'Daily Goal Complete!',sub:'You finished your learning target for today'}); }
   } else {
     card.classList.remove('complete');
@@ -9432,7 +9449,7 @@ const TOUR_STEPS=[
   { sel:'.fbtn[data-c="quiz"]', title:'SQE practice', placement:'bottom',
     body:'Five-option, single-best-answer questions across every FLK area — plus a fresh Question of the Day.' },
   { sel:'.hdr-stat.streak', title:'Build a daily streak', placement:'bottom',
-    body:'Read a little each day to grow your streak and unlock achievements 🏆 — small habits, real progress.' },
+    body:'Your 🔥 streak grows by one each day you complete <b>all</b> of your daily goals — read 50 posts, answer the Question of the Day, and finish a full round of Quiz Me. Do all three every day to keep the streak alive and unlock achievements 🏆.' },
   { center:true, emoji:'🎉', title:'You’re all set!',
     body:'Scroll, tap a tag, save what matters, and test yourself. Welcome aboard — happy learning. 🎓' },
   { center:true, emoji:'💎', title:'Free & Premium',
