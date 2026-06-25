@@ -6937,7 +6937,25 @@ function hydrateFromProfile(resp){
   (d.ach||[]).forEach(id=>achEarned.add(id));
   const localStreak = (LS.get('streak',{count:0})||{}).count||0;
   if(d.streak && (d.streak.count||0) >= localStreak) LS.set('streak', d.streak);
-  if(d.goal && !LS.get('goal',null)) LS.set('goal', d.goal);
+  // Daily goal: keep TODAY's progress identical across devices by merging the
+  // account's copy with this device's — take the best of each field for the same
+  // day, so an objective completed on one device shows completed on all.
+  {
+    const gToday = new Date().toISOString().slice(0,10);
+    const sv = d.goal;
+    if(sv && sv.date===gToday){
+      const loc = LS.get('goal',null);
+      if(loc && loc.date===gToday){
+        LS.set('goal', { date:gToday,
+          read:Math.max(loc.read||0, sv.read||0),
+          qotd:!!(loc.qotd||sv.qotd),
+          quiz:!!(loc.quiz||sv.quiz),
+          celebrated:!!(loc.celebrated||sv.celebrated) });
+      } else {
+        LS.set('goal', sv);   // this device has no progress for today yet → adopt the account's
+      }
+    }
+  }
 
   // Saved cards are AUTHORITATIVE from the account so removals propagate across
   // devices. The very first time this device links to this account we merge the
@@ -6959,6 +6977,7 @@ function hydrateFromProfile(resp){
   try{ const av=document.getElementById('achVal'); if(av) av.textContent=achEarned.size; }catch{}
   try{ const sc=document.getElementById('savedCnt'); if(sc) sc.textContent=saves.size; }catch{}
   try{ if(showSaved) renderSavedView(); }catch{}
+  try{ refreshGoalRing(); }catch{}   // reflect the merged daily-goal progress (and reconcile the streak)
   refreshAccountUI();
   if(!linked) flushSync();   // push the merged union up the first time we link
 }
@@ -7817,10 +7836,10 @@ function getGoalState(){
   return g;
 }
 function saveGoalState(g){ LS.set('goal',g); }
-function goalReadInc(){ const g=getGoalState(); g.read++; saveGoalState(g); refreshGoalRing(); }
-function goalQotdDone(){ const g=getGoalState(); g.qotd=true; saveGoalState(g); refreshGoalRing(); }
+function goalReadInc(){ const g=getGoalState(); g.read++; saveGoalState(g); refreshGoalRing(); queueSync(); }
+function goalQotdDone(){ const g=getGoalState(); g.qotd=true; saveGoalState(g); refreshGoalRing(); queueSync(); }
 // Marked complete only when a whole Quiz Me run is mastered (all answered right).
-function goalQuizDone(){ const g=getGoalState(); g.quiz=true; saveGoalState(g); refreshGoalRing(); }
+function goalQuizDone(){ const g=getGoalState(); g.quiz=true; saveGoalState(g); refreshGoalRing(); queueSync(); }
 
 function goalIsComplete(g){ return g.read>=GOAL_READ && g.qotd && g.quiz; }
 
