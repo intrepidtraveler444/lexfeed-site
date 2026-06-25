@@ -8247,18 +8247,23 @@ function buildQuizModeCard(card,i,forcedType,subset){
     }
     const distractors=shuffle([...pool]).slice(0,2);
 
-    // Derive the party-name tokens for a given case title: the full name (minus
-    // citation), the key party (caseKeyFirstWord), and the first word of each
-    // side of the " v ".
+    // Derive the words to redact for a case: EVERY word of the case name (the
+    // part of the title before the year citation), so any party-name word in the
+    // facts is hidden — not just the lead surnames. We deliberately skip the
+    // Crown "R" and the "v" separator in criminal/adversarial names, plus a small
+    // set of non-identifying grammatical/corporate fillers.
+    const MASK_STOP=new Set(['r','v','vs','and','of','the','for','a','an','to','in','on','at','by','no','ors','anor','another','others','ltd','plc','llp','co','inc','re']);
     const maskTokens=title=>{
-      const noCite=String(title||'').replace(/\[.*?\]|\(.*?\)/g,' ').replace(/\s+/g,' ').trim();
-      const cand=[noCite, caseKeyFirstWord(title)];
-      noCite.split(/\sv\s/i).forEach(p=>{
-        const w=p.replace(/^re\s+/i,'').trim().split(/\s+/)[0];
-        if(w) cand.push(w);
-      });
+      let name=String(title||'');
+      const cut=name.search(/[\[(]\s*\d{4}/);   // cut at the year citation: [1999] or (1611)
+      if(cut>=0) name=name.slice(0,cut);
+      name=name.replace(/[()\[\]]/g,' ');        // keep words inside brackets, e.g. R (Miller)
       const seen=new Set(), out=[];
-      cand.forEach(t=>{ const k=(t||'').toLowerCase(); if(t&&t.length>=2&&!seen.has(k)){ seen.add(k); out.push(t); } });
+      name.split(/[\s,.;:&]+/).forEach(w=>{
+        const word=w.trim();
+        const k=word.toLowerCase().replace(/[^a-z0-9]/g,'');
+        if(word.length>=2 && k && !MASK_STOP.has(k) && !seen.has(k)){ seen.add(k); out.push(word); }
+      });
       return out;
     };
     // Mask each option's OWN party names within its OWN facts. Doing this for the
