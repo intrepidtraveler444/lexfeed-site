@@ -8273,7 +8273,10 @@ function buildQuizModeCard(card,i,forcedType,subset){
       let out=safe(txt);
       maskTokens(title).forEach(n=>{
         const esc=n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-        out=out.replace(new RegExp(`\\b(${esc})\\b`,'gi'), s=>`<span class="qm-redact">${s.replace(/\S/g,'*')}</span>`);
+        // One asterisk per masked WORD (not per character): a per-character
+        // length would let the user deduce the answer by matching asterisk
+        // counts to the case name.
+        out=out.replace(new RegExp(`\\b(${esc})\\b`,'gi'), ()=>`<span class="qm-redact">*</span>`);
       });
       return out;
     };
