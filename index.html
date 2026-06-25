@@ -8247,19 +8247,26 @@ function buildQuizModeCard(card,i,forcedType,subset){
     }
     const distractors=shuffle([...pool]).slice(0,2);
 
-    // Words to mask in the facts: the full case name (minus citation), the key
-    // party (caseKeyFirstWord), and the first word of each side of the " v ".
-    const noCite=card.title.replace(/\[.*?\]|\(.*?\)/g,' ').replace(/\s+/g,' ').trim();
-    const cand=[noCite, caseKeyFirstWord(card.title)];
-    noCite.split(/\sv\s/i).forEach(p=>{
-      const w=p.replace(/^re\s+/i,'').trim().split(/\s+/)[0];
-      if(w) cand.push(w);
-    });
-    const seen=new Set(), masks=[];
-    cand.forEach(t=>{ const k=(t||'').toLowerCase(); if(t&&t.length>=2&&!seen.has(k)){ seen.add(k); masks.push(t); } });
-    const maskName=txt=>{
+    // Derive the party-name tokens for a given case title: the full name (minus
+    // citation), the key party (caseKeyFirstWord), and the first word of each
+    // side of the " v ".
+    const maskTokens=title=>{
+      const noCite=String(title||'').replace(/\[.*?\]|\(.*?\)/g,' ').replace(/\s+/g,' ').trim();
+      const cand=[noCite, caseKeyFirstWord(title)];
+      noCite.split(/\sv\s/i).forEach(p=>{
+        const w=p.replace(/^re\s+/i,'').trim().split(/\s+/)[0];
+        if(w) cand.push(w);
+      });
+      const seen=new Set(), out=[];
+      cand.forEach(t=>{ const k=(t||'').toLowerCase(); if(t&&t.length>=2&&!seen.has(k)){ seen.add(k); out.push(t); } });
+      return out;
+    };
+    // Mask each option's OWN party names within its OWN facts. Doing this for the
+    // decoys too — not just the correct card — is essential: if only the correct
+    // facts carried asterisks, those asterisks would give the answer away.
+    const maskName=(txt,title)=>{
       let out=safe(txt);
-      masks.forEach(n=>{
+      maskTokens(title).forEach(n=>{
         const esc=n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
         out=out.replace(new RegExp(`\\b(${esc})\\b`,'gi'), s=>`<span class="qm-redact">${s.replace(/\S/g,'*')}</span>`);
       });
@@ -8267,9 +8274,9 @@ function buildQuizModeCard(card,i,forcedType,subset){
     };
 
     const opts=shuffle([
-      {facts:card.facts, correct:true},
-      {facts:distractors[0].facts, correct:false},
-      {facts:distractors[1].facts, correct:false}
+      {facts:card.facts, title:card.title, correct:true},
+      {facts:distractors[0].facts, title:distractors[0].title, correct:false},
+      {facts:distractors[1].facts, title:distractors[1].title, correct:false}
     ]);
     // Hide the whole readable body: curated cases render Facts/Judgment/Ratio as
     // ".sl" blocks (NOT inside .card-body), so those must be hidden too.
@@ -8290,7 +8297,7 @@ function buildQuizModeCard(card,i,forcedType,subset){
     opts.forEach(o=>{
       const b=document.createElement('button');
       b.className='qm-pick'; b.type='button';
-      b.innerHTML=maskName(o.facts);
+      b.innerHTML=maskName(o.facts,o.title);
       optWrap.appendChild(b);
       b.addEventListener('click',()=>{
         if(answered) return; answered=true;
@@ -8496,6 +8503,25 @@ function showQmMastery(){
 }
 
 // Entry point: begin a fresh mastery loop over all eligible saved cards.
+// Build the round's queue from the eligible saved cards. Normally every saved
+// card becomes one question; but once you have MORE than 25 saved, the quiz is
+// capped at 25 questions, guaranteeing at least 5 of each available card type
+// (cases, statutes, terms) before filling the remaining slots at random.
+function buildQuizQueue(items){
+  const LIMIT=25, PER_TYPE=5;
+  if(items.length<=LIMIT) return shuffle(items).map(card=>({card}));
+  const byCat={'case-law':[], 'statute':[], 'legal-term':[]};
+  shuffle(items).forEach(c=>{ if(byCat[c.cat]) byCat[c.cat].push(c); });
+  const chosen=[], picked=new Set();
+  // 1) guarantee up to 5 of each type that the user actually has
+  Object.values(byCat).forEach(arr=>{
+    arr.slice(0,PER_TYPE).forEach(c=>{ if(!picked.has(c.id)){ picked.add(c.id); chosen.push(c); } });
+  });
+  // 2) fill the remaining slots from everything not already chosen
+  shuffle(items).forEach(c=>{ if(chosen.length<LIMIT && !picked.has(c.id)){ picked.add(c.id); chosen.push(c); } });
+  return shuffle(chosen).slice(0,LIMIT).map(card=>({card}));
+}
+
 function startQuizMode(){
   resetQmCounters();
   qmRound=1; qmTypeForRound=new Map();
@@ -8506,7 +8532,7 @@ function startQuizMode(){
     document.getElementById('qmScore').classList.remove('show');
     return;
   }
-  renderQmRound(shuffle(items).map(card=>({card})));
+  renderQmRound(buildQuizQueue(items));
 }
 
 function renderQuizMode(){ startQuizMode(); }
