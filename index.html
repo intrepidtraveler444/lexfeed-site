@@ -8271,8 +8271,10 @@ function buildQuizModeCard(card,i,forcedType,subset){
       {facts:distractors[0].facts, correct:false},
       {facts:distractors[1].facts, correct:false}
     ]);
+    // Hide the whole readable body: curated cases render Facts/Judgment/Ratio as
+    // ".sl" blocks (NOT inside .card-body), so those must be hidden too.
     el.querySelector('.card-body')?.style.setProperty('display','none');
-    el.querySelectorAll('.stat-intro, .stat-sections').forEach(n=>n.style.display='none');
+    el.querySelectorAll('.sl, .stat-intro, .stat-sections').forEach(n=>n.style.display='none');
 
     const wrap=document.createElement('div');
     wrap.innerHTML=`
