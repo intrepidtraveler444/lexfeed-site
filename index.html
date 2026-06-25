@@ -838,7 +838,7 @@ html{scroll-padding-top:118px}
       <div class="goal-bars">
         <span class="goal-bar" id="goalReadBar">📖 Read <b>0/50</b></span>
         <span class="goal-bar" id="goalQuizBar">⭐ Daily Question <b>0/1</b></span>
-        <span class="goal-bar" id="goalClickBar">🔗 Read More <b>0/3</b></span>
+        <span class="goal-bar" id="goalQuizMeBar">🎯 Quiz Me <b>0/25</b></span>
       </div>
     </div>
   </div>
@@ -7785,26 +7785,35 @@ function getDailyQuiz(){
 // ══════════════════════════════════════════════
 //  DAILY GOAL + "CAUGHT UP" SYSTEM
 // ══════════════════════════════════════════════
-// Three daily goals: read 50 posts · answer Question of the Day · open 3 sources
-const GOAL_READ=50, GOAL_CLICK=3;
+// Three daily goals: read 50 posts · answer Question of the Day · complete a
+// full Quiz Me run (all questions correct, through every retry round).
+const GOAL_READ=50, GOAL_QUIZ=25;
+// Live Quiz-Me objective progress. `qmClearedIds` = distinct questions answered
+// correctly in the CURRENT run; `qmSessionTotal` = that run's question count.
+// Both reset whenever a run is (re)started or the user exits before mastery, so
+// the objective's progress resets unless the whole run is completed.
+let qmClearedIds=new Set(), qmSessionTotal=0;
 
 function getGoalState(){
   const today=new Date().toISOString().slice(0,10);
-  const g=LS.get('goal',{date:'',read:0,qotd:false,clicks:0,celebrated:false});
-  if(g.date!==today){ return {date:today,read:0,qotd:false,clicks:0,celebrated:false}; }
+  const g=LS.get('goal',{date:'',read:0,qotd:false,quiz:false,celebrated:false});
+  if(g.date!==today){ return {date:today,read:0,qotd:false,quiz:false,celebrated:false}; }
   return g;
 }
 function saveGoalState(g){ LS.set('goal',g); }
 function goalReadInc(){ const g=getGoalState(); g.read++; saveGoalState(g); refreshGoalRing(); }
 function goalQotdDone(){ const g=getGoalState(); g.qotd=true; saveGoalState(g); refreshGoalRing(); }
-function goalClickInc(){ const g=getGoalState(); g.clicks++; saveGoalState(g); refreshGoalRing(); }
+// Marked complete only when a whole Quiz Me run is mastered (all answered right).
+function goalQuizDone(){ const g=getGoalState(); g.quiz=true; saveGoalState(g); refreshGoalRing(); }
 
-function goalIsComplete(g){ return g.read>=GOAL_READ && g.qotd && g.clicks>=GOAL_CLICK; }
+function goalIsComplete(g){ return g.read>=GOAL_READ && g.qotd && g.quiz; }
 
 function refreshGoalRing(){
   const g=getGoalState();
-  // Ring = average of the three goals' completion
-  const parts=[Math.min(g.read,GOAL_READ)/GOAL_READ, g.qotd?1:0, Math.min(g.clicks,GOAL_CLICK)/GOAL_CLICK];
+  // Ring = average of the three goals' completion. The Quiz Me part shows live
+  // progress (cleared/total) until the run is mastered, then counts as full.
+  const quizFrac=g.quiz?1:(qmSessionTotal?Math.min(qmClearedIds.size,qmSessionTotal)/qmSessionTotal:0);
+  const parts=[Math.min(g.read,GOAL_READ)/GOAL_READ, g.qotd?1:0, quizFrac];
   const pct=Math.round(parts.reduce((a,b)=>a+b,0)/3*100);
   const circ=144.5;
   const fg=document.getElementById('ringFg');
@@ -7813,10 +7822,13 @@ function refreshGoalRing(){
 
   const rb=document.getElementById('goalReadBar');
   const qb=document.getElementById('goalQuizBar');
-  const cb=document.getElementById('goalClickBar');
+  const cb=document.getElementById('goalQuizMeBar');
   if(rb){ rb.innerHTML=`📖 Read <b>${Math.min(g.read,GOAL_READ)}/${GOAL_READ}</b>`; rb.classList.toggle('done',g.read>=GOAL_READ); }
   if(qb){ qb.innerHTML=`⭐ Daily Question <b>${g.qotd?'✓':'0/1'}</b>`; qb.classList.toggle('done',g.qotd); }
-  if(cb){ cb.innerHTML=`🔗 Read More <b>${Math.min(g.clicks,GOAL_CLICK)}/${GOAL_CLICK}</b>`; cb.classList.toggle('done',g.clicks>=GOAL_CLICK); }
+  if(cb){
+    if(g.quiz){ cb.innerHTML=`🎯 Quiz Me <b>✓</b>`; cb.classList.add('done'); }
+    else{ const tot=qmSessionTotal||GOAL_QUIZ; cb.innerHTML=`🎯 Quiz Me <b>${Math.min(qmClearedIds.size,tot)}/${tot}</b>`; cb.classList.remove('done'); }
+  }
 
   const done=goalIsComplete(g);
   const card=document.getElementById('goalCard');
@@ -7833,7 +7845,7 @@ function refreshGoalRing(){
     const bits=[];
     if(g.read<GOAL_READ) bits.push(`read ${GOAL_READ-g.read} more post${GOAL_READ-g.read!==1?'s':''}`);
     if(!g.qotd) bits.push('answer the Question of the Day');
-    if(g.clicks<GOAL_CLICK) bits.push(`open ${GOAL_CLICK-g.clicks} more source${GOAL_CLICK-g.clicks!==1?'s':''}`);
+    if(!g.quiz) bits.push('complete a full round of Quiz Me');
     sub.textContent=bits.length?('To finish today: '+bits.join(', ')+'.'):'';
   }
 }
@@ -8157,9 +8169,10 @@ function buildQuizModeCard(card,i,forcedType,subset){
       qmRetry.push(wrongSections&&wrongSections.length?{card,sections:wrongSections}:{card});
     }
     srsRecord(card, allRight?2:0);   // keep the long-term schedule updated too
-    if(allRight){ totalRead+=1; LS.set('total',totalRead); }
+    if(allRight){ totalRead+=1; LS.set('total',totalRead); qmClearedIds.add(card.id); }
     qmRoundDone++;
     updateQmScore();
+    refreshGoalRing();               // live "Quiz Me x/25" daily-objective progress
     checkAchievements&&checkAchievements();
     maybeFinishRound();
   };
@@ -8496,6 +8509,7 @@ function maybeFinishRound(){
 
 // Final mastery screen — reached when a whole round is answered with no misses.
 function showQmMastery(){
+  goalQuizDone();   // whole run completed (all questions correct) → daily objective done
   const grid=document.getElementById('grid');
   const el=document.createElement('div');
   el.className='caught-up';
@@ -8533,6 +8547,8 @@ function buildQuizQueue(items){
 function startQuizMode(){
   resetQmCounters();
   qmRound=1; qmTypeForRound=new Map();
+  // Fresh run → reset the daily Quiz-Me objective's live progress.
+  qmClearedIds=new Set(); qmSessionTotal=0; refreshGoalRing();
   const items=[...saves].map(id=>savedData[id]).filter(qmEligible);
   if(!items.length){
     document.getElementById('grid').innerHTML='';
@@ -8540,7 +8556,10 @@ function startQuizMode(){
     document.getElementById('qmScore').classList.remove('show');
     return;
   }
-  renderQmRound(buildQuizQueue(items));
+  const queue=buildQuizQueue(items);
+  qmSessionTotal=queue.length;          // this run's question count (target for the objective)
+  renderQmRound(queue);
+  refreshGoalRing();
 }
 
 function renderQuizMode(){ startQuizMode(); }
@@ -8551,7 +8570,12 @@ document.getElementById('qmodeBtn').addEventListener('click',function(){
   this.classList.toggle('on',quizMode);
   this.textContent=quizMode?'✕ Exit Quiz':'🎯 Quiz Me';
   if(quizMode){ renderQuizMode(); }
-  else{ document.getElementById('qmScore').classList.remove('show'); renderSavedView(); }
+  else{
+    document.getElementById('qmScore').classList.remove('show');
+    // Exiting before mastery abandons the run → reset the objective's progress.
+    qmClearedIds=new Set(); qmSessionTotal=0; refreshGoalRing();
+    renderSavedView();
+  }
   updateReviewBadge();
 });
 
@@ -8861,7 +8885,6 @@ document.getElementById('grid').addEventListener('click',e=>{
   // A deep read is worth more than a scroll-past
   totalRead+=4; LS.set('total',totalRead);
   incTodayCount();
-  goalClickInc();           // counts toward the "open 3 sources" daily goal
   const milestones={1:'First full source opened! 📖',10:'10 sources read in full 🔥',25:'25 deep reads — serious work 🎓',50:'50 full sources! 🏛'};
   showReadToast(milestones[deepReads]||`+5 · Source #${deepReads} opened`);
   checkAchievements();
