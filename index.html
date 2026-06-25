@@ -8295,15 +8295,16 @@ function buildQuizModeCard(card,i,forcedType,subset){
     // decoys too — not just the correct card — is essential: if only the correct
     // facts carried asterisks, those asterisks would give the answer away.
     const maskName=(txt,title)=>{
-      let out=safe(txt);
-      maskTokens(title).forEach(n=>{
-        const esc=n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-        // One asterisk per masked WORD (not per character): a per-character
-        // length would let the user deduce the answer by matching asterisk
-        // counts to the case name.
-        out=out.replace(new RegExp(`\\b(${esc})\\b`,'gi'), ()=>`<span class="qm-redact">*</span>`);
-      });
-      return out;
+      const out=safe(txt);
+      const toks=maskTokens(title);
+      if(!toks.length) return out;
+      const alt=toks.map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|');
+      // Collapse a whole RUN of consecutive party-name words (separated only by
+      // spaces/light punctuation) into a SINGLE asterisk — so however many words
+      // of the case name appear together, the user sees just one "*", never one
+      // per word (which would leak the word count).
+      const run=new RegExp(`\\b(?:${alt})\\b(?:[\\s.,'\\-]+\\b(?:${alt})\\b)*`,'gi');
+      return out.replace(run, ()=>`<span class="qm-redact">*</span>`);
     };
 
     const opts=shuffle([
@@ -8341,7 +8342,7 @@ function buildQuizModeCard(card,i,forcedType,subset){
         const rev=document.createElement('div');
         rev.className='qm-reveal '+(o.correct?'ok':'no');
         rev.innerHTML=o.correct?`<span class="qm-mark">✓</span>Correct!`
-                               :`<span class="qm-mark">✗</span>Not quite — the highlighted facts are this case's.`;
+                               :`<span class="qm-mark">✗</span>Not quite — those are the facts of <strong>${safe(o.title)}</strong>. The highlighted facts belong to this case.`;
         wrap.appendChild(rev);
         tally(o.correct?1:0,o.correct?0:1);
         finishQuestion(o.correct);
