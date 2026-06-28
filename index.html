@@ -6986,7 +6986,7 @@ function hydrateFromProfile(resp){
 
   try{ const av=document.getElementById('achVal'); if(av) av.textContent=achEarned.size; }catch{}
   try{ const sc=document.getElementById('savedCnt'); if(sc) sc.textContent=saves.size; }catch{}
-  try{ if(showSaved) renderSavedView(); }catch{}
+  try{ if(showSaved && !quizMode) renderSavedView(); }catch{}   // don't clobber an active Quiz Me session
   try{ refreshGoalRing(); }catch{}   // reflect the merged daily-goal progress (and reconcile the streak)
   refreshAccountUI();
   if(!linked) flushSync();   // push the merged union up the first time we link
@@ -7394,7 +7394,7 @@ function onSave(id,btn,card){
   LS.set('saves',[...saves]);
   LS.set('savedData',savedData);
   document.getElementById('savedCnt').textContent=saves.size;
-  if(showSaved) renderSavedView();
+  if(showSaved && !quizMode) renderSavedView();   // don't clobber an active Quiz Me session
   queueSync();
 }
 
@@ -7931,6 +7931,10 @@ function maybeShowCaughtUp(){
 // Renders saved posts from persisted savedData, so they survive refreshes
 // and appear even if they were never re-fetched this session.
 function renderSavedView(){
+  // While Quiz Me is running it OWNS the grid. A background re-render (e.g. an
+  // account sync resolving, or a save toggle) must not wipe the quiz out from
+  // under the user. Intentional exits set quizMode=false before calling this.
+  if(quizMode) return;
   const grid=document.getElementById('grid');
   grid.innerHTML='';
   removeEmptyState&&removeEmptyState();
