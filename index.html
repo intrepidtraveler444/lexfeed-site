@@ -179,6 +179,22 @@ header{
 .ctag.journal-article{background:var(--burgundy)}
 .ctag.legal-term{background:var(--slate)}
 .ctag.quiz{background:var(--purple)}
+.ctag.study-guide{background:#0d9488}
+.card[data-c="study-guide"]{border-left-color:#0d9488}
+.fbtn[data-c="study-guide"].on{background:#0d9488}
+/* ── Study Guide cards ── */
+.sg-type{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;background:#ccfbf1;color:#0f766e;border-radius:7px;padding:2px 8px}
+.sg-intro{font-size:13.5px;line-height:1.6;color:#3a4a6b;margin-bottom:11px}
+.sg-steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.sg-steps li{font-size:13px;line-height:1.55;color:#3a4a6b}
+.sg-steps li::marker{color:#0d9488;font-weight:800}
+.sg-step-h{font-weight:800;color:var(--navy)}
+.sg-sides{display:flex;flex-direction:column;gap:9px}
+.sg-side{border:1px solid rgba(13,148,136,.18);border-left:3px solid #0d9488;border-radius:10px;padding:10px 12px;background:#f4fbfa}
+.sg-side-h{font-weight:800;color:#0f766e;font-size:13px;margin-bottom:3px}
+.sg-side-t{font-size:12.8px;line-height:1.55;color:#3a4a6b}
+.sg-key{margin-top:10px;font-size:12.8px;line-height:1.55;color:var(--navy);background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:9px 12px}
+.sg-key-l{display:block;font-weight:800;text-transform:uppercase;font-size:10px;letter-spacing:.3px;color:#a16207;margin-bottom:2px}
 .badge{font-size:10px;font-weight:700;letter-spacing:.2px;color:var(--slate);background:var(--bg);padding:3px 9px;border-radius:12px;white-space:nowrap;flex-shrink:0}
 .badge.live{color:#a06a00;background:#fff5d6}
 .card-title{font-size:15.5px;font-weight:800;line-height:1.3;color:var(--navy)}
@@ -823,6 +839,7 @@ html{scroll-padding-top:118px}
   <button class="fbtn" data-c="statute">📜 Statutes</button>
   <button class="fbtn" data-c="journal-article">📚 Articles</button>
   <button class="fbtn" data-c="legal-term">🔤 Terms</button>
+  <button class="fbtn" data-c="study-guide">📘 Study Guides</button>
   <button class="fbtn" data-c="quiz">🧠 SQE Questions</button>
   <span class="cnt" id="cnt">Loading…</span>
 </div>
@@ -3718,6 +3735,138 @@ const CURATED = [
     title:"Lodge — 'Gross Negligence Manslaughter on the Cusp' (2017) 81 J Crim L 125",
     body:"Anne Lodge argues that the 'gross negligence' standard at the heart of gross negligence manslaughter is notoriously indeterminate, offering no comprehensible or consistent way to measure when conduct is 'gross' enough to warrant a criminal conviction. She contends that the condition sets the culpability bar too low — exposing to criminal censure defendants who never adverted to any risk of death from their conduct — and so unprincipledly privileges the harm caused over the defendant's actual culpability. Writing against the backdrop of R v Adomako, she calls for a more principled, culpability-focused basis for the offence.",
     src:'The Journal of Criminal Law', link:'https://journals.sagepub.com/doi/abs/10.1177/0022018317694719' },
+
+  // ══ STUDY GUIDES — plain-English explainers (no citation) ══
+  // guide:'test' → numbered elements · guide:'compare'/'distinguish' → two sides
+  { id:'sg1', type:'curated', cat:'study-guide', guide:'test', area:'Human Rights',
+    title:'The Proportionality Test (Bank Mellat)',
+    intro:"How courts decide whether interfering with a protected right is justified. All four stages must be satisfied.",
+    steps:[
+      { head:'Legitimate aim', text:"Is the objective behind the measure important enough to justify limiting the right?" },
+      { head:'Rational connection', text:"Is the measure rationally connected to that aim — does it actually further it?" },
+      { head:'No more than necessary', text:"Could a less intrusive measure have been used without unacceptably compromising the aim?" },
+      { head:'Fair balance', text:"Does the measure strike a fair balance between the individual’s rights and the interests of the community?" }
+    ],
+    key:"A justified interference pursues an important aim, works towards it, goes no further than necessary, and is still fair overall.",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg2', type:'curated', cat:'study-guide', guide:'test', area:'Criminal',
+    title:'Gross Negligence Manslaughter (the Adomako test)',
+    intro:"When does a death caused by carelessness become manslaughter? Each element must be present.",
+    steps:[
+      { head:'Duty of care', text:"The defendant owed the victim a duty of care, applying ordinary negligence principles." },
+      { head:'Breach', text:"The defendant breached that duty." },
+      { head:'Risk of death', text:"There was a serious and obvious risk of death at the time of the breach." },
+      { head:'Causation', text:"The breach caused, or significantly contributed to, the victim’s death." },
+      { head:'Grossness', text:"The conduct was so bad in all the circumstances that the jury regards it as criminal." }
+    ],
+    key:"Negligence causing death, where the risk of death was obvious and the carelessness so serious a jury labels it a crime.",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg3', type:'curated', cat:'study-guide', guide:'test', area:'Criminal',
+    title:'Unlawful Act (Constructive) Manslaughter',
+    intro:"Manslaughter where death results from a criminal, dangerous act — without any intent to kill or harm.",
+    steps:[
+      { head:'An unlawful act', text:"The defendant committed a criminal act (not a mere omission, and not just a civil wrong)." },
+      { head:'Dangerous', text:"A sober and reasonable person would foresee that the act risked some physical harm to another." },
+      { head:'Causation', text:"The unlawful act caused the victim’s death." },
+      { head:'Mens rea for the act only', text:"The defendant need only have the intent for the underlying unlawful act — not for death or serious harm." }
+    ],
+    key:"A crime any reasonable person would see might hurt someone, which ends up killing — an intention to kill is not required.",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg4', type:'curated', cat:'study-guide', guide:'test', area:'Contract',
+    title:'The Ingredients of a Valid Contract',
+    intro:"Four building blocks turn an agreement into a legally binding contract.",
+    steps:[
+      { head:'Offer', text:"A clear statement of terms made with the intention of being bound on acceptance (not a mere invitation to treat)." },
+      { head:'Acceptance', text:"Unconditional agreement to all the terms of the offer, communicated to the offeror." },
+      { head:'Consideration', text:"Each side gives something of value — a benefit conferred or a detriment suffered." },
+      { head:'Intention to create legal relations', text:"The parties intended the deal to be legally enforceable (presumed in commercial deals, rebuttable in social ones)." }
+    ],
+    key:"Offer + acceptance + consideration + an intention to be legally bound (with capacity and certainty assumed).",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg5', type:'curated', cat:'study-guide', guide:'test', area:'Tort',
+    title:'Duty of Care — the Caparo Approach',
+    intro:"How a court decides whether one person owes another a duty of care, especially in a novel situation.",
+    steps:[
+      { head:'Foreseeability', text:"Was harm to the claimant a reasonably foreseeable consequence of the defendant’s conduct?" },
+      { head:'Proximity', text:"Was there a sufficiently close and direct relationship between the parties?" },
+      { head:'Fair, just and reasonable', text:"Is it fair, just and reasonable in all the circumstances to impose a duty?" }
+    ],
+    key:"Foreseeable harm + a proximate relationship + that it is fair to impose a duty. For established duties, courts reason by analogy instead.",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg6', type:'curated', cat:'study-guide', guide:'compare', area:'Equity',
+    title:'Promissory Estoppel vs Proprietary Estoppel',
+    intro:"Both stop a person going back on a promise others relied on — but they work very differently.",
+    sides:[
+      { name:'Promissory estoppel', text:"Prevents a party enforcing strict legal rights where they promised not to and the other relied on it. It is ‘a shield, not a sword’ — a defence only, and usually just suspends rights rather than extinguishing them." },
+      { name:'Proprietary estoppel', text:"Arises where someone is led to believe they have, or will get, a right in land and acts to their detriment. It is a cause of action in its own right and can create a new property right as the remedy." }
+    ],
+    key:"Promissory estoppel defends against the enforcement of existing rights; proprietary estoppel can positively create rights in land.",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg7', type:'curated', cat:'study-guide', guide:'compare', area:'Criminal',
+    title:'Assault vs Battery',
+    intro:"Two distinct offences against the person — often committed together, but legally separate.",
+    sides:[
+      { name:'Assault', text:"Causing another to apprehend immediate unlawful force. No contact is needed — the wrong is making the victim fear it (e.g. raising a fist or a threat that could be carried out at once)." },
+      { name:'Battery', text:"The actual infliction of unlawful force on another, however slight. The wrong is the unwanted contact itself (e.g. a push, a slap, even touching clothing)." }
+    ],
+    key:"Assault is the fear of force; battery is the force itself. Each can happen without the other.",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg8', type:'curated', cat:'study-guide', guide:'compare', area:'Contract',
+    title:'Misrepresentation vs Mistake',
+    intro:"Both involve a false belief when contracting, but they are triggered differently and have different effects.",
+    sides:[
+      { name:'Misrepresentation', text:"A false statement of fact by one party that induces the other to enter the contract. It makes the contract voidable — the innocent party may rescind and/or claim damages." },
+      { name:'Mistake', text:"A fundamental error about the contract (its subject matter, a vital term, or identity). An operative mistake makes the contract void from the outset — as if it never existed." }
+    ],
+    key:"Misrepresentation is a wrongful statement that makes a contract voidable; an operative mistake is a fundamental error that makes it void.",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg9', type:'curated', cat:'study-guide', guide:'compare', area:'Property',
+    title:'Easement vs Profit à Prendre',
+    intro:"Two rights one landowner can hold over another’s land — similar in form, different in what they allow.",
+    sides:[
+      { name:'Easement', text:"A right to use neighbouring land in a particular way (e.g. a right of way or to light). It does not let you take anything from the land, and normally benefits a nearby piece of land." },
+      { name:'Profit à prendre', text:"A right to take something from another’s land — natural produce or wildlife such as timber, fish, game or minerals. Unlike an easement it can exist ‘in gross’, with no benefited land." }
+    ],
+    key:"An easement lets you use the land; a profit lets you take something from it (and can exist without neighbouring land).",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg10', type:'curated', cat:'study-guide', guide:'distinguish', area:'Tort',
+    title:'McKew v Holland vs Wieland v Cyril Lord Carpets',
+    intro:"Both ask whether the claimant’s own later conduct breaks the chain of causation (a novus actus interveniens).",
+    sides:[
+      { name:'McKew v Holland', text:"With a leg weakened by the defendant’s negligence, the claimant went down a steep staircase with no handrail or help and jumped to avoid falling, injuring himself. His unreasonable conduct broke the chain — the defendant was not liable for the second injury." },
+      { name:'Wieland v Cyril Lord Carpets', text:"Injured by the defendant’s negligence, the claimant wore a neck brace that stopped her using her bifocals properly and she fell on stairs. Acting reasonably given her condition did not break the chain — the defendant remained liable." }
+    ],
+    key:"Unreasonable conduct by the claimant breaks the chain (McKew); reasonable conduct, even if it leads to further injury, does not (Wieland).",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg11', type:'curated', cat:'study-guide', guide:'distinguish', area:'Contract',
+    title:'Foakes v Beer vs Williams v Roffey',
+    intro:"Both concern whether doing no more than you were already bound to do can be good consideration.",
+    sides:[
+      { name:'Foakes v Beer', text:"Part-payment of a debt is not consideration for a promise to forgo the rest — the creditor can still claim the balance. Paying money already owed gives nothing new." },
+      { name:'Williams v Roffey Bros', text:"Where one party promises extra payment to secure completion of existing obligations and thereby gains a practical benefit (e.g. avoiding a penalty or the cost of finding a replacement), that practical benefit can be good consideration." }
+    ],
+    key:"Performing an existing duty is not consideration for debts (Foakes), yet a practical benefit obtained can be consideration for extra pay (Roffey) — the two sit in tension.",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg12', type:'curated', cat:'study-guide', guide:'distinguish', area:'Criminal',
+    title:'R v Brown vs R v Wilson',
+    intro:"Both ask when a victim’s consent is a defence to the actual infliction of bodily harm.",
+    sides:[
+      { name:'R v Brown', text:"Consensual sado-masochistic acts between adults causing actual bodily harm were held unlawful — consent was no defence, as inflicting harm for sexual gratification fell outside the recognised public-interest exceptions." },
+      { name:'R v Wilson', text:"A husband branding his initials on his wife’s buttocks at her request was treated like consensual tattooing or personal adornment — consent was a valid defence and there was no public interest in prosecuting." }
+    ],
+    key:"Consent to actual bodily harm is generally no defence (Brown), unless the activity falls within an accepted exception such as personal adornment (Wilson).",
+    src:'LexFeed · Study Guide' },
 ];
 
 // ══════════════════════════════════════════════
@@ -4719,7 +4868,9 @@ function deferSecondaryFeeds(){
 // ══════════════════════════════════════════════
 //  CARD RENDERING
 // ══════════════════════════════════════════════
-const CAT_LABELS={'case-law':'Case Law','legal-news':'Legal News','statute':'Statute','journal-article':'Journal Article','legal-term':'Legal Term'};
+const CAT_LABELS={'case-law':'Case Law','legal-news':'Legal News','statute':'Statute','journal-article':'Journal Article','legal-term':'Legal Term','study-guide':'Study Guide','quiz':'SQE Question'};
+// Study-guide sub-types → the pill label shown next to the area of law.
+const SG_TYPES={test:'Legal Test', compare:'Comparison', distinguish:'Distinguishing Cases'};
 
 // ══════════════════════════════════════════════
 //  AREA-OF-LAW CLASSIFIER
@@ -4959,6 +5110,20 @@ function buildCard(card,delayMs=0){
       inner=`${typeHtml}<div class="card-body">${safe(card.body||'New legislation published on legislation.gov.uk.')}</div>`;
     }
   }
+  // ── Study Guide (plain-English: legal tests · comparisons · distinguishing cases) ──
+  else if(card.cat==='study-guide'){
+    let sg=`<div class="sg-intro">${safe(card.intro||'')}</div>`;
+    if(card.guide==='test'){
+      sg+=`<ol class="sg-steps">${(card.steps||[]).map(s=>`<li>${s.head?`<span class="sg-step-h">${safe(s.head)}</span> `:''}${safe(s.text)}</li>`).join('')}</ol>`;
+    } else {
+      sg+=`<div class="sg-sides">${(card.sides||[]).map(s=>`<div class="sg-side"><div class="sg-side-h">${safe(s.name)}</div><div class="sg-side-t">${safe(s.text)}</div></div>`).join('')}</div>`;
+    }
+    if(card.key){
+      const lbl=card.guide==='test'?'In short':(card.guide==='distinguish'?'The distinction':'The key difference');
+      sg+=`<div class="sg-key"><span class="sg-key-l">${lbl}</span>${safe(card.key)}</div>`;
+    }
+    inner=sg;
+  }
   // ── Everything else (journal articles, news, legal terms) ──
   else {
     // Read-time pill for LIVE news only (computed from the full story at parse
@@ -4980,12 +5145,16 @@ function buildCard(card,delayMs=0){
   const footLeft=dateTxt
     ?`<div class="foot-left">${safe(dateTxt)}<br><span class="foot-src">${safe(srcTxt)}</span></div>`
     :`<div class="foot-left foot-src">${safe(srcTxt)}</div>`;
+  // Study guides carry a second pill (the guide sub-type) and have no read-more link.
+  const extraChip=card.cat==='study-guide'?`<span class="sg-type">${safe(SG_TYPES[card.guide]||'Study Guide')}</span>`:'';
+  const readMore=card.link?`<a class="rbtn" href="${safeUrl(card.link)}" target="_blank" rel="noopener noreferrer">Read More →</a>`:'';
 
   el.innerHTML=`
     <div class="card-top">
       <div class="ct-left">
         <span class="ctag ${tagCls}">${CAT_LABELS[card.cat]||card.cat}</span>
         ${areaChip}
+        ${extraChip}
       </div>
       ${badge}
     </div>
@@ -4993,7 +5162,7 @@ function buildCard(card,delayMs=0){
     ${inner}
     <div class="card-foot">
       ${footLeft}
-      <a class="rbtn" href="${safeUrl(card.link)}" target="_blank" rel="noopener noreferrer">Read More →</a>
+      ${readMore}
     </div>`;
 
   return el;
@@ -7606,14 +7775,16 @@ window.buildCard=function(card,delayMs=0){
   const isSaved=saves.has(id);
   const bar=document.createElement('div');
   bar.className='act-bar';
-  bar.innerHTML=`
-    <button class="act-btn save-btn${isSaved?' saved':''}" title="Save">
-      <span class="ico">🔖</span> ${isSaved?'Saved':'Save'}
-    </button>
+  // Study guides carry no citation, so they don't get a Cite button.
+  const citeHtml=card.cat==='study-guide'?'':`
     <div class="act-sep"></div>
     <button class="act-btn cite-btn" title="Copy OSCOLA citation">
       <span class="ico">📋</span> Cite
-    </button>
+    </button>`;
+  bar.innerHTML=`
+    <button class="act-btn save-btn${isSaved?' saved':''}" title="Save">
+      <span class="ico">🔖</span> ${isSaved?'Saved':'Save'}
+    </button>${citeHtml}
     <div class="act-sep"></div>
     <button class="act-btn flag-btn" title="Flag a problem with this post">
       <span class="ico">🚩</span> Flag
@@ -7621,8 +7792,9 @@ window.buildCard=function(card,delayMs=0){
   bar.querySelector('.save-btn').addEventListener('click',e=>{
     e.stopPropagation();onSave(id,bar.querySelector('.save-btn'),card);
   });
-  bar.querySelector('.cite-btn').addEventListener('click',e=>{
-    e.stopPropagation();onCite(card,bar.querySelector('.cite-btn'));
+  const _cite=bar.querySelector('.cite-btn');
+  if(_cite) _cite.addEventListener('click',e=>{
+    e.stopPropagation();onCite(card,_cite);
   });
   bar.querySelector('.flag-btn').addEventListener('click',e=>{
     e.stopPropagation();openFlagModal(card);
