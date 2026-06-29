@@ -975,17 +975,19 @@ html{scroll-padding-top:118px}
 // Fixed:   ukconstitutionallaw.org/feed  (blog/feed returned comments, not posts)
 // UK legal-news RSS sources (all verified live). Kept lean for fast parallel
 // loading; each is unambiguously UK legal news/commentary.
-// tier:'press' = reputable publications / trade press (surfaced first);
-// tier:'blog' = specialist law blogs (still included, lower priority). The feed
-// spreads sources round-robin so consecutive news cards rarely repeat an outlet.
+// tier:'top'  = The Guardian & Financial Times — shown at the very top of the news;
+// tier:'press'= other reputable publications / trade press;
+// tier:'blog' = specialist law blogs (still included, lowest priority). Within each
+// tier sources are round-robined so consecutive news cards rarely repeat an outlet.
 const NEWS_FEEDS = [
-  // ── Reputable publications & trade press ──
+  // ── Lead publications (top of the news feed) ──
+  { url:'https://www.theguardian.com/law/rss',               src:'The Guardian · Law',          tier:'top' },
+  { url:'https://www.ft.com/law?format=rss',                 src:'Financial Times · Law',       tier:'top' },
+  // ── Other reputable publications & trade press ──
   { url:'https://www.lawgazette.co.uk/17.rss',               src:'Law Society Gazette',         tier:'press' },
   { url:'https://www.legalfutures.co.uk/feed',               src:'Legal Futures',               tier:'press' },
   { url:'https://legalcheek.com/feed',                       src:'Legal Cheek',                 tier:'press' },
   { url:'https://www.thejusticegap.com/feed/',               src:'The Justice Gap · Justice',   tier:'press' },
-  { url:'https://www.theguardian.com/law/rss',               src:'The Guardian · Law',          tier:'press' },
-  { url:'https://www.ft.com/law?format=rss',                 src:'Financial Times · Law',       tier:'press' },
   { url:'https://www.independent.co.uk/news/uk/politics/rss', src:'The Independent · Politics',  tier:'press' },
   // ── Specialist law blogs ──
   { url:'https://ukhumanrightsblog.com/feed',                src:'UK Human Rights Blog',        tier:'blog' },
@@ -5084,8 +5086,9 @@ function mixOrder(cards, prev){
   return out;
 }
 
-// Order the live pool so NEWS cards surface reputable-press-first and with their
-// sources spread round-robin (so consecutive news cards rarely repeat an outlet).
+// Order the live pool so NEWS cards surface by priority tier — Guardian & FT
+// ('top') first, then other reputable press, then blogs — with sources spread
+// round-robin within each tier so consecutive news cards rarely repeat an outlet.
 // Non-news live items (BAILII judgments, legislation) keep a plain shuffle and are
 // interleaved 1:1 so the live feed still alternates cases & news.
 function orderLivePool(pool){
@@ -5094,12 +5097,14 @@ function orderLivePool(pool){
   if(!news.length) return rest;
   const bySrc=new Map();
   shuffle(news).forEach(c=>{ const k=c.src||'?'; if(!bySrc.has(k)) bySrc.set(k,[]); bySrc.get(k).push(c); });
-  const press=[], blogs=[];
-  for(const q of bySrc.values()){ (q[0]&&q[0].tier==='press'?press:blogs).push(q); }
+  // Group each source-queue into its priority tier (highest first).
+  const RANK={top:0, press:1, blog:2};
+  const tiers=[[],[],[]];
+  for(const q of bySrc.values()){ let r=RANK[q[0]&&q[0].tier]; if(r==null) r=2; tiers[r].push(q); }
   // Round-robin across the sources within a tier → never two same-source in a row.
   const rr=queues=>{ queues=shuffle(queues); const out=[]; let any=true;
     while(any){ any=false; for(const q of queues){ if(q.length){ out.push(q.shift()); any=true; } } } return out; };
-  const orderedNews=rr(press).concat(rr(blogs));   // press first, blogs after
+  const orderedNews=tiers.reduce((acc,t)=>acc.concat(rr(t)),[]);   // top → press → blog
   const out=[]; let i=0,j=0;
   while(i<orderedNews.length||j<rest.length){
     if(i<orderedNews.length) out.push(orderedNews[i++]);
