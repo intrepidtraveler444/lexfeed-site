@@ -8683,9 +8683,10 @@ function buildQuizModeCard(card,i,forcedType,subset){
     el.querySelector('.sg-key')?.style.setProperty('display','none');   // hide the difference/distinction
     const box=el.querySelector('.sg-sides');
     if(sides.length<2||!box){ finishQuestion(true); return el; }
-    const names=shuffle(sides.map(s=>s.name));
+    const rowOrder=shuffle([...sides]);                 // randomise which summary/case appears first
+    const names=shuffle(sides.map(s=>s.name));          // randomise the dropdown option order (independently)
     const optsHtml=names.map((n,idx)=>`<option value="${idx}">${safe(n)}</option>`).join('');
-    box.innerHTML=sides.map(s=>`
+    box.innerHTML=rowOrder.map(s=>`
       <div class="sg-side" data-correct="${safe(s.name)}">
         <select class="qm-match-sel sg-sel"><option value="" disabled selected>— choose —</option>${optsHtml}</select>
         <div class="sg-side-t">${safe(s.text)}</div>
