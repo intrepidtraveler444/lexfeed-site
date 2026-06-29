@@ -975,27 +975,32 @@ html{scroll-padding-top:118px}
 // Fixed:   ukconstitutionallaw.org/feed  (blog/feed returned comments, not posts)
 // UK legal-news RSS sources (all verified live). Kept lean for fast parallel
 // loading; each is unambiguously UK legal news/commentary.
+// tier:'press' = reputable publications / trade press (surfaced first);
+// tier:'blog' = specialist law blogs (still included, lower priority). The feed
+// spreads sources round-robin so consecutive news cards rarely repeat an outlet.
 const NEWS_FEEDS = [
-  { url:'https://www.lawgazette.co.uk/17.rss',          src:'Law Society Gazette' },
-  { url:'https://legalcheek.com/feed',                  src:'Legal Cheek' },
-  { url:'https://www.legalfutures.co.uk/feed',          src:'Legal Futures' },
-  { url:'https://ukhumanrightsblog.com/feed',           src:'UK Human Rights Blog' },
-  { url:'https://freemovement.org.uk/feed',             src:'Free Movement · Immigration' },
-  { url:'https://inforrm.org/feed',                     src:'Inforrm · Media Law' },
-  { url:'https://www.transparencyproject.org.uk/feed',  src:'Transparency Project · Family' },
-  { url:'https://thesecretbarrister.com/feed',          src:'The Secret Barrister · Crime' },
-  { url:'https://ukscblog.com/feed',                    src:'UKSC Blog · Supreme Court' },
-  { url:'https://pinktape.co.uk/feed',                  src:'Pink Tape · Family Bar' },
-  { url:'https://www.thejusticegap.com/feed/',          src:'The Justice Gap · Justice' },
-  { url:'https://ukconstitutionallaw.org/feed/',        src:'UK Constitutional Law Assoc' },
-  { url:'https://panopticonblog.com/feed/',             src:'Panopticon · Information Law' },
-  { url:'https://www.civillitigationbrief.com/feed/',   src:'Civil Litigation Brief' },
-  { url:'https://lawandreligionuk.com/feed/',           src:'Law & Religion UK' },
-  { url:'https://eachother.org.uk/feed/',               src:'EachOther · Human Rights' },
-  // Reputable mainstream press — dedicated law sections (fetched via the CORS proxy)
-  { url:'https://www.theguardian.com/law/rss',          src:'The Guardian · Law' },
-  { url:'https://www.ft.com/law?format=rss',            src:'Financial Times · Law' },
-  { url:'/api/lawcases',                                src:'lawcases.net · Analysis' },  // scraped → RSS (see netlify/functions/lawcases.mjs)
+  // ── Reputable publications & trade press ──
+  { url:'https://www.lawgazette.co.uk/17.rss',               src:'Law Society Gazette',         tier:'press' },
+  { url:'https://www.legalfutures.co.uk/feed',               src:'Legal Futures',               tier:'press' },
+  { url:'https://legalcheek.com/feed',                       src:'Legal Cheek',                 tier:'press' },
+  { url:'https://www.thejusticegap.com/feed/',               src:'The Justice Gap · Justice',   tier:'press' },
+  { url:'https://www.theguardian.com/law/rss',               src:'The Guardian · Law',          tier:'press' },
+  { url:'https://www.ft.com/law?format=rss',                 src:'Financial Times · Law',       tier:'press' },
+  { url:'https://www.independent.co.uk/news/uk/politics/rss', src:'The Independent · Politics',  tier:'press' },
+  // ── Specialist law blogs ──
+  { url:'https://ukhumanrightsblog.com/feed',                src:'UK Human Rights Blog',        tier:'blog' },
+  { url:'https://freemovement.org.uk/feed',                  src:'Free Movement · Immigration', tier:'blog' },
+  { url:'https://inforrm.org/feed',                          src:'Inforrm · Media Law',         tier:'blog' },
+  { url:'https://www.transparencyproject.org.uk/feed',       src:'Transparency Project · Family', tier:'blog' },
+  { url:'https://thesecretbarrister.com/feed',               src:'The Secret Barrister · Crime', tier:'blog' },
+  { url:'https://ukscblog.com/feed',                         src:'UKSC Blog · Supreme Court',   tier:'blog' },
+  { url:'https://pinktape.co.uk/feed',                       src:'Pink Tape · Family Bar',      tier:'blog' },
+  { url:'https://ukconstitutionallaw.org/feed/',             src:'UK Constitutional Law Assoc', tier:'blog' },
+  { url:'https://panopticonblog.com/feed/',                  src:'Panopticon · Information Law', tier:'blog' },
+  { url:'https://www.civillitigationbrief.com/feed/',        src:'Civil Litigation Brief',      tier:'blog' },
+  { url:'https://lawandreligionuk.com/feed/',                src:'Law & Religion UK',           tier:'blog' },
+  { url:'https://eachother.org.uk/feed/',                    src:'EachOther · Human Rights',    tier:'blog' },
+  { url:'/api/lawcases',                                     src:'lawcases.net · Analysis',     tier:'blog' },  // scraped → RSS (see netlify/functions/lawcases.mjs)
 ];
 
 // BAILII + legislation RSS (also fetched directly — rss2json 422 affects these too)
@@ -3905,7 +3910,7 @@ async function fetchNewsFeed(feed){
     const words=(desc.match(/\S+/g)||[]).length;
     return{
       id:uid('news',link||title),type:'live',cat:'legal-news',
-      src:feed.src,link:safeUrl(link),date,title,
+      src:feed.src,tier:feed.tier||'blog',link:safeUrl(link),date,title,
       body:trunc(desc,360)||'Tap to read the full story on '+safe(feed.src)+'.',
       readMin: words?Math.max(1,Math.round(words/200)):0
     };
@@ -4638,7 +4643,7 @@ async function loadAllFeeds(){
   if(legResults.status==='fulfilled')
     legResults.value.forEach(r=>{ if(r.status==='fulfilled') ingest(r.value); });
 
-  if(!isRefetch) livePool=shuffle(livePool);
+  if(!isRefetch) livePool=orderLivePool(livePool);
   return total;
 }
 
@@ -4681,7 +4686,7 @@ async function loadArticles(force=false){
   }));
 
   articlesLoading=false; articlesLoaded=true;
-  livePool=shuffle(livePool);
+  livePool=orderLivePool(livePool);
   if(curFilter==='journal-article'){
     removeEmptyState();
     if(!isLoading)(window.loadMore||loadMore)();
@@ -5079,6 +5084,30 @@ function mixOrder(cards, prev){
   return out;
 }
 
+// Order the live pool so NEWS cards surface reputable-press-first and with their
+// sources spread round-robin (so consecutive news cards rarely repeat an outlet).
+// Non-news live items (BAILII judgments, legislation) keep a plain shuffle and are
+// interleaved 1:1 so the live feed still alternates cases & news.
+function orderLivePool(pool){
+  const news=pool.filter(c=>c.cat==='legal-news');
+  const rest=shuffle(pool.filter(c=>c.cat!=='legal-news'));
+  if(!news.length) return rest;
+  const bySrc=new Map();
+  shuffle(news).forEach(c=>{ const k=c.src||'?'; if(!bySrc.has(k)) bySrc.set(k,[]); bySrc.get(k).push(c); });
+  const press=[], blogs=[];
+  for(const q of bySrc.values()){ (q[0]&&q[0].tier==='press'?press:blogs).push(q); }
+  // Round-robin across the sources within a tier → never two same-source in a row.
+  const rr=queues=>{ queues=shuffle(queues); const out=[]; let any=true;
+    while(any){ any=false; for(const q of queues){ if(q.length){ out.push(q.shift()); any=true; } } } return out; };
+  const orderedNews=rr(press).concat(rr(blogs));   // press first, blogs after
+  const out=[]; let i=0,j=0;
+  while(i<orderedNews.length||j<rest.length){
+    if(i<orderedNews.length) out.push(orderedNews[i++]);
+    if(j<rest.length) out.push(rest[j++]);
+  }
+  return out;
+}
+
 function getBatch(size=12){
   // Only the Legal Term filter surfaces its WHOLE category at once, so every
   // term — including ones deep in the shuffle like "Undertaking" — is reachable
@@ -5374,7 +5403,7 @@ async function loadNewsFeeds(force=false){
 
   newsLoading=false;
   newsLoaded=true;
-  livePool=shuffle(livePool);
+  livePool=orderLivePool(livePool);
   try{ refreshDigest(); }catch{}   // today's news is now in livePool
 
   if(curFilter==='legal-news'){
