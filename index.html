@@ -808,6 +808,8 @@ html{scroll-padding-top:118px}
 /* Study-guide admin editor */
 .adm-ed-body select[data-f]{width:100%;border:1.5px solid #d6deec;border-radius:10px;padding:10px;font-size:14px;font-family:inherit;color:var(--navy);box-sizing:border-box;background:#fff;font-weight:600}
 .adm-sg-step,.adm-sg-side{display:flex;flex-direction:column;gap:6px;border-bottom:1px dashed #eef1f7;padding-bottom:10px;margin-bottom:11px}
+.adm-sec-ops .sg-wc{margin-right:auto;font-weight:700}
+.adm-sec-ops .sg-wc.over{color:#dc2626}
 .adm-new-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:10px}
 .adm-new-row .adm-btn{margin-top:0;padding:7px 11px;font-size:12px}
 .adm-new-row .adm-mut{font-size:12px;font-weight:700}
@@ -9676,18 +9678,20 @@ function sgKeyLabel(guide){
 // (each: name + summary, plus an optional BAILII link for distinguishing cases).
 function buildSgContentEditor(host, guide, initial){
   if(guide==='test'){
-    const MIN=2, MAX=6;
+    const MIN=2, MAX=8;
     let steps=((initial&&initial.steps)||[{head:'',text:''},{head:'',text:''}]).map(s=>({head:s.head||'',text:s.text||''}));
     while(steps.length<MIN) steps.push({head:'',text:''});
     const sync=()=>{ host.querySelectorAll('.adm-sg-step').forEach((r,i)=>{ if(!steps[i])return; steps[i]={head:r.querySelector('[data-k="head"]').value, text:r.querySelector('[data-k="text"]').value}; }); };
+    const wc=t=>(String(t||'').match(/\S+/g)||[]).length;
     const render=()=>{
-      host.innerHTML=`<div class="adm-secs-h">Steps of the test <span class="adm-mut">(${steps.length}/${MAX} — bold heading + explanation; in the quiz one heading is blanked)</span></div>`+
+      host.innerHTML=`<div class="adm-secs-h">Steps of the test <span class="adm-mut">(${steps.length}/${MAX} — heading + a plain-English explanation under 50 words; in the quiz one heading is blanked)</span></div>`+
         steps.map((s,i)=>`<div class="adm-sg-step" data-i="${i}">
           <input data-k="head" value="${admAttr(s.head)}" placeholder="step heading — the bold part (e.g. Duty of care)">
-          <textarea data-k="text" rows="2" placeholder="plain-English explanation of this step">${admText(s.text)}</textarea>
-          <div class="adm-sec-ops"><button type="button" class="adm-mini sg-step-del" data-i="${i}"${steps.length<=MIN?' disabled':''}>✕ remove</button></div>
+          <textarea data-k="text" rows="2" placeholder="plain-English explanation — under 50 words">${admText(s.text)}</textarea>
+          <div class="adm-sec-ops"><span class="adm-mut sg-wc${wc(s.text)>=50?' over':''}">${wc(s.text)}/50 words</span><button type="button" class="adm-mini sg-step-del" data-i="${i}"${steps.length<=MIN?' disabled':''}>✕ remove</button></div>
         </div>`).join('')+
-        `<button type="button" class="adm-btn ghost sg-step-add" style="margin-top:6px"${steps.length>=MAX?' disabled':''}>＋ Add step${steps.length>=MAX?' (max 6)':''}</button>`;
+        `<button type="button" class="adm-btn ghost sg-step-add" style="margin-top:6px"${steps.length>=MAX?' disabled':''}>＋ Add step${steps.length>=MAX?' (max 8)':''}</button>`;
+      host.querySelectorAll('.adm-sg-step').forEach(r=>{ const ta=r.querySelector('[data-k="text"]'), c2=r.querySelector('.sg-wc'); if(ta&&c2) ta.addEventListener('input',()=>{ const n=wc(ta.value); c2.textContent=n+'/50 words'; c2.classList.toggle('over',n>=50); }); });
       host.querySelectorAll('.sg-step-del').forEach(b=>b.onclick=()=>{ if(steps.length<=MIN)return; sync(); steps.splice(+b.dataset.i,1); render(); });
       host.querySelector('.sg-step-add').onclick=()=>{ if(steps.length>=MAX)return; sync(); steps.push({head:'',text:''}); render(); };
     };
@@ -9794,10 +9798,19 @@ function openCardEditor(root,opts){
       const title=get('title'), area=get('area'), intro=get('intro'), key=get('key');
       const src=get('src')||'LexFeed · Study Guide';
       const content=sgEd.get();
-      let bad=!title;
-      if(guide==='test'){ content.steps=(content.steps||[]).filter(s=>s.head); if(content.steps.length<2) bad=true; }
-      else { content.sides=(content.sides||[]).filter(s=>s.name&&s.text).slice(0,2); if(content.sides.length<2) bad=true; }
-      if(bad){ errEl.textContent=guide==='test'?'Add a title and at least two steps (each needs a heading).':'Add a title and both sides (each needs a name and a summary).'; errEl.style.display='block'; return; }
+      const wordCount=t=>(String(t||'').match(/\S+/g)||[]).length;
+      let bad=!title, errMsg='Add a title and complete the required sections.';
+      if(!title) bad=true;
+      if(guide==='test'){
+        content.steps=(content.steps||[]).filter(s=>s.head);
+        if(content.steps.length<2){ bad=true; errMsg='Add a title and at least two steps (each needs a heading).'; }
+        else if(content.steps.length>8){ bad=true; errMsg='A legal test can have at most 8 steps.'; }
+        else if(content.steps.some(s=>wordCount(s.text)>=50)){ bad=true; errMsg='Keep each step’s explanation under 50 words.'; }
+      } else {
+        content.sides=(content.sides||[]).filter(s=>s.name&&s.text).slice(0,2);
+        if(content.sides.length<2){ bad=true; errMsg='Add a title and both sides (each needs a name and a summary).'; }
+      }
+      if(bad){ errEl.textContent=errMsg; errEl.style.display='block'; return; }
       const fields=Object.assign({ guide, title, intro, key, src }, content);
       if(area) fields.area=area;
       if(isNew){ addNewCard(Object.assign({ id:genCardId(), type:'curated', cat:'study-guide' }, fields)); showToast('✓ Study guide added — live in the feed.'); }
