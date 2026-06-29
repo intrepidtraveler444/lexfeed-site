@@ -805,6 +805,9 @@ html{scroll-padding-top:118px}
 .adm-qopt .qopt-del{flex-shrink:0;font-size:13px;color:#94a3b8}
 .adm-qopt .qopt-del:hover{color:#dc2626}
 .adm-qopt .qopt-del:disabled{opacity:.35;cursor:default;text-decoration:none}
+/* Study-guide admin editor */
+.adm-ed-body select[data-f]{width:100%;border:1.5px solid #d6deec;border-radius:10px;padding:10px;font-size:14px;font-family:inherit;color:var(--navy);box-sizing:border-box;background:#fff;font-weight:600}
+.adm-sg-step,.adm-sg-side{display:flex;flex-direction:column;gap:6px;border-bottom:1px dashed #eef1f7;padding-bottom:10px;margin-bottom:11px}
 .adm-new-row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-bottom:10px}
 .adm-new-row .adm-btn{margin-top:0;padding:7px 11px;font-size:12px}
 .adm-new-row .adm-mut{font-size:12px;font-weight:700}
@@ -9475,6 +9478,7 @@ function renderAdminPanel(root){
         <button class="adm-btn adm-new" data-cat="legal-term">🔤 Term</button>
         <button class="adm-btn adm-new" data-cat="journal-article">📚 Article</button>
         <button class="adm-btn adm-new" data-cat="quiz">❓ SQE Question</button>
+        <button class="adm-btn adm-new" data-cat="study-guide">📘 Study Guide</button>
       </div>
       <input class="adm-search" placeholder="Search by title, type or area…">
       <div id="admList"></div>
@@ -9662,11 +9666,54 @@ function buildQuizEditor(host,initial){
   return { getQuiz(){ sync(); return { opts:opts.map(o=>o.trim()), ans }; } };
 }
 
+function sgKeyLabel(guide){
+  return guide==='test' ? '“In short” — the key takeaway'
+       : guide==='distinguish' ? '“The distinction” — the key difference between the cases'
+       : '“The key difference” between the terms';
+}
+// Editor for the variable part of a study guide: a test's steps (heading +
+// explanation, 2–6) OR the two sides of a comparison / distinguishing-cases card
+// (each: name + summary, plus an optional BAILII link for distinguishing cases).
+function buildSgContentEditor(host, guide, initial){
+  if(guide==='test'){
+    const MIN=2, MAX=6;
+    let steps=((initial&&initial.steps)||[{head:'',text:''},{head:'',text:''}]).map(s=>({head:s.head||'',text:s.text||''}));
+    while(steps.length<MIN) steps.push({head:'',text:''});
+    const sync=()=>{ host.querySelectorAll('.adm-sg-step').forEach((r,i)=>{ if(!steps[i])return; steps[i]={head:r.querySelector('[data-k="head"]').value, text:r.querySelector('[data-k="text"]').value}; }); };
+    const render=()=>{
+      host.innerHTML=`<div class="adm-secs-h">Steps of the test <span class="adm-mut">(${steps.length}/${MAX} — bold heading + explanation; in the quiz one heading is blanked)</span></div>`+
+        steps.map((s,i)=>`<div class="adm-sg-step" data-i="${i}">
+          <input data-k="head" value="${admAttr(s.head)}" placeholder="step heading — the bold part (e.g. Duty of care)">
+          <textarea data-k="text" rows="2" placeholder="plain-English explanation of this step">${admText(s.text)}</textarea>
+          <div class="adm-sec-ops"><button type="button" class="adm-mini sg-step-del" data-i="${i}"${steps.length<=MIN?' disabled':''}>✕ remove</button></div>
+        </div>`).join('')+
+        `<button type="button" class="adm-btn ghost sg-step-add" style="margin-top:6px"${steps.length>=MAX?' disabled':''}>＋ Add step${steps.length>=MAX?' (max 6)':''}</button>`;
+      host.querySelectorAll('.sg-step-del').forEach(b=>b.onclick=()=>{ if(steps.length<=MIN)return; sync(); steps.splice(+b.dataset.i,1); render(); });
+      host.querySelector('.sg-step-add').onclick=()=>{ if(steps.length>=MAX)return; sync(); steps.push({head:'',text:''}); render(); };
+    };
+    render();
+    return { guide, get(){ sync(); return { steps: steps.map(s=>({head:s.head.trim(),text:s.text.trim()})).filter(s=>s.head||s.text) }; } };
+  }
+  // comparison / distinguishing — exactly two sides
+  const isDist=(guide==='distinguish');
+  let sides=((initial&&initial.sides)||[{name:'',text:'',link:''},{name:'',text:'',link:''}]).map(s=>({name:s.name||'',text:s.text||'',link:s.link||''}));
+  while(sides.length<2) sides.push({name:'',text:'',link:''});
+  sides=sides.slice(0,2);
+  const sync=()=>{ host.querySelectorAll('.adm-sg-side').forEach((r,i)=>{ if(!sides[i])return; const lk=r.querySelector('[data-k="link"]'); sides[i]={name:r.querySelector('[data-k="name"]').value, text:r.querySelector('[data-k="text"]').value, link:lk?lk.value:''}; }); };
+  host.innerHTML=`<div class="adm-secs-h">${isDist?'The two cases':'The two terms'} <span class="adm-mut">(both are matched up in the quiz)</span></div>`+
+    sides.map((s,i)=>`<div class="adm-sg-side" data-i="${i}">
+      <input data-k="name" value="${admAttr(s.name)}" placeholder="${isDist?'case name (e.g. R v Brown)':'term (e.g. Assault)'}">
+      <textarea data-k="text" rows="3" placeholder="${isDist?'brief summary of this case':'definition of this term'}">${admText(s.text)}</textarea>
+      ${isDist?`<input data-k="link" value="${admAttr(s.link)}" placeholder="BAILII judgment link (optional)">`:''}
+    </div>`).join('');
+  return { guide, get(){ sync(); return { sides: sides.map(s=>{ const o={name:(s.name||'').trim(),text:(s.text||'').trim()}; if(isDist&&s.link&&s.link.trim()) o.link=s.link.trim(); return o; }) }; } };
+}
+
 function openCardEditor(root,opts){
   const isNew=!!opts.isNew;
   const c=isNew?{cat:opts.cat}:(CURATED.find(x=>x.id===opts.id)||QUIZZES.find(x=>x.id===opts.id));
   if(!c) return;
-  const cat=c.cat, hasSecs=(cat==='statute'), isQuiz=(cat==='quiz');
+  const cat=c.cat, hasSecs=(cat==='statute'), isQuiz=(cat==='quiz'), isSg=(cat==='study-guide');
   const labelOf={}; ADM_FIELDS.forEach(([f,label,long])=>labelOf[f]={label,long});
   let bodyHtml;
   if(isQuiz){
@@ -9676,6 +9723,22 @@ function openCardEditor(root,opts){
       <label class="adm-f"><span>Area of law (optional)</span><input data-f="area" type="text" value="${admAttr(c.area||'')}"></label>
       <div class="adm-secs" id="admQuizHost"></div>
       <label class="adm-f"><span>Explanation (shown after answering)</span><textarea data-f="exp" rows="3">${admText(c.exp||'')}</textarea></label>`;
+  } else if(isSg){
+    // Study guide: pick the sub-type, then fill the relevant sections.
+    const g0=isNew?'test':(c.guide||'test');
+    bodyHtml=`
+      <label class="adm-f"><span>Study guide type</span>
+        <select data-f="guide" id="admSgType">
+          <option value="test"${g0==='test'?' selected':''}>Legal Test (a multi-step test)</option>
+          <option value="compare"${g0==='compare'?' selected':''}>Comparison (two similar terms)</option>
+          <option value="distinguish"${g0==='distinguish'?' selected':''}>Distinguishing Cases (two cases)</option>
+        </select></label>
+      <label class="adm-f"><span>Title</span><input data-f="title" type="text" value="${admAttr(c.title||'')}"></label>
+      <label class="adm-f"><span>Area of law</span><input data-f="area" type="text" value="${admAttr(c.area||'')}"></label>
+      <label class="adm-f"><span>Intro — one-line plain-English summary</span><textarea data-f="intro" rows="2">${admText(c.intro||'')}</textarea></label>
+      <div class="adm-secs" id="admSgHost"></div>
+      <label class="adm-f"><span id="admSgKeyLabel">${sgKeyLabel(g0)}</span><textarea data-f="key" rows="2">${admText(c.key||'')}</textarea></label>
+      <label class="adm-f"><span>Source label (optional)</span><input data-f="src" type="text" value="${admAttr(c.src||'LexFeed · Study Guide')}"></label>`;
   } else {
     const keys=isNew?(NEW_FIELDS[cat]||['title','body','src','link']):ADM_FIELDS.filter(([f])=>c[f]!==undefined).map(([f])=>f);
     bodyHtml=keys.map(f=>{
@@ -9685,16 +9748,25 @@ function openCardEditor(root,opts){
   }
   let m=document.getElementById('admEditor');
   if(!m){ m=document.createElement('div'); m.id='admEditor'; document.body.appendChild(m); }
-  const topLabel=isQuiz?(isNew?'New SQE Question':'Edit SQE Question'):(isNew?'New '+admText(admCatLabel(cat)):'Edit: '+admText(c.title||c.id));
+  const topLabel=isQuiz?(isNew?'New SQE Question':'Edit SQE Question')
+                :isSg?(isNew?'New Study Guide':'Edit Study Guide')
+                :(isNew?'New '+admText(admCatLabel(cat)):'Edit: '+admText(c.title||c.id));
   m.innerHTML=`<div class="adm-ed-box" role="dialog" aria-modal="true">
     <div class="adm-ed-top"><b>${topLabel}</b> <span class="adm-tag">${admText(admCatLabel(cat))}</span></div>
     <div class="adm-ed-body">${bodyHtml}</div>
-    <div class="adm-ed-err">${isQuiz?'Add a question, at least two non-empty options, and select the correct one.':'Please give the post a title before saving.'}</div>
+    <div class="adm-ed-err">${isQuiz?'Add a question, at least two non-empty options, and select the correct one.':isSg?'Add a title and complete the required sections.':'Please give the post a title before saving.'}</div>
     <div class="adm-ed-row"><button class="adm-btn ghost adm-ed-cancel" style="margin-top:0">Cancel</button><button class="adm-btn adm-ed-save" style="margin-top:0">${isNew?'Add post':'Save changes'}</button></div>
   </div>`;
   m.style.display='flex';
   const secEd=hasSecs?buildSecEditor(m.querySelector('#admSecHost'), isNew?[{num:'',head:'',text:'',link:''}]:(c.sections||[])):null;
   const quizEd=isQuiz?buildQuizEditor(m.querySelector('#admQuizHost'), isNew?{opts:['',''],ans:0}:{opts:c.opts||['',''],ans:c.ans||0}):null;
+  let sgEd=null;
+  if(isSg){
+    const host=m.querySelector('#admSgHost'), typeSel=m.querySelector('#admSgType'), keyLbl=m.querySelector('#admSgKeyLabel');
+    const initSg=(g,useInit)=>{ sgEd=buildSgContentEditor(host, g, (useInit&&!isNew)?c:null); if(keyLbl) keyLbl.textContent=sgKeyLabel(g); };
+    initSg(typeSel.value, true);
+    typeSel.addEventListener('change',()=>initSg(typeSel.value, false));
+  }
   m.onclick=e=>{ if(e.target===m) m.style.display='none'; };
   m.querySelector('.adm-ed-cancel').onclick=()=>m.style.display='none';
   m.querySelector('.adm-ed-save').onclick=()=>{
@@ -9714,6 +9786,25 @@ function openCardEditor(root,opts){
       showToast(isNew?'✓ SQE question added — live in the quiz rotation.':'✓ SQE question updated.');
       m.style.display='none';
       renderAdmFlags(root); renderAdmList(root,(root.querySelector('.adm-search')||{}).value||'');
+      return;
+    }
+    if(isSg){
+      const guide=m.querySelector('#admSgType').value;
+      const get=f=>{ const el2=m.querySelector(`[data-f="${f}"]`); return el2?(el2.value||'').trim():''; };
+      const title=get('title'), area=get('area'), intro=get('intro'), key=get('key');
+      const src=get('src')||'LexFeed · Study Guide';
+      const content=sgEd.get();
+      let bad=!title;
+      if(guide==='test'){ content.steps=(content.steps||[]).filter(s=>s.head); if(content.steps.length<2) bad=true; }
+      else { content.sides=(content.sides||[]).filter(s=>s.name&&s.text).slice(0,2); if(content.sides.length<2) bad=true; }
+      if(bad){ errEl.textContent=guide==='test'?'Add a title and at least two steps (each needs a heading).':'Add a title and both sides (each needs a name and a summary).'; errEl.style.display='block'; return; }
+      const fields=Object.assign({ guide, title, intro, key, src }, content);
+      if(area) fields.area=area;
+      if(isNew){ addNewCard(Object.assign({ id:genCardId(), type:'curated', cat:'study-guide' }, fields)); showToast('✓ Study guide added — live in the feed.'); }
+      else { saveCardEdit(opts.id, fields); showToast('✓ Study guide updated — changes are live.'); }
+      m.style.display='none';
+      renderAdmFlags(root); renderAdmList(root,(root.querySelector('.adm-search')||{}).value||'');
+      const lc=root.querySelector('#admListCount'); if(lc) lc.textContent=CURATED.length;
       return;
     }
     const ov={};
