@@ -192,6 +192,8 @@ header{
 .sg-sides{display:flex;flex-direction:column;gap:9px}
 .sg-side{border:1px solid rgba(13,148,136,.18);border-left:3px solid #0d9488;border-radius:10px;padding:10px 12px;background:#f4fbfa}
 .sg-side-h{font-weight:800;color:#0f766e;font-size:13px;margin-bottom:3px}
+.sg-side-link{color:inherit;text-decoration:none}
+.sg-side-link:hover{text-decoration:underline}
 .sg-side-t{font-size:12.8px;line-height:1.55;color:#3a4a6b}
 .sg-key{margin-top:10px;font-size:12.8px;line-height:1.55;color:var(--navy);background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:9px 12px}
 .sg-key-l{display:block;font-weight:800;text-transform:uppercase;font-size:10px;letter-spacing:.3px;color:#a16207;margin-bottom:2px}
@@ -3842,7 +3844,7 @@ const CURATED = [
     title:'McKew v Holland vs Wieland v Cyril Lord Carpets',
     intro:"Both ask whether the claimant’s own later conduct breaks the chain of causation (a novus actus interveniens).",
     sides:[
-      { name:'McKew v Holland', text:"With a leg weakened by the defendant’s negligence, the claimant went down a steep staircase with no handrail or help and jumped to avoid falling, injuring himself. His unreasonable conduct broke the chain — the defendant was not liable for the second injury." },
+      { name:'McKew v Holland', link:'https://www.bailii.org/uk/cases/UKHL/1969/9.html', text:"With a leg weakened by the defendant’s negligence, the claimant went down a steep staircase with no handrail or help and jumped to avoid falling, injuring himself. His unreasonable conduct broke the chain — the defendant was not liable for the second injury." },
       { name:'Wieland v Cyril Lord Carpets', text:"Injured by the defendant’s negligence, the claimant wore a neck brace that stopped her using her bifocals properly and she fell on stairs. Acting reasonably given her condition did not break the chain — the defendant remained liable." }
     ],
     key:"Unreasonable conduct by the claimant breaks the chain (McKew); reasonable conduct, even if it leads to further injury, does not (Wieland).",
@@ -3852,8 +3854,8 @@ const CURATED = [
     title:'Foakes v Beer vs Williams v Roffey',
     intro:"Both concern whether doing no more than you were already bound to do can be good consideration.",
     sides:[
-      { name:'Foakes v Beer', text:"Part-payment of a debt is not consideration for a promise to forgo the rest — the creditor can still claim the balance. Paying money already owed gives nothing new." },
-      { name:'Williams v Roffey Bros', text:"Where one party promises extra payment to secure completion of existing obligations and thereby gains a practical benefit (e.g. avoiding a penalty or the cost of finding a replacement), that practical benefit can be good consideration." }
+      { name:'Foakes v Beer', link:'https://www.bailii.org/uk/cases/UKHL/1884/1.html', text:"Part-payment of a debt is not consideration for a promise to forgo the rest — the creditor can still claim the balance. Paying money already owed gives nothing new." },
+      { name:'Williams v Roffey Bros', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1989/5.html', text:"Where one party promises extra payment to secure completion of existing obligations and thereby gains a practical benefit (e.g. avoiding a penalty or the cost of finding a replacement), that practical benefit can be good consideration." }
     ],
     key:"Performing an existing duty is not consideration for debts (Foakes), yet a practical benefit obtained can be consideration for extra pay (Roffey) — the two sit in tension.",
     src:'LexFeed · Study Guide' },
@@ -3862,7 +3864,7 @@ const CURATED = [
     title:'R v Brown vs R v Wilson',
     intro:"Both ask when a victim’s consent is a defence to the actual infliction of bodily harm.",
     sides:[
-      { name:'R v Brown', text:"Consensual sado-masochistic acts between adults causing actual bodily harm were held unlawful — consent was no defence, as inflicting harm for sexual gratification fell outside the recognised public-interest exceptions." },
+      { name:'R v Brown', link:'https://www.bailii.org/uk/cases/UKHL/1993/19.html', text:"Consensual sado-masochistic acts between adults causing actual bodily harm were held unlawful — consent was no defence, as inflicting harm for sexual gratification fell outside the recognised public-interest exceptions." },
       { name:'R v Wilson', text:"A husband branding his initials on his wife’s buttocks at her request was treated like consensual tattooing or personal adornment — consent was a valid defence and there was no public interest in prosecuting." }
     ],
     key:"Consent to actual bodily harm is generally no defence (Brown), unless the activity falls within an accepted exception such as personal adornment (Wilson).",
@@ -5116,7 +5118,12 @@ function buildCard(card,delayMs=0){
     if(card.guide==='test'){
       sg+=`<ol class="sg-steps">${(card.steps||[]).map(s=>`<li>${s.head?`<span class="sg-step-h">${safe(s.head)}</span> `:''}${safe(s.text)}</li>`).join('')}</ol>`;
     } else {
-      sg+=`<div class="sg-sides">${(card.sides||[]).map(s=>`<div class="sg-side"><div class="sg-side-h">${safe(s.name)}</div><div class="sg-side-t">${safe(s.text)}</div></div>`).join('')}</div>`;
+      sg+=`<div class="sg-sides">${(card.sides||[]).map(s=>{
+        const nameHtml=s.link
+          ? `<a class="sg-side-link" href="${safeUrl(s.link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${safe(s.name)} ↗</a>`
+          : safe(s.name);
+        return `<div class="sg-side"><div class="sg-side-h">${nameHtml}</div><div class="sg-side-t">${safe(s.text)}</div></div>`;
+      }).join('')}</div>`;
     }
     if(card.key){
       const lbl=card.guide==='test'?'In short':(card.guide==='distinguish'?'The distinction':'The key difference');
