@@ -7596,6 +7596,10 @@ let savedData=LS.get('savedData',{});
     if(!cur||!s) return;
     if(s.example===undefined && cur.example!==undefined){ s.example=cur.example; changed=true; }
     if(s.area===undefined     && cur.area!==undefined){ s.area=cur.area; changed=true; }
+    // Repair study guides saved before their fields were captured (were blank).
+    ['guide','intro','steps','sides','key'].forEach(k=>{
+      if(s[k]===undefined && cur[k]!==undefined){ s[k]=cur[k]; changed=true; }
+    });
   });
   if(changed) LS.set('savedData',savedData);
 })();
@@ -7617,7 +7621,9 @@ function onSave(id,btn,card){
       savedData[id]={id,type:card.type,cat:card.cat,area:card.area,title:card.title,
         body:card.body,facts:card.facts,judgment:card.judgment,ratio:card.ratio,
         desc:card.desc,court:card.court,legType:card.legType,sections:card.sections,
-        date:card.date,src:card.src,link:card.link,naUrl:card.naUrl};
+        date:card.date,src:card.src,link:card.link,naUrl:card.naUrl,
+        // study-guide fields (otherwise the saved card / its quiz render blank)
+        guide:card.guide,intro:card.intro,steps:card.steps,sides:card.sides,key:card.key};
     }
     checkAchievements();
   }
@@ -8908,15 +8914,17 @@ function showQmMastery(){
 function buildQuizQueue(items){
   const LIMIT=25, PER_TYPE=5;
   if(items.length<=LIMIT) return shuffle(items).map(card=>({card}));
-  const byCat={'case-law':[], 'statute':[], 'legal-term':[]};
-  shuffle(items).forEach(c=>{ if(byCat[c.cat]) byCat[c.cat].push(c); });
   const chosen=[], picked=new Set();
-  // 1) guarantee up to 5 of each type that the user actually has
-  Object.values(byCat).forEach(arr=>{
-    arr.slice(0,PER_TYPE).forEach(c=>{ if(!picked.has(c.id)){ picked.add(c.id); chosen.push(c); } });
-  });
+  const take=(pool,n)=>{ shuffle(pool).slice(0,n).forEach(c=>{ if(c&&!picked.has(c.id)&&chosen.length<LIMIT){ picked.add(c.id); chosen.push(c); } }); };
+  const of=cat=>items.filter(c=>c&&c.cat===cat);
+  // 1) guarantee up to 5 each of cases/statutes/terms, and AT LEAST ONE study
+  //    guide whenever one is saved (so a saved study guide always gets tested).
+  take(of('case-law'),PER_TYPE);
+  take(of('statute'),PER_TYPE);
+  take(of('legal-term'),PER_TYPE);
+  take(of('study-guide'),1);
   // 2) fill the remaining slots from everything not already chosen
-  shuffle(items).forEach(c=>{ if(chosen.length<LIMIT && !picked.has(c.id)){ picked.add(c.id); chosen.push(c); } });
+  take(items, items.length);
   return shuffle(chosen).slice(0,LIMIT).map(card=>({card}));
 }
 
