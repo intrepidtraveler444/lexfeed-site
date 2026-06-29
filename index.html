@@ -194,6 +194,13 @@ header{
 .sg-side-h{font-weight:800;color:#0f766e;font-size:13px;margin-bottom:3px}
 .sg-side-link{color:inherit;text-decoration:none}
 .sg-side-link:hover{text-decoration:underline}
+/* Study-guide quiz-mode controls */
+.sg-fill{width:100%;border:2px solid var(--gold);border-radius:8px;padding:7px 9px;font-size:13px;font-family:inherit;font-weight:700;color:var(--navy);background:#fffdf5;box-sizing:border-box}
+.sg-fill:focus{outline:none;border-color:#a6841a;box-shadow:0 0 0 3px rgba(201,162,39,.18)}
+.sg-fill.correct{border-color:#22c55e;background:#f0fdf4;color:#166534}
+.sg-fill.wrong{border-color:#ef4444;background:#fef2f2;color:#991b1b}
+.sg-side .sg-sel{width:100%;margin-bottom:7px}
+.sg-side .qm-sec-ans{margin-top:7px}
 .sg-side-t{font-size:12.8px;line-height:1.55;color:#3a4a6b}
 .sg-key{margin-top:10px;font-size:12.8px;line-height:1.55;color:var(--navy);background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:9px 12px}
 .sg-key-l{display:block;font-weight:800;text-transform:uppercase;font-size:10px;letter-spacing:.3px;color:#a16207;margin-bottom:2px}
@@ -8284,7 +8291,7 @@ let qmTypeForRound=new Map();    // card.id → fixed question type for this loo
 
 // Cards eligible for quiz mode (exclude journal articles, news, quiz, flair)
 function qmEligible(card){
-  return card && (card.cat==='case-law'||card.cat==='statute'||card.cat==='legal-term');
+  return card && (card.cat==='case-law'||card.cat==='statute'||card.cat==='legal-term'||card.cat==='study-guide');
 }
 
 function normalise(s){
@@ -8405,6 +8412,9 @@ function qmPickType(card){
     const pool=(typeof CURATED!=='undefined'?CURATED:[])
       .filter(c=>c&&c.cat==='case-law'&&c.id!==card.id&&c.facts&&c.area===card.area);
     if(card.facts && card.area && pool.length>=2) types.push('pickfacts');
+  } else if(card.cat==='study-guide'){
+    // Legal tests → fill the missing step; comparisons/distinguishing → match.
+    types.push(card.guide==='test'?'sgtest':'sgmatch');
   } else {
     // legal terms — recall only
     types.push('name');
@@ -8623,6 +8633,83 @@ function buildQuizModeCard(card,i,forcedType,subset){
         tally(o.correct?1:0,o.correct?0:1);
         finishQuestion(o.correct);
       });
+    });
+    return el;
+  }
+
+  // ── STUDY GUIDE · LEGAL TEST — fill in the one missing step heading ──
+  if(type==='sgtest'){
+    const steps=(card.steps||[]).filter(s=>s&&s.head);
+    el.querySelector('.sg-key')?.style.setProperty('display','none');   // hide "In short"
+    const ol=el.querySelector('.sg-steps');
+    if(!steps.length||!ol){ finishQuestion(true); return el; }
+    const missing=Math.floor(Math.random()*steps.length);   // randomised each time
+    // Show only each step's BOLD HEADING (no explanation); blank the missing one.
+    ol.innerHTML=steps.map((s,i2)=> i2===missing
+      ? `<li><input class="sg-fill" type="text" placeholder="the missing step…" autocomplete="off" autocapitalize="off" spellcheck="false"></li>`
+      : `<li><span class="sg-step-h">${safe(s.head)}</span></li>`
+    ).join('');
+    const tools=document.createElement('div');
+    tools.innerHTML=`<div class="qm-hint">One step is missing — type its heading (the bold part).</div><button class="qm-sec-go sg-go">Check</button>`;
+    ol.after(tools);
+    const input=el.querySelector('.sg-fill'), go=tools.querySelector('.sg-go');
+    const submit=()=>{
+      if(go.disabled) return; go.disabled=true; input.disabled=true;
+      const ok=normalise(input.value)===normalise(steps[missing].head);
+      input.classList.add(ok?'correct':'wrong');
+      const rev=document.createElement('div');
+      rev.className='qm-reveal '+(ok?'ok':'no');
+      rev.innerHTML=ok?`<span class="qm-mark">✓</span>Correct! <strong>${safe(steps[missing].head)}</strong>`
+                      :`<span class="qm-mark">✗</span>Answer: <strong>${safe(steps[missing].head)}</strong>`;
+      tools.appendChild(rev);
+      tally(ok?1:0, ok?0:1);
+      finishQuestion(ok);
+    };
+    go.addEventListener('click',submit);
+    input.addEventListener('keydown',e=>{ if(e.key==='Enter') submit(); });
+    setTimeout(()=>{ if(i===0) input.focus(); },300);
+    return el;
+  }
+
+  // ── STUDY GUIDE · COMPARISON / DISTINGUISHING — match name ↔ summary ──
+  if(type==='sgmatch'){
+    const sides=(card.sides||[]).filter(s=>s&&s.name&&s.text);
+    el.querySelector('.sg-key')?.style.setProperty('display','none');   // hide the difference/distinction
+    const box=el.querySelector('.sg-sides');
+    if(sides.length<2||!box){ finishQuestion(true); return el; }
+    const names=shuffle(sides.map(s=>s.name));
+    const optsHtml=names.map((n,idx)=>`<option value="${idx}">${safe(n)}</option>`).join('');
+    box.innerHTML=sides.map(s=>`
+      <div class="sg-side" data-correct="${safe(s.name)}">
+        <select class="qm-match-sel sg-sel"><option value="" disabled selected>— choose —</option>${optsHtml}</select>
+        <div class="sg-side-t">${safe(s.text)}</div>
+      </div>`).join('');
+    const tools=document.createElement('div');
+    const lbl=card.guide==='compare'?'Match each definition to the correct term.':'Match each summary to the correct case.';
+    tools.innerHTML=`<div class="qm-hint">${lbl}</div><button class="qm-sec-go sg-go">Check matches</button>`;
+    box.after(tools);
+    const rows=[...box.querySelectorAll('.sg-side')], go=tools.querySelector('.sg-go');
+    go.addEventListener('click',()=>{
+      if(go.disabled) return; go.disabled=true;
+      let right=0;
+      rows.forEach(row=>{
+        const sel=row.querySelector('.sg-sel');
+        const chosen=sel.value!==''?names[+sel.value]:'';
+        const ok=normalise(chosen)===normalise(row.dataset.correct);
+        sel.disabled=true; sel.classList.add(ok?'correct':'wrong');
+        if(ok) right++;
+        const ans=document.createElement('div');
+        ans.className='qm-sec-ans '+(ok?'ok':'no');
+        ans.innerHTML=ok?'✓ Correct':`✗ Answer: <strong>${safe(row.dataset.correct)}</strong>`;
+        row.appendChild(ans);
+      });
+      const wrong=rows.length-right;
+      tally(right,wrong);
+      const sum=document.createElement('div');
+      sum.className='qm-reveal '+(wrong===0?'ok':'no');
+      sum.innerHTML=`<span class="qm-mark">${wrong===0?'✓':'✗'}</span>${right}/${rows.length} matched correctly`;
+      tools.appendChild(sum);
+      finishQuestion(wrong===0);
     });
     return el;
   }
