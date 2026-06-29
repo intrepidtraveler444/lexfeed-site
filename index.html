@@ -3764,7 +3764,17 @@ function uid(prefix,seed){
 }
 function safe(s){ if(!s)return''; const d=document.createElement('div'); d.textContent=String(s); return d.innerHTML }
 function safeUrl(u){ if(!u)return'#'; try{ const p=new URL(u); if(p.protocol==='http:'||p.protocol==='https:')return p.href }catch{} return'#' }
-function strip(s){ return s?s.replace(/<[^>]+>/g,' ').replace(/&[a-z]+;/gi,' ').replace(/\s+/g,' ').trim():'' }
+// Decode HTML entities — numeric (&#39; &#8217; &#163;) AND named (&amp; &pound;).
+// RSS descriptions are frequently double-encoded, so an entity survives XML
+// parsing and shows up literally as "&#…"; a textarea decodes both kinds in one
+// pass (and leaves real text untouched).
+let _entEl=null;
+function decodeEnt(s){
+  if(!s || s.indexOf('&')<0) return s||'';
+  if(!_entEl) _entEl=document.createElement('textarea');
+  _entEl.innerHTML=String(s); return _entEl.value;
+}
+function strip(s){ return s?decodeEnt(String(s)).replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim():'' }
 function trunc(s,n=360){ const t=strip(s); if(t.length<=n)return t; const c=t.lastIndexOf(' ',n); return(c>0?t.slice(0,c):t.slice(0,n))+'…' }
 // Remove <i>…</i> italic tags (academic article titles from CrossRef/OpenAlex/
 // Semantic Scholar often embed them); the \b stops it matching <img>, <input> etc.
