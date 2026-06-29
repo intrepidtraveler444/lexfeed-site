@@ -13,11 +13,13 @@ const UA = 'Mozilla/5.0 (compatible; LexFeedDigest/1.0; +https://lexfeeduk.netli
 
 const NA_GENERAL = 'https://caselaw.nationalarchives.gov.uk/atom.xml?order=-date&per_page=50';
 const NEWS = [
-  { src: 'Law Society Gazette', url: 'https://www.lawgazette.co.uk/17.rss' },
-  { src: 'Legal Cheek',         url: 'https://legalcheek.com/feed' },
-  { src: 'Legal Futures',       url: 'https://www.legalfutures.co.uk/feed' },
-  { src: 'UK Human Rights Blog', url: 'https://ukhumanrightsblog.com/feed' },
-  { src: 'Inforrm · Media Law', url: 'https://inforrm.org/feed' },
+  { src: 'The Guardian · Law',    url: 'https://www.theguardian.com/law/rss' },
+  { src: 'Financial Times · Law', url: 'https://www.ft.com/law?format=rss' },
+  { src: 'Law Society Gazette',   url: 'https://www.lawgazette.co.uk/17.rss' },
+  { src: 'Legal Cheek',           url: 'https://legalcheek.com/feed' },
+  { src: 'Legal Futures',         url: 'https://www.legalfutures.co.uk/feed' },
+  { src: 'UK Human Rights Blog',  url: 'https://ukhumanrightsblog.com/feed' },
+  { src: 'Inforrm · Media Law',   url: 'https://inforrm.org/feed' },
 ];
 
 const pad = n => String(n).padStart(2, '0');
@@ -214,7 +216,7 @@ export default async (req) => {
   const store = getStore('lexfeed-digest');
   const weekly = new URL(req.url).searchParams.get('type') === 'weekly';
 
-  const V = 'v6:';   // bump to discard any stale cached digests after a logic fix
+  const V = 'v7:';   // bump to discard any stale cached digests after a logic fix (v7: added Guardian + FT news sources)
 
   if (weekly) {
     const range = weekRange();
