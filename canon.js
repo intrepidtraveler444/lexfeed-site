@@ -313,12 +313,12 @@
   // ── Public Law — statute ──
   { id:'m10', type:'curated', cat:'statute', area:'Public Law',
     title:'Investigatory Powers Act 2016',
-    body:"Overhauled and avowed the legal framework governing the use of interception and surveillance powers by the intelligence agencies and law enforcement, following revelations about bulk data collection. Dubbed the ‘Snoopers’ Charter’, it introduced new oversight in exchange for placing sweeping powers on a clear statutory footing.",
+    body:"Overhauled and avowed the legal framework governing the use of interception and surveillance powers by the intelligence agencies and law enforcement, following revelations about bulk data collection. Dubbed the 'Snoopers' Charter', it introduced new oversight in exchange for placing sweeping powers on a clear statutory footing.",
     sections:[
       { num:'Pt 2', head:'Lawful Interception', text:'Sets out the warrant regime for intercepting the content of communications and makes intentional interception without lawful authority a criminal offence.' },
       { num:'Pt 4', head:'Retention of Communications Data', text:'Allows the Secretary of State to require telecommunications operators to retain communications data — including internet connection records — for up to 12 months.' },
       { num:'Pt 6', head:'Bulk Powers', text:'Authorises bulk interception, bulk acquisition of communications data, and bulk equipment interference, subject to statutory safeguards and warrants.' },
-      { num:'227', head:'The Investigatory Powers Commissioner', text:'Creates the Investigatory Powers Commissioner and Judicial Commissioners, who must approve the most intrusive warrants under a “double-lock” alongside the Secretary of State.' },
+      { num:'227', head:'The Investigatory Powers Commissioner', text:'Creates the Investigatory Powers Commissioner and Judicial Commissioners, who must approve the most intrusive warrants under a "double-lock" alongside the Secretary of State.' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
@@ -390,6 +390,51 @@
       { num:'340', head:'Definition of Criminal Property', text:'Defines "criminal property" as property constituting a person\'s benefit from criminal conduct, or representing such a benefit in whole or part, where the alleged offender knows or suspects this.' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/29/contents' },
+
+  // ── Contract — case ──
+  { id:'m11', type:'curated', cat:'case-law', area:'Contract',
+    title:'Carlill v Carbolic Smoke Ball Co [1892] EWCA Civ 1',
+    court:'Court of Appeal',
+    facts:'The Carbolic Smoke Ball Company placed newspaper advertisements promising to pay £100 to any person who contracted influenza after using their product three times daily for two weeks in accordance with the supplied directions. The advertisement stated that £1,000 had been deposited at a named bank "shewing our sincerity in the matter". Mrs Carlill bought and used the product as directed, contracted influenza, and claimed the £100 reward. The company resisted, contending the advertisement was mere puffery, lacked a definite offeree, and had never been notified of acceptance.',
+    judgment:'The Court of Appeal unanimously held in Mrs Carlill\'s favour. The deposit of £1,000 at a bank demonstrated the advertisement was a serious offer rather than idle boasting. The offer was made to the whole world and capable of acceptance by any person who performed the stipulated conditions. Completion of performance, combined with purchase of the product, constituted both acceptance and good consideration.',
+    ratio:'A public advertisement can constitute a binding unilateral offer where it is sufficiently certain and evinces an intention to be bound. Acceptance of a unilateral offer is effected by full performance of the stipulated conditions; no prior communication of acceptance is required. The deposit of money to demonstrate sincerity prevents the maker from pleading the advertisement was mere promotional puffery.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1892/1.html' },
+
+  // ── Contract — case ──
+  { id:'m12', type:'curated', cat:'case-law', area:'Contract',
+    title:'Williams v Roffey Bros & Nicholls (Contractors) Ltd [1989] EWCA Civ 5',
+    court:'Court of Appeal',
+    facts:'Roffey Bros, the main contractor on a block of flats, subcontracted the carpentry to Williams for £20,000. Part-way through the work Williams ran into financial difficulty and could not complete on time. Roffey Bros faced a penalty clause in their own building contract if the project was delayed, and also faced the inconvenience of finding a replacement. They therefore promised to pay Williams an extra £575 per flat on completion. Williams completed further flats but received only part of the additional payments and sued for the balance.',
+    judgment:'The Court of Appeal held the promise to pay extra was binding and enforceable. Roffey Bros received a practical benefit — avoidance of the penalty clause and of the disruption of engaging a substitute — which was sufficient consideration to support the variation, provided the promise had not been extracted by duress.',
+    ratio:'A promise to pay more for performance of a pre-existing contractual duty can be supported by fresh consideration where the promisor obtains a practical benefit or avoids a practical disbenefit from the other party completing the work. The rule that performance of an existing duty cannot be good consideration must yield where real-world advantages are gained and there is no economic duress.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1989/5.html' },
+
+  // ── Public Law — case ──
+  { id:'m13', type:'curated', cat:'case-law', area:'Public Law',
+    title:'Associated Provincial Picture Houses Ltd v Wednesbury Corporation [1947] EWCA Civ 1',
+    court:'Court of Appeal',
+    facts:'A local authority granted the claimant a cinema licence permitting Sunday performances under the Sunday Entertainments Act 1932, but attached a condition that no child under fifteen should be admitted on Sundays, with or without an adult. The cinema company challenged the condition as beyond the authority\'s statutory powers and asked the court to quash it.',
+    judgment:'The Court of Appeal dismissed the challenge. Lord Greene MR held that while a court can intervene in the exercise of a statutory discretion, the threshold is high: intervention is available only on identified grounds of unlawfulness, not because the court would have exercised the discretion differently. The condition was not unlawful on any recognised ground.',
+    ratio:'When reviewing an exercise of statutory discretion, a court is not entitled to substitute its own view for that of the decision-maker. Judicial intervention is available where: the authority has considered matters it ought not to have regarded; has disregarded matters it was bound to consider; or has reached a decision so unreasonable that no reasonable authority, properly directing itself in law, could ever have arrived at it. This last limb — "Wednesbury unreasonableness" — sets a demanding threshold for intervention on the ground of irrationality.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1947/1.html' },
+
+  // ── Public Law — case ──
+  { id:'m14', type:'curated', cat:'case-law', area:'Public Law',
+    title:'Anisminic Ltd v Foreign Compensation Commission [1968] UKHL 6',
+    court:'House of Lords',
+    facts:'Anisminic, a British mining company, had property in Egypt sequestrated and sold by the Egyptian government in the aftermath of the 1956 Suez crisis. Under a treaty-implementing Order in Council, Anisminic applied to the Foreign Compensation Commission for compensation. The Commission rejected the claim on the ground that the successor in title to Anisminic\'s property was not a British national — a condition the Commission wrongly believed the Order imposed on applicants who had already received partial foreign compensation. Anisminic sought to challenge this "determination". The Commission\'s statute contained an ouster clause declaring that its determinations "shall not be called in question in any court of law".',
+    judgment:'The House of Lords (4:1) held that the Commission had asked itself the wrong question by importing a condition that was irrelevant to applicants in Anisminic\'s position, and accordingly had made no valid "determination" at all. Because the determination was a nullity, the ouster clause had nothing to bite on and did not bar the court from granting a declaration.',
+    ratio:'A public body acts outside its jurisdiction not only when it transgresses the factual limits of its authority but also when it commits any error of law that causes it to misconceive the scope of its inquiry — for example by taking into account irrelevant considerations, ignoring relevant ones, or asking itself the wrong question. A purported decision that is void for jurisdictional error is not a "determination" at all, and an ouster clause expressed in terms of a "determination" cannot therefore exclude review of such a nullity. This decision effectively abolished the distinction between errors of law going to jurisdiction and those made within it.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1968/6.html' },
+
+  // ── Tort — case ──
+  { id:'m15', type:'curated', cat:'case-law', area:'Tort',
+    title:'Caparo Industries plc v Dickman [1990] UKHL 2',
+    court:'House of Lords',
+    facts:'Caparo, in the course of a takeover bid for Fidelity plc, purchased additional shares in Fidelity partly in reliance on statutory annual accounts audited by Dickman\'s firm. The accounts overstated the company\'s profit position. Once the takeover completed, Caparo discovered the accounts were materially inaccurate and the company was far less valuable than the audited figures suggested. Caparo sued the auditors in negligence, arguing they owed a duty of care both to existing shareholders and to outside investors who might rely on the accounts.',
+    judgment:'The House of Lords held that the auditors owed no duty of care to individual shareholders acquiring more shares on the strength of the accounts, still less to outside investors. The statutory purpose of the audit was to enable shareholders to exercise their collective rights in general meeting, not to assist individuals in their personal investment decisions. Neither proximity nor the fairness and reasonableness conditions were satisfied.',
+    ratio:'For a duty of care to arise in respect of negligent misstatement causing pure economic loss, three conditions must all be met: (i) the loss must have been reasonably foreseeable; (ii) there must be a relationship of sufficient proximity between claimant and defendant; and (iii) in all the circumstances it must be fair, just and reasonable to impose the duty. The Caparo three-stage test does not provide a fixed formula but a structured framework. New duty situations must be developed incrementally by reference to recognised analogies. The purpose for which information was communicated is central: a duty does not arise merely because reliance was foreseeable if the information was not prepared for the particular use the claimant made of it.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1990/2.html' },
 
   ];
 });
