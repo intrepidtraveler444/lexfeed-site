@@ -3817,7 +3817,7 @@ const CURATED = [
     intro:"Both stop a person going back on a promise others relied on — but they work very differently.",
     sides:[
       { name:'Promissory estoppel', text:"Prevents a party enforcing strict legal rights where they promised not to and the other relied on it. It is ‘a shield, not a sword’ — a defence only, and usually just suspends rights rather than extinguishing them." },
-      { name:'Proprietary estoppel', text:"Arises where someone is led to believe they have, or will get, a right in land and acts to their detriment. It is a cause of action in its own right and can create a new property right as the remedy." }
+      { name:'Proprietary estoppel', link:'https://www.lexisnexis.co.uk/legal/glossary/proprietary-estoppel', text:"Arises where someone is led to believe they have, or will get, a right in land and acts to their detriment. It is a cause of action in its own right and can create a new property right as the remedy." }
     ],
     key:"Promissory estoppel defends against the enforcement of existing rights; proprietary estoppel can positively create rights in land.",
     src:'LexFeed · Study Guide' },
@@ -3826,8 +3826,8 @@ const CURATED = [
     title:'Assault vs Battery',
     intro:"Two distinct offences against the person — often committed together, but legally separate.",
     sides:[
-      { name:'Assault', text:"Causing another to apprehend immediate unlawful force. No contact is needed — the wrong is making the victim fear it (e.g. raising a fist or a threat that could be carried out at once)." },
-      { name:'Battery', text:"The actual infliction of unlawful force on another, however slight. The wrong is the unwanted contact itself (e.g. a push, a slap, even touching clothing)." }
+      { name:'Assault', link:'https://www.lexisnexis.co.uk/legal/glossary/assault-battery', text:"Causing another to apprehend immediate unlawful force. No contact is needed — the wrong is making the victim fear it (e.g. raising a fist or a threat that could be carried out at once)." },
+      { name:'Battery', link:'https://www.lexisnexis.co.uk/legal/glossary/assault-battery', text:"The actual infliction of unlawful force on another, however slight. The wrong is the unwanted contact itself (e.g. a push, a slap, even touching clothing)." }
     ],
     key:"Assault is the fear of force; battery is the force itself. Each can happen without the other.",
     src:'LexFeed · Study Guide' },
@@ -3836,8 +3836,8 @@ const CURATED = [
     title:'Misrepresentation vs Mistake',
     intro:"Both involve a false belief when contracting, but they are triggered differently and have different effects.",
     sides:[
-      { name:'Misrepresentation', text:"A false statement of fact by one party that induces the other to enter the contract. It makes the contract voidable — the innocent party may rescind and/or claim damages." },
-      { name:'Mistake', text:"A fundamental error about the contract (its subject matter, a vital term, or identity). An operative mistake makes the contract void from the outset — as if it never existed." }
+      { name:'Misrepresentation', link:'https://www.lexisnexis.co.uk/legal/glossary/misrepresentation', text:"A false statement of fact by one party that induces the other to enter the contract. It makes the contract voidable — the innocent party may rescind and/or claim damages." },
+      { name:'Mistake', link:'https://www.lexisnexis.co.uk/legal/glossary/mistake', text:"A fundamental error about the contract (its subject matter, a vital term, or identity). An operative mistake makes the contract void from the outset — as if it never existed." }
     ],
     key:"Misrepresentation is a wrongful statement that makes a contract voidable; an operative mistake is a fundamental error that makes it void.",
     src:'LexFeed · Study Guide' },
@@ -3846,8 +3846,8 @@ const CURATED = [
     title:'Easement vs Profit à Prendre',
     intro:"Two rights one landowner can hold over another’s land — similar in form, different in what they allow.",
     sides:[
-      { name:'Easement', text:"A right to use neighbouring land in a particular way (e.g. a right of way or to light). It does not let you take anything from the land, and normally benefits a nearby piece of land." },
-      { name:'Profit à prendre', text:"A right to take something from another’s land — natural produce or wildlife such as timber, fish, game or minerals. Unlike an easement it can exist ‘in gross’, with no benefited land." }
+      { name:'Easement', link:'https://www.lexisnexis.co.uk/legal/glossary/easement', text:"A right to use neighbouring land in a particular way (e.g. a right of way or to light). It does not let you take anything from the land, and normally benefits a nearby piece of land." },
+      { name:'Profit à prendre', link:'https://www.lexisnexis.co.uk/legal/glossary/profit-prendre', text:"A right to take something from another’s land — natural produce or wildlife such as timber, fish, game or minerals. Unlike an easement it can exist ‘in gross’, with no benefited land." }
     ],
     key:"An easement lets you use the land; a profit lets you take something from it (and can exist without neighbouring land).",
     src:'LexFeed · Study Guide' },
@@ -9768,9 +9768,9 @@ function buildSgContentEditor(host, guide, initial){
     sides.map((s,i)=>`<div class="adm-sg-side" data-i="${i}">
       <input data-k="name" value="${admAttr(s.name)}" placeholder="${isDist?'case name (e.g. R v Brown)':'term (e.g. Assault)'}">
       <textarea data-k="text" rows="3" placeholder="${isDist?'brief summary of this case':'definition of this term'}">${admText(s.text)}</textarea>
-      ${isDist?`<input data-k="link" value="${admAttr(s.link)}" placeholder="BAILII judgment link (optional)">`:''}
+      <input data-k="link" value="${admAttr(s.link)}" placeholder="${isDist?'BAILII judgment link (optional)':'LexisNexis glossary link (optional)'}">
     </div>`).join('');
-  return { guide, get(){ sync(); return { sides: sides.map(s=>{ const o={name:(s.name||'').trim(),text:(s.text||'').trim()}; if(isDist&&s.link&&s.link.trim()) o.link=s.link.trim(); return o; }) }; } };
+  return { guide, get(){ sync(); return { sides: sides.map(s=>{ const o={name:(s.name||'').trim(),text:(s.text||'').trim()}; if(s.link&&s.link.trim()) o.link=s.link.trim(); return o; }) }; } };
 }
 
 function openCardEditor(root,opts){
