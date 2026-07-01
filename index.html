@@ -5291,6 +5291,13 @@ function scheduleByType(cards){
 // don't carry across batch boundaries. Each step picks the remaining card least
 // similar to the previous one, with the incoming order as a gentle tie-breaker
 // (so the underlying even spread is preserved where mixing allows).
+// Same news outlet / journal? (only meaningful for news & article cards)
+function sameSource(a,b){
+  if(!a||!b) return false;
+  if(a.cat!=='legal-news'&&a.cat!=='journal-article') return false;
+  const sa=(a.src||a.source||'').toLowerCase(), sb=(b.src||b.source||'').toLowerCase();
+  return !!sa && sa===sb;
+}
 function mixOrder(cards, prev){
   const pool=cards.slice();
   const out=[];
@@ -5306,10 +5313,12 @@ function mixOrder(cards, prev){
         if(c.cat===p1.cat) score+=6;                        // same post type
         if(ca&&ca===cardArea(p1)) score+=4;                 // same area of law
         if((c.type==='live')===(p1.type==='live')) score+=1;// same live/curated
+        if(sameSource(c,p1)) score+=9;                      // never the same outlet/journal back-to-back
       }
       if(p2){                            // softer look-back to break A-B-A patterns
         if(c.cat===p2.cat) score+=2;
         if(ca&&ca===cardArea(p2)) score+=2;
+        if(sameSource(c,p2)) score+=4;
       }
       if(score<bestScore){ bestScore=score; bestIdx=i; }
     }
@@ -5320,38 +5329,54 @@ function mixOrder(cards, prev){
   return out;
 }
 
-// Order the live pool so NEWS cards surface by priority tier — Guardian & FT
-// ('top') first, then other reputable press, then blogs — with sources spread
-// round-robin within each tier so consecutive news cards rarely repeat an outlet.
-// Non-news live items (BAILII judgments, legislation) keep a plain shuffle and are
-// interleaved 1:1 so the live feed still alternates cases & news.
-function orderLivePool(pool){
-  const news=pool.filter(c=>c.cat==='legal-news');
-  const restAll=pool.filter(c=>c.cat!=='legal-news');
-  // Prioritise more recently published journal articles: sort them newest-first,
-  // then interleave with the other (shuffled) live items so the feed stays mixed
-  // while the article run keeps its recent-first order (which the Articles filter
-  // then surfaces newest-first).
-  const arts=restAll.filter(c=>c.cat==='journal-article')
-    .sort((a,b)=>(Date.parse(b.date)||0)-(Date.parse(a.date)||0));
-  const other=shuffle(restAll.filter(c=>c.cat!=='journal-article'));
-  const rest=[]; { let a=0,o=0; while(a<arts.length||o<other.length){ if(o<other.length) rest.push(other[o++]); if(a<arts.length) rest.push(arts[a++]); } }
-  if(!news.length) return rest;
+// Credibility of an ARTICLE source (journal). 0 = flagship UK/legal journals,
+// 1 = other named journals, 2 = unknown / generic aggregator fallback.
+const TOP_JOURNALS=['law quarterly review','modern law review','cambridge law journal',
+  'oxford journal of legal studies','current legal problems','public law',
+  'criminal law review','legal studies','international and comparative law quarterly',
+  'international & comparative law quarterly','journal of law and society',
+  'medical law review','industrial law journal','british journal of criminology',
+  'journal of environmental law','oxford university commonwealth law journal',
+  'journal of criminal law','conveyancer and property lawyer','civil justice quarterly',
+  'law and philosophy','the law quarterly review'];
+function articleRank(src){
+  const s=(src||'').toLowerCase();
+  if(TOP_JOURNALS.some(j=>s.includes(j))) return 0;   // flagship journals
+  if(!s||s==='openalex') return 2;                    // unknown / aggregator fallback
+  return 1;                                           // other named journals
+}
+// Credibility of a NEWS source comes from the feed tier set in NEWS_FEEDS.
+const NEWS_RANK={top:0, press:1, blog:2};
+function newsRank(c){ const t=NEWS_RANK[c.tier]; return t==null?2:t; }
+
+// Order a set of live cards so higher-credibility sources lead and no source
+// repeats back-to-back: bucket by source (newest-first within each), group the
+// buckets into credibility tiers (rankOf), then round-robin across the sources
+// in each tier, best tier first.
+function spreadBySource(cards, rankOf){
+  if(cards.length<2) return cards.slice();
   const bySrc=new Map();
-  shuffle(news).forEach(c=>{ const k=c.src||'?'; if(!bySrc.has(k)) bySrc.set(k,[]); bySrc.get(k).push(c); });
-  // Group each source-queue into its priority tier (highest first).
-  const RANK={top:0, press:1, blog:2};
-  const tiers=[[],[],[]];
-  for(const q of bySrc.values()){ let r=RANK[q[0]&&q[0].tier]; if(r==null) r=2; tiers[r].push(q); }
-  // Round-robin across the sources within a tier → never two same-source in a row.
+  cards.forEach(c=>{ const k=(c.src||c.source||'?'); if(!bySrc.has(k)) bySrc.set(k,[]); bySrc.get(k).push(c); });
+  bySrc.forEach(arr=>arr.sort((a,b)=>(Date.parse(b.date)||0)-(Date.parse(a.date)||0)));  // newest first within a source
+  const tiers=new Map();
+  for(const arr of bySrc.values()){ const r=rankOf(arr[0]); const rk=(typeof r==='number')?r:9; if(!tiers.has(rk)) tiers.set(rk,[]); tiers.get(rk).push(arr); }
   const rr=queues=>{ queues=shuffle(queues); const out=[]; let any=true;
     while(any){ any=false; for(const q of queues){ if(q.length){ out.push(q.shift()); any=true; } } } return out; };
-  const orderedNews=tiers.reduce((acc,t)=>acc.concat(rr(t)),[]);   // top → press → blog
-  const out=[]; let i=0,j=0;
-  while(i<orderedNews.length||j<rest.length){
-    if(i<orderedNews.length) out.push(orderedNews[i++]);
-    if(j<rest.length) out.push(rest[j++]);
-  }
+  return [...tiers.keys()].sort((a,b)=>a-b).reduce((acc,r)=>acc.concat(rr(tiers.get(r))),[]);
+}
+
+// Order the live pool. NEWS and ARTICLES are each ordered by SOURCE CREDIBILITY
+// (best-regarded outlets/journals first) and round-robined by source so the same
+// source never shows twice in a row; other live items (judgments, legislation)
+// are shuffled. The three streams are then round-robined together so the feed
+// stays mixed while each keeps its own credibility/recency order.
+function orderLivePool(pool){
+  const news=spreadBySource(pool.filter(c=>c.cat==='legal-news'), newsRank);
+  const arts=spreadBySource(pool.filter(c=>c.cat==='journal-article'), c=>articleRank(c.src));
+  const other=shuffle(pool.filter(c=>c.cat!=='legal-news'&&c.cat!=='journal-article'));
+  const streams=[news,arts,other].filter(s=>s.length);
+  const out=[]; const idx=streams.map(()=>0); let more=true;
+  while(more){ more=false; for(let k=0;k<streams.length;k++){ if(idx[k]<streams[k].length){ out.push(streams[k][idx[k]++]); more=true; } } }
   return out;
 }
 
