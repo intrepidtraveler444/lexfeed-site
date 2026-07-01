@@ -4359,53 +4359,6 @@ async function fetchCrossRef(){
   return batches.flat();
 }
 
-// ── Semantic Scholar — parallel quoted phrases ─
-const SS_QUERIES=[
-  '"English law" contract negligence',
-  '"Court of Appeal" England Wales',
-  '"UK Supreme Court" judgment',
-  '"English criminal law"',
-  '"judicial review" England',
-  '"English equity" trust',
-  '"UK employment law"',
-  '"English property law"',
-  '"common law" England',
-  '"statutory interpretation" England',
-  '"English tort" duty of care',
-  '"UK human rights" convention',
-];
-
-async function fetchSemanticScholar(){
-  // Run all queries in parallel; filter by isUKLegalArticle
-  const fetches=SS_QUERIES.map(q=>
-    fetch(
-      `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(q)}&fields=title,abstract,authors,year,publicationDate,externalIds,publicationVenue&limit=10`,
-      {signal:AbortSignal.timeout(12000)}
-    )
-    .then(r=>r.ok?r.json():{data:[]})
-    .then(d=>(d.data||[]).map(item=>{
-      const title=deItalic(item.title||'');
-      if(!title) return null;
-      const authors=(item.authors||[]).slice(0,3).map(a=>a.name).filter(Boolean).join(', ');
-      const journal=item.publicationVenue?.name||'';
-      const abstract=item.abstract?trunc(item.abstract,320):'';
-      if(!isUKLegalArticle(title,abstract,journal)) return null;
-      const doi=item.externalIds?.DOI||'';
-      const link=safeUrl(doi?`https://doi.org/${doi}`:`https://scholar.google.com/scholar?q=${encodeURIComponent(title)}`);
-      const body=abstract||`${journal?`Published in ${journal}. `:''}${authors?`Authors: ${authors}. `:''}Click to view the full article.`;
-      return {
-        id:uid('ss',link||title),type:'live',cat:'journal-article',
-        title:title.length>110?title.slice(0,110)+'…':title,
-        body,src:journal||'Semantic Scholar',link,
-        date:item.publicationDate||(item.year?`${item.year}-01-01`:'')
-      };
-    }).filter(Boolean))
-    .catch(()=>[])
-  );
-  const batches=await Promise.all(fetches);
-  return batches.flat();
-}
-
 // ══════════════════════════════════════════════
 //  NATIONAL ARCHIVES — LAZY CARD ENRICHMENT
 //  Fetches data.xml for each NA case when it
@@ -4907,7 +4860,7 @@ async function loadAllFeeds(){
 }
 
 // On-demand journal-article loader (mirrors loadNewsFeeds).
-// Fetches the 4 academic sources only when the user wants articles.
+// Fetches the academic sources only when the user wants articles.
 async function loadArticles(force=false){
   if(articlesLoading) return;
   if(articlesLoaded&&!force){
@@ -4920,7 +4873,6 @@ async function loadArticles(force=false){
     ['UK law journals (OpenAlex)', fetchUKLawJournals],
     ['OpenAlex topic search',      fetchOpenAlex],
     ['CrossRef',                   fetchCrossRef],
-    ['Semantic Scholar',           fetchSemanticScholar],
   ];
   let done=0, added=0;
   const setProg=name=>{
@@ -5375,7 +5327,15 @@ function mixOrder(cards, prev){
 // interleaved 1:1 so the live feed still alternates cases & news.
 function orderLivePool(pool){
   const news=pool.filter(c=>c.cat==='legal-news');
-  const rest=shuffle(pool.filter(c=>c.cat!=='legal-news'));
+  const restAll=pool.filter(c=>c.cat!=='legal-news');
+  // Prioritise more recently published journal articles: sort them newest-first,
+  // then interleave with the other (shuffled) live items so the feed stays mixed
+  // while the article run keeps its recent-first order (which the Articles filter
+  // then surfaces newest-first).
+  const arts=restAll.filter(c=>c.cat==='journal-article')
+    .sort((a,b)=>(Date.parse(b.date)||0)-(Date.parse(a.date)||0));
+  const other=shuffle(restAll.filter(c=>c.cat!=='journal-article'));
+  const rest=[]; { let a=0,o=0; while(a<arts.length||o<other.length){ if(o<other.length) rest.push(other[o++]); if(a<arts.length) rest.push(arts[a++]); } }
   if(!news.length) return rest;
   const bySrc=new Map();
   shuffle(news).forEach(c=>{ const k=c.src||'?'; if(!bySrc.has(k)) bySrc.set(k,[]); bySrc.get(k).push(c); });
