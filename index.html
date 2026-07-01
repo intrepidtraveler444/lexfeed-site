@@ -4244,7 +4244,8 @@ function oaToCard(item){
   return {
     id:uid('oa',link||title),type:'live',cat:'journal-article',
     title:title.length>110?title.slice(0,110)+'…':title,
-    body,src:journal||'OpenAlex',link
+    body,src:journal||'OpenAlex',link,
+    date:item.publication_date||(year?`${year}-01-01`:'')
   };
 }
 
@@ -4337,7 +4338,9 @@ async function fetchCrossRef(){
         const authors=(item.author||[]).slice(0,3)
           .map(a=>[a.given,a.family].filter(Boolean).join(' ')).join(', ');
         const journal=(item['container-title']||[])[0]||j.name;
-        const year=item.published?.['date-parts']?.[0]?.[0]||'';
+        const _dp=item.published?.['date-parts']?.[0]||item['published-online']?.['date-parts']?.[0]||item['published-print']?.['date-parts']?.[0]||[];
+        const year=_dp[0]||'';
+        const date=_dp.length?`${_dp[0]}-${String(_dp[1]||1).padStart(2,'0')}-${String(_dp[2]||1).padStart(2,'0')}`:'';
         const abs=item.abstract?trunc(item.abstract.replace(/<[^>]+>/g,' '),300):'';
         if(!isUKLegalArticle(title,abs,journal)) return null;
         const doi=item.DOI||'';
@@ -4346,7 +4349,7 @@ async function fetchCrossRef(){
         return {
           id:uid('cr',link||title),type:'live',cat:'journal-article',
           title:title.length>110?title.slice(0,110)+'…':title,
-          body,src:journal,link
+          body,src:journal,link,date
         };
       }).filter(Boolean);
     })
@@ -4376,7 +4379,7 @@ async function fetchSemanticScholar(){
   // Run all queries in parallel; filter by isUKLegalArticle
   const fetches=SS_QUERIES.map(q=>
     fetch(
-      `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(q)}&fields=title,abstract,authors,year,externalIds,publicationVenue&limit=10`,
+      `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(q)}&fields=title,abstract,authors,year,publicationDate,externalIds,publicationVenue&limit=10`,
       {signal:AbortSignal.timeout(12000)}
     )
     .then(r=>r.ok?r.json():{data:[]})
@@ -4393,7 +4396,8 @@ async function fetchSemanticScholar(){
       return {
         id:uid('ss',link||title),type:'live',cat:'journal-article',
         title:title.length>110?title.slice(0,110)+'…':title,
-        body,src:journal||'Semantic Scholar',link
+        body,src:journal||'Semantic Scholar',link,
+        date:item.publicationDate||(item.year?`${item.year}-01-01`:'')
       };
     }).filter(Boolean))
     .catch(()=>[])
