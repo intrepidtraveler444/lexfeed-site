@@ -3,10 +3,17 @@
 // CORS proxies (which were slow, rate-limited, and served stale cached feeds),
 // so news + legislation load fast and fresh. Restricted to known feed hosts.
 const ALLOW = [
+  // Courts / legislation
   'legislation.gov.uk', 'nationalarchives.gov.uk', 'bailii.org', 'supremecourt.uk',
-  'lawgazette.co.uk', 'legalcheek.com', 'legalfutures.co.uk', 'ukhumanrightsblog.com',
-  'freemovement.org.uk', 'inforrm.org', 'transparencyproject.org.uk',
-  'thesecretbarrister.com', 'ukscblog.com', 'pinktape.co.uk'
+  // Legal trade press & specialist blogs
+  'lawgazette.co.uk', 'legalcheek.com', 'legalfutures.co.uk', 'thejusticegap.com',
+  'ukhumanrightsblog.com', 'freemovement.org.uk', 'inforrm.org', 'transparencyproject.org.uk',
+  'thesecretbarrister.com', 'ukscblog.com', 'pinktape.co.uk', 'ukconstitutionallaw.org',
+  'panopticonblog.com', 'civillitigationbrief.com', 'lawandreligionuk.com', 'eachother.org.uk',
+  'globallegalpost.com',
+  // Mainstream press law sections + Google News keyword search
+  'theguardian.com', 'ft.com', 'independent.co.uk', 'thetimes.co.uk', 'theconversation.com',
+  'news.google.com'
 ];
 
 export default async (req) => {
