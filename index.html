@@ -5394,11 +5394,25 @@ function spreadBySource(cards, rankOf){
   const bySrc=new Map();
   cards.forEach(c=>{ const k=(c.src||c.source||'?'); if(!bySrc.has(k)) bySrc.set(k,[]); bySrc.get(k).push(c); });
   bySrc.forEach(arr=>arr.sort((a,b)=>(Date.parse(b.date)||0)-(Date.parse(a.date)||0)));  // newest first within a source
+  // Bucket the sources into credibility tiers; round-robin the sources inside a
+  // tier so no source repeats back-to-back.
   const tiers=new Map();
   for(const arr of bySrc.values()){ const r=rankOf(arr[0]); const rk=(typeof r==='number')?r:9; if(!tiers.has(rk)) tiers.set(rk,[]); tiers.get(rk).push(arr); }
   const rr=queues=>{ queues=shuffle(queues); const out=[]; let any=true;
     while(any){ any=false; for(const q of queues){ if(q.length){ out.push(q.shift()); any=true; } } } return out; };
-  return [...tiers.keys()].sort((a,b)=>a-b).reduce((acc,r)=>acc.concat(rr(tiers.get(r))),[]);
+  const ranked=[...tiers.keys()].sort((a,b)=>a-b).map(k=>rr(tiers.get(k)));   // one list per tier, best first
+  // WEIGHTED weave: the best tier gets the most turns per cycle, but EVERY tier
+  // contributes from the start — so higher-credibility sources lead yet the feed
+  // still shows variety early, instead of burying all lower tiers at the end.
+  const out=[]; const pos=ranked.map(()=>0); let more=true;
+  while(more){
+    more=false;
+    for(let t=0;t<ranked.length;t++){
+      let take=ranked.length-t;                  // tier 0 → N turns, tier 1 → N-1, …
+      while(take-->0 && pos[t]<ranked[t].length){ out.push(ranked[t][pos[t]++]); more=true; }
+    }
+  }
+  return out;
 }
 
 // Order the live pool. NEWS and ARTICLES are each ordered by SOURCE CREDIBILITY
