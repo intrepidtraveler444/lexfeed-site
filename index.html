@@ -4163,8 +4163,10 @@ async function fetchNewsFeed(feed){
       link=rssLink(n);
     }
     if(!link) return null;
+    // Prefer the FULL text: atom <content> over the short <summary>, so read-time
+    // reflects the whole article (e.g. The Conversation ships both a summary and content).
     const desc=atom
-      ? strip(n.querySelector('summary')?.textContent||n.querySelector('content')?.textContent||'')
+      ? strip(n.querySelector('content')?.textContent||n.querySelector('summary')?.textContent||'')
       : rssDesc(n);
     const date=(n.querySelector('pubDate')||n.querySelector('published')||n.querySelector('updated'))
       ?.textContent?.trim()||'';
@@ -4185,14 +4187,15 @@ async function fetchNewsFeed(feed){
       }
       if(!isUKLegalNews(title,desc,srcName)) return null;
     }
-    // Read-time from the FULL story text (RSS usually carries the whole piece),
-    // not the truncated preview — so the pill reflects the actual article length.
+    // Read-time from the FULL story text at ~225 wpm (avg adult reader). No floor:
+    // if the feed only gives a short summary (too few words to gauge the real
+    // article), readMin rounds to 0 and NO pill shows — better than a bogus "1 min".
     const words=(desc.match(/\S+/g)||[]).length;
     return{
       id:uid('news',link||title),type:'live',cat:'legal-news',
       src:srcName,tier:feed.tier||'blog',link:safeUrl(link),date,title,
       body:trunc(desc,360)||'Tap to read the full story on '+safe(srcName)+'.',
-      readMin: words?Math.max(1,Math.round(words/200)):0
+      readMin: Math.round(words/225)
     };
   }).filter(Boolean);
 }
@@ -4567,9 +4570,9 @@ async function enrichNACard(cardEl){
     const frag=document.createDocumentFragment();
     const selfId=co?co.id:'';
     const oc=caseOutcome(judgment);
-    // Reading-time estimate for the FULL judgment (~200 words/min) — live only.
+    // Reading-time estimate for the FULL judgment (~225 words/min, avg adult) — live only.
     const words=(texts.join(' ').match(/\S+/g)||[]).length;
-    const readMin=Math.max(1,Math.round(words/200));
+    const readMin=Math.max(1,Math.round(words/225));
     const head=document.createElement('div');
     head.innerHTML=
       `<div class="case-meta-row">`+
@@ -5220,9 +5223,10 @@ function buildCard(card,delayMs=0){
     // Read-time pill for LIVE news only (computed from the full story at parse
     // time), shown the same way as on live case cards.
     let rtPill='';
-    if(card.type==='live'&&card.cat==='legal-news'){
-      const m=card.readMin||Math.max(1,Math.round(((String(card.body||'').match(/\S+/g)||[]).length)/200));
-      if(m) rtPill=`<div class="case-meta-row"><span class="case-readtime">📖 ~${m} min read</span></div>`;
+    // Use the parse-time read estimate directly (0 = the feed only gave a summary,
+    // so we can't gauge length → show no pill rather than a misleading "1 min").
+    if(card.type==='live'&&card.cat==='legal-news'&&card.readMin>0){
+      rtPill=`<div class="case-meta-row"><span class="case-readtime">📖 ~${card.readMin} min read</span></div>`;
     }
     inner=rtPill+`<div class="card-body">${safe(card.body||card.description||'No preview available. Click to read the full article.')}</div>`;
     // Legal terms carry a plain-English worked example
