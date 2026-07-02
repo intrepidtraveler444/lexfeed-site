@@ -5746,14 +5746,60 @@ async function loadNewsFeeds(force=false){
     removeEmptyState();
     const visible=document.querySelectorAll('#grid .card[data-c="legal-news"]:not(.hidden)').length;
     if(added===0&&visible===0){
-      showEmptyState(
-        'Could not reach the UK legal news sources right now.<br>'+
-        '<span style="font-size:12px;color:#64748b">This is usually a temporary CORS or network issue — try again shortly or switch to All.</span>'
-      );
+      // Nothing from the regular feeds — try topping up from fresh Google News
+      // keyword searches before giving up (also covers a transient proxy blip).
+      showEmptyState('📰 Finding more UK legal news…');
+      loadMoreNews().then(ok=>{
+        if(!ok&&curFilter==='legal-news') showEmptyState(
+          'Could not reach the UK legal news sources right now.<br>'+
+          '<span style="font-size:12px;color:#64748b">This is usually a temporary CORS or network issue — try again shortly or switch to All.</span>'
+        );
+      });
     } else if(!isLoading){
       (window.loadMore||loadMore)();
     }
   }
+}
+
+// ── Endless news: top-up from fresh Google News (UK-legal) keyword searches ──
+// When the news feed hits its end (or a fetch fails), we run the next unused
+// query and ingest whatever's new, so scrolling news never dead-ends. Each query
+// targets a different slice of UK legal news for variety.
+const GNEWS_MORE_Q=[
+  'jailed OR sentenced OR convicted "Crown Court" UK',
+  '"employment tribunal" OR "unfair dismissal" OR discrimination UK ruling',
+  '"judicial review" OR "legal challenge" OR "High Court" UK',
+  '"family court" OR "care proceedings" OR custody UK ruling',
+  '"Law Society" OR "Bar Council" OR "legal profession" OR "law firm" UK',
+  '"data protection" OR privacy OR "Information Commissioner" UK ruling',
+  'inquest OR coroner OR "public inquiry" UK',
+  'fraud OR "money laundering" OR "Serious Fraud Office" UK court',
+  '"human rights" OR asylum OR immigration UK court ruling',
+  'barrister OR solicitor OR "King\'s Counsel" OR misconduct UK',
+  '"Court of Appeal" OR "Supreme Court" UK judgment when:30d',
+  '"UK law" OR "English law" OR "legal news" when:30d',
+];
+let gnewsMoreIdx=0, newsMoreLoading=false;
+function gnewsUrl(q){ return `https://news.google.com/rss/search?q=${encodeURIComponent(q)}&hl=en-GB&gl=GB&ceid=GB:en`; }
+async function loadMoreNews(){
+  if(newsMoreLoading) return false;
+  newsMoreLoading=true;
+  let added=0;
+  // Try successive queries until one yields genuinely new (deduped) cards.
+  while(added===0 && gnewsMoreIdx<GNEWS_MORE_Q.length){
+    const q=GNEWS_MORE_Q[gnewsMoreIdx++];
+    try{
+      const seen=new Set(livePool.map(dedupKey));
+      const items=await fetchNewsFeed({url:gnewsUrl(q), src:'UK Legal News', tier:'press', gnews:true});
+      const fresh=items.filter(c=>{ const k=dedupKey(c); if(seen.has(k)) return false; seen.add(k); return true; });
+      fresh.forEach(c=>freshCardIds.add(c.id));
+      livePool.push(...fresh); added=fresh.length;
+    }catch(_){}
+  }
+  if(added>0) livePool=orderLivePool(livePool);
+  newsMoreLoading=false;
+  if(added>0){ removeEmptyState(); if(!isLoading)(window.loadMore||loadMore)(); }
+  return added>0;
 }
 
 function setupFilters(){
@@ -9314,18 +9360,28 @@ window.appendBatch=function(batch,showDivider=false){
     } else {
       // Everything curated/live already shown. For Cases / Statutes / All, fall
       // back to the endless archive (random older judgments & Acts) instead of
-      // ending; other filters (news, articles, terms, quiz) just show the end.
+      // ending; News tops up from Google News; other filters show the end.
       removeEmptyState();
       if((curFilter==='all'||curFilter==='case-law'||curFilter==='statute')&&!fallbackLoading){
         loadArchiveFallback();   // async — manages its own status / end message
         return;
       }
-      const fetchFail={
-        'legal-news':'Could not reach the UK legal news sources right now. Try again shortly or switch to All.',
-        'journal-article':'No more journal articles available right now. Try again shortly or switch to All.',
-      };
       const endMsg=`🎓 You've reached the end — you've seen every ${_FILTER_NAMES[curFilter]||'post'} for this visit.<br>`+
         `<span style="font-size:12px;color:#64748b">Refresh the page for a fresh shuffle, or switch filters to explore more.</span>`;
+      // News never dead-ends: keep pulling fresh UK-legal Google News searches.
+      if(curFilter==='legal-news'){
+        if(newsMoreLoading) return;                       // a top-up is already running
+        if(gnewsMoreIdx<GNEWS_MORE_Q.length){
+          showEmptyState('📰 Finding more UK legal news…');
+          loadMoreNews().then(ok=>{ if(!ok&&curFilter==='legal-news') showEmptyState(endMsg); });
+          return;
+        }
+        showEmptyState(endMsg);   // exhausted every top-up query → genuine end
+        return;
+      }
+      const fetchFail={
+        'journal-article':'No more journal articles available right now. Try again shortly or switch to All.',
+      };
       // Use the fetch-failure copy only when a live-only category genuinely got nothing
       showEmptyState((fetchFail[curFilter]&&curFilter!=='all')?fetchFail[curFilter]:endMsg);
     }
