@@ -4253,14 +4253,17 @@ function isUKLegalArticle(title='', abstract='', journal=''){
   return hasUK||(legalJournal&&!_US.some(s=>hay.includes(s)));
 }
 
-// Stricter gate for open keyword-search NEWS (Google News): keep ONLY items that
-// are BOTH about law/justice AND clearly UK — blocking US/foreign content — so the
-// keyword feed stays solely UK legal news.
+// Gate for open keyword-search NEWS (Google News): keep items that are about
+// law/justice AND UK — blocking US content. Google News is already en-GB/gl=GB
+// (UK-biased), so the UK test also accepts UK-specific legal institutions and
+// professions (barrister, solicitor, KC, Crown Court…) — not just the word "UK" —
+// so genuine UK stories aren't dropped for lacking an explicit geographic word.
 function isUKLegalNews(title='', desc='', source=''){
   const hay=(title+' '+desc+' '+source).toLowerCase();
   if(_US.some(s=>hay.includes(s))) return false;                                    // block US-jurisdiction stories
-  const legal=/\b(court|law|legal|judge|barrister|solicitor|k[cq]|ruling|verdict|sentenc|trial|lawsuit|appeal|tribunal|prosecut|judicial|inquest|litigation|claimant|defendant|high court|crown court)\b/.test(hay);
-  const uk=_UK.some(s=>hay.includes(s)) || /\b(uk|britain|british|england|english|wales|welsh|scotland|scottish|northern ireland|westminster|whitehall)\b/.test(hay);
+  const legal=/\b(court|law|laws|legal|judge|judgment|justice|barrister|solicitor|kc|qc|silk|ruling|rules|verdict|sentenc|convict|acquit|guilty|jail|prison|fraud|sued|sue|lawsuit|damages|appeal|tribunal|prosecut|judicial|inquest|coroner|litigation|claimant|defendant|magistrat|misconduct|struck off|disbarred|bailii)\b/.test(hay);
+  const uk=_UK.some(s=>hay.includes(s))
+    || /\b(uk|britain|british|england|english|wales|welsh|scotland|scottish|northern ireland|westminster|whitehall|downing street|home office|crown court|magistrat|old bailey|court of appeal|high court|barrister|solicitor|kc|qc|king'?s counsel|queen'?s counsel|law society|bar council|\bcps\b|hmcts|coroner)\b/.test(hay);
   return legal && uk;
 }
 
@@ -5723,6 +5726,10 @@ async function loadNewsFeeds(force=false){
     }catch(_){ /* skip this source silently */ }
     done++;
     setProgress();
+    // Re-spread the (not-yet-shown) pool as each source lands, so slower feeds
+    // like Google News interleave with the rest instead of clumping at the end
+    // in arrival order.
+    livePool=orderLivePool(livePool);
     // If the user is still on the news tab, stream what we have so far
     if(curFilter==='legal-news'&&added>0&&!isLoading){
       removeEmptyState();
