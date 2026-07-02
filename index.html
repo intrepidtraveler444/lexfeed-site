@@ -4187,15 +4187,18 @@ async function fetchNewsFeed(feed){
       }
       if(!isUKLegalNews(title,desc,srcName)) return null;
     }
-    // Read-time from the FULL story text at ~225 wpm (avg adult reader). No floor:
-    // if the feed only gives a short summary (too few words to gauge the real
-    // article), readMin rounds to 0 and NO pill shows — better than a bogus "1 min".
+    // Read-time at ~225 wpm (avg adult reader). Where the feed carries the full
+    // article (content:encoded / atom content) it is MEASURED; where it only sends a
+    // short summary (Guardian, FT, Google News …) we fall back to a typical article
+    // length (~650 words ≈ 3 min) so the pill reads sensibly rather than a bogus
+    // "1 min". Monotonic — more text never yields fewer minutes, so no odd inversions.
     const words=(desc.match(/\S+/g)||[]).length;
+    const readMin = words>=8 ? Math.round(Math.max(words,650)/225) : 0;
     return{
       id:uid('news',link||title),type:'live',cat:'legal-news',
       src:srcName,tier:feed.tier||'blog',link:safeUrl(link),date,title,
       body:trunc(desc,360)||'Tap to read the full story on '+safe(srcName)+'.',
-      readMin: Math.round(words/225)
+      readMin
     };
   }).filter(Boolean);
 }
