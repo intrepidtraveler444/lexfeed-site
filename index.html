@@ -1020,6 +1020,14 @@ const NEWS_FEEDS = [
   { url:'https://legalcheek.com/feed',                       src:'Legal Cheek',                 tier:'press' },
   { url:'https://www.thejusticegap.com/feed/',               src:'The Justice Gap · Justice',   tier:'press' },
   { url:'https://www.independent.co.uk/news/uk/politics/rss', src:'The Independent · Politics',  tier:'press' },
+  { url:'https://theconversation.com/topics/uk-law-22265/articles.atom', src:'The Conversation · Law', tier:'press' },
+  { url:'https://www.globallegalpost.com/rss-news',          src:'The Global Legal Post',       tier:'press' },
+  { url:'https://www.thetimes.co.uk/tto/law/rss',            src:'The Times · Law',             tier:'press' },
+  // ── Google News keyword searches (UK-only, en-GB). Each result cites its real
+  //    publisher (from <source>) and the link redirects to that source's article;
+  //    isUKLegalNews() keeps only genuine UK legal stories. ──
+  { url:'https://news.google.com/rss/search?q=%22Court+of+Appeal%22+OR+%22Supreme+Court%22+OR+%22High+Court%22+OR+%22judicial+review%22+OR+%22law+commission%22+when%3A14d&hl=en-GB&gl=GB&ceid=GB:en', src:'UK Legal News', tier:'press', gnews:true },
+  { url:'https://news.google.com/rss/search?q=%22UK+law%22+OR+%22English+law%22+OR+barrister+OR+solicitor+OR+%22legal+aid%22+OR+%22law+firm%22+when%3A14d&hl=en-GB&gl=GB&ceid=GB:en', src:'UK Legal News', tier:'press', gnews:true },
   // ── Specialist law blogs ──
   { url:'https://ukhumanrightsblog.com/feed',                src:'UK Human Rights Blog',        tier:'blog' },
   { url:'https://freemovement.org.uk/feed',                  src:'Free Movement · Immigration', tier:'blog' },
@@ -1926,7 +1934,7 @@ const CURATED = [
 
   // ══ EU LAW ══
   { id:'eu1', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Van Gend en Loos (Case 26/62)',
+    title:'Van Gend en Loos (Case 26/62)', ecr:'[1963] ECR 1',
     court:'Court of Justice of the EU',
     facts:"A Dutch transport firm was charged an import duty it argued breached the EEC Treaty. It sought to rely on the Treaty directly before its national tribunal, which referred the question to the Court.",
     judgment:"The Court held that Article 12 EEC was directly effective and could be invoked by individuals before their national courts.",
@@ -1934,7 +1942,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61962CJ0026' },
 
   { id:'eu2', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Costa v ENEL (Case 6/64)',
+    title:'Costa v ENEL (Case 6/64)', ecr:'[1964] ECR 585',
     court:'Court of Justice of the EU',
     facts:"An Italian lawyer refused to pay an electricity bill, arguing the nationalisation of the electricity industry conflicted with the EEC Treaty. The national court asked whether EEC law or the later Italian statute prevailed.",
     judgment:"The Court held that EEC law takes precedence over conflicting national law, including later national law.",
@@ -1942,7 +1950,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61964CJ0006' },
 
   { id:'eu3', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Van Duyn v Home Office (Case 41/74)',
+    title:'Van Duyn v Home Office (Case 41/74)', ecr:'[1974] ECR 1337',
     court:'Court of Justice of the EU',
     facts:"A Dutch national was refused entry to the UK to work for the Church of Scientology. She sought to rely on a directive on the free movement of workers.",
     judgment:"The Court held that a directive could be directly effective and relied upon by an individual against the State.",
@@ -1950,7 +1958,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61974CJ0041' },
 
   { id:'eu4', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Pubblico Ministero v Ratti (Case 148/78)',
+    title:'Pubblico Ministero v Ratti (Case 148/78)', ecr:'[1979] ECR 1629',
     court:'Court of Justice of the EU',
     facts:"An Italian manufacturer labelled its products in accordance with EU directives that Italy had not yet implemented, and was prosecuted under stricter national law.",
     judgment:"The Court held that the State could not rely on its own failure to implement a directive, but only once the implementation deadline had passed.",
@@ -1958,7 +1966,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61978CJ0148' },
 
   { id:'eu5', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Marshall v Southampton AHA (Case 152/84)',
+    title:'Marshall v Southampton AHA (Case 152/84)', ecr:'[1986] ECR 723',
     court:'Court of Justice of the EU',
     facts:"A woman was compelled to retire at 60 while men retired at 65. She relied on the Equal Treatment Directive against her employer, a health authority.",
     judgment:"The Court held the directive could be relied on against the State as employer, but that directives have no horizontal direct effect against private parties.",
@@ -1966,7 +1974,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61984CJ0152' },
 
   { id:'eu6', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Foster v British Gas (Case C-188/89)',
+    title:'Foster v British Gas (Case C-188/89)', ecr:'[1990] ECR I-3313',
     court:'Court of Justice of the EU',
     facts:"Women employees of British Gas, then a nationalised body, sought to rely on the Equal Treatment Directive over discriminatory retirement ages.",
     judgment:"The Court held a directive may be invoked against a body, whatever its legal form, responsible for a public service under State control with special powers.",
@@ -1974,7 +1982,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61989CJ0188' },
 
   { id:'eu7', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Von Colson v Land Nordrhein-Westfalen (Case 14/83)',
+    title:'Von Colson v Land Nordrhein-Westfalen (Case 14/83)', ecr:'[1984] ECR 1891',
     court:'Court of Justice of the EU',
     facts:"Two women were denied jobs in a German prison in breach of the Equal Treatment Directive, but national law offered only token compensation.",
     judgment:"The Court held national courts must interpret national law, so far as possible, in light of the wording and purpose of the directive.",
@@ -1982,7 +1990,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61983CJ0014' },
 
   { id:'eu8', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Marleasing (Case C-106/89)',
+    title:'Marleasing (Case C-106/89)', ecr:'[1990] ECR I-4135',
     court:'Court of Justice of the EU',
     facts:"A Spanish company sought to have another declared void on a ground not permitted by an unimplemented EU directive. The question was whether pre-existing national law had to be read consistently with it.",
     judgment:"The Court held national law, whether adopted before or after the directive, must be interpreted as far as possible in light of the directive.",
@@ -1990,7 +1998,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61989CJ0106' },
 
   { id:'eu9', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Francovich v Italy (Joined Cases C-6/90 and C-9/90)',
+    title:'Francovich v Italy (Joined Cases C-6/90 and C-9/90)', ecr:'[1991] ECR I-5357',
     court:'Court of Justice of the EU',
     facts:"Italian workers lost unpaid wages when their employers became insolvent. Italy had failed to implement a directive protecting employees on insolvency.",
     judgment:"The Court held a Member State may be liable in damages to individuals for loss caused by its failure to implement a directive.",
@@ -1998,7 +2006,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61990CJ0006' },
 
   { id:'eu10', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Brasserie du Pêcheur / Factortame III (Joined Cases C-46/93 and C-48/93)',
+    title:'Brasserie du Pêcheur / Factortame III (Joined Cases C-46/93 and C-48/93)', ecr:'[1996] ECR I-1029',
     court:'Court of Justice of the EU',
     facts:"Claimants sought damages from France and the UK for losses caused by national laws that breached Treaty free-movement provisions.",
     judgment:"The Court set out the conditions for State liability for breaches of EU law, including breaches by the national legislature.",
@@ -2006,7 +2014,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61993CJ0046' },
 
   { id:'eu11', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Defrenne v Sabena (No 2) (Case 43/75)',
+    title:'Defrenne v Sabena (No 2) (Case 43/75)', ecr:'[1976] ECR 455',
     court:'Court of Justice of the EU',
     facts:"A Belgian air hostess was paid less than male colleagues doing the same work and relied on the Treaty principle of equal pay against her private employer.",
     judgment:"The Court held the equal pay provision was directly effective horizontally, against private employers.",
@@ -2014,7 +2022,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61975CJ0043' },
 
   { id:'eu12', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Simmenthal (Case 106/77)',
+    title:'Simmenthal (Case 106/77)', ecr:'[1978] ECR 629',
     court:'Court of Justice of the EU',
     facts:"An Italian court faced a national law conflicting with directly effective EU law, but national rules reserved the power to set aside statutes to the constitutional court.",
     judgment:"The Court held any national court must immediately apply EU law and set aside conflicting national law without waiting for it to be removed.",
@@ -2022,7 +2030,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61977CJ0106' },
 
   { id:'eu13', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Internationale Handelsgesellschaft (Case 11/70)',
+    title:'Internationale Handelsgesellschaft (Case 11/70)', ecr:'[1970] ECR 1125',
     court:'Court of Justice of the EU',
     facts:"A German court doubted whether an EU regulation requiring a deposit system was compatible with fundamental rights protected by the German constitution.",
     judgment:"The Court held EU law prevails even over national constitutional rights, but fundamental rights are protected as general principles of EU law.",
@@ -2030,7 +2038,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61970CJ0011' },
 
   { id:'eu14', type:'curated', cat:'case-law', area:'EU Law',
-    title:'CILFIT (Case 283/81)',
+    title:'CILFIT (Case 283/81)', ecr:'[1982] ECR 3415',
     court:'Court of Justice of the EU',
     facts:"A dispute before an Italian final court of appeal raised a question of EU law, and the court considered whether it was obliged to refer the question to the Court.",
     judgment:"The Court clarified when a final court must refer a question of EU law for a preliminary ruling.",
@@ -2038,7 +2046,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61981CJ0283' },
 
   { id:'eu15', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Foto-Frost (Case 314/85)',
+    title:'Foto-Frost (Case 314/85)', ecr:'[1987] ECR 4199',
     court:'Court of Justice of the EU',
     facts:"A German court doubted the validity of a Commission decision on customs duties and asked whether it could itself declare the EU act invalid.",
     judgment:"The Court held that national courts have no power to declare acts of the EU institutions invalid.",
@@ -2046,7 +2054,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61985CJ0314' },
 
   { id:'eu16', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Procureur du Roi v Dassonville (Case 8/74)',
+    title:'Procureur du Roi v Dassonville (Case 8/74)', ecr:'[1974] ECR 837',
     court:'Court of Justice of the EU',
     facts:"Belgian law required imported Scotch whisky to carry a certificate of origin, which a parallel importer could not realistically obtain.",
     judgment:"The Court held the requirement was a measure having equivalent effect to a quantitative restriction.",
@@ -2054,7 +2062,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61974CJ0008' },
 
   { id:'eu17', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Cassis de Dijon (Case 120/78)',
+    title:'Cassis de Dijon (Case 120/78)', ecr:'[1979] ECR 649',
     court:'Court of Justice of the EU',
     facts:"Germany refused to allow the sale of a French blackcurrant liqueur because its alcohol content fell below the German minimum for fruit liqueurs.",
     judgment:"The Court held the minimum-alcohol rule was an unjustified measure having equivalent effect.",
@@ -2062,7 +2070,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61978CJ0120' },
 
   { id:'eu18', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Keck and Mithouard (Joined Cases C-267/91 and C-268/91)',
+    title:'Keck and Mithouard (Joined Cases C-267/91 and C-268/91)', ecr:'[1993] ECR I-6097',
     court:'Court of Justice of the EU',
     facts:"Two traders were prosecuted under French law prohibiting resale at a loss and argued the rule restricted the free movement of goods.",
     judgment:"The Court held that certain 'selling arrangements' fall outside the Treaty prohibition.",
@@ -2070,7 +2078,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61991CJ0267' },
 
   { id:'eu19', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Commission v Ireland (Buy Irish) (Case 249/81)',
+    title:'Commission v Ireland (Buy Irish) (Case 249/81)', ecr:'[1982] ECR 4005',
     court:'Court of Justice of the EU',
     facts:"An Irish government-backed campaign encouraged consumers to buy Irish goods in preference to imports.",
     judgment:"The Court held the campaign was a measure having equivalent effect attributable to the State.",
@@ -2078,7 +2086,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61981CJ0249' },
 
   { id:'eu20', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Commission v Italy (Art Treasures) (Case 7/68)',
+    title:'Commission v Italy (Art Treasures) (Case 7/68)', ecr:'[1968] ECR 423',
     court:'Court of Justice of the EU',
     facts:"Italy levied a tax on the export of artistic and historical articles and argued that they were not ordinary 'goods'.",
     judgment:"The Court held that such articles are goods within the meaning of the Treaty and the tax was an unlawful customs charge.",
@@ -2086,7 +2094,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61968CJ0007' },
 
   { id:'eu21', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Reyners v Belgium (Case 2/74)',
+    title:'Reyners v Belgium (Case 2/74)', ecr:'[1974] ECR 631',
     court:'Court of Justice of the EU',
     facts:"A Dutch national qualified in Belgian law was refused admission to the Belgian Bar solely because of his nationality.",
     judgment:"The Court held the freedom of establishment provision was directly effective.",
@@ -2094,7 +2102,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61974CJ0002' },
 
   { id:'eu22', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Van Binsbergen (Case 33/74)',
+    title:'Van Binsbergen (Case 33/74)', ecr:'[1974] ECR 1299',
     court:'Court of Justice of the EU',
     facts:"A Dutch legal representative was barred from continuing to act in proceedings because he had moved his residence to another Member State.",
     judgment:"The Court held the freedom to provide services provision was directly effective and the residence requirement unlawful.",
@@ -2102,7 +2110,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61974CJ0033' },
 
   { id:'eu23', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Gebhard (Case C-55/94)',
+    title:'Gebhard (Case C-55/94)', ecr:'[1995] ECR I-4165',
     court:'Court of Justice of the EU',
     facts:"A German lawyer practising in Italy under his home title was disciplined for using the title 'avvocato'. The question was whether his activity was establishment or services.",
     judgment:"The Court distinguished establishment from services and set out conditions for justifying restrictions.",
@@ -2110,7 +2118,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61994CJ0055' },
 
   { id:'eu24', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Bosman (Case C-415/93)',
+    title:'Bosman (Case C-415/93)', ecr:'[1995] ECR I-4921',
     court:'Court of Justice of the EU',
     facts:"A footballer was prevented from moving to a French club by transfer-fee rules and by nationality quotas operating in football.",
     judgment:"The Court held the transfer rules and nationality clauses breached the free movement of workers.",
@@ -2118,7 +2126,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61993CJ0415' },
 
   { id:'eu25', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Martínez Sala (Case C-85/96)',
+    title:'Martínez Sala (Case C-85/96)', ecr:'[1998] ECR I-2691',
     court:'Court of Justice of the EU',
     facts:"A Spanish national lawfully resident in Germany was refused a child-raising allowance because she did not hold a formal residence permit.",
     judgment:"The Court held she could rely on Union citizenship to claim equal treatment.",
@@ -2126,7 +2134,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61996CJ0085' },
 
   { id:'eu26', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Grzelczyk (Case C-184/99)',
+    title:'Grzelczyk (Case C-184/99)', ecr:'[2001] ECR I-6193',
     court:'Court of Justice of the EU',
     facts:"A French student in Belgium was refused a minimum subsistence allowance in his final year solely because he was not a Belgian national.",
     judgment:"The Court held the refusal was discrimination contrary to the rights attaching to Union citizenship.",
@@ -2134,7 +2142,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61999CJ0184' },
 
   { id:'eu27', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Baumbast (Case C-413/99)',
+    title:'Baumbast (Case C-413/99)', ecr:'[2002] ECR I-7091',
     court:'Court of Justice of the EU',
     facts:"A German national and his family faced refusal of continued residence in the UK after he ceased to be a worker there.",
     judgment:"The Court held a Union citizen retains a directly effective right of residence under the Treaty, subject to proportionate limitations.",
@@ -2142,7 +2150,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:61999CJ0413' },
 
   { id:'eu28', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Zhu and Chen (Case C-200/02)',
+    title:'Zhu and Chen (Case C-200/02)', ecr:'[2004] ECR I-9925',
     court:'Court of Justice of the EU',
     facts:"A baby with Irish nationality, born to Chinese parents, lived in the UK. The authorities refused her mother a right of residence.",
     judgment:"The Court held the child had a right of residence and that her primary carer derived a right to reside with her.",
@@ -2150,7 +2158,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62002CJ0200' },
 
   { id:'eu29', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Ruiz Zambrano (Case C-34/09)',
+    title:'Ruiz Zambrano (Case C-34/09)', ecr:'[2011] ECR I-1177',
     court:'Court of Justice of the EU',
     facts:"A Colombian father of Belgian-national children was refused a residence and work permit in Belgium, although the children had never moved within the EU.",
     judgment:"The Court held EU law precluded measures depriving Union citizen children of the genuine enjoyment of their rights.",
@@ -2158,7 +2166,7 @@ const CURATED = [
     src:'EUR-Lex', link:'https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62009CJ0034' },
 
   { id:'eu30', type:'curated', cat:'case-law', area:'EU Law',
-    title:'Mangold (Case C-144/04)',
+    title:'Mangold (Case C-144/04)', ecr:'[2005] ECR I-9981',
     court:'Court of Justice of the EU',
     facts:"German law allowed unrestricted fixed-term contracts for older workers. An employee challenged this as age discrimination before the relevant directive's implementation deadline.",
     judgment:"The Court held that non-discrimination on grounds of age is a general principle of EU law which national courts must give effect to.",
@@ -4145,8 +4153,8 @@ async function fetchNewsFeed(feed){
   const atom=nodes.length===0;
   if(atom) nodes=[...doc.querySelectorAll('entry')];
 
-  return nodes.slice(0,12).map(n=>{
-    const title=strip(n.querySelector('title')?.textContent||'')||'Untitled';
+  return nodes.slice(0, feed.gnews?25:12).map(n=>{
+    let title=strip(n.querySelector('title')?.textContent||'')||'Untitled';
     let link;
     if(atom){
       const le=n.querySelector('link[rel="alternate"]')||n.querySelector('link');
@@ -4160,13 +4168,30 @@ async function fetchNewsFeed(feed){
       : rssDesc(n);
     const date=(n.querySelector('pubDate')||n.querySelector('published')||n.querySelector('updated'))
       ?.textContent?.trim()||'';
+    let srcName=feed.src;
+    if(feed.gnews){
+      // Google News keyword search: each item names its ACTUAL publisher in
+      // <source>, so cite that (not "Google"); strip the " - Publisher" suffix
+      // Google appends to titles; and the item link redirects to the real article.
+      // Keep only genuinely UK legal items.
+      const srcEl=n.getElementsByTagName('source')[0];
+      const pub=srcEl?strip(srcEl.textContent||''):'';
+      if(pub){
+        srcName=pub;
+        if(title.endsWith(' - '+pub)) title=title.slice(0,-(pub.length+3)).trim();
+      } else {
+        const i=title.lastIndexOf(' - ');
+        if(i>0){ srcName=title.slice(i+3).trim(); title=title.slice(0,i).trim(); }
+      }
+      if(!isUKLegalNews(title,desc,srcName)) return null;
+    }
     // Read-time from the FULL story text (RSS usually carries the whole piece),
     // not the truncated preview — so the pill reflects the actual article length.
     const words=(desc.match(/\S+/g)||[]).length;
     return{
       id:uid('news',link||title),type:'live',cat:'legal-news',
-      src:feed.src,tier:feed.tier||'blog',link:safeUrl(link),date,title,
-      body:trunc(desc,360)||'Tap to read the full story on '+safe(feed.src)+'.',
+      src:srcName,tier:feed.tier||'blog',link:safeUrl(link),date,title,
+      body:trunc(desc,360)||'Tap to read the full story on '+safe(srcName)+'.',
       readMin: words?Math.max(1,Math.round(words/200)):0
     };
   }).filter(Boolean);
@@ -4220,6 +4245,17 @@ function isUKLegalArticle(title='', abstract='', journal=''){
   const hasUK=_UK.some(s=>hay.includes(s));
   // Accept if UK signal present, OR if clearly legal + no disqualifying content
   return hasUK||(legalJournal&&!_US.some(s=>hay.includes(s)));
+}
+
+// Stricter gate for open keyword-search NEWS (Google News): keep ONLY items that
+// are BOTH about law/justice AND clearly UK — blocking US/foreign content — so the
+// keyword feed stays solely UK legal news.
+function isUKLegalNews(title='', desc='', source=''){
+  const hay=(title+' '+desc+' '+source).toLowerCase();
+  if(_US.some(s=>hay.includes(s))) return false;                                    // block US-jurisdiction stories
+  const legal=/\b(court|law|legal|judge|barrister|solicitor|k[cq]|ruling|verdict|sentenc|trial|lawsuit|appeal|tribunal|prosecut|judicial|inquest|litigation|claimant|defendant|high court|crown court)\b/.test(hay);
+  const uk=_UK.some(s=>hay.includes(s)) || /\b(uk|britain|british|england|english|wales|welsh|scotland|scottish|northern ireland|westminster|whitehall)\b/.test(hay);
+  return legal && uk;
 }
 
 // Shared mapper for OpenAlex result items → card object
@@ -7723,6 +7759,16 @@ function buildOSCOLA(card){
   // e.g. "Donoghue v Stevenson [1932] AC 562". For live cases without a
   // citation in the title, append the neutral citation/court if we have it.
   if(cat==='case-law'){
+    // EU (CJEU) cases carry an `ecr` reference and cite in EU form:
+    // "<case no> <parties> [year] ECR page", e.g.
+    // "C-334/92 Wagner Miret v Fondo de Garantía Salarial [1993] ECR I-6911".
+    // The card title/name is unchanged; we just reorder it for the citation.
+    if(card.ecr){
+      const m=title.match(/^(.*)\s*\(([^)]+)\)\s*$/);   // "<parties> (Case …)" — last bracket
+      const parties=(m?m[1]:title).trim();
+      const num=(m?m[2]:'').replace(/^Case\s+/i,'').trim();   // "Case 26/62"→"26/62"; keep "Joined Cases …"
+      return `${num?num+' ':''}${parties} ${card.ecr}`.replace(/\s+/g,' ').trim();
+    }
     // If title already contains a [year] or (year) citation, use it as-is.
     if(/\[\d{4}\]|\(\d{4}\)/.test(title)) return title;
     // Live case: append the court citation (abbreviation + number) if we have one.
