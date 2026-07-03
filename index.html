@@ -8430,6 +8430,9 @@ function startCardQuiz(card, cardEl){
   const rep=quickQuizRepeat.get(card.id);
   const type=rep?rep.type:qmPickType(card);          // wrong before → same question; else a fresh random type
   const subset=rep?rep.subset:undefined;
+  // Fresh question → re-roll the cached decoys; a wrong-answer repeat keeps them
+  // so the SAME question (same options) comes back until answered correctly.
+  if(!rep) qmOptsForRound.delete(card.id);
   // 5th arg is the standalone result callback (practice only — no goal/score/loop).
   const qEl=buildQuizModeCard(card, 0, type, subset, (correct)=>{
     if(correct){
@@ -8688,11 +8691,12 @@ function qmPickType(card){
     types.push(card.guide==='test'?'sgtest':'sgmatch');
   } else if(card.cat==='legal-term'){
     types.push('name');                                            // recall the term name
-    // "Pick the definition" needs ≥2 OTHER same-area terms (with a definition) as
-    // wrong options; only offer it when that distractor pool exists.
+    // "Pick the definition" needs ≥2 OTHER terms (with a definition) as decoys.
+    // Same-area is preferred but terms are sparse per area, so offer it whenever a
+    // pool exists at all — the branch falls back from same-area to any area.
     const pool=(typeof CURATED!=='undefined'?CURATED:[])
-      .filter(c=>c&&c.cat==='legal-term'&&c.id!==card.id&&c.body&&c.area===card.area);
-    if(card.body && card.area && pool.length>=2) types.push('pickdef');
+      .filter(c=>c&&c.cat==='legal-term'&&c.id!==card.id&&c.body);
+    if(card.body && pool.length>=2) types.push('pickdef');
   } else {
     types.push('name');
   }
@@ -8929,7 +8933,7 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
   // per letter), so the term can't be read straight out of its definition.
   if(type==='pickdef'){
     const pool=(typeof CURATED!=='undefined'?CURATED:[])
-      .filter(c=>c&&c.cat==='legal-term'&&c.id!==card.id&&c.body&&c.area===card.area);
+      .filter(c=>c&&c.cat==='legal-term'&&c.id!==card.id&&c.body);
     // Distinctive words of the TERM name (skip grammatical connectors).
     const TERM_STOP=new Set(['of','the','a','an','and','or','to','in','on','by','for','with','vs','v','de']);
     const maskTokens=title=>{
@@ -8946,11 +8950,16 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
       const esc=n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
       return new RegExp(`\\b(${esc})\\b`,'i').test(c.body||'');
     });
-    // Decoys must MATCH the correct option on whether the definition carries an
-    // asterisk, so masking presence/absence can never be used as a context clue.
+    // Decoys should MATCH the correct option on whether the definition carries an
+    // asterisk (so masking presence/absence isn't a tell) AND be same-area — but
+    // terms are sparse per area, so progressively relax: keep the mask match first,
+    // then drop the area requirement, so the question still appears.
     const wantMask=defHasTerm(card);
-    const matched=pool.filter(c=>defHasTerm(c)===wantMask);
-    if(!card.body || !card.area || matched.length<2){
+    let matched=pool.filter(c=>c.area===card.area && defHasTerm(c)===wantMask);   // same area + same mask
+    if(matched.length<2) matched=pool.filter(c=>defHasTerm(c)===wantMask);        // any area, keep mask match
+    if(matched.length<2) matched=pool.filter(c=>c.area===card.area);              // same area, any mask
+    if(matched.length<2) matched=pool;                                           // any term with a definition
+    if(!card.body || matched.length<2){
       if(!standalone) qmTypeForRound.set(card.id,'name');
       return buildQuizModeCard(card,i,'name',subset,standalone);
     }
