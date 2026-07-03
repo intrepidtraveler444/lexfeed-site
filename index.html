@@ -1074,7 +1074,6 @@ html{scroll-padding-top:118px}
   <div class="disc-box">
     <div class="disc-head">
       <div class="disc-title" id="discModalTitle">⚠️ Please read — how to use LexFeed</div>
-      <button class="disc-close" id="discClose" aria-label="Close">✕</button>
     </div>
     <div class="disc-body">
       <p><b>LexFeed is a law student created study and revision aid, not legal advice</b> and not a substitute for primary sources. Nothing here should be relied on for any legal decision.</p>
@@ -1082,7 +1081,7 @@ html{scroll-padding-top:118px}
       <p>For coursework, assessments or SQE preparation:</p>
       <ul>
         <li><b>Read the full judgment on BAILII</b> for a case's actual facts, reasoning and <i>ratio</i> — don't cite or rely on our brief.</li>
-        <li><b>Read the full LexisNexis definition</b> (or your set textbook) for legal terms, rather than the one-line reference here.</li>
+        <li><b>Read the full LexisNexis definition</b> (or your assigned textbook) for legal terms, rather than the one-line reference here.</li>
         <li><b>Read the statute on legislation.gov.uk</b> for the current, authoritative wording.</li>
         <li><b>Read the full news story at its source</b> for the complete, up-to-date report — the card is only a short preview.</li>
         <li><b>Read the full article at its source</b> for the author's complete argument and analysis.</li>
@@ -9882,11 +9881,10 @@ document.getElementById('toastBtn').addEventListener('click',()=>{
   if(bOk) bOk.addEventListener('click',dismissBanner);
   const foot=document.getElementById('discFootLink');
   if(foot) foot.addEventListener('click',openModal);
-  const close=document.getElementById('discClose');
   const ok=document.getElementById('discModalOk');
-  if(close) close.addEventListener('click',closeModal);
+  // The full disclaimer can ONLY be dismissed via "I understand" — no close
+  // button and no click-outside-to-close, so it must be read/acknowledged.
   if(ok) ok.addEventListener('click',()=>{ closeModal(); dismissBanner(); });
-  modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
 })();
 
 // ══════════════════════════════════════════════
