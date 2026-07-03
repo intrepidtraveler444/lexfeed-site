@@ -393,6 +393,14 @@ header{
 .card[data-c="journal-article"] .rbtn:hover{background:#521d2b}
 .card[data-c="legal-term"] .rbtn{background:var(--slate)}
 .card[data-c="legal-term"] .rbtn:hover{background:#424e5a}
+/* Primary-source nudge: LexFeed summaries are study aids — steer readers to the source. */
+.src-nudge{margin-top:12px;font-size:11px;line-height:1.45;color:var(--slate);
+  background:#f6f8fc;border-left:3px solid var(--gold);border-radius:6px;padding:7px 10px}
+/* Saved-view reminder — reinforces that saves are revision briefs, not the source. */
+.saved-note{grid-column:1/-1;margin:0 0 4px;font-size:12px;line-height:1.5;color:var(--slate);
+  background:#f6f8fc;border:1px solid rgba(26,39,68,.08);border-left:3px solid var(--gold);
+  border-radius:9px;padding:10px 13px}
+.saved-note b{color:var(--navy,#1a2744)}
 
 /* ── Interaction bar ────────────────────────── */
 .act-bar{
@@ -913,6 +921,12 @@ html{scroll-padding-top:118px}
   <div class="spin-wrap" id="spin"><div class="spinner"></div><div class="spin-label" id="spinLabel">Loading…</div></div>
 </div>
 
+<footer class="site-foot">
+  <b>LexFeed — a UK law study aid, not legal advice.</b><br>
+  Summaries are simplified and may be incomplete or out of date — always verify against the primary source (the full judgment, statute or official definition) before relying on it.
+  <button class="disc-link" id="discFootLink">Read the full disclaimer</button>
+</footer>
+
 <button id="btt" title="Back to top">↑</button>
 
 <div id="toast">
@@ -1003,6 +1017,38 @@ html{scroll-padding-top:118px}
 .case-topic{font-size:.7rem;font-weight:600;background:#eef1fb;color:#3b5bdb;border-radius:999px;padding:2px 9px}
 .xref{color:var(--accent,#3b5bdb);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
 .xref:hover{text-decoration-style:solid}
+/* ── Disclaimer: banner, footer link, modal ── */
+.disc-banner{position:fixed;left:50%;transform:translateX(-50%);bottom:14px;z-index:1200;
+  width:min(94vw,720px);display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  background:var(--navy,#1a2744);color:#fff;border-radius:12px;padding:12px 14px;
+  box-shadow:0 14px 40px rgba(0,0,0,.32);font-size:12.5px;line-height:1.45}
+.disc-banner span{flex:1;min-width:180px}
+.disc-b-link{background:none;border:none;color:#f5c451;font-weight:700;font-size:12.5px;cursor:pointer;
+  text-decoration:underline;padding:0}
+.disc-b-ok{background:#f5c451;color:#3a2a00;border:none;border-radius:8px;padding:7px 14px;
+  font-weight:800;font-size:12.5px;cursor:pointer;white-space:nowrap}
+.site-foot{max-width:900px;margin:8px auto 40px;padding:16px 18px;text-align:center;
+  color:var(--slate,#5a6472);font-size:11.5px;line-height:1.6}
+.site-foot b{color:var(--navy,#1a2744)}
+.site-foot .disc-link{background:none;border:none;color:var(--accent,#3b5bdb);font-weight:700;
+  font-size:11.5px;cursor:pointer;text-decoration:underline;padding:0}
+.disc-modal{display:none;position:fixed;inset:0;z-index:1300;background:rgba(15,23,42,.55);
+  align-items:center;justify-content:center;padding:16px}
+.disc-modal.show{display:flex}
+.disc-box{background:#fff;border-radius:16px;width:min(94vw,540px);max-height:88vh;overflow:auto;
+  padding:22px;box-shadow:0 22px 60px rgba(0,0,0,.4)}
+.disc-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.disc-title{font-family:Georgia,serif;font-weight:800;font-size:19px;color:var(--navy,#1a2744)}
+.disc-close{background:#eef2fb;border:none;border-radius:8px;width:30px;height:30px;font-size:15px;
+  cursor:pointer;color:var(--navy,#1a2744)}
+.disc-body{font-size:13.5px;line-height:1.65;color:#334155}
+.disc-body p{margin:0 0 11px}
+.disc-body ul{margin:0 0 11px;padding-left:18px}
+.disc-body li{margin-bottom:6px}
+.disc-body b{color:var(--navy,#1a2744)}
+.disc-foot{display:flex;justify-content:flex-end;margin-top:14px}
+.disc-ok{background:var(--navy,#1a2744);color:#fff;border:none;border-radius:9px;padding:10px 18px;
+  font-weight:800;font-size:13px;cursor:pointer}
 </style>
 
 <div id="acctModal" class="ach-modal">
@@ -1012,6 +1058,36 @@ html{scroll-padding-top:118px}
       <button class="ach-close" id="acctClose" aria-label="Close">✕</button>
     </div>
     <div id="acctBody"></div>
+  </div>
+</div>
+
+<!-- First-visit disclaimer banner -->
+<div id="discBanner" class="disc-banner" hidden>
+  <span>⚠️ LexFeed is a <b>study aid — not legal advice</b>. Summaries are simplified and may be incomplete or out of date. Always check the primary source before relying on anything here.</span>
+  <button id="discBannerMore" class="disc-b-link">Read more</button>
+  <button id="discBannerOk" class="disc-b-ok">Got it</button>
+</div>
+
+<!-- Full disclaimer modal (also reachable from the footer) -->
+<div id="discModal" class="disc-modal" role="dialog" aria-modal="true" aria-labelledby="discModalTitle">
+  <div class="disc-box">
+    <div class="disc-head">
+      <div class="disc-title" id="discModalTitle">⚠️ Please read — how to use LexFeed</div>
+      <button class="disc-close" id="discClose" aria-label="Close">✕</button>
+    </div>
+    <div class="disc-body">
+      <p><b>LexFeed is a study and revision aid, not legal advice</b> and not a substitute for primary sources. Nothing here should be relied on for any legal decision.</p>
+      <p>Everything on a card — case briefs, statute extracts, definitions and study guides — is a <b>simplified summary</b>. Summaries can omit important detail, oversimplify, or fall out of date as the law changes.</p>
+      <p>So, especially for coursework, assessments or SQE preparation:</p>
+      <ul>
+        <li><b>Read the full judgment on BAILII</b> for a case's actual facts, reasoning and <i>ratio</i> — don't cite or rely on our brief.</li>
+        <li><b>Read the full LexisNexis definition</b> (or your set textbook) for legal terms, rather than the one-line reference here.</li>
+        <li><b>Read the statute on legislation.gov.uk</b> for the current, authoritative wording.</li>
+      </ul>
+      <p>Use LexFeed to discover, revise and test yourself — then go to the source to learn it properly. Tap any card's link to open the original; opening full sources even earns you progress. 📖</p>
+      <p style="color:#5a6472;font-size:12.5px">LexFeed is an independent educational project and is not affiliated with BAILII, LexisNexis, legislation.gov.uk or any court.</p>
+    </div>
+    <div class="disc-foot"><button class="disc-ok" id="discModalOk">I understand</button></div>
   </div>
 </div>
 
@@ -5147,6 +5223,22 @@ function caseTitleDisplay(card){
   return t;
 }
 
+// Context-aware label for a card's primary-source link. LexFeed content is a
+// study aid, so the call-to-action always names the authoritative source to
+// encourage reading it in full rather than relying on the summary.
+function readMoreLabel(card){
+  switch(card.cat){
+    case 'case-law':        return 'Read the full judgment →';
+    case 'legal-term':      return (card.link&&card.link.includes('lexisnexis'))
+                                    ?'Full definition on LexisNexis →':'Read the full definition →';
+    case 'statute':         return (card.link&&card.link.includes('legislation.gov.uk'))
+                                    ?'Read on legislation.gov.uk →':'Read the full text →';
+    case 'journal-article': return 'Read the full article →';
+    case 'legal-news':      return 'Read the full story →';
+    default:                return 'Read More →';
+  }
+}
+
 function buildCard(card,delayMs=0){
   const el=document.createElement('div');
   el.className='card';
@@ -5270,7 +5362,16 @@ function buildCard(card,delayMs=0){
     :`<div class="foot-left foot-src">${safe(srcTxt)}</div>`;
   // Study guides carry a second pill (the guide sub-type) and have no read-more link.
   const extraChip=card.cat==='study-guide'?`<span class="sg-type">${safe(SG_TYPES[card.guide]||'Study Guide')}</span>`:'';
-  const readMore=card.link?`<a class="rbtn" href="${safeUrl(card.link)}" target="_blank" rel="noopener noreferrer">Read More →</a>`:'';
+  const readMore=card.link?`<a class="rbtn" href="${safeUrl(card.link)}" target="_blank" rel="noopener noreferrer">${readMoreLabel(card)}</a>`:'';
+  // On cases and terms, remind the reader the card is a condensed study aid and
+  // point them at the authoritative source (the judgment / LexisNexis entry).
+  const srcNudge=(card.link&&card.cat==='case-law')
+      ?`<div class="src-nudge">✦ This is a condensed study brief — read the full judgment for the court’s exact words and reasoning.</div>`
+    :(card.link&&card.cat==='legal-term'&&card.link.includes('lexisnexis'))
+      ?`<div class="src-nudge">✦ A quick reference only — read the full LexisNexis definition before relying on it in your work.</div>`
+    :(card.link&&card.cat==='statute'&&card.link.includes('legislation.gov.uk'))
+      ?`<div class="src-nudge">✦ A simplified extract — read the section on legislation.gov.uk for the current, authoritative wording.</div>`
+    :'';
 
   el.innerHTML=`
     <div class="card-top">
@@ -5283,6 +5384,7 @@ function buildCard(card,delayMs=0){
     </div>
     <div class="card-title">${safe(caseTitleDisplay(card))}</div>
     ${inner}
+    ${srcNudge}
     <div class="card-foot">
       ${footLeft}
       ${readMore}
@@ -8412,6 +8514,10 @@ function renderSavedView(){
     showEmptyState('🔖 No saved posts yet.<br><span style="font-size:12px;color:#64748b">Tap “Save” on any card to keep it here — your saves persist across visits.</span>');
     return;
   }
+  const note=document.createElement('div');
+  note.className='saved-note';
+  note.innerHTML='📌 These are your revision briefs — a <b>simplified summary</b>, not the law itself. Before you cite or rely on any of them, open the full judgment, statute or LexisNexis definition from the card’s link.';
+  grid.appendChild(note);
   items.forEach((card,i)=>{
     const el=window.buildCard(card,i*40);
     addQuickQuizPill(card, el);
@@ -9747,6 +9853,30 @@ document.getElementById('toastBtn').addEventListener('click',()=>{
   if(first) first.closest('.card').scrollIntoView({behavior:'smooth',block:'center'});
 });
 
+// ── Disclaimer: first-visit banner + modal ────
+(function(){
+  const banner=document.getElementById('discBanner');
+  const modal=document.getElementById('discModal');
+  const openModal=()=>{ modal.classList.add('show'); };
+  const closeModal=()=>{ modal.classList.remove('show'); };
+  const dismissBanner=()=>{ if(banner) banner.hidden=true; LS.set('discSeen',true); };
+  // Show the banner once, until acknowledged. Logged-out users meet the same
+  // disclaimer as a step in the welcome tour, so the banner targets logged-in
+  // users (who skip the tour) to avoid a double first-run prompt.
+  if(banner && !LS.get('discSeen',false) && AUTH.username) banner.hidden=false;
+  const bMore=document.getElementById('discBannerMore');
+  const bOk=document.getElementById('discBannerOk');
+  if(bMore) bMore.addEventListener('click',()=>{ openModal(); });
+  if(bOk) bOk.addEventListener('click',dismissBanner);
+  const foot=document.getElementById('discFootLink');
+  if(foot) foot.addEventListener('click',openModal);
+  const close=document.getElementById('discClose');
+  const ok=document.getElementById('discModalOk');
+  if(close) close.addEventListener('click',closeModal);
+  if(ok) ok.addEventListener('click',()=>{ closeModal(); dismissBanner(); });
+  modal.addEventListener('click',e=>{ if(e.target===modal) closeModal(); });
+})();
+
 // ══════════════════════════════════════════════
 //  DIRECT BAILII LINKS FROM NEUTRAL CITATIONS
 //  Converts a neutral citation in a case title to
@@ -10445,6 +10575,8 @@ const TOUR_STEPS=[
     body:'Five-option, single-best-answer questions across every FLK area — plus a fresh Question of the Day.' },
   { sel:'.hdr-stat.streak', title:'Build a daily streak', placement:'bottom',
     body:'Your 🔥 streak grows by one each day you complete <b>all</b> of your daily goals — read 50 posts, answer the Question of the Day, and finish Quiz Me by answering <b>every</b> question correctly (through all retry rounds). Quiz Me covers all your saved cards, or 25 once you\'ve saved more than that. Do all three every day to keep the streak alive and unlock achievements 🏆.' },
+  { center:true, emoji:'📖', title:'Go to the source',
+    body:'Every card is a <b>simplified study aid, not legal advice</b> — summaries can be incomplete or out of date. Use LexFeed to discover and revise, then tap <b>Read the full judgment</b> / <b>LexisNexis</b> / <b>legislation.gov.uk</b> to learn it properly from the primary source. Opening full sources even earns you progress.' },
   { center:true, emoji:'🎉', title:'You’re all set!',
     body:'Scroll, tap a tag, save what matters, and test yourself. Welcome aboard — happy learning. 🎓' },
   { center:true, emoji:'💎', title:'Free & Premium',
