@@ -184,6 +184,11 @@ header{
 .fbtn[data-c="study-guide"].on{background:#0d9488}
 /* ── Study Guide cards ── */
 .sg-type{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;background:#ccfbf1;color:#0f766e;border-radius:7px;padding:2px 8px}
+/* "Quick Quiz" pill on saved cards (practice; doesn't affect the daily goal) */
+.qq-pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;background:var(--purple,#7c3aed);color:#fff;border:none;border-radius:7px;padding:3px 9px;cursor:pointer;font-family:inherit;transition:filter .15s}
+.qq-pill:hover{filter:brightness(1.12)}
+.qq-pill:active{transform:translateY(1px)}
+.card.qq-card{border-left-color:var(--purple,#7c3aed)}
 .sg-intro{font-size:13.5px;line-height:1.6;color:#3a4a6b;margin-bottom:11px}
 .sg-steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
 .sg-steps li{font-size:13px;line-height:1.55;color:#3a4a6b}
@@ -268,6 +273,22 @@ header{
 #qmScore .qs.no{color:#f87171}
 #qmScore .qs.streak{color:var(--gold)}
 #qmScore .qs .n{font-size:16px;font-weight:800}
+#qmScore .qm-prog{width:52px;height:6px;border-radius:99px;background:rgba(255,255,255,.22);overflow:hidden;flex-shrink:0}
+#qmScore .qm-prog-bar{display:block;height:100%;width:0;background:#4ade80;border-radius:99px;transition:width .3s ease}
+#qmScore .qm-remain{opacity:.8;font-variant-numeric:tabular-nums}
+/* Quiz Me setup screen (mobile-first) */
+.qm-setup{max-width:440px;margin:8px auto;background:#fff;border:1px solid #e6ebf5;border-radius:16px;padding:18px;box-shadow:0 8px 24px rgba(26,39,68,.08)}
+.qm-setup-h{font-size:20px;font-weight:800;color:var(--navy)}
+.qm-setup-sub{font-size:13px;color:var(--slate);margin:2px 0 14px}
+.qm-setup-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.qm-setup-row>span{font-size:13px;font-weight:700;color:var(--navy);flex-shrink:0}
+.qm-setup-row select{flex:1;min-width:0;border:1.5px solid #d6deec;border-radius:10px;padding:10px;font-size:15px;font-family:inherit;color:var(--navy);background:#fff}
+.qm-seg{display:flex;gap:6px;flex:1;justify-content:flex-end;flex-wrap:wrap}
+.qm-seg button{border:1.5px solid #d6deec;background:#fff;color:var(--slate);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;min-height:40px}
+.qm-seg button.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.qm-setup-count{font-size:12.5px;color:var(--slate);text-align:center;margin:6px 0 12px;font-weight:600}
+.qm-setup-go{width:100%;background:var(--gold);color:var(--navy);border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:800;cursor:pointer;min-height:48px}
+.qm-setup-go:disabled{opacity:.45;cursor:default}
 
 /* "Next review" footnote shown on a card after answering in quiz mode */
 .qm-next{font-size:11px;color:var(--slate);margin-top:4px;font-weight:600}
@@ -904,7 +925,8 @@ html{scroll-padding-top:118px}
   <span class="qs ok">✓ <span class="n" id="qmCorrect">0</span></span>
   <span class="qs no">✗ <span class="n" id="qmWrong">0</span></span>
   <span class="qs streak" id="qmStreakWrap" style="display:none">🔥 <span class="n" id="qmStreak">0</span></span>
-  <span style="opacity:.6" id="qmRemain"></span>
+  <span class="qm-prog"><span class="qm-prog-bar" id="qmProgBar"></span></span>
+  <span class="qm-remain" id="qmRemain"></span>
 </div>
 
 <div id="ach">
@@ -8378,10 +8400,53 @@ function renderSavedView(){
   }
   items.forEach((card,i)=>{
     const el=window.buildCard(card,i*40);
+    addQuickQuizPill(card, el);
     grid.appendChild(el);
   });
   // Honour any active category / live-only filter within the saved set
   (window.applyFilter||applyFilter)();
+}
+
+// ── "Quick Quiz" pill on each quizzable saved card ──
+// Press it to test yourself on JUST that card with a randomised question (the type
+// and its specifics rotate each press). It's practice only: standalone, so it does
+// NOT count toward the daily Quiz Me goal or the mastery loop.
+function addQuickQuizPill(card, cardEl){
+  if(!qmEligible(card)) return;                       // only cases/statutes/terms/study-guides
+  const ctLeft=cardEl.querySelector('.ct-left');
+  if(!ctLeft) return;
+  const pill=document.createElement('button');
+  pill.type='button';
+  pill.className='qq-pill';
+  pill.textContent='🎯 Quick Quiz';
+  pill.title='Test yourself on this card (doesn’t affect your daily goal)';
+  pill.addEventListener('click',e=>{ e.stopPropagation(); startCardQuiz(card, cardEl); });
+  ctLeft.appendChild(pill);
+}
+// card.id → { type, subset } to repeat while the last answer was WRONG. Cleared
+// on a correct answer so the next press serves a fresh (different) question.
+const quickQuizRepeat=new Map();
+function startCardQuiz(card, cardEl){
+  const rep=quickQuizRepeat.get(card.id);
+  const type=rep?rep.type:qmPickType(card);          // wrong before → same question; else a fresh random type
+  const subset=rep?rep.subset:undefined;
+  // 5th arg is the standalone result callback (practice only — no goal/score/loop).
+  const qEl=buildQuizModeCard(card, 0, type, subset, (correct)=>{
+    if(correct){
+      quickQuizRepeat.delete(card.id);               // next press → a different question
+      setTimeout(()=>{                               // let the ✓ register, then revert to the normal card
+        if(!qEl.parentNode) return;
+        const back=window.buildCard(card, 0);
+        addQuickQuizPill(card, back);
+        qEl.replaceWith(back);
+      }, 950);
+    } else {
+      quickQuizRepeat.set(card.id,{type,subset});     // next press → the SAME question until it's right
+    }
+  });
+  qEl.classList.add('qq-card');
+  addQuickQuizPill(card, qEl);                        // keep the pill on the quiz card so pressing it again re-triggers
+  cardEl.replaceWith(qEl);
 }
 
 // Saved cards are removed by clicking their gold "Saved" button, which calls
@@ -8488,6 +8553,10 @@ let qmRoundTotal=0;              // questions in the current round
 let qmRoundDone=0;              // questions answered this round
 let qmRetry=[];                 // {card, sections?} to re-test next round
 let qmTypeForRound=new Map();    // card.id → fixed question type for this loop
+let qmOptsForRound=new Map();    // card.id → cached decoy cards, so retries keep the
+                                 // SAME options (reshuffled order), only reordered
+// Quiz scope chosen on the setup screen: area / card type / focus / length.
+let qmScope={ area:'', cat:'', focus:'all', length:25 };
 
 // Cards eligible for quiz mode (exclude journal articles, news, quiz, flair)
 function qmEligible(card){
@@ -8549,9 +8618,11 @@ function updateQmScore(){
   const sw=document.getElementById('qmStreakWrap');
   if(qmStreak>=2){ sw.style.display=''; document.getElementById('qmStreak').textContent=qmStreak; }
   else sw.style.display='none';
-  const rem=Math.max(0,qmRoundTotal-qmRoundDone);
+  const total=qmRoundTotal||0, done=Math.min(qmRoundDone,total);
+  const bar=document.getElementById('qmProgBar');
+  if(bar) bar.style.width=(total?Math.round(done/total*100):0)+'%';
   document.getElementById('qmRemain').textContent=
-    `· Round ${qmRound}`+(rem>0?` · ${rem} to go`:' · round complete 🎉');
+    total?(`${done}/${total}`+(qmRound>1?` · R${qmRound}`:'')+(done>=total?' 🎉':'')):'';
 }
 
 // Redact every occurrence of `term` within the readable text areas of a quiz
@@ -8631,7 +8702,9 @@ function qmPickType(card){
 // Build a quiz-mode card.
 //   forcedType → keep the same question type across retry rounds
 //   subset     → (statutes) only re-test these specific sections
-function buildQuizModeCard(card,i,forcedType,subset){
+//   standalone → per-card "Quick Quiz" pill in Saved: practice only, so it must
+//                NOT touch the mastery loop, daily goal, score or achievements.
+function buildQuizModeCard(card,i,forcedType,subset,standalone){
   const el=window.buildCard(card,i*40);
   el.classList.add('qm-card');
 
@@ -8646,16 +8719,20 @@ function buildQuizModeCard(card,i,forcedType,subset){
 
   // Lock the question type per card for the whole mastery loop, so a card that
   // was a "match" stays a "match" on retry (re-testing only the missed parts).
-  let type=forcedType||qmTypeForRound.get(card.id);
-  if(!type){ type=qmPickType(card); qmTypeForRound.set(card.id,type); }
+  // Standalone Quick Quiz never reads/writes that per-round lock.
+  let type=forcedType||(standalone?null:qmTypeForRound.get(card.id));
+  if(!type){ type=qmPickType(card); if(!standalone) qmTypeForRound.set(card.id,type); }
   // A 1-section "match" is impossible → downgrade to fill-in-the-blank
   if(type==='match' && subset && subset.length<2) type='keysection';
   const isSelf=type!=='name';
 
   // Mastery-loop reporting. `wrongSections` (optional) lists the sections the
   // user got wrong on a key-section/match card, so the retry round can re-test
-  // ONLY those. A whole-card miss (name-it) re-tests the whole card.
-  const finishQuestion=(allRight,wrongSections)=>{
+  // ONLY those. A whole-card miss (name-it) re-tests the whole card. In standalone
+  // Quick Quiz these are no-ops (practice doesn't affect the loop/goal/score).
+  const finishQuestion = standalone
+    ? (allRight)=>{ if(typeof standalone==='function') standalone(!!allRight); }   // Quick Quiz: just report correct/wrong
+    : (allRight,wrongSections)=>{
     LS.set('qcount',LS.get('qcount',0)+1);
     if(!allRight){
       qmRetry.push(wrongSections&&wrongSections.length?{card,sections:wrongSections}:{card});
@@ -8669,7 +8746,7 @@ function buildQuizModeCard(card,i,forcedType,subset){
     maybeFinishRound();
   };
   // Per-question helper that also tallies the visible ✓/✗ score
-  const tally=(right,wrong)=>{
+  const tally = standalone ? function(){} : (right,wrong)=>{
     qmCorrect+=right; qmWrong+=wrong;
     if(wrong===0){ qmStreak++; qmBestStreak=Math.max(qmBestStreak,qmStreak); }
     else qmStreak=0;
@@ -8779,10 +8856,13 @@ function buildQuizModeCard(card,i,forcedType,subset){
     const matched=pool.filter(c=>factsHaveParty(c)===wantMask);
     // Need two MATCHING same-area distractors; otherwise fall back to "name it".
     if(!card.facts || !card.area || matched.length<2){
-      qmTypeForRound.set(card.id,'name');
-      return buildQuizModeCard(card,i,'name',subset);
+      if(!standalone) qmTypeForRound.set(card.id,'name');
+      return buildQuizModeCard(card,i,'name',subset,standalone);
     }
-    const distractors=shuffle([...matched]).slice(0,2);
+    // Reuse the SAME decoys across retries (cached) — only the display order is
+    // reshuffled below, so a retried question can't be answered from memorised position.
+    let distractors=qmOptsForRound.get(card.id);
+    if(!distractors||distractors.length<2){ distractors=shuffle([...matched]).slice(0,2); qmOptsForRound.set(card.id,distractors); }
     // Mask each option's OWN party names within its OWN facts. Doing this for the
     // decoys too — not just the correct card — is essential: if only the correct
     // facts carried asterisks, those asterisks would give the answer away.
@@ -8871,10 +8951,12 @@ function buildQuizModeCard(card,i,forcedType,subset){
     const wantMask=defHasTerm(card);
     const matched=pool.filter(c=>defHasTerm(c)===wantMask);
     if(!card.body || !card.area || matched.length<2){
-      qmTypeForRound.set(card.id,'name');
-      return buildQuizModeCard(card,i,'name',subset);
+      if(!standalone) qmTypeForRound.set(card.id,'name');
+      return buildQuizModeCard(card,i,'name',subset,standalone);
     }
-    const distractors=shuffle([...matched]).slice(0,2);
+    // Same cached decoys across retries — only the order below is reshuffled.
+    let distractors=qmOptsForRound.get(card.id);
+    if(!distractors||distractors.length<2){ distractors=shuffle([...matched]).slice(0,2); qmOptsForRound.set(card.id,distractors); }
     // Mask each option's OWN term name within its OWN definition. The whole term
     // name (even multi-word, incl. connectors like "of") collapses to ONE asterisk.
     const maskDef=(txt,title)=>{
@@ -9190,7 +9272,7 @@ function showQmMastery(){
     <button class="cu-btn" id="qmAgain">Go again 🔁</button>`;
   grid.appendChild(el);
   el.scrollIntoView({behavior:'smooth',block:'center'});
-  document.getElementById('qmAgain').onclick=()=>startQuizMode();
+  document.getElementById('qmAgain').onclick=()=>renderQuizMode();
   document.getElementById('qmScore').classList.remove('show');
 }
 
@@ -9199,42 +9281,105 @@ function showQmMastery(){
 // card becomes one question; but once you have MORE than 25 saved, the quiz is
 // capped at 25 questions, guaranteeing at least 5 of each available card type
 // (cases, statutes, terms) before filling the remaining slots at random.
-function buildQuizQueue(items){
-  const LIMIT=25, PER_TYPE=5;
-  if(items.length<=LIMIT) return shuffle(items).map(card=>({card}));
+function buildQuizQueue(items, LIMIT=25){
+  // LIMIT<=0 (or larger than the pool) → quiz the whole set, shuffled.
+  if(!LIMIT || LIMIT<=0 || LIMIT>=items.length) return shuffle(items).map(card=>({card}));
   const chosen=[], picked=new Set();
   const take=(pool,n)=>{ shuffle(pool).slice(0,n).forEach(c=>{ if(c&&!picked.has(c.id)&&chosen.length<LIMIT){ picked.add(c.id); chosen.push(c); } }); };
   const of=cat=>items.filter(c=>c&&c.cat===cat);
-  // 1) guarantee up to 5 each of cases/statutes/terms, and AT LEAST ONE study
-  //    guide whenever one is saved (so a saved study guide always gets tested).
-  take(of('case-law'),PER_TYPE);
-  take(of('statute'),PER_TYPE);
-  take(of('legal-term'),PER_TYPE);
-  take(of('study-guide'),1);
-  // 2) fill the remaining slots from everything not already chosen
+  const per=Math.max(1,Math.floor(LIMIT/4));   // per-type guarantee, scaled to length
+  // Guarantee a spread of each type that the user actually has (a study guide too).
+  take(of('case-law'),per);
+  take(of('statute'),per);
+  take(of('legal-term'),per);
+  take(of('study-guide'),Math.max(1,Math.floor(per/2)));
+  // Fill the remaining slots from everything not already chosen.
   take(items, items.length);
   return shuffle(chosen).slice(0,LIMIT).map(card=>({card}));
 }
 
+// Eligible saved cards narrowed to the chosen scope (area / type / focus).
+function qmScopedItems(){
+  return [...saves].map(id=>savedData[id]).filter(qmEligible).filter(c=>{
+    if(qmScope.area && cardArea(c)!==qmScope.area) return false;
+    if(qmScope.cat  && c.cat!==qmScope.cat)        return false;
+    if(qmScope.focus==='new'  && srs[c.id])                              return false;  // only never-quizzed
+    if(qmScope.focus==='weak' && !(srs[c.id]&&srs[c.id].lapses>0))       return false;  // only ones missed before
+    return true;
+  });
+}
+
 function startQuizMode(){
   resetQmCounters();
-  qmRound=1; qmTypeForRound=new Map();
+  qmRound=1; qmTypeForRound=new Map(); qmOptsForRound=new Map();
   // Fresh run → reset the daily Quiz-Me objective's live progress.
   qmClearedIds=new Set(); qmSessionTotal=0; refreshGoalRing();
-  const items=[...saves].map(id=>savedData[id]).filter(qmEligible);
+  const items=qmScopedItems();
   if(!items.length){
     document.getElementById('grid').innerHTML='';
-    showEmptyState('🎯 No quizzable saved cards.<br><span style="font-size:12px;color:#64748b">Save some cases, statutes or terms — journal articles can\'t be quizzed.</span>');
+    showEmptyState('🎯 No saved cards match this quiz.<br><span style="font-size:12px;color:#64748b">Adjust the filters or save more cases, statutes, terms or study guides.</span>');
     document.getElementById('qmScore').classList.remove('show');
     return;
   }
-  const queue=buildQuizQueue(items);
+  const queue=buildQuizQueue(items, qmScope.length||0);
   qmSessionTotal=queue.length;          // this run's question count (target for the objective)
   renderQmRound(queue);
   refreshGoalRing();
 }
 
-function renderQuizMode(){ startQuizMode(); }
+// The Quiz-Me setup screen: pick area / type / focus / length before starting.
+function renderQuizMode(){
+  const grid=document.getElementById('grid');
+  grid.innerHTML='';
+  removeEmptyState&&removeEmptyState();
+  document.getElementById('qmScore').classList.remove('show');
+  const all=[...saves].map(id=>savedData[id]).filter(qmEligible);
+  if(!all.length){
+    showEmptyState('🎯 No quizzable saved cards.<br><span style="font-size:12px;color:#64748b">Save some cases, statutes, terms or study guides — then quiz yourself.</span>');
+    return;
+  }
+  const CATLBL={'case-law':'Cases','statute':'Statutes','legal-term':'Terms','study-guide':'Study guides'};
+  const areas=[...new Set(all.map(c=>cardArea(c)).filter(Boolean))].sort();
+  const cats=[...new Set(all.map(c=>c.cat))].filter(c=>CATLBL[c]);
+  const box=document.createElement('div');
+  box.className='qm-setup';
+  box.innerHTML=`
+    <div class="qm-setup-h">🎯 Quiz Me</div>
+    <div class="qm-setup-sub">Pick what to be tested on.</div>
+    <label class="qm-setup-row"><span>Area of law</span>
+      <select id="qmScA"><option value="">All areas</option>${areas.map(a=>`<option value="${safe(a)}"${qmScope.area===a?' selected':''}>${safe(a)}</option>`).join('')}</select></label>
+    <label class="qm-setup-row"><span>Type</span>
+      <select id="qmScC"><option value="">All types</option>${cats.map(c=>`<option value="${c}"${qmScope.cat===c?' selected':''}>${CATLBL[c]}</option>`).join('')}</select></label>
+    <div class="qm-setup-row"><span>Focus</span>
+      <div class="qm-seg" id="qmScF">
+        <button type="button" data-v="all">All saved</button>
+        <button type="button" data-v="new">New</button>
+        <button type="button" data-v="weak">Weak</button>
+      </div></div>
+    <div class="qm-setup-row"><span>Length</span>
+      <div class="qm-seg" id="qmScL">
+        <button type="button" data-v="10">10</button>
+        <button type="button" data-v="25">25</button>
+        <button type="button" data-v="0">All</button>
+      </div></div>
+    <div class="qm-setup-count" id="qmScN"></div>
+    <button class="qm-setup-go" id="qmScGo" type="button">Start quiz →</button>`;
+  grid.appendChild(box);
+  const mark=(sel,val)=>box.querySelector(sel).querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===String(val)));
+  mark('#qmScF', qmScope.focus); mark('#qmScL', qmScope.length);
+  const update=()=>{
+    const n=qmScopedItems().length;
+    const q=qmScope.length?Math.min(qmScope.length,n):n;
+    box.querySelector('#qmScN').textContent=n?`${n} card${n!==1?'s':''} match · ${q} question${q!==1?'s':''}`:'No saved cards match — adjust the filters.';
+    box.querySelector('#qmScGo').disabled=!n;
+  };
+  box.querySelector('#qmScA').onchange=e=>{ qmScope.area=e.target.value; update(); };
+  box.querySelector('#qmScC').onchange=e=>{ qmScope.cat=e.target.value; update(); };
+  box.querySelector('#qmScF').querySelectorAll('button').forEach(b=>b.onclick=()=>{ qmScope.focus=b.dataset.v; mark('#qmScF',qmScope.focus); update(); });
+  box.querySelector('#qmScL').querySelectorAll('button').forEach(b=>b.onclick=()=>{ qmScope.length=+b.dataset.v; mark('#qmScL',qmScope.length); update(); });
+  box.querySelector('#qmScGo').onclick=()=>startQuizMode();
+  update();
+}
 
 // Wire the Quiz-Me button
 document.getElementById('qmodeBtn').addEventListener('click',function(){
