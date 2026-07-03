@@ -8293,6 +8293,13 @@ const GOAL_READ=50, GOAL_QUIZ=25;
 // Both reset whenever a run is (re)started or the user exits before mastery, so
 // the objective's progress resets unless the whole run is completed.
 let qmClearedIds=new Set(), qmSessionTotal=0;
+// A full Quiz Me covers ALL your quizzable saved cards, capped at 25 (once you've
+// saved more than 25 the 25-question mode is the target — never 10, never all).
+// The daily goal is met only by answering every one correctly, through all rounds.
+function quizTarget(){
+  try{ return Math.min([...saves].map(id=>savedData[id]).filter(qmEligible).length, GOAL_QUIZ); }
+  catch(_){ return GOAL_QUIZ; }
+}
 
 function getGoalState(){
   const today=new Date().toISOString().slice(0,10);
@@ -8312,7 +8319,10 @@ function refreshGoalRing(){
   const g=getGoalState();
   // Ring = average of the three goals' completion. The Quiz Me part shows live
   // progress (cleared/total) until the run is mastered, then counts as full.
-  const quizFrac=g.quiz?1:(qmSessionTotal?Math.min(qmClearedIds.size,qmSessionTotal)/qmSessionTotal:0);
+  // Target = the current run's size if one is going, else all quizzable saved
+  // cards (capped at 25). Shown so the user knows exactly how many they must ace.
+  const qTot=qmSessionTotal||quizTarget()||GOAL_QUIZ;
+  const quizFrac=g.quiz?1:Math.min(qmClearedIds.size,qTot)/qTot;
   const parts=[Math.min(g.read,GOAL_READ)/GOAL_READ, g.qotd?1:0, quizFrac];
   const pct=Math.round(parts.reduce((a,b)=>a+b,0)/3*100);
   const circ=144.5;
@@ -8326,8 +8336,12 @@ function refreshGoalRing(){
   if(rb){ rb.innerHTML=`📖 Read <b>${Math.min(g.read,GOAL_READ)}/${GOAL_READ}</b>`; rb.classList.toggle('done',g.read>=GOAL_READ); }
   if(qb){ qb.innerHTML=`⭐ Daily Question <b>${g.qotd?'✓':'0/1'}</b>`; qb.classList.toggle('done',g.qotd); }
   if(cb){
-    if(g.quiz){ cb.innerHTML=`🎯 Quiz Me <b>✓</b>`; cb.classList.add('done'); }
-    else{ const tot=qmSessionTotal||GOAL_QUIZ; cb.innerHTML=`🎯 Quiz Me <b>${Math.min(qmClearedIds.size,tot)}/${tot}</b>`; cb.classList.remove('done'); }
+    if(g.quiz){ cb.innerHTML=`🎯 Quiz Me <b>✓</b>`; cb.classList.add('done'); cb.title='Daily Quiz Me goal complete.'; }
+    else{
+      cb.innerHTML=`🎯 Quiz Me <b>${Math.min(qmClearedIds.size,qTot)}/${qTot}</b>`; cb.classList.remove('done');
+      cb.title=`Complete Quiz Me: answer all ${qTot} question${qTot!==1?'s':''} correctly, through every retry round. `
+        +`It covers all your saved cards (or 25 once you've saved more than that).`;
+    }
   }
 
   const done=goalIsComplete(g);
@@ -8346,7 +8360,7 @@ function refreshGoalRing(){
     const bits=[];
     if(g.read<GOAL_READ) bits.push(`read ${GOAL_READ-g.read} more post${GOAL_READ-g.read!==1?'s':''}`);
     if(!g.qotd) bits.push('answer the Question of the Day');
-    if(!g.quiz) bits.push('complete a full round of Quiz Me');
+    if(!g.quiz){ const t=qmSessionTotal||quizTarget()||GOAL_QUIZ; bits.push(`finish Quiz Me — get all ${t} question${t!==1?'s':''} right`); }
     sub.textContent=bits.length?('To finish today: '+bits.join(', ')+'.'):'';
   }
 }
@@ -10430,7 +10444,7 @@ const TOUR_STEPS=[
   { sel:'.fbtn[data-c="quiz"]', title:'SQE practice', placement:'bottom',
     body:'Five-option, single-best-answer questions across every FLK area — plus a fresh Question of the Day.' },
   { sel:'.hdr-stat.streak', title:'Build a daily streak', placement:'bottom',
-    body:'Your 🔥 streak grows by one each day you complete <b>all</b> of your daily goals — read 50 posts, answer the Question of the Day, and finish a full round of Quiz Me. Do all three every day to keep the streak alive and unlock achievements 🏆.' },
+    body:'Your 🔥 streak grows by one each day you complete <b>all</b> of your daily goals — read 50 posts, answer the Question of the Day, and finish Quiz Me by answering <b>every</b> question correctly (through all retry rounds). Quiz Me covers all your saved cards, or 25 once you\'ve saved more than that. Do all three every day to keep the streak alive and unlock achievements 🏆.' },
   { center:true, emoji:'🎉', title:'You’re all set!',
     body:'Scroll, tap a tag, save what matters, and test yourself. Welcome aboard — happy learning. 🎓' },
   { center:true, emoji:'💎', title:'Free & Premium',
