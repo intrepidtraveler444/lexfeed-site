@@ -9859,11 +9859,16 @@ document.getElementById('toastBtn').addEventListener('click',()=>{
   const modal=document.getElementById('discModal');
   const openModal=()=>{ modal.classList.add('show'); };
   const closeModal=()=>{ modal.classList.remove('show'); };
-  const dismissBanner=()=>{ if(banner) banner.hidden=true; LS.set('discSeen',true); };
-  // Show the banner once, until acknowledged. Logged-out users meet the same
-  // disclaimer as a step in the welcome tour, so the banner targets logged-in
-  // users (who skip the tour) to avoid a double first-run prompt.
-  if(banner && !LS.get('discSeen',false) && AUTH.username) banner.hidden=false;
+  // "Got it" hides the banner and stamps the acknowledgement time; it reappears
+  // a week later so the reminder recurs without nagging every visit.
+  const WEEK=7*24*60*60*1000;
+  const dismissBanner=()=>{ if(banner) banner.hidden=true; LS.set('discSeenAt',Date.now()); };
+  // Show the banner if it's never been acknowledged, or the last "Got it" was
+  // over a week ago. Logged-out users meet the same disclaimer as a step in the
+  // welcome tour, so the banner targets logged-in users (who skip the tour) to
+  // avoid a double first-run prompt.
+  const lastSeen=LS.get('discSeenAt',0);
+  if(banner && (Date.now()-lastSeen>=WEEK) && AUTH.username) banner.hidden=false;
   const bMore=document.getElementById('discBannerMore');
   const bOk=document.getElementById('discBannerOk');
   if(bMore) bMore.addEventListener('click',()=>{ openModal(); });
