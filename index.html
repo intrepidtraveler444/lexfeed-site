@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0f1a30">
-<link rel="apple-touch-icon" href="icon.svg">
+<link rel="icon" type="image/png" sizes="512x512" href="logo-mark.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="LexFeed">
@@ -18,12 +20,12 @@
 <meta property="og:title" content="LexFeed — a daily feed of UK law for students">
 <meta property="og:description" content="Landmark cases, statutes, key terms, journal articles, legal news and SQE practice — UK law in 10 minutes a day.">
 <meta property="og:url" content="https://lexfeeduk.netlify.app/">
-<meta property="og:image" content="https://lexfeeduk.netlify.app/icon.svg">
+<meta property="og:image" content="https://lexfeeduk.netlify.app/logo.png">
 <!-- Twitter / X card -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LexFeed — a daily feed of UK law for students">
 <meta name="twitter:description" content="Landmark cases, statutes, key terms, journal articles, legal news and SQE practice — UK law in 10 minutes a day.">
-<meta name="twitter:image" content="https://lexfeeduk.netlify.app/icon.svg">
+<meta name="twitter:image" content="https://lexfeeduk.netlify.app/logo.png">
 <style>
 :root{
   --navy:#1a2744;--navy-dk:#0f1a30;--gold:#c9a227;
@@ -43,7 +45,8 @@ header{
   position:sticky;top:0;z-index:110;box-shadow:0 2px 10px rgba(0,0,0,.3);
 }
 .logo{display:flex;align-items:center;gap:10px}
-.logo-icon{width:36px;height:36px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:900;color:var(--navy);flex-shrink:0}
+.logo-icon{width:36px;height:36px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.22)}
+.logo-icon img{width:100%;height:100%;object-fit:contain;padding:3px;box-sizing:border-box;display:block}
 .logo-name{font-size:21px;font-weight:800;letter-spacing:-.5px}
 .logo-name span{color:var(--gold)}
 .logo-sub{font-size:10px;color:rgba(255,255,255,.4);margin-top:1px}
@@ -850,7 +853,7 @@ html{scroll-padding-top:118px}
 
 <header>
   <div class="logo">
-    <div class="logo-icon">⚖</div>
+    <div class="logo-icon"><img src="logo-mark.png" alt="LexFeed logo" width="36" height="36"></div>
     <div>
       <div class="logo-name">Lex<span>Feed</span></div>
       <div class="logo-sub">UK Legal Education &amp; News</div>
