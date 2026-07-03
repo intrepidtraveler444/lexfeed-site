@@ -8615,8 +8615,14 @@ function qmPickType(card){
   } else if(card.cat==='study-guide'){
     // Legal tests → fill the missing step; comparisons/distinguishing → match.
     types.push(card.guide==='test'?'sgtest':'sgmatch');
+  } else if(card.cat==='legal-term'){
+    types.push('name');                                            // recall the term name
+    // "Pick the definition" needs ≥2 OTHER same-area terms (with a definition) as
+    // wrong options; only offer it when that distractor pool exists.
+    const pool=(typeof CURATED!=='undefined'?CURATED:[])
+      .filter(c=>c&&c.cat==='legal-term'&&c.id!==card.id&&c.body&&c.area===card.area);
+    if(card.body && card.area && pool.length>=2) types.push('pickdef');
   } else {
-    // legal terms — recall only
     types.push('name');
   }
   return types[Math.floor(Math.random()*types.length)];
@@ -8829,6 +8835,93 @@ function buildQuizModeCard(card,i,forcedType,subset){
         rev.className='qm-reveal '+(o.correct?'ok':'no');
         rev.innerHTML=o.correct?`<span class="qm-mark">✓</span>Correct!`
                                :`<span class="qm-mark">✗</span>Not quite — those are the facts of <strong>${safe(o.title)}</strong>. The highlighted facts belong to this case.`;
+        wrap.appendChild(rev);
+        tally(o.correct?1:0,o.correct?0:1);
+        finishQuestion(o.correct);
+      });
+    });
+    return el;
+  }
+
+  // ── PICK THE DEFINITION (legal terms): term name shown; choose its definition ──
+  // Mirrors "pick the facts": decoys are OTHER same-area terms, and each option's
+  // OWN term name is masked in its OWN definition with a SINGLE asterisk (never one
+  // per letter), so the term can't be read straight out of its definition.
+  if(type==='pickdef'){
+    const pool=(typeof CURATED!=='undefined'?CURATED:[])
+      .filter(c=>c&&c.cat==='legal-term'&&c.id!==card.id&&c.body&&c.area===card.area);
+    // Distinctive words of the TERM name (skip grammatical connectors).
+    const TERM_STOP=new Set(['of','the','a','an','and','or','to','in','on','by','for','with','vs','v','de']);
+    const maskTokens=title=>{
+      const seen=new Set(), out=[];
+      String(title||'').split(/[\s,.;:&()\-]+/).forEach(w=>{
+        const word=w.trim();
+        const k=word.toLowerCase().replace(/[^a-z0-9]/g,'');
+        if(word.length>=2 && k && !TERM_STOP.has(k) && !seen.has(k)){ seen.add(k); out.push(word); }
+      });
+      return out;
+    };
+    // Does a term's definition actually contain its own name (→ would show an asterisk)?
+    const defHasTerm=c=>maskTokens(c.title).some(n=>{
+      const esc=n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+      return new RegExp(`\\b(${esc})\\b`,'i').test(c.body||'');
+    });
+    // Decoys must MATCH the correct option on whether the definition carries an
+    // asterisk, so masking presence/absence can never be used as a context clue.
+    const wantMask=defHasTerm(card);
+    const matched=pool.filter(c=>defHasTerm(c)===wantMask);
+    if(!card.body || !card.area || matched.length<2){
+      qmTypeForRound.set(card.id,'name');
+      return buildQuizModeCard(card,i,'name',subset);
+    }
+    const distractors=shuffle([...matched]).slice(0,2);
+    // Mask each option's OWN term name within its OWN definition. The whole term
+    // name (even multi-word, incl. connectors like "of") collapses to ONE asterisk.
+    const maskDef=(txt,title)=>{
+      const out=safe(txt);
+      const toks=maskTokens(title);
+      if(!toks.length) return out;
+      const alt=toks.map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|');
+      const conn='(?:of|the|and|or|à|de|by|to|in|a|an|for|with)';
+      const run=new RegExp(`\\b(?:${alt})\\b(?:[\\s.,'\\-]+(?:${conn}[\\s.,'\\-]+)*\\b(?:${alt})\\b)*`,'gi');
+      return out.replace(run, ()=>`<span class="qm-redact">*</span>`);
+    };
+
+    const opts=shuffle([
+      {def:card.body, title:card.title, correct:true},
+      {def:distractors[0].body, title:distractors[0].title, correct:false},
+      {def:distractors[1].body, title:distractors[1].title, correct:false}
+    ]);
+    // Hide the term's own definition + worked example.
+    el.querySelector('.card-body')?.style.setProperty('display','none');
+    el.querySelector('.term-eg')?.style.setProperty('display','none');
+
+    const wrap=document.createElement('div');
+    wrap.innerHTML=`
+      <div class="card-title" style="margin-bottom:6px">${safe(card.title)}</div>
+      <span class="qm-qtype">Pick the Definition</span>
+      <div class="qm-hint">Which definition belongs to this term?</div>
+      <div class="qm-pick-opts"></div>`;
+    titleEl.replaceWith(wrap);
+
+    const optWrap=wrap.querySelector('.qm-pick-opts');
+    const correctIdx=opts.findIndex(o=>o.correct);
+    let answered=false;
+    opts.forEach(o=>{
+      const b=document.createElement('button');
+      b.className='qm-pick'; b.type='button';
+      b.innerHTML=maskDef(o.def,o.title);
+      optWrap.appendChild(b);
+      b.addEventListener('click',()=>{
+        if(answered) return; answered=true;
+        const btns=[...optWrap.children];
+        btns.forEach(x=>x.disabled=true);
+        b.classList.add(o.correct?'correct':'wrong');
+        if(!o.correct) btns[correctIdx].classList.add('correct');
+        const rev=document.createElement('div');
+        rev.className='qm-reveal '+(o.correct?'ok':'no');
+        rev.innerHTML=o.correct?`<span class="qm-mark">✓</span>Correct!`
+                               :`<span class="qm-mark">✗</span>Not quite — that's the definition of <strong>${safe(o.title)}</strong>. The highlighted definition belongs to this term.`;
         wrap.appendChild(rev);
         tally(o.correct?1:0,o.correct?0:1);
         finishQuestion(o.correct);
