@@ -1103,7 +1103,6 @@ html{scroll-padding-top:118px}
   <div class="disc-box">
     <div class="disc-head">
       <div class="disc-title" id="termsModalTitle">Terms of use</div>
-      <button class="disc-close" id="termsClose" aria-label="Close">✕</button>
     </div>
     <div class="disc-body">
       <p>By using LexFeed you agree to these terms. LexFeed is a free educational study aid for personal, non-commercial use.</p>
@@ -1115,9 +1114,9 @@ html{scroll-padding-top:118px}
         <li><b>Not legal advice.</b> Content is a simplified study aid and may be incomplete or out of date — see the full disclaimer. LexFeed is provided "as is", without warranties, and we are not liable for any loss arising from reliance on it.</li>
       </ul>
       <p>We may update these terms from time to time. Continued use means you accept the current version.</p>
-      <p style="color:#5a6472;font-size:12.5px">Questions or to report misuse: get in touch via the site.</p>
+      <p style="color:#5a6472;font-size:12.5px">Questions or to report misuse: email <a href="mailto:intrepidtraveler4@gmail.com">intrepidtraveler4@gmail.com</a>.</p>
     </div>
-    <div class="disc-foot"><button class="disc-ok" id="termsOk">Close</button></div>
+    <div class="disc-foot"><button class="disc-ok" id="termsOk">I understand</button></div>
   </div>
 </div>
 
@@ -9922,7 +9921,6 @@ document.getElementById('toastBtn').addEventListener('click',()=>{
   const open=()=>modal.classList.add('show');
   const close=()=>modal.classList.remove('show');
   document.getElementById('termsFootLink')?.addEventListener('click',open);
-  document.getElementById('termsClose')?.addEventListener('click',close);
   document.getElementById('termsOk')?.addEventListener('click',close);
   modal.addEventListener('click',e=>{ if(e.target===modal) close(); });
 })();
