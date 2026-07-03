@@ -5372,6 +5372,10 @@ function buildCard(card,delayMs=0){
       ?`<div class="src-nudge">✦ A quick reference only — read the full LexisNexis definition before relying on it in your work.</div>`
     :(card.link&&card.cat==='statute'&&card.link.includes('legislation.gov.uk'))
       ?`<div class="src-nudge">✦ A simplified extract — read the section on legislation.gov.uk for the current, authoritative wording.</div>`
+    :(card.link&&card.cat==='legal-news')
+      ?`<div class="src-nudge">✦ A short preview — read the full story at the source for the complete, up-to-date report.</div>`
+    :(card.link&&card.cat==='journal-article')
+      ?`<div class="src-nudge">✦ A brief summary — read the full article for the author’s complete argument and analysis.</div>`
     :'';
 
   el.innerHTML=`
