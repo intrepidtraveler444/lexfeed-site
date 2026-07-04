@@ -8592,36 +8592,11 @@ function refreshGoalRing(){
   }
 }
 
-// "You're caught up" screen — appended when the user has done a solid session
+// "You're caught up" screen — removed per product decision: the feed never
+// interrupts scrolling with a completion screen. Kept as a no-op so the existing
+// call sites and reset flags stay valid.
 let caughtUpShown=false;
-function maybeShowCaughtUp(){
-  if(caughtUpShown) return;
-  const g=getGoalState();
-  // Trigger once all three daily goals are met
-  if(!goalIsComplete(g)) return;
-  caughtUpShown=true;
-  const grid=document.getElementById('grid');
-  const el=document.createElement('div');
-  el.className='caught-up';
-  el.innerHTML=`
-    <div class="cu-ico">🎉</div>
-    <div class="cu-title">You're all caught up for today</div>
-    <div class="cu-sub">You've hit your daily goal and covered some solid ground. Come back tomorrow for fresh cases, news and a new Question of the Day — and keep your streak going.</div>
-    <div class="cu-stats">
-      <div class="cu-stat"><span class="v" id="cuStreak">0</span><span class="l">🔥 Streak</span></div>
-      <div class="cu-stat"><span class="v" id="cuToday">0</span><span class="l">📖 Today</span></div>
-      <div class="cu-stat"><span class="v" id="cuTotal">0</span><span class="l">⚡ All-time</span></div>
-    </div>
-    <button class="cu-btn" id="cuBtn">Keep scrolling anyway ↓</button>`;
-  grid.appendChild(el);
-  el.querySelector('#cuStreak').textContent=updateStreak();
-  el.querySelector('#cuToday').textContent=getTodayCount();
-  el.querySelector('#cuTotal').textContent=totalRead;
-  el.querySelector('#cuBtn').addEventListener('click',()=>{
-    el.remove(); caughtUpShown=true; window.loadMore();
-  });
-  el.scrollIntoView({behavior:'smooth',block:'center'});
-}
+function maybeShowCaughtUp(){ /* disabled: no "You're all caught up for today" screen — the feed never interrupts scrolling */ }
 
 // ── Saved view ────────────────────────────────
 // Renders saved posts from persisted savedData, so they survive refreshes
