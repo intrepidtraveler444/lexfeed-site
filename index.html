@@ -8837,11 +8837,12 @@ function qmPickType(card){
     }
   } else if(card.cat==='case-law'){
     types.push('name');                                            // recall the case name
-    // "Pick the facts" needs ≥2 OTHER same-area cases (with facts) as wrong
-    // options; only offer it when that distractor pool exists.
+    // "Pick the facts" needs ≥2 OTHER cases (with facts) as wrong options. Same-area
+    // is preferred, but the pickfacts branch falls back to random cases from any area
+    // when a case's own area is thin — so offer it for ANY case that has its own facts.
     const pool=(typeof CURATED!=='undefined'?CURATED:[])
-      .filter(c=>c&&c.cat==='case-law'&&c.id!==card.id&&c.facts&&c.area===card.area);
-    if(card.facts && card.area && pool.length>=2) types.push('pickfacts');
+      .filter(c=>c&&c.cat==='case-law'&&c.id!==card.id&&c.facts);
+    if(card.facts && pool.length>=2) types.push('pickfacts');
   } else if(card.cat==='study-guide'){
     // Legal tests → fill the missing step; comparisons/distinguishing → match.
     types.push(card.guide==='test'?'sgtest':'sgmatch');
@@ -8980,8 +8981,11 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
   // own name is masked with asterisks wherever it appears in a facts blurb, so
   // it cannot give the answer away (mirrors redactAnswer's style).
   if(type==='pickfacts'){
-    const pool=(typeof CURATED!=='undefined'?CURATED:[])
-      .filter(c=>c&&c.cat==='case-law'&&c.id!==card.id&&c.facts&&c.area===card.area);
+    // Candidate distractors: ALL other cases that carry their own facts (any area).
+    // The tiered selection below prefers same-area cases but falls back to random
+    // cases from random areas when the case's own area is too thin.
+    const allCases=(typeof CURATED!=='undefined'?CURATED:[])
+      .filter(c=>c&&c.cat==='case-law'&&c.id!==card.id&&c.facts);
     // Derive the words to redact for a case: EVERY word of the case name (the
     // part of the title before the year citation), so any party-name word in the
     // facts is hidden — not just the lead surnames. We deliberately skip the
@@ -9013,16 +9017,29 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
     // name a party; if the correct facts have no party name (→ no asterisks),
     // pick decoys whose facts likewise have none.
     const wantMask=factsHaveParty(card);
-    const matched=pool.filter(c=>factsHaveParty(c)===wantMask);
-    // Need two MATCHING same-area distractors; otherwise fall back to "name it".
-    if(!card.facts || !card.area || matched.length<2){
+    // Build a de-duplicated, priority-ordered decoy list:
+    //   1. same area of law + same asterisk-state (ideal — closest confusable set)
+    //   2. RANDOM cases from ANY area + same asterisk-state (thin-area fallback)
+    //   3. same area (any asterisk-state)      4. any case at all (last resort)
+    // Asterisk-state stays matched first so the presence/absence of masking can
+    // never be used as a context clue when we reach into other areas of law.
+    const seenId=new Set(), matched=[];
+    const addTier=arr=>{ for(const c of arr){ if(!seenId.has(c.id)){ seenId.add(c.id); matched.push(c); } } };
+    addTier(shuffle(allCases.filter(c=>c.area===card.area && factsHaveParty(c)===wantMask)));
+    addTier(shuffle(allCases.filter(c=>factsHaveParty(c)===wantMask)));
+    addTier(shuffle(allCases.filter(c=>c.area===card.area)));
+    addTier(shuffle([...allCases]));
+    // Only fall back to "name it" if the case has no facts of its own, or the whole
+    // library somehow can't supply two other cases with facts (never, in practice).
+    if(!card.facts || matched.length<2){
       if(!standalone) qmTypeForRound.set(card.id,'name');
       return buildQuizModeCard(card,i,'name',subset,standalone);
     }
-    // Reuse the SAME decoys across retries (cached) — only the display order is
-    // reshuffled below, so a retried question can't be answered from memorised position.
+    // Reuse the SAME decoys across retries (cached) — matched is already priority-
+    // ordered (same-area first), and the display order is reshuffled below, so a
+    // retried question can't be answered from a memorised option position.
     let distractors=qmOptsForRound.get(card.id);
-    if(!distractors||distractors.length<2){ distractors=shuffle([...matched]).slice(0,2); qmOptsForRound.set(card.id,distractors); }
+    if(!distractors||distractors.length<2){ distractors=matched.slice(0,2); qmOptsForRound.set(card.id,distractors); }
     // Mask each option's OWN party names within its OWN facts. Doing this for the
     // decoys too — not just the correct card — is essential: if only the correct
     // facts carried asterisks, those asterisks would give the answer away.
@@ -9806,6 +9823,7 @@ window.appendBatch=function(batch,showDivider=false){
     } else {
       el=window.buildCard(card,i*50);
       if(freshCardIds.has(card.id)) markCardNew(el);
+      addQuickQuizPill(card, el);   // Quick Quiz on every eligible card in the feed, not just Saved
     }
     if(el) grid.appendChild(el);
   });
