@@ -8251,6 +8251,7 @@ function buildFeaturedCard(){
   label.className='featured-label';
   label.textContent='⭐ Today\'s Key Case';
   el.insertBefore(label,el.firstChild);
+  addQuickQuizPill(c, el);   // Quick Quiz on the top featured case (also anchors the tutorial's Quick Quiz step)
   return el;
 }
 
