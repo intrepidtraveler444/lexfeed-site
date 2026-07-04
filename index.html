@@ -7760,6 +7760,7 @@ function resetLocalProgress(){
   LS.set('saves',[]); LS.set('savedData',{});
   LS.set('seen',[]);  LS.set('ach',[]);
   LS.set('total',0);  LS.set('deepReads',0);
+  LS.set('qcount',0); LS.set('qcorrect',0); LS.set('qmRuns',0);
   LS.set('streak',{date:'',count:0});
   LS.set('goal',null); LS.set('today',{date:'',count:0});
   LS.set('syncedAccount',null);   // next login re-links this device from scratch
@@ -7867,20 +7868,71 @@ function refreshStats(){
 
 // ── Achievements ──────────────────────────────
 const ACHIEVEMENTS=[
-  {id:'read5',  ico:'📖', title:'Getting Started',    sub:'Read your first 5 cards',  cond:()=>totalRead>=5},
-  {id:'read10', ico:'⚖',  title:'Budding Barrister',  sub:'10 cards read',            cond:()=>totalRead>=10},
-  {id:'read25', ico:'🎓', title:'Law Student',         sub:'25 cards read — keep it up!', cond:()=>totalRead>=25},
-  {id:'read50', ico:'📚', title:'Case Reporter',       sub:'50 cards read',            cond:()=>totalRead>=50},
-  {id:'read100',ico:'🏛', title:'Silk in the Making',  sub:'100 cards read',           cond:()=>totalRead>=100},
-  {id:'save5',  ico:'🔖', title:'Diligent Student',    sub:'Saved 5 cards for later',  cond:()=>saves.size>=5},
-  {id:'quiz1',  ico:'🧠', title:'First Quiz!',         sub:'Answered your first quiz', cond:()=>LS.get('qcount',0)>=1},
-  {id:'quiz5',  ico:'🏆', title:'Quiz Champion',       sub:'Answered 5 quizzes',       cond:()=>LS.get('qcount',0)>=5},
-  {id:'quiz50', ico:'🎓', title:'Quiz Master',         sub:'Answered 50 quizzes',      cond:()=>LS.get('qcount',0)>=50},
-  {id:'streak3',ico:'🔥', title:'On Fire',             sub:'3-day reading streak',     cond:()=>updateStreak()>=3},
-  {id:'streak7',ico:'⚡', title:'Unstoppable',         sub:'7-day reading streak',     cond:()=>updateStreak()>=7},
-  {id:'deep1',  ico:'🔗', title:'Primary Source',      sub:'Opened your first full case/statute', cond:()=>deepReads>=1},
-  {id:'deep10', ico:'📜', title:'Deep Reader',         sub:'Opened 10 full sources',   cond:()=>deepReads>=10},
-  {id:'deep25', ico:'⚖️', title:'Authority on Authorities', sub:'Opened 25 full sources', cond:()=>deepReads>=25},
+  // ── Reading cards (breadth of study) ──
+  {id:'read5',  ico:'📖', title:'Getting Started',     sub:'Read your first 5 cards',        cond:()=>totalRead>=5},
+  {id:'read10', ico:'⚖',  title:'Budding Barrister',   sub:'10 cards read',                  cond:()=>totalRead>=10},
+  {id:'read25', ico:'🎓', title:'Law Student',          sub:'25 cards read — keep it up!',    cond:()=>totalRead>=25},
+  {id:'read50', ico:'📚', title:'Case Reporter',        sub:'50 cards read',                  cond:()=>totalRead>=50},
+  {id:'read100',ico:'🏛', title:'Silk in the Making',   sub:'100 cards read',                 cond:()=>totalRead>=100},
+  {id:'read250',ico:'📕', title:'Well Read',            sub:'250 cards read',                 cond:()=>totalRead>=250},
+  {id:'read500',ico:'📗', title:'Learned Friend',       sub:'500 cards read',                 cond:()=>totalRead>=500},
+  {id:'read750',ico:'📘', title:'Legal Scholar',        sub:'750 cards read',                 cond:()=>totalRead>=750},
+  {id:'read1000',ico:'👑',title:'Lord Chief Reader',    sub:'1,000 cards read',               cond:()=>totalRead>=1000},
+
+  // ── Reading the ACTUAL sources (the core habit) ──
+  {id:'deep1',  ico:'🔗', title:'Primary Source',       sub:'Opened your first full case/statute', cond:()=>deepReads>=1},
+  {id:'deep5',  ico:'🔎', title:'Digging Deeper',       sub:'Opened 5 full sources',          cond:()=>deepReads>=5},
+  {id:'deep10', ico:'📜', title:'Deep Reader',          sub:'Opened 10 full sources',         cond:()=>deepReads>=10},
+  {id:'deep25', ico:'⚖️', title:'Authority on Authorities', sub:'Opened 25 full sources',     cond:()=>deepReads>=25},
+  {id:'deep50', ico:'📖', title:'Devoted to the Source',sub:'Opened 50 full sources',         cond:()=>deepReads>=50},
+  {id:'deep100',ico:'🏛', title:'Student of the Primary Text', sub:'Opened 100 full sources', cond:()=>deepReads>=100},
+  {id:'deep150',ico:'📚', title:'Reads the Judgment',   sub:'Opened 150 full sources',        cond:()=>deepReads>=150},
+  {id:'deep200',ico:'🧑‍⚖️',title:'Never Cites the Headnote', sub:'Opened 200 full sources',   cond:()=>deepReads>=200},
+
+  // ── Answering quiz questions (active recall) ──
+  {id:'quiz1',  ico:'🧠', title:'First Quiz!',          sub:'Answered your first quiz',       cond:()=>LS.get('qcount',0)>=1},
+  {id:'quiz5',  ico:'🏆', title:'Quiz Champion',        sub:'Answered 5 quizzes',             cond:()=>LS.get('qcount',0)>=5},
+  {id:'quiz10', ico:'🎯', title:'Getting Sharp',        sub:'Answered 10 quizzes',            cond:()=>LS.get('qcount',0)>=10},
+  {id:'quiz25', ico:'📝', title:'Practised Advocate',   sub:'Answered 25 quizzes',            cond:()=>LS.get('qcount',0)>=25},
+  {id:'quiz50', ico:'🎓', title:'Quiz Master',          sub:'Answered 50 quizzes',            cond:()=>LS.get('qcount',0)>=50},
+  {id:'quiz100',ico:'🧩', title:'Century of Questions', sub:'Answered 100 quizzes',           cond:()=>LS.get('qcount',0)>=100},
+  {id:'quiz250',ico:'🗂️', title:'Mock Exam Veteran',    sub:'Answered 250 quizzes',           cond:()=>LS.get('qcount',0)>=250},
+  {id:'quiz500',ico:'⚡', title:'Quiz Machine',         sub:'Answered 500 quizzes',           cond:()=>LS.get('qcount',0)>=500},
+
+  // ── Getting them RIGHT (real understanding) ──
+  {id:'correct10', ico:'✅', title:'Sound Reasoning',   sub:'10 quiz questions correct',      cond:()=>LS.get('qcorrect',0)>=10},
+  {id:'correct25', ico:'💡', title:'Sharp Mind',        sub:'25 correct answers',             cond:()=>LS.get('qcorrect',0)>=25},
+  {id:'correct50', ico:'🎯', title:'On the Money',      sub:'50 correct answers',             cond:()=>LS.get('qcorrect',0)>=50},
+  {id:'correct100',ico:'🥇', title:'Distinction',       sub:'100 correct answers',            cond:()=>LS.get('qcorrect',0)>=100},
+  {id:'correct250',ico:'🧑‍🏫',title:'Master of Doctrine', sub:'250 correct answers',          cond:()=>LS.get('qcorrect',0)>=250},
+
+  // ── Completing full Quiz Me mastery runs ──
+  {id:'run1',  ico:'🎯', title:'Full Marks',            sub:'Completed a full Quiz Me — every question right', cond:()=>LS.get('qmRuns',0)>=1},
+  {id:'run3',  ico:'🔁', title:'Mastery Habit',         sub:'Completed 3 full Quiz Me rounds',cond:()=>LS.get('qmRuns',0)>=3},
+  {id:'run10', ico:'🏅', title:'Relentless Reviser',    sub:'Completed 10 full Quiz Me rounds',cond:()=>LS.get('qmRuns',0)>=10},
+  {id:'run25', ico:'🏆', title:'Quiz Me Legend',        sub:'Completed 25 full Quiz Me rounds',cond:()=>LS.get('qmRuns',0)>=25},
+
+  // ── Daily streaks (consistency) ──
+  {id:'streak3', ico:'🔥', title:'On Fire',             sub:'3-day streak',                   cond:()=>updateStreak()>=3},
+  {id:'streak7', ico:'⚡', title:'Unstoppable',         sub:'7-day streak',                   cond:()=>updateStreak()>=7},
+  {id:'streak14',ico:'📆', title:'Fortnight of Focus',  sub:'14-day streak',                  cond:()=>updateStreak()>=14},
+  {id:'streak30',ico:'🗓️', title:'Monthly Devotion',    sub:'30-day streak',                  cond:()=>updateStreak()>=30},
+  {id:'streak60',ico:'💎', title:'Diamond Discipline',  sub:'60-day streak',                  cond:()=>updateStreak()>=60},
+  {id:'streak100',ico:'👑',title:'Centurion of Study',  sub:'100-day streak',                 cond:()=>updateStreak()>=100},
+
+  // ── Building a revision pile ──
+  {id:'save5',  ico:'🔖', title:'Diligent Student',     sub:'Saved 5 cards for later',        cond:()=>saves.size>=5},
+  {id:'save10', ico:'📌', title:'Revision Builder',     sub:'Saved 10 cards',                 cond:()=>saves.size>=10},
+  {id:'save20', ico:'🗃️', title:'Curator of Authorities',sub:'Saved 20 cards',                cond:()=>saves.size>=20},
+  {id:'save50', ico:'🏦', title:'Personal Law Library', sub:'Saved 50 cards',                 cond:()=>saves.size>=50},
+
+  // ── Well-rounded learners (multiple habits at once) ──
+  {id:'allround',   ico:'🌟', title:'Well-Rounded',     sub:'50 cards read, 25 quizzes answered & 10 sources opened', cond:()=>totalRead>=50&&LS.get('qcount',0)>=25&&deepReads>=10},
+  {id:'sourcefirst',ico:'🧭', title:'Source-First Scholar', sub:'100 cards read & 25 full sources opened', cond:()=>totalRead>=100&&deepReads>=25},
+  {id:'devoted',    ico:'📅', title:'Devoted Learner',  sub:'14-day streak with 50 quizzes answered', cond:()=>updateStreak()>=14&&LS.get('qcount',0)>=50},
+  {id:'polymath',   ico:'🦉', title:'Polymath',         sub:'100 read · 50 quizzes · 25 sources · 10 saved', cond:()=>totalRead>=100&&LS.get('qcount',0)>=50&&deepReads>=25&&saves.size>=10},
+  {id:'truescholar',ico:'🎖️', title:'True Scholar',     sub:'250 read · 100 correct · 50 sources opened', cond:()=>totalRead>=250&&LS.get('qcorrect',0)>=100&&deepReads>=50},
+  {id:'grandjurist',ico:'⚜️', title:'Grand Jurist',     sub:'500 read · 250 correct · 100 sources — the full journey', cond:()=>totalRead>=500&&LS.get('qcorrect',0)>=250&&deepReads>=100},
 ];
 
 let achTimer=null;
@@ -8133,9 +8185,10 @@ function onQuizAnswer(cardEl,chosen,correct,exp){
     scoreEl.textContent=chosen===correct?'✓ Correct!':'✗ Incorrect';
     scoreEl.className='quiz-score'+(chosen===correct?'':' wrong');
   }
-  // Count quiz answer
+  // Count quiz answer (and correct answers separately, for learning achievements)
   const qc=LS.get('qcount',0)+1;
   LS.set('qcount',qc);
+  if(chosen===correct) LS.set('qcorrect',LS.get('qcorrect',0)+1);
   // Only the Question of the Day counts toward the daily goal
   if(cardEl.classList.contains('qotd')) goalQotdDone();
   checkAchievements();
@@ -8482,7 +8535,8 @@ function saveGoalState(g){ LS.set('goal',g); }
 function goalReadInc(){ const g=getGoalState(); g.read++; saveGoalState(g); refreshGoalRing(); queueSync(); }
 function goalQotdDone(){ const g=getGoalState(); g.qotd=true; saveGoalState(g); refreshGoalRing(); queueSync(); }
 // Marked complete only when a whole Quiz Me run is mastered (all answered right).
-function goalQuizDone(){ const g=getGoalState(); g.quiz=true; saveGoalState(g); refreshGoalRing(); queueSync(); }
+function goalQuizDone(){ const g=getGoalState(); g.quiz=true; saveGoalState(g); refreshGoalRing(); queueSync();
+  LS.set('qmRuns',LS.get('qmRuns',0)+1); checkAchievements&&checkAchievements(); }
 
 function goalIsComplete(g){ return g.read>=GOAL_READ && g.qotd && g.quiz; }
 
@@ -8928,6 +8982,7 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
     ? (allRight)=>{ if(typeof standalone==='function') standalone(!!allRight); }   // Quick Quiz: just report correct/wrong
     : (allRight,wrongSections)=>{
     LS.set('qcount',LS.get('qcount',0)+1);
+    if(allRight) LS.set('qcorrect',LS.get('qcorrect',0)+1);
     if(!allRight){
       qmRetry.push(wrongSections&&wrongSections.length?{card,sections:wrongSections}:{card});
     }
@@ -10638,7 +10693,20 @@ refreshGoalRing();
 updateReviewBadge();
 // Insert featured card at top immediately
 const featuredEl=buildFeaturedCard();
-document.getElementById('grid').appendChild(featuredEl);
+if(featuredEl) document.getElementById('grid').appendChild(featuredEl);
+// Daily anchors pinned at the top on EVERY visit: Today's Key Case (above),
+// the Question of the Day, and the daily/weekly digest. Injecting them here —
+// before loadMore — guarantees they appear even for a signed-out visitor who has
+// already used up their Free daily posts. The feed's cap gate can stop ordinary
+// cards, but these anchors are added directly and never counted against the cap.
+try{
+  const grid=document.getElementById('grid');
+  const qEl=buildQuizCard(getDailyQuiz(),0);
+  if(qEl){ grid.appendChild(qEl); dailyQuizInjected=true; }   // stop getBatch re-adding it
+  const dMode=digestMode()||'daily';                          // always show a digest (weekly on weekends)
+  const dEl=buildFlairCard(dMode==='weekly'?'weekly':'digest',0);
+  if(dEl){ grid.appendChild(dEl); digestShown=true; }
+}catch(_){}
 window.setupScroll();
 setupFilters();
 // Add quiz category to filter handler
