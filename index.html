@@ -7747,8 +7747,40 @@ async function genRecovery(){
   }catch(e){ if(msg){ msg.className='acct-msg err'; msg.textContent=String(e.message||e); } }
 }
 
+// Wipe this device's local progress so a signed-out user sees a clean slate:
+// 0 saved cards, 0 achievements, no streak/goal/reading history. The account's
+// copy has just been pushed to the server by flushSync(), so signing back in
+// restores it all via hydrateFromProfile — nothing is lost, it's just no longer
+// shown while logged out.
+function resetLocalProgress(){
+  saves.clear(); savedData={};
+  seenIds.clear(); achEarned.clear();
+  totalRead=0; deepReads=0;
+  qmClearedIds=new Set(); qmSessionTotal=0;
+  LS.set('saves',[]); LS.set('savedData',{});
+  LS.set('seen',[]);  LS.set('ach',[]);
+  LS.set('total',0);  LS.set('deepReads',0);
+  LS.set('streak',{date:'',count:0});
+  LS.set('goal',null); LS.set('today',{date:'',count:0});
+  LS.set('syncedAccount',null);   // next login re-links this device from scratch
+  // Reset the toggles and rebuild a fresh feed so nothing keeps a stale "Saved"
+  // (gold) state and any open Saved / Quiz view drops back to the normal feed.
+  try{
+    showSaved=false; quizMode=false;
+    const st=document.getElementById('savedToggle');
+    if(st){ st.classList.remove('on'); st.innerHTML='🔖 Saved (<span id="savedCnt">0</span>)'; }
+    const qb=document.getElementById('qmodeBtn');
+    if(qb){ qb.classList.remove('show','on'); qb.textContent='🎯 Quiz Me'; }
+    document.getElementById('qmScore')?.classList.remove('show');
+    if(typeof exitToFeed==='function') exitToFeed();
+  }catch{}
+  try{ refreshStats(); }catch{}
+  try{ refreshGoalRing(); }catch{}
+}
+
 function signOut(){
-  flushSync();
+  flushSync();               // push current progress to the account BEFORE clearing
+  resetLocalProgress();      // then blank this device to a clean slate
   AUTH.token=null; AUTH.username=null; AUTH.plan='free'; AUTH.email=''; AUTH.hasRecovery=false;
   LS.set('token',null); LS.set('username',null); LS.set('plan','free'); LS.set('email','');
   acctTab='login';
@@ -10640,6 +10672,8 @@ const TOUR_STEPS=[
     body:'Bookmark any card with its Save button — your saves persist across visits as a personal revision pile.' },
   { sel:'#qmodeBtn', title:'Quiz Me', placement:'bottom',
     body:'Turn your saved cards into a mastery quiz that keeps testing you until you’ve nailed every one.' },
+  { sel:'.qq-pill', title:'Quick Quiz', placement:'bottom',
+    body:'Spot the <b>🎯 Quick Quiz</b> pill on any case, statute or term card? Tap it to test yourself on just that card — a fresh question each time. It’s instant practice, and it doesn’t touch your daily Quiz Me goal.' },
   { sel:'.fbtn[data-c="quiz"]', title:'SQE practice', placement:'bottom',
     body:'Five-option, single-best-answer questions across every FLK area — plus a fresh Question of the Day.' },
   { sel:'.hdr-stat.streak', title:'Build a daily streak', placement:'bottom',
