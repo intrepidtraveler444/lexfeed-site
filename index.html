@@ -10705,9 +10705,11 @@ try{
   const grid=document.getElementById('grid');
   const qEl=buildQuizCard(getDailyQuiz(),0);
   if(qEl){ grid.appendChild(qEl); dailyQuizInjected=true; }   // stop getBatch re-adding it
-  const dMode=digestMode()||'daily';                          // always show a digest (weekly on weekends)
-  const dEl=buildFlairCard(dMode==='weekly'?'weekly':'digest',0);
-  if(dEl){ grid.appendChild(dEl); digestShown=true; }
+  const dMode=digestMode();                                   // only in its timed window (daily 17:00–05:00, weekly weekends); nothing otherwise
+  if(dMode){
+    const dEl=buildFlairCard(dMode==='weekly'?'weekly':'digest',0);
+    if(dEl){ grid.appendChild(dEl); digestShown=true; }
+  }
 }catch(_){}
 window.setupScroll();
 setupFilters();
