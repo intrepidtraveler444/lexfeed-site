@@ -7762,7 +7762,7 @@ function resetLocalProgress(){
   LS.set('total',0);  LS.set('deepReads',0);
   LS.set('qcount',0); LS.set('qcorrect',0); LS.set('qmRuns',0);
   LS.set('streak',{date:'',count:0});
-  LS.set('goal',null); LS.set('today',{date:'',count:0});
+  LS.set('goal',{date:'',read:0,qotd:false,quiz:false,celebrated:false}); LS.set('today',{date:'',count:0});
   LS.set('syncedAccount',null);   // next login re-links this device from scratch
   // Reset the toggles and rebuild a fresh feed so nothing keeps a stale "Saved"
   // (gold) state and any open Saved / Quiz view drops back to the normal feed.
@@ -8527,8 +8527,10 @@ function quizTarget(){
 
 function getGoalState(){
   const today=new Date().toISOString().slice(0,10);
-  const g=LS.get('goal',{date:'',read:0,qotd:false,quiz:false,celebrated:false});
-  if(g.date!==today){ return {date:today,read:0,qotd:false,quiz:false,celebrated:false}; }
+  const g=LS.get('goal',null);
+  // Guard against a missing/cleared value (a stored null would otherwise throw
+  // on g.date and abort init) as well as a stale day → fresh state for today.
+  if(!g||typeof g!=='object'||g.date!==today){ return {date:today,read:0,qotd:false,quiz:false,celebrated:false}; }
   return g;
 }
 function saveGoalState(g){ LS.set('goal',g); }
