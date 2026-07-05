@@ -8945,6 +8945,27 @@ function qmPickType(card){
   return types[Math.floor(Math.random()*types.length)];
 }
 
+// Study-guide match masking: hide a side's OWN party/term name(s) wherever they
+// appear in its facts/definition, so a case/term can't be matched just by spotting
+// its name in the text. Each run of consecutive name words collapses to ONE "*"
+// (plain text, so it works inside <option> elements too). Returns plain text.
+const SG_MASK_STOP=new Set(['r','v','vs','and','of','the','for','a','an','to','in','on','at','by','no','ors','anor','another','others','ltd','plc','llp','co','inc','re']);
+function sgNameTokens(name){
+  const seen=new Set(), out=[];
+  String(name||'').replace(/[()\[\]]/g,' ').split(/[\s,.;:&]+/).forEach(w=>{
+    const word=w.trim(); const k=word.toLowerCase().replace(/[^a-z0-9]/g,'');
+    if(word.length>=2 && k && !SG_MASK_STOP.has(k) && !seen.has(k)){ seen.add(k); out.push(word); }
+  });
+  return out;
+}
+function sgMaskName(text,name){
+  const toks=sgNameTokens(name);
+  if(!toks.length) return String(text||'');
+  const alt=toks.map(n=>n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|');
+  const run=new RegExp(`\\b(?:${alt})\\b(?:[\\s.,'\\-]+\\b(?:${alt})\\b)*`,'gi');
+  return String(text||'').replace(run,'*');
+}
+
 // Build a quiz-mode card.
 //   forcedType → keep the same question type across retry rounds
 //   subset     → (statutes) only re-test these specific sections
@@ -9420,7 +9441,7 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
       const optsHtml=opts.map((o,oi)=>`<option value="${oi}" data-correct="${o.correct?1:0}">${safe(o.label)}</option>`).join('');
       return `<div class="sg-side">
         <select class="qm-match-sel sg-sel"><option value="" disabled selected>— choose —</option>${optsHtml}</select>
-        <div class="sg-side-t">${safe(s.text)}</div>
+        <div class="sg-side-t">${safe(sgMaskName(s.text,s.name))}</div>
       </div>`;
     }).join('');
     const tools=document.createElement('div');
@@ -9468,7 +9489,9 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
     // Each row gets its OWN independently-shuffled dropdown of definitions/facts, so
     // the option order is mixed up and never lines up predictably with the rows.
     box.innerHTML=rowOrder.map(s=>{
-      const opts=shuffle(sides.map(x=>({label:x.text, correct:x===s})));
+      // Mask each definition/facts option by ITS OWN side's name, so the party/term
+      // name can't be spotted in the dropdown text to give the match away.
+      const opts=shuffle(sides.map(x=>({label:sgMaskName(x.text,x.name), correct:x===s})));
       const optsHtml=opts.map((o,oi)=>`<option value="${oi}" data-correct="${o.correct?1:0}">${safe(o.label)}</option>`).join('');
       return `<div class="sg-side">
         <div class="sg-side-h">${safe(s.name)}</div>
