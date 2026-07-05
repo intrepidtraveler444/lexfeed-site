@@ -8923,7 +8923,9 @@ function qmPickType(card){
       const steps=(card.steps||[]).filter(s=>s&&s.head);
       if(steps.length>=2){ types.push('sgorder'); types.push('sgblank'); }
     } else {
-      types.push('sgmatch');   // comparisons / distinguishing → match name ↔ summary
+      types.push('sgmatch');   // definition/facts → pick the term/case
+      const sides=(card.sides||[]).filter(s=>s&&s.name&&s.text);
+      if(sides.length>=2) types.push('sgrmatch');   // reverse: term/case → pick the definition/facts
     }
   } else if(card.cat==='legal-term'){
     types.push('name');                                            // recall the term name
@@ -9429,6 +9431,57 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
         const ans=document.createElement('div');
         ans.className='qm-sec-ans '+(ok?'ok':'no');
         ans.innerHTML=ok?'✓ Correct':`✗ Answer: <strong>${safe(row.dataset.correct)}</strong>`;
+        row.appendChild(ans);
+      });
+      const wrong=rows.length-right;
+      tally(right,wrong);
+      const sum=document.createElement('div');
+      sum.className='qm-reveal '+(wrong===0?'ok':'no');
+      sum.innerHTML=`<span class="qm-mark">${wrong===0?'✓':'✗'}</span>${right}/${rows.length} matched correctly`;
+      tools.appendChild(sum);
+      finishQuestion(wrong===0);
+    });
+    return el;
+  }
+
+  // ── STUDY GUIDE · COMPARISON / DISTINGUISHING — REVERSE match ──
+  // Exact mirror of sgmatch: same row-and-dropdown format, just swapped. Each row
+  // shows a term/case NAME, and the dropdown holds the definitions/facts — so the
+  // user picks between the SAME two options as the forward question. The order of
+  // the names shown and the dropdown options are each randomised independently.
+  if(type==='sgrmatch'){
+    const sides=(card.sides||[]).filter(s=>s&&s.name&&s.text);
+    el.querySelector('.sg-key')?.style.setProperty('display','none');   // hide the difference/distinction
+    const box=el.querySelector('.sg-sides');
+    if(sides.length<2||!box){ finishQuestion(true); return el; }
+    const rowOrder=shuffle([...sides]);                 // randomise which term/case appears first
+    const texts=shuffle(sides.map(s=>s.text));          // dropdown options = the definitions/facts, randomised
+    const optsHtml=texts.map((t,idx)=>`<option value="${idx}">${safe(t)}</option>`).join('');
+    // data-correct = the option index of this row's own text (safer than putting
+    // long text — which may contain quotes — into an HTML attribute).
+    box.innerHTML=rowOrder.map(s=>`
+      <div class="sg-side" data-correct="${texts.indexOf(s.text)}">
+        <div class="sg-side-h">${safe(s.name)}</div>
+        <select class="qm-match-sel sg-sel"><option value="" disabled selected>— choose —</option>${optsHtml}</select>
+      </div>`).join('');
+    const tools=document.createElement('div');
+    const lbl=card.guide==='compare'?'Match each term to the correct definition.':'Match each case to the correct facts.';
+    tools.innerHTML=`<div class="qm-hint">${lbl}</div><button class="qm-sec-go sg-go">Check matches</button>`;
+    box.after(tools);
+    const rows=[...box.querySelectorAll('.sg-side')], go=tools.querySelector('.sg-go');
+    go.addEventListener('click',()=>{
+      if(go.disabled) return; go.disabled=true;
+      let right=0;
+      rows.forEach(row=>{
+        const sel=row.querySelector('.sg-sel');
+        const chosenIdx=sel.value!==''?+sel.value:-1;
+        const correctIdx=+row.dataset.correct;
+        const ok=chosenIdx===correctIdx;
+        sel.disabled=true; sel.classList.add(ok?'correct':'wrong');
+        if(ok) right++;
+        const ans=document.createElement('div');
+        ans.className='qm-sec-ans '+(ok?'ok':'no');
+        ans.innerHTML=ok?'✓ Correct':`✗ Answer: <strong>${safe(texts[correctIdx])}</strong>`;
         row.appendChild(ans);
       });
       const wrong=rows.length-right;
