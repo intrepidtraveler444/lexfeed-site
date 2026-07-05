@@ -9392,19 +9392,32 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
     el.querySelector('.sg-key')?.style.setProperty('display','none');   // hide "In short"
     const ol=el.querySelector('.sg-steps');
     if(steps.length<2||!ol){ finishQuestion(true); return el; }
-    // Blank out the whole test: one input per step, in the correct order — the
-    // user types each step's bold heading.
-    ol.innerHTML=steps.map((s,i2)=>`<li><input class="sg-fill sg-blank" data-i="${i2}" type="text" placeholder="step ${i2+1}…" autocomplete="off" autocapitalize="off" spellcheck="false"></li>`).join('');
+    // On a retry round, `subset` lists the step INDICES still to answer (the ones
+    // missed last round). Steps NOT in that set were already answered correctly —
+    // they come back PRE-FILLED and locked, so the user never rewrites a step they
+    // already got right. First attempt (no subset) = every step is blank.
+    const toAnswer = (subset&&subset.length) ? new Set(subset) : new Set(steps.map((s,idx)=>idx));
+    const retry = !!(subset&&subset.length);
+    ol.innerHTML=steps.map((s,idx)=> toAnswer.has(idx)
+      ? `<li><input class="sg-fill sg-blank" data-i="${idx}" type="text" placeholder="step ${idx+1}…" autocomplete="off" autocapitalize="off" spellcheck="false"></li>`
+      : `<li><input class="sg-fill sg-blank correct" data-i="${idx}" type="text" value="${safe(s.head)}" disabled><span class="qm-sec-ans ok">✓</span></li>`
+    ).join('');
+    const nQ=toAnswer.size;
     const tools=document.createElement('div');
-    tools.innerHTML=`<div class="qm-hint">Fill in every step of the test, in order — type each step's heading (the bold part).</div><button class="qm-sec-go sg-go">Check</button>`;
+    const hint=retry
+      ? `Fill in the ${nQ} remaining step${nQ!==1?'s':''} — the ones you already got right are locked in.`
+      : `Fill in every step of the test, in order — type each step's heading (the bold part).`;
+    tools.innerHTML=`<div class="qm-hint">${hint}</div><button class="qm-sec-go sg-go">Check</button>`;
     ol.after(tools);
-    const inputs=[...ol.querySelectorAll('.sg-blank')], go=tools.querySelector('.sg-go');
+    const inputs=[...ol.querySelectorAll('.sg-blank:not([disabled])')], go=tools.querySelector('.sg-go');
     const submit=()=>{
       if(go.disabled) return; go.disabled=true;
-      let right=0;
-      inputs.forEach((inp,idx)=>{
+      let right=0; const missed=[];
+      inputs.forEach(inp=>{
+        const idx=+inp.dataset.i;
         inp.disabled=true;
-        const ok=normalise(inp.value)===normalise(steps[idx].head); if(ok) right++;
+        const ok=normalise(inp.value)===normalise(steps[idx].head);
+        if(ok) right++; else missed.push(idx);
         inp.classList.add(ok?'correct':'wrong');
         const ans=document.createElement('span');
         ans.className='qm-sec-ans '+(ok?'ok':'no');
@@ -9415,12 +9428,13 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
       tally(right,wrong);
       const rev=document.createElement('div');
       rev.className='qm-reveal '+(wrong===0?'ok':'no');
-      rev.innerHTML=`<span class="qm-mark">${wrong===0?'✓':'✗'}</span>${right}/${inputs.length} steps correct`;
+      rev.innerHTML=`<span class="qm-mark">${wrong===0?'✓':'✗'}</span>${right}/${inputs.length} step${inputs.length!==1?'s':''} correct`;
       tools.appendChild(rev);
-      finishQuestion(wrong===0);
+      // Only the steps still missed come back next round; the rest stay pre-filled.
+      finishQuestion(wrong===0, missed);
     };
     go.addEventListener('click',submit);
-    inputs.forEach((inp,idx)=>inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ if(idx<inputs.length-1) inputs[idx+1].focus(); else submit(); } }));
+    inputs.forEach((inp,k)=>inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ if(k<inputs.length-1) inputs[k+1].focus(); else submit(); } }));
     setTimeout(()=>{ if(i===0) inputs[0]?.focus(); },300);
     return el;
   }
