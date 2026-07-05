@@ -197,6 +197,14 @@ header{
 .sg-steps li{font-size:13px;line-height:1.55;color:#3a4a6b}
 .sg-steps li::marker{color:#0d9488;font-weight:800}
 .sg-step-h{font-weight:800;color:var(--navy)}
+/* Quiz: "put the steps in order" rows */
+.sg-steps li.sg-ord{display:flex;align-items:center;gap:10px}
+.sg-steps li.sg-ord .sg-step-h{flex:1}
+.sg-ord-btns{display:inline-flex;gap:4px;flex-shrink:0}
+.sg-ord-btns button{width:28px;height:28px;border:1px solid #cfd6e6;background:#fff;border-radius:7px;cursor:pointer;font-size:11px;color:var(--navy);line-height:1;padding:0}
+.sg-ord-btns button:disabled{opacity:.35;cursor:default}
+.sg-ord-mark{flex-shrink:0;font-weight:800;font-size:15px}
+.sg-ord-mark.ok{color:#16a34a}.sg-ord-mark.no{color:#dc2626}
 .sg-sides{display:flex;flex-direction:column;gap:9px}
 .sg-side{border:1px solid rgba(13,148,136,.18);border-left:3px solid #0d9488;border-radius:10px;padding:10px 12px;background:#f4fbfa}
 .sg-side-h{font-weight:800;color:#0f766e;font-size:13px;margin-bottom:3px}
@@ -8908,8 +8916,15 @@ function qmPickType(card){
       .filter(c=>c&&c.cat==='case-law'&&c.id!==card.id&&c.facts);
     if(card.facts && pool.length>=2) types.push('pickfacts');
   } else if(card.cat==='study-guide'){
-    // Legal tests → fill the missing step; comparisons/distinguishing → match.
-    types.push(card.guide==='test'?'sgtest':'sgmatch');
+    if(card.guide==='test'){
+      // Legal tests: fill ONE missing step, or (with ≥2 steps) put the steps in
+      // the right order, or fill in EVERY step from blank.
+      types.push('sgtest');
+      const steps=(card.steps||[]).filter(s=>s&&s.head);
+      if(steps.length>=2){ types.push('sgorder'); types.push('sgblank'); }
+    } else {
+      types.push('sgmatch');   // comparisons / distinguishing → match name ↔ summary
+    }
   } else if(card.cat==='legal-term'){
     types.push('name');                                            // recall the term name
     // "Pick the definition" needs ≥2 OTHER terms (with a definition) as decoys.
@@ -9290,6 +9305,96 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
     go.addEventListener('click',submit);
     input.addEventListener('keydown',e=>{ if(e.key==='Enter') submit(); });
     setTimeout(()=>{ if(i===0) input.focus(); },300);
+    return el;
+  }
+
+  // ── STUDY GUIDE · LEGAL TEST — put the steps in the correct order ──
+  if(type==='sgorder'){
+    const steps=(card.steps||[]).filter(s=>s&&s.head);
+    el.querySelector('.sg-key')?.style.setProperty('display','none');   // hide "In short"
+    const ol=el.querySelector('.sg-steps');
+    if(steps.length<2||!ol){ finishQuestion(true); return el; }
+    // Correct order = the steps as authored. Present them shuffled (only the bold
+    // heading of each) and let the user reorder with ▲▼. `order` holds the ORIGINAL
+    // step index at each visible position; a correct arrangement is order[p]===p.
+    let order=shuffle(steps.map((s,i2)=>i2));
+    if(order.every((v,idx)=>v===idx)) order.push(order.shift());   // never start already-solved
+    const render=()=>{
+      ol.innerHTML=order.map((orig,pos)=>`
+        <li class="sg-ord">
+          <span class="sg-step-h">${safe(steps[orig].head)}</span>
+          <span class="sg-ord-btns">
+            <button type="button" class="sg-ord-up" data-pos="${pos}"${pos===0?' disabled':''} aria-label="Move up">▲</button>
+            <button type="button" class="sg-ord-dn" data-pos="${pos}"${pos===order.length-1?' disabled':''} aria-label="Move down">▼</button>
+          </span>
+        </li>`).join('');
+      ol.querySelectorAll('.sg-ord-up').forEach(b=>b.onclick=()=>{ const p=+b.dataset.pos; [order[p-1],order[p]]=[order[p],order[p-1]]; render(); });
+      ol.querySelectorAll('.sg-ord-dn').forEach(b=>b.onclick=()=>{ const p=+b.dataset.pos; [order[p],order[p+1]]=[order[p+1],order[p]]; render(); });
+    };
+    render();
+    const tools=document.createElement('div');
+    tools.innerHTML=`<div class="qm-hint">Put the steps of the test in the correct order (use ▲▼).</div><button class="qm-sec-go sg-go">Check order</button>`;
+    ol.after(tools);
+    const go=tools.querySelector('.sg-go');
+    go.addEventListener('click',()=>{
+      if(go.disabled) return; go.disabled=true;
+      ol.querySelectorAll('button').forEach(b=>b.disabled=true);
+      let right=0;
+      [...ol.children].forEach((li,pos)=>{
+        const ok=order[pos]===pos; if(ok) right++;
+        const m=document.createElement('span');
+        m.className='sg-ord-mark '+(ok?'ok':'no'); m.textContent=ok?'✓':'✗';
+        li.appendChild(m);
+      });
+      const wrong=order.length-right;
+      tally(right,wrong);
+      const rev=document.createElement('div');
+      rev.className='qm-reveal '+(wrong===0?'ok':'no');
+      rev.innerHTML=wrong===0
+        ? `<span class="qm-mark">✓</span>Correct order!`
+        : `<span class="qm-mark">✗</span>Correct order: ${steps.map((s,idx)=>`${idx+1}. <strong>${safe(s.head)}</strong>`).join(' → ')}`;
+      tools.appendChild(rev);
+      finishQuestion(wrong===0);
+    });
+    return el;
+  }
+
+  // ── STUDY GUIDE · LEGAL TEST — fill in EVERY step from blank, in order ──
+  if(type==='sgblank'){
+    const steps=(card.steps||[]).filter(s=>s&&s.head);
+    el.querySelector('.sg-key')?.style.setProperty('display','none');   // hide "In short"
+    const ol=el.querySelector('.sg-steps');
+    if(steps.length<2||!ol){ finishQuestion(true); return el; }
+    // Blank out the whole test: one input per step, in the correct order — the
+    // user types each step's bold heading.
+    ol.innerHTML=steps.map((s,i2)=>`<li><input class="sg-fill sg-blank" data-i="${i2}" type="text" placeholder="step ${i2+1}…" autocomplete="off" autocapitalize="off" spellcheck="false"></li>`).join('');
+    const tools=document.createElement('div');
+    tools.innerHTML=`<div class="qm-hint">Fill in every step of the test, in order — type each step's heading (the bold part).</div><button class="qm-sec-go sg-go">Check</button>`;
+    ol.after(tools);
+    const inputs=[...ol.querySelectorAll('.sg-blank')], go=tools.querySelector('.sg-go');
+    const submit=()=>{
+      if(go.disabled) return; go.disabled=true;
+      let right=0;
+      inputs.forEach((inp,idx)=>{
+        inp.disabled=true;
+        const ok=normalise(inp.value)===normalise(steps[idx].head); if(ok) right++;
+        inp.classList.add(ok?'correct':'wrong');
+        const ans=document.createElement('span');
+        ans.className='qm-sec-ans '+(ok?'ok':'no');
+        ans.innerHTML=ok?'✓':`✗ <strong>${safe(steps[idx].head)}</strong>`;
+        inp.after(ans);
+      });
+      const wrong=inputs.length-right;
+      tally(right,wrong);
+      const rev=document.createElement('div');
+      rev.className='qm-reveal '+(wrong===0?'ok':'no');
+      rev.innerHTML=`<span class="qm-mark">${wrong===0?'✓':'✗'}</span>${right}/${inputs.length} steps correct`;
+      tools.appendChild(rev);
+      finishQuestion(wrong===0);
+    };
+    go.addEventListener('click',submit);
+    inputs.forEach((inp,idx)=>inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ if(idx<inputs.length-1) inputs[idx+1].focus(); else submit(); } }));
+    setTimeout(()=>{ if(i===0) inputs[0]?.focus(); },300);
     return el;
   }
 
