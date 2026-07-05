@@ -294,6 +294,9 @@ header{
 .qm-setup-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
 .qm-setup-row>span{font-size:13px;font-weight:700;color:var(--navy);flex-shrink:0}
 .qm-setup-row select{flex:1;min-width:0;border:1.5px solid #d6deec;border-radius:10px;padding:10px;font-size:15px;font-family:inherit;color:var(--navy);background:#fff}
+/* Stacked row: label above, multi-select chips wrap left-aligned below */
+.qm-setup-row.stack{flex-direction:column;align-items:stretch;gap:8px}
+.qm-setup-row.stack .qm-seg{justify-content:flex-start}
 .qm-seg{display:flex;gap:6px;flex:1;justify-content:flex-end;flex-wrap:wrap}
 .qm-seg button{border:1.5px solid #d6deec;background:#fff;color:var(--slate);border-radius:999px;padding:8px 14px;font-size:13px;font-weight:700;font-family:inherit;cursor:pointer;min-height:40px}
 .qm-seg button.on{background:var(--navy);border-color:var(--navy);color:#fff}
@@ -8786,8 +8789,9 @@ let qmRetry=[];                 // {card, sections?} to re-test next round
 let qmTypeForRound=new Map();    // card.id → fixed question type for this loop
 let qmOptsForRound=new Map();    // card.id → cached decoy cards, so retries keep the
                                  // SAME options (reshuffled order), only reordered
-// Quiz scope chosen on the setup screen: area / card type / focus / length.
-let qmScope={ area:'', cat:'', focus:'all', length:25 };
+// Quiz scope chosen on the setup screen: areas / card types (both multi-select —
+// empty array = all) / focus / length.
+let qmScope={ areas:[], cats:[], focus:'all', length:25 };
 
 // Cards eligible for quiz mode (exclude journal articles, news, quiz, flair)
 function qmEligible(card){
@@ -9406,14 +9410,19 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
     el.querySelector('.sg-key')?.style.setProperty('display','none');   // hide the difference/distinction
     const box=el.querySelector('.sg-sides');
     if(sides.length<2||!box){ finishQuestion(true); return el; }
-    const rowOrder=shuffle([...sides]);                 // randomise which summary/case appears first
-    const names=shuffle(sides.map(s=>s.name));          // randomise the dropdown option order (independently)
-    const optsHtml=names.map((n,idx)=>`<option value="${idx}">${safe(n)}</option>`).join('');
-    box.innerHTML=rowOrder.map(s=>`
-      <div class="sg-side" data-correct="${safe(s.name)}">
+    const rowOrder=shuffle([...sides]);                 // randomise which summary/case row appears first
+    // Each row gets its OWN independently-shuffled dropdown, so the option order is
+    // mixed up (sometimes matching the on-screen order, sometimes not) and a row's
+    // correct-answer position never lines up predictably across rows — the user must
+    // actually know which name goes with which text, not exploit position.
+    box.innerHTML=rowOrder.map(s=>{
+      const opts=shuffle(sides.map(x=>({label:x.name, correct:x===s})));
+      const optsHtml=opts.map((o,oi)=>`<option value="${oi}" data-correct="${o.correct?1:0}">${safe(o.label)}</option>`).join('');
+      return `<div class="sg-side">
         <select class="qm-match-sel sg-sel"><option value="" disabled selected>— choose —</option>${optsHtml}</select>
         <div class="sg-side-t">${safe(s.text)}</div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
     const tools=document.createElement('div');
     const lbl=card.guide==='compare'?'Match each definition to the correct term.':'Match each summary to the correct case.';
     tools.innerHTML=`<div class="qm-hint">${lbl}</div><button class="qm-sec-go sg-go">Check matches</button>`;
@@ -9424,13 +9433,14 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
       let right=0;
       rows.forEach(row=>{
         const sel=row.querySelector('.sg-sel');
-        const chosen=sel.value!==''?names[+sel.value]:'';
-        const ok=normalise(chosen)===normalise(row.dataset.correct);
+        const chosenOpt=sel.selectedOptions[0];
+        const ok=!!chosenOpt && chosenOpt.dataset.correct==='1';
         sel.disabled=true; sel.classList.add(ok?'correct':'wrong');
         if(ok) right++;
+        const correctOpt=sel.querySelector('option[data-correct="1"]');
         const ans=document.createElement('div');
         ans.className='qm-sec-ans '+(ok?'ok':'no');
-        ans.innerHTML=ok?'✓ Correct':`✗ Answer: <strong>${safe(row.dataset.correct)}</strong>`;
+        ans.innerHTML=ok?'✓ Correct':`✗ Answer: <strong>${safe(correctOpt?correctOpt.textContent:'')}</strong>`;
         row.appendChild(ans);
       });
       const wrong=rows.length-right;
@@ -9454,16 +9464,17 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
     el.querySelector('.sg-key')?.style.setProperty('display','none');   // hide the difference/distinction
     const box=el.querySelector('.sg-sides');
     if(sides.length<2||!box){ finishQuestion(true); return el; }
-    const rowOrder=shuffle([...sides]);                 // randomise which term/case appears first
-    const texts=shuffle(sides.map(s=>s.text));          // dropdown options = the definitions/facts, randomised
-    const optsHtml=texts.map((t,idx)=>`<option value="${idx}">${safe(t)}</option>`).join('');
-    // data-correct = the option index of this row's own text (safer than putting
-    // long text — which may contain quotes — into an HTML attribute).
-    box.innerHTML=rowOrder.map(s=>`
-      <div class="sg-side" data-correct="${texts.indexOf(s.text)}">
+    const rowOrder=shuffle([...sides]);                 // randomise which term/case row appears first
+    // Each row gets its OWN independently-shuffled dropdown of definitions/facts, so
+    // the option order is mixed up and never lines up predictably with the rows.
+    box.innerHTML=rowOrder.map(s=>{
+      const opts=shuffle(sides.map(x=>({label:x.text, correct:x===s})));
+      const optsHtml=opts.map((o,oi)=>`<option value="${oi}" data-correct="${o.correct?1:0}">${safe(o.label)}</option>`).join('');
+      return `<div class="sg-side">
         <div class="sg-side-h">${safe(s.name)}</div>
         <select class="qm-match-sel sg-sel"><option value="" disabled selected>— choose —</option>${optsHtml}</select>
-      </div>`).join('');
+      </div>`;
+    }).join('');
     const tools=document.createElement('div');
     const lbl=card.guide==='compare'?'Match each term to the correct definition.':'Match each case to the correct facts.';
     tools.innerHTML=`<div class="qm-hint">${lbl}</div><button class="qm-sec-go sg-go">Check matches</button>`;
@@ -9474,14 +9485,14 @@ function buildQuizModeCard(card,i,forcedType,subset,standalone){
       let right=0;
       rows.forEach(row=>{
         const sel=row.querySelector('.sg-sel');
-        const chosenIdx=sel.value!==''?+sel.value:-1;
-        const correctIdx=+row.dataset.correct;
-        const ok=chosenIdx===correctIdx;
+        const chosenOpt=sel.selectedOptions[0];
+        const ok=!!chosenOpt && chosenOpt.dataset.correct==='1';
         sel.disabled=true; sel.classList.add(ok?'correct':'wrong');
         if(ok) right++;
+        const correctOpt=sel.querySelector('option[data-correct="1"]');
         const ans=document.createElement('div');
         ans.className='qm-sec-ans '+(ok?'ok':'no');
-        ans.innerHTML=ok?'✓ Correct':`✗ Answer: <strong>${safe(texts[correctIdx])}</strong>`;
+        ans.innerHTML=ok?'✓ Correct':`✗ Answer: <strong>${safe(correctOpt?correctOpt.textContent:'')}</strong>`;
         row.appendChild(ans);
       });
       const wrong=rows.length-right;
@@ -9706,8 +9717,8 @@ function buildQuizQueue(items, LIMIT=25){
 // Eligible saved cards narrowed to the chosen scope (area / type / focus).
 function qmScopedItems(){
   return [...saves].map(id=>savedData[id]).filter(qmEligible).filter(c=>{
-    if(qmScope.area && cardArea(c)!==qmScope.area) return false;
-    if(qmScope.cat  && c.cat!==qmScope.cat)        return false;
+    if(qmScope.areas.length && !qmScope.areas.includes(cardArea(c))) return false;
+    if(qmScope.cats.length  && !qmScope.cats.includes(c.cat))        return false;
     if(qmScope.focus==='new'  && srs[c.id])                              return false;  // only never-quizzed
     if(qmScope.focus==='weak' && !(srs[c.id]&&srs[c.id].lapses>0))       return false;  // only ones missed before
     return true;
@@ -9751,10 +9762,16 @@ function renderQuizMode(){
   box.innerHTML=`
     <div class="qm-setup-h">🎯 Quiz Me</div>
     <div class="qm-setup-sub">Pick what to be tested on.</div>
-    <label class="qm-setup-row"><span>Area of law</span>
-      <select id="qmScA"><option value="">All areas</option>${areas.map(a=>`<option value="${safe(a)}"${qmScope.area===a?' selected':''}>${safe(a)}</option>`).join('')}</select></label>
-    <label class="qm-setup-row"><span>Type</span>
-      <select id="qmScC"><option value="">All types</option>${cats.map(c=>`<option value="${c}"${qmScope.cat===c?' selected':''}>${CATLBL[c]}</option>`).join('')}</select></label>
+    <div class="qm-setup-row stack"><span>Area of law</span>
+      <div class="qm-seg qm-multi" id="qmScA">
+        <button type="button" data-v="">All areas</button>
+        ${areas.map(a=>`<button type="button" data-v="${safe(a)}">${safe(a)}</button>`).join('')}
+      </div></div>
+    <div class="qm-setup-row stack"><span>Type</span>
+      <div class="qm-seg qm-multi" id="qmScC">
+        <button type="button" data-v="">All types</button>
+        ${cats.map(c=>`<button type="button" data-v="${c}">${CATLBL[c]}</button>`).join('')}
+      </div></div>
     <div class="qm-setup-row"><span>Focus</span>
       <div class="qm-seg" id="qmScF">
         <button type="button" data-v="all">All saved</button>
@@ -9771,15 +9788,22 @@ function renderQuizMode(){
     <button class="qm-setup-go" id="qmScGo" type="button">Start quiz →</button>`;
   grid.appendChild(box);
   const mark=(sel,val)=>box.querySelector(sel).querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===String(val)));
+  // Multi-select: every chosen chip is "on"; the "All" chip (empty value) is on
+  // only when nothing specific is selected.
+  const markMulti=(sel,arr)=>box.querySelector(sel).querySelectorAll('button').forEach(b=>
+    b.classList.toggle('on', b.dataset.v==='' ? arr.length===0 : arr.includes(b.dataset.v)));
   mark('#qmScF', qmScope.focus); mark('#qmScL', qmScope.length);
+  markMulti('#qmScA', qmScope.areas); markMulti('#qmScC', qmScope.cats);
   const update=()=>{
     const n=qmScopedItems().length;
     const q=qmScope.length?Math.min(qmScope.length,n):n;
     box.querySelector('#qmScN').textContent=n?`${n} card${n!==1?'s':''} match · ${q} question${q!==1?'s':''}`:'No saved cards match — adjust the filters.';
     box.querySelector('#qmScGo').disabled=!n;
   };
-  box.querySelector('#qmScA').onchange=e=>{ qmScope.area=e.target.value; update(); };
-  box.querySelector('#qmScC').onchange=e=>{ qmScope.cat=e.target.value; update(); };
+  // Toggle a value in a multi-select array; clicking "All" (empty value) clears it.
+  const toggleMulti=(arr,v)=>{ if(v===''){ arr.length=0; } else { const i=arr.indexOf(v); if(i>=0) arr.splice(i,1); else arr.push(v); } };
+  box.querySelector('#qmScA').querySelectorAll('button').forEach(b=>b.onclick=()=>{ toggleMulti(qmScope.areas,b.dataset.v); markMulti('#qmScA',qmScope.areas); update(); });
+  box.querySelector('#qmScC').querySelectorAll('button').forEach(b=>b.onclick=()=>{ toggleMulti(qmScope.cats,b.dataset.v); markMulti('#qmScC',qmScope.cats); update(); });
   box.querySelector('#qmScF').querySelectorAll('button').forEach(b=>b.onclick=()=>{ qmScope.focus=b.dataset.v; mark('#qmScF',qmScope.focus); update(); });
   box.querySelector('#qmScL').querySelectorAll('button').forEach(b=>b.onclick=()=>{ qmScope.length=+b.dataset.v; mark('#qmScL',qmScope.length); update(); });
   box.querySelector('#qmScGo').onclick=()=>startQuizMode();
