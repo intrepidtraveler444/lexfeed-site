@@ -4257,6 +4257,94 @@ async function fetchFeedText(url){
   throw new Error('all sources failed for '+url);
 }
 
+// ── Live case enrichment (free, client-side, no external calls) ──
+// Turns a raw BAILII/NA case blurb into: catchword chips, an outcome badge, and a
+// cleaner summary sentence — so a live card shows what the case is ABOUT and who
+// won, instead of a truncated fragment. Everything is derived from data already in
+// the feed, so it adds no latency and no cost. Falls back gracefully when a blurb
+// carries none of these signals.
+const CASE_BLURB_STOP=/\b(whether|held|the claimant|the defendant|the appellant|the respondent|the court|the judge|this is|this case|this appeal|the issue|application by)\b/i;
+function parseCaseBlurb(desc, court){
+  const text=strip(desc||'');
+  let catchwords=[], summary=text, outcome='', tone='';
+  if(text){
+    // Catchwords = leading, short, dash-separated phrases ("Insurance – Business
+    // interruption – Construction of policy – whether…"). Stop at the first segment
+    // that reads like a sentence, so ordinary prose never yields false chips.
+    const parts=text.split(/\s+[\-–—]\s+/);
+    if(parts.length>=2){
+      const cw=[]; let i=0;
+      for(; i<parts.length; i++){
+        const seg=parts[i].trim();
+        const words=seg?seg.split(/\s+/).length:0;
+        // A catchword is a short topic phrase — not a sentence, a case name (" v "),
+        // or a citation ([year]/(year)). Stop at the first segment that isn't one.
+        if(seg && words>=1 && words<=6 && !CASE_BLURB_STOP.test(seg)
+           && !/[.]$/.test(seg) && !/\bv\.?\b|\[\d{4}\]|\(\d{4}\)/i.test(seg) && cw.length<6){ cw.push(seg); }
+        else break;
+      }
+      if(cw.length>=2){
+        catchwords=cw.map(c=>c.replace(/^[^\w(]+|[^\w)]+$/g,'').replace(/^([a-z])/,(m,x)=>x.toUpperCase()));
+        summary=parts.slice(i).join(' — ').trim();
+      }
+    }
+    // Outcome badge (only when the disposition is actually stated in the blurb).
+    const OUT=[
+      [/appeals?\s+(?:is|are|was|were)?\s*allowed\s+in\s+part/i,'Appeal allowed in part','ok'],
+      [/appeals?\s+(?:is|are|was|were)?\s*allowed/i,'Appeal allowed','ok'],
+      [/appeals?\s+(?:is|are|was|were)?\s*dismissed/i,'Appeal dismissed','no'],
+      [/claim\s+(?:is|was)?\s*(?:allowed|succeed(?:s|ed)?)/i,'Claim succeeded','ok'],
+      [/claim\s+(?:is|was)?\s*(?:dismissed|fail(?:s|ed)?)/i,'Claim dismissed','no'],
+      [/conviction\s+(?:is|was)?\s*quashed/i,'Conviction quashed','ok'],
+      [/conviction\s+(?:is|was)?\s*upheld/i,'Conviction upheld','no'],
+      [/application\s+(?:is|was)?\s*granted/i,'Application granted','ok'],
+      [/application\s+(?:is|was)?\s*(?:refused|dismissed)/i,'Application refused','no'],
+    ];
+    for(const [re,label,t] of OUT){ if(re.test(text)){ outcome=label; tone=t; break; } }
+  }
+  summary=trunc(summary, 320).replace(/^([a-z])/,(m,x)=>x.toUpperCase());   // tidy the leading letter
+  // Templated fallback when the blurb is all catchwords, empty, or too short.
+  if(!summary || summary.length<25){
+    summary = catchwords.length
+      ? `A ${court} decision on ${catchwords.slice(0,3).join(', ').toLowerCase()}.`
+      : `A ${court} judgment — open the full judgment for the facts and the court’s decision.`;
+  }
+  return {catchwords, outcome, outcomeTone:tone, summary};
+}
+// Neutral-citation key, e.g. "[2016] UKSC 8" → "2016 UKSC 8". Used to reuse a
+// hand-written curated brief when a live judgment IS one of our curated cases.
+function caseCiteKey(s){
+  const m=String(s||'').match(/\[(\d{4})\]\s+(UKSC|UKHL|UKPC|EWCA|EWHC|EWCOP|UKUT|EWFC)\s*(Civ|Crim|Admin|Comm|Ch|QB|KB|Fam|Pat|TCC|IPEC)?\s+(\d+)/i);
+  return m ? `${m[1]} ${m[2].toUpperCase()}${m[3]?' '+m[3].toUpperCase():''} ${m[4]}` : '';
+}
+let _curatedByCite=null;
+function curatedBriefFor(title){
+  const key=caseCiteKey(title);
+  if(!key) return null;
+  if(!_curatedByCite){
+    _curatedByCite={};
+    (typeof CURATED!=='undefined'?CURATED:[]).forEach(c=>{
+      if(c&&c.cat==='case-law'&&c.facts){ const k=caseCiteKey(c.title); if(k&&!_curatedByCite[k]) _curatedByCite[k]=c; }
+    });
+  }
+  return _curatedByCite[key]||null;
+}
+// Convert a neutral citation in a BAILII case title into its National Archives
+// "Find Case Law" URL, so a BAILII-sourced card can also attempt the full AKN
+// extractive enrichment (enrichNACard). Returns '' for courts NA doesn't carry;
+// the fetch fails gracefully (card keeps the blurb enrichment) when it lacks the case.
+function naUrlFromTitle(title){
+  const t=String(title||''), NA='https://caselaw.nationalarchives.gov.uk';
+  let m=t.match(/\[(\d{4})\]\s+UKSC\s+(\d+)/i);           if(m) return `${NA}/uksc/${m[1]}/${m[2]}`;
+  m=t.match(/\[(\d{4})\]\s+UKPC\s+(\d+)/i);               if(m) return `${NA}/ukpc/${m[1]}/${m[2]}`;
+  m=t.match(/\[(\d{4})\]\s+EWCA\s+(Civ|Crim)\s+(\d+)/i);  if(m) return `${NA}/ewca/${m[2].toLowerCase()}/${m[1]}/${m[3]}`;
+  m=t.match(/\[(\d{4})\]\s+EWHC\s+(\d+)\s*\((Admin|Comm|Ch|QB|KB|Fam|Pat|TCC|IPEC|Costs|Mercantile|Admlty|SCCO)\)/i);
+                                                          if(m) return `${NA}/ewhc/${m[3].toLowerCase()}/${m[1]}/${m[2]}`;
+  m=t.match(/\[(\d{4})\]\s+EWFC\s+(\d+)/i);               if(m) return `${NA}/ewfc/${m[1]}/${m[2]}`;
+  m=t.match(/\[(\d{4})\]\s+EWCOP\s+(\d+)/i);              if(m) return `${NA}/ewcop/${m[1]}/${m[2]}`;
+  return '';
+}
+
 async function fetchFeed(feed){
   const text=await fetchFeedText(feed.url);
   const doc=new DOMParser().parseFromString(text,'text/xml');
@@ -4273,7 +4361,16 @@ async function fetchFeed(feed){
 
     if(feed.cat==='case-law'){
       const court=feed.src.includes('—')?feed.src.split('—')[1].trim():feed.src;
-      return{...base,court,desc:trunc(desc,360)||'Click to read the full judgment.'};
+      // If this live judgment IS one of our curated cases, reuse the hand-written
+      // Facts / Judgment / Ratio (gold standard) — it renders in the structured layout.
+      const cur=curatedBriefFor(title);
+      if(cur) return{...base,court,facts:cur.facts,judgment:cur.judgment,ratio:cur.ratio,area:cur.area,curatedFrom:cur.id};
+      // Otherwise: instant blurb enrichment (catchword chips + outcome + clean summary),
+      // AND a derived NA url so the card also attempts the full AKN extraction on scroll
+      // (which replaces the blurb version if the National Archives has the judgment).
+      const p=parseCaseBlurb(desc, court);
+      const naUrl=naUrlFromTitle(title);
+      return{...base,court,desc:p.summary,catchwords:p.catchwords,outcome:p.outcome,outcomeTone:p.outcomeTone,...(naUrl?{naUrl}:{})};
     }
     if(feed.cat==='statute'){
       const isAct=/Act \d{4}|Order \d{4}|Regulations \d{4}/.test(title);
@@ -4713,6 +4810,9 @@ async function enrichNACard(cardEl){
     // Replace .card-body with structured sl blocks
     const body=cardEl.querySelector('.card-body');
     if(!body) return;
+    // Drop any instant blurb-based chips/outcome so the richer NA-extracted
+    // versions below replace them rather than showing twice.
+    cardEl.querySelectorAll('.case-meta-row, .case-topics').forEach(n=>n.remove());
 
     const frag=document.createDocumentFragment();
     const selfId=co?co.id:'';
@@ -5321,9 +5421,14 @@ function buildCard(card,delayMs=0){
         <div class="sl"><div class="sl-label">Judgment</div><div class="sl-text">${crossLink(card.judgment,card.id)}</div></div>
         <div class="sl"><div class="sl-label">Ratio Decidendi</div><div class="sl-text">${crossLink(card.ratio,card.id)}</div></div>`;
     } else {
-      // Live BAILII / NA — court abbreviation now sits in the title, so the
-      // body is just the preview/summary.
-      inner=`<div class="card-body">${safe(card.desc||'No preview available. Click to read the full judgment.')}</div>`;
+      // Live BAILII / NA — court sits in the title, so the body is the enriched
+      // preview: catchword chips (what it's about) + an outcome badge (who won)
+      // when the blurb carries them, then the clean summary.
+      const outcome=card.outcome
+        ? `<div class="case-meta-row"><span class="case-outcome">⚖ ${safe(card.outcome)}</span></div>` : '';
+      const chips=(card.catchwords&&card.catchwords.length)
+        ? `<div class="case-topics">${card.catchwords.slice(0,5).map(c=>`<span class="case-topic">${safe(c)}</span>`).join('')}</div>` : '';
+      inner=outcome+chips+`<div class="card-body">${safe(card.desc||'No preview available. Click to read the full judgment.')}</div>`;
     }
   }
   // ── Statute ──
