@@ -4344,6 +4344,48 @@ function naUrlFromTitle(title){
   m=t.match(/\[(\d{4})\]\s+EWCOP\s+(\d+)/i);              if(m) return `${NA}/ewcop/${m[1]}/${m[2]}`;
   return '';
 }
+// 3–5 "key words" that convey what a case is about. Priority: the judgment's own
+// catchwords → salient legal concepts detected in the text → the area of law.
+// Multi-word concepts are matched first and suppress their sub-words.
+const CASE_KW_DICT=['duty of care','breach of contract','breach of duty','judicial review','human rights',
+  'exclusion clause','unfair dismissal','vicarious liability','occupiers liability','freedom of expression',
+  'pure economic loss','unjust enrichment','specific performance','constructive trust','resulting trust',
+  'adverse possession','restraint of trade','data protection','intellectual property','trade mark',
+  'proprietary estoppel','promissory estoppel','legitimate expectation','contributory negligence',
+  'diminished responsibility','abuse of process','financial provision','ancillary relief','care order',
+  'proportionality','natural justice','remoteness','causation','misrepresentation','frustration',
+  'consideration','negligence','nuisance','defamation','trespass','conversion','damages','injunction',
+  'restitution','contract','tort','trust','fiduciary','estoppel','easement','covenant','lease','mortgage',
+  'licence','company','director','shareholder','insolvency','liquidation','dividend','murder','manslaughter',
+  'theft','robbery','burglary','fraud','assault','battery','conspiracy','intention','recklessness',
+  'dishonesty','self-defence','duress','consent','provocation','employment','discrimination','equality',
+  'redundancy','immigration','asylum','deportation','extradition','divorce','custody','adoption','insurance',
+  'indemnity','limitation','jurisdiction','costs','disclosure','privilege','confidentiality','privacy',
+  'copyright','patent','sentencing','conviction','bail','evidence','hearsay','planning','environment',
+  'tax','vat','pension','landlord','tenant','possession','forfeiture','nuisance','defamation'];
+function caseKeywords(catchwords, text, area, court){
+  const out=[], seen=new Set();
+  const add=k=>{ const kk=String(k||'').trim(); const key=kk.toLowerCase(); if(kk && !seen.has(key) && out.length<5){ seen.add(key); out.push(kk); } };
+  (catchwords||[]).forEach(add);                               // the court's own catchwords first
+  const hay=' '+String(text||'').toLowerCase()+' ';
+  if(hay.trim().length){
+    for(const kw of CASE_KW_DICT){
+      if(out.length>=5) break;
+      if(new RegExp('\\b'+kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b').test(hay)
+         && !out.some(o=>o.toLowerCase().includes(kw))){        // don't add a word already inside a longer key word
+        add(kw.replace(/^./,c=>c.toUpperCase()));
+      }
+    }
+  }
+  if(area) add(area);                                          // area of law
+  if(court) add(court);                                        // court as a last-resort context keyword
+  return out.slice(0,5);
+}
+function keywordsSectionHtml(keywords){
+  if(!keywords||!keywords.length) return '';
+  return `<div class="sl kw-section"><div class="sl-label">Key words</div>`+
+    `<div class="case-topics">${keywords.map(k=>`<span class="case-topic">${safe(k)}</span>`).join('')}</div></div>`;
+}
 
 async function fetchFeed(feed){
   const text=await fetchFeedText(feed.url);
@@ -4810,9 +4852,9 @@ async function enrichNACard(cardEl){
     // Replace .card-body with structured sl blocks
     const body=cardEl.querySelector('.card-body');
     if(!body) return;
-    // Drop any instant blurb-based chips/outcome so the richer NA-extracted
+    // Drop any instant blurb-based Key words / outcome so the richer NA-extracted
     // versions below replace them rather than showing twice.
-    cardEl.querySelectorAll('.case-meta-row, .case-topics').forEach(n=>n.remove());
+    cardEl.querySelectorAll('.case-meta-row, .kw-section').forEach(n=>n.remove());
 
     const frag=document.createDocumentFragment();
     const selfId=co?co.id:'';
@@ -4825,9 +4867,13 @@ async function enrichNACard(cardEl){
       `<div class="case-meta-row">`+
         (oc?`<span class="case-outcome">⚖ ${safe(oc)}</span>`:'')+
         `<span class="case-readtime">📖 ~${readMin} min read</span>`+
-      `</div>`+
-      (topics.length?`<div class="case-topics">${topics.map(t=>`<span class="case-topic">${safe(t)}</span>`).join('')}</div>`:'');
+      `</div>`;
     frag.appendChild(head);
+    // "Key words" section (3–5) above Facts — the court's own catchwords, backed by
+    // concepts detected in the judgment text and the area of law.
+    const kwHtml=keywordsSectionHtml(caseKeywords(topics,
+      [facts,judgment,texts[0]||'',(co&&co.title)||''].join(' '), co?(co.area||cardArea(co)):'', co&&co.court));
+    if(kwHtml){ const kd=document.createElement('div'); kd.innerHTML=kwHtml; if(kd.firstElementChild) frag.appendChild(kd.firstElementChild); }
     [{label:'Facts',text:facts},{label:'Judgment',text:judgment},
      {label:'Ratio Decidendi',text:'See full judgment for ratio decidendi.'}]
     .forEach(s=>{
@@ -5414,21 +5460,24 @@ function buildCard(card,delayMs=0){
 
   // ── Case Law ──
   if(card.cat==='case-law'){
+    // On LIVE case cards, a "Key words" section (3–5) sits above Facts to convey
+    // what the case is about at a glance.
+    const kwSec=(card.type==='live')
+      ? keywordsSectionHtml(caseKeywords(card.catchwords, [card.facts,card.judgment,card.ratio,card.desc,card.title].filter(Boolean).join(' '), card.area||cardArea(card), card.court))
+      : '';
     if(card.facts){
       // Structured curated — Facts / Judgment / Ratio with cited authorities linked.
-      inner=`
+      inner=kwSec+`
         <div class="sl"><div class="sl-label">Facts</div><div class="sl-text">${crossLink(card.facts,card.id)}</div></div>
         <div class="sl"><div class="sl-label">Judgment</div><div class="sl-text">${crossLink(card.judgment,card.id)}</div></div>
         <div class="sl"><div class="sl-label">Ratio Decidendi</div><div class="sl-text">${crossLink(card.ratio,card.id)}</div></div>`;
     } else {
       // Live BAILII / NA — court sits in the title, so the body is the enriched
-      // preview: catchword chips (what it's about) + an outcome badge (who won)
-      // when the blurb carries them, then the clean summary.
+      // preview: Key words + an outcome badge (who won) when the blurb carries it,
+      // then the clean summary.
       const outcome=card.outcome
         ? `<div class="case-meta-row"><span class="case-outcome">⚖ ${safe(card.outcome)}</span></div>` : '';
-      const chips=(card.catchwords&&card.catchwords.length)
-        ? `<div class="case-topics">${card.catchwords.slice(0,5).map(c=>`<span class="case-topic">${safe(c)}</span>`).join('')}</div>` : '';
-      inner=outcome+chips+`<div class="card-body">${safe(card.desc||'No preview available. Click to read the full judgment.')}</div>`;
+      inner=kwSec+outcome+`<div class="card-body">${safe(card.desc||'No preview available. Click to read the full judgment.')}</div>`;
     }
   }
   // ── Statute ──
