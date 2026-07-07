@@ -104,6 +104,41 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  { id:'xa20260630a', type:'curated', cat:'journal-article', area:'Constitutional',
+    title:"Bingham — 'The Rule of Law' (2007) 66 CLJ 67",
+    body:"Lord Bingham's landmark article — later expanded into his celebrated book — sets out eight sub-rules that together constitute the rule of law: that law must be accessible, intelligible, clear and predictable; that legal disputes must be resolved by application of the law and not the exercise of discretion; that law must apply equally to all; that ministers and public officers must exercise their powers in good faith and for the purposes for which they were conferred; that the law must afford adequate protection of fundamental human rights; that dispute resolution must be provided at reasonable cost and without undue delay; that adjudicative procedures must be fair; and that the state must comply with its obligations under international law. The article is the standard jurisprudential account of the concept for UK constitutional lawyers.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/rule-of-law/0E971B5BB930C2E363D351C5CBC3B855' },
+
+  { id:'xa20260630b', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Edelman — 'When Do Fiduciary Duties Arise?' (2010) 126 LQR 302",
+    body:"James Edelman examines the doctrinal basis for determining when a fiduciary relationship arises, arguing against the prevailing view that fiduciary duties are an incident of certain recognised relationships (trustee, agent, company director, and so on). He contends instead that fiduciary duties arise when and only when one party undertakes to act in the exclusive interests of another — a functional criterion that explains the expansion of the category to joint venture partners and other non-traditional fiduciaries and offers a principled account of why some relationships are fiduciary in some respects but not others.",
+    src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1697656' },
+
+  { id:'xa20260630c', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Goudkamp & Nolan — 'Contributory Negligence in the Twenty-First Century: An Empirical Study of First Instance Decisions' (2016) 79 MLR 575",
+    body:"James Goudkamp and Donal Nolan present a systematic empirical analysis of how first-instance courts apply contributory negligence under the Law Reform (Contributory Negligence) Act 1945. Drawing on a large dataset of reported and unreported judgments, they reveal striking inconsistencies in the apportionment of blame, that reduction percentages cluster around conventional round figures, and that the stated justifications for particular percentages are often inadequate. The study has become an influential critique of the arbitrariness latent in contributory negligence apportionment and a call for greater doctrinal clarity.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/1468-2230.12202' },
+
+  { id:'xa20260630d', type:'curated', cat:'journal-article', area:'Contract',
+    title:"Buxton — '\"Construction\" and Rectification after Chartbrook' (2010) 69 CLJ 253",
+    body:"Lord Justice Buxton provides a searching analysis of the House of Lords' decision in Chartbrook Ltd v Persimmon Homes Ltd [2009] UKHL 38, focusing on two distinct but conflated issues: what the correct approach to contractual construction is where natural language produces an apparently irrational result, and when a court may rectify a contract to give effect to the parties' prior accord. He argues that the majority conflated these separate questions and that the liberal approach to construction sanctioned by Lord Hoffmann risks transforming construction into covert rectification, thereby undermining the certainty that written contracts are meant to provide.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/construction-and-rectification-after-chartbrook/F29292BA4EAD6F2CC8C80C2290C1D4A6' },
+
+  { id:'xa20260630e', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Varuhas — 'The Concept of \"Vindication\" in the Law of Torts: Rights, Interests and Damages' (2014) 34 OJLS 253",
+    body:"Jason Varuhas examines the role of vindicatory damages in tort law, arguing that the courts' sporadic invocations of 'vindication' as a rationale for damages reflect a deeper shift towards a rights-based structure for tort law. He contends that vindicatory damages — awards calibrated not to compensated proved loss but to mark the seriousness of an invasion of a protected right — are a legitimate and coherent response to the infringement of fundamental rights, and that they sit alongside rather than displacing compensatory and deterrence rationales. The article is required reading for debates about the relationship between rights, remedies and corrective justice in private law.",
+    src:'Oxford Journal of Legal Studies', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2343171' },
+
+  { id:'xa20260630f', type:'curated', cat:'journal-article', area:'Contract',
+    title:"Davies — 'Rectifying the Course of Rectification' (2012) 75 MLR 412",
+    body:"Paul Davies examines the equitable doctrine of rectification — the remedy by which a written instrument may be corrected to accord with the parties' true agreement — arguing that post-Chartbrook case law has muddied the distinction between construction and rectification and has lowered the threshold for rectification to a degree that threatens contractual certainty. He proposes a clearer framework that keeps construction and rectification as genuinely distinct operations, reaffirms the traditional requirement of convincing proof of a different prior accord, and limits unilateral mistake rectification to cases of unconscionable conduct rather than mere knowledge of the other's mistake.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-2230.2012.00908.x' },
+
+  { id:'xa20260630g', type:'curated', cat:'journal-article', area:'Public Law',
+    title:"King — 'Institutional Approaches to Judicial Restraint' (2008) 28 OJLS 409",
+    body:"Jeff King surveys the theoretical landscape of judicial restraint, arguing that most accounts — whether proceduralist, substantivist or prudentialist — fail to grapple adequately with the institutional question of why courts, rather than other constitutional actors, should or should not decide particular kinds of question. He identifies three main institutional rationales for restraint (comparative competence, democratic legitimacy and systemic stability) and evaluates them against the reality of judicial review in the United Kingdom. The article is a foundational reference in the constitutional theory dimension of administrative law and judicial review courses.",
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article-abstract/28/3/409/1549786' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +229,48 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  { id:'xt20260630a', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Contributory Negligence',
+    body:"Contributory negligence is conduct by the claimant that falls below the standard of care the claimant is required to take for their own protection, and which materially contributes to the damage they suffer. Under the Law Reform (Contributory Negligence) Act 1945 it no longer operates as a complete defence but instead results in a reduction of the claimant's damages in proportion to their share of fault. The court must apportion responsibility between claimant and defendant having regard to the relative blameworthiness of their conduct and the causative potency of their respective acts or omissions.",
+    example:"A pedestrian steps into the road without looking and is struck by a motorist driving 20% above the speed limit. The court finds both at fault and reduces the pedestrian's damages by 30% to reflect his contributory negligence in failing to take proper care for his own safety.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/contributory-negligence' },
+
+  { id:'xt20260630b', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Rectification',
+    body:"Rectification is an equitable remedy by which a court corrects a written instrument so that it accurately records the parties' true prior agreement, where the document as executed does not do so because of a common mistake (or, in limited circumstances, a unilateral mistake). Because rectification overrides the written agreement, courts require convincing proof — usually by clear evidence of the prior accord — before granting it. The court corrects the document, not the deal: the underlying transaction stands and the amended instrument simply reflects what was actually agreed.",
+    example:"Seller and buyer agree orally to sell a plot excluding a strip of land along the boundary, but the conveyance accidentally includes the strip. The buyer may seek rectification of the conveyance to delete the strip, provided clear evidence of the prior oral agreement is produced to the court.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/rectification' },
+
+  { id:'xt20260630c', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Ex Turpi Causa Non Oritur Actio',
+    body:"The maxim ex turpi causa non oritur actio — no action arises from a dishonourable cause — is the basis of the illegality defence in civil law. A claimant who has been engaged in illegal or seriously immoral conduct cannot found a claim on that conduct, or in circumstances so closely connected to it that the court should refuse to assist. Following Patel v Mirza [2016] UKSC 42, the defence is no longer treated mechanically but applied by balancing the need to prevent the law from assisting wrongdoers against the disproportionate nature of denying the remedy and any impact on legitimate public policy.",
+    example:"Two participants in a drug-smuggling scheme fall out and one assaults the other during a dispute over the profits. The injured party sues in tort. A court may deny the claim on the ground of ex turpi causa, refusing to adjudicate on a dispute arising out of the parties' joint criminal enterprise.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/ex-turpi-causa-non-oritur-actio' },
+
+  { id:'xt20260630d', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Non Est Factum',
+    body:"Non est factum ('it is not my deed') is a narrow plea by which a party who has signed a document may deny being bound by it on the ground that the document is fundamentally different from what they believed they were signing, and that the mistake was not caused by their own carelessness. The defence is strictly confined: a mere misunderstanding of terms is not enough; the document must differ radically in kind from what the signer thought it was. If the party was careless in signing — for example by signing without reading when they were capable of doing so — the defence will fail.",
+    example:"An elderly person with poor literacy is handed what they are told is a guarantee for a relative's loan, but which is in fact a charge over their home. If they sign in good faith without any negligence in the circumstances, they may successfully plead non est factum to avoid the charge.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/non-est-factum' },
+
+  { id:'xt20260630e', type:'curated', cat:'legal-term', area:'Property',
+    title:'Proprietary Estoppel',
+    body:"Proprietary estoppel is an equitable doctrine that may give rise to, or be used to enforce, an interest in land where: (1) the owner made an assurance or representation that the claimant has or will acquire a right in the land; (2) the claimant relied on that assurance; and (3) the claimant thereby suffered a detriment such that it would be unconscionable for the owner to resile from the assurance. Unlike promissory estoppel, proprietary estoppel is a cause of action in its own right and can create new property rights as the remedy. The court has a broad discretion in fashioning relief, which need not necessarily fulfil the claimant's expectation in full.",
+    example:"A nephew works for years on his uncle's farm for low wages in reliance on the uncle's repeated assurances that he will inherit the farm. The uncle then leaves the farm to someone else. The nephew may claim proprietary estoppel and the court may award him the farm or some lesser remedy proportionate to his detriment.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/proprietary-estoppel' },
+
+  { id:'xt20260630f', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Lien',
+    body:"A lien is the right of one person to retain possession of property belonging to another until a debt or obligation owed by that other person is satisfied. Common law liens arise automatically in certain relationships (solicitor, innkeeper, carrier) and entitle the lienholder to retain the property as security without any agreement to that effect. An equitable lien is a charge on property that arises by operation of equity regardless of possession. Unlike a pledge, a lien generally confers no right to sell the property without either the owner's consent or a court order.",
+    example:"A solicitor who has not been paid their fees is entitled at common law to retain the client's documents in their possession until the outstanding bill is settled, even though no express agreement for security was made.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/lien' },
+
+  { id:'xt20260630g', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Remoteness of Damage',
+    body:"Remoteness of damage is the legal test used to determine the outer limit of a defendant's liability once a causal link between breach and harm is established. In tort (particularly negligence) the test is whether the type of damage sustained was reasonably foreseeable at the time of the breach: The Wagon Mound (No 1) [1961]. In contract the parallel rule from Hadley v Baxendale asks whether the loss was within the reasonable contemplation of both parties at the time of contracting as a likely result of breach. If the damage is too remote it falls outside the scope of compensable loss even though the defendant's act or omission caused it.",
+    example:"A defendant negligently spills oil into a harbour. A spark from welding operations ignites the oil, burning the claimant's ships. The Privy Council held the fire damage was not reasonably foreseeable from an oil spill and was therefore too remote in negligence, even though causation was clear.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/remoteness' },
 
   ],
 
