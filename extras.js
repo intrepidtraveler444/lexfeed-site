@@ -104,6 +104,43 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  // ── Refill 2026-07-07 ──────────────────────────────────────────────────
+
+  { id:'xa15', type:'curated', cat:'journal-article', area:'Constitutional',
+    title:"Bingham — 'The Rule of Law' (2007) 66 CLJ 67",
+    body:"Lord Bingham, the outstanding English judge of his generation, delivered this piece as the Sixth Hamlyn Lecture, arguing that the rule of law is not empty rhetoric but a doctrine with eight distinct, substantive ingredients. These range from legal certainty and access to justice through equal treatment of all persons by the law to compliance with international legal obligations. Engaging with the philosophical traditions behind the concept while anchoring each ingredient in concrete legal doctrine and examples, Bingham demonstrates that the rule of law provides a practical standard by which legal systems can be evaluated. The lecture is the intellectual foundation for his acclaimed 2010 monograph of the same name and has become the canonical modern statement of what the rule of law actually demands.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/rule-of-law/0E971B5BB930C2E363D351C5CBC3B855' },
+
+  { id:'xa16', type:'curated', cat:'journal-article', area:'Employment',
+    title:"Freedland — 'From the Contract of Employment to the Personal Work Nexus' (2006) 35 ILJ 1",
+    body:"Mark Freedland argues that the 'contract of employment', the master category of modern employment law, can no longer accommodate the diversity of working arrangements that characterise contemporary labour markets — from agency workers and gig-economy operatives to zero-hours contractors and personal service companies. Drawing on comparative and historical analysis, he proposes a broader organising concept, the 'personal work nexus', encompassing all bilateral relationships under which an individual performs work and which merit legal protection. This conceptual shift anticipated the trajectory of UK Supreme Court decisions from Autoclenz Ltd v Belcher to Uber BV v Aslam and remains the most influential single framework for understanding the reform debate around worker status.",
+    src:'Industrial Law Journal', link:'https://academic.oup.com/ilj/article-abstract/35/1/1/690475' },
+
+  { id:'xa17', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Barker — 'Wielding Occam's Razor: Pruning Strategies for Economic Loss' (2006) 26 OJLS 289",
+    body:"Kit Barker examines why English law restricts recovery of pure economic loss in negligence by investigating the separate 'pruning strategies' courts deploy rather than seeking a single grand principle. Identifying distinct approaches — relational loss exclusion, the Spartan Steel reasoning, transferred loss rules, and derivative liability mechanisms — he shows that each is grounded in different underlying policy rationales. This analytical pluralism explains both the patchwork of existing doctrine and the courts' persistent pragmatism. The article provides a sophisticated framework for understanding where the economic loss boundary falls and why, and has shaped subsequent academic and judicial engagement with the topic.",
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article-abstract/26/2/289/1475188' },
+
+  { id:'xa18', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Robertson — 'Policy-Based Reasoning in Duty of Care Cases' (2013) 33 Legal Studies 119",
+    body:"Andrew Robertson analyses how 'policy' functions as a ground of decision in negligence duty of care cases, distinguishing it from the principled reasoning that officially governs Caparo's tripartite test. He argues that courts routinely — and legitimately — invoke policy considerations to extend, limit, or negate duties of care, but that this process operates beneath a formal doctrinal surface that obscures its role. Mapping the different kinds of policy that appear in the cases and defending their use where transparent and constrained, Robertson advances both a descriptive account of how English courts actually decide duty questions and a normative argument about how policy reasoning can be made more rigorous.",
+    src:'Legal Studies', link:'https://doi.org/10.1111/j.1748-121X.2012.00242.x' },
+
+  { id:'xa19', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Burrows — 'In Defence of Unjust Enrichment' (2019) 78 CLJ 521",
+    body:"Andrew Burrows, the leading British scholar of restitution and unjust enrichment, responds to a renewed challenge — led by Robert Chambers, James Edelman, and others — which denies unjust enrichment is a coherent independent head of the law of obligations. Burrows defends the principle as a true legal category with a distinctive organising logic: the unjust-factor or absence-of-basis approach identifies the circumstances in which a benefit must be returned because of a defect in the basis of its transfer. Engaging with the principal objections (that the category is unnecessary, that it conflates different types of claim, and that the relevant rules derive from property law or wrongs) the article offers the clearest restatement of the unjust enrichment framework in modern English scholarship.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/in-defence-of-unjust-enrichment/C970C0D3C39D330894A0258C2B91DD3D' },
+
+  { id:'xa20', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Nolan — 'Varying the Standard of Care in Negligence' (2013) 72 CLJ 651",
+    body:"Donal Nolan examines whether and how the objective standard of care in negligence — the ordinary reasonable person — can legitimately be varied. Tracing the case law on specialist defendants, children, and persons with physical disabilities, he argues that courts have in fact applied two distinct 'standard of care' doctrines: one for defendants who have held themselves out as possessing a skill (raising the standard), and another for defendants with characteristics that make performance of the relevant act impossible for them personally (potentially lowering it). Clarifying where variation is defensible and where it collapses into subjectivism, the article provides an authoritative account of a perennially misunderstood aspect of the law of negligence.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/varying-the-standard-of-care-in-negligence/3D9C8AFBD97295F2F318CD30A8E389DB' },
+
+  { id:'xa21', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Davies — 'Accessory Liability for Assisting Torts' (2011) 70 CLJ 353",
+    body:"Paul Davies examines the conditions under which a defendant who assists another in committing a tort incurs liability as an accessory. Drawing on analogies with criminal complicity and accessory liability in equity, he argues that English law should recognise a coherent tort of accessory liability requiring: an underlying primary wrong; the defendant's assistance of that wrong; and a mental element of knowledge or intent sufficient to make the defendant morally responsible. The article clarifies a doctrine that had developed haphazardly across different areas — contract interference, procuring breach, conversion, and knowing receipt — and provides a unifying framework that has influenced both academic debate and subsequent judicial treatment of secondary liability in tort.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/accessory-liability-for-assisting-torts/33E1CC361B89D3AD917C1266469DBFFA' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +231,50 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  // ── Refill 2026-07-07 ──────────────────────────────────────────────────
+
+  { id:'xt15', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Contributory Negligence',
+    body:"Contributory negligence is a partial defence by which a defendant who is liable in tort can reduce the damages payable to a claimant by establishing that the claimant also failed to take reasonable care for their own safety and that this failure contributed causally to the damage suffered. Under the Law Reform (Contributory Negligence) Act 1945 damages are apportioned according to the relative fault of the parties, replacing the harsh common law rule under which any contributory fault entirely extinguished the claim. The court assesses both the causal potency and the blameworthiness of each party's fault in fixing the appropriate reduction.",
+    example:"A pedestrian crosses a road at night wearing dark clothing and is struck by a car driven by a negligent driver who was slightly over the speed limit. The court finds both parties at fault and reduces the pedestrian's damages by 25% to reflect their contributory negligence in failing to make themselves visible, awarding only 75% of the full loss.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/contributory-negligence' },
+
+  { id:'xt16', type:'curated', cat:'legal-term', area:'Property',
+    title:'Lien',
+    body:"A lien is a right to retain possession of another's goods or documents as security for the performance of an obligation — most commonly payment of a debt — until that obligation is satisfied, but without any active right to sell or deal with the property. At common law a particular lien arises by operation of law in favour of a person who has expended skill and labour on goods; a general lien, recognised for certain professions (solicitors, bankers, factors), extends to all property of the debtor in the lienholder's hands. A lien is purely possessory: it is lost when possession is voluntarily surrendered and cannot be reasserted.",
+    example:"A solicitor holds a client's title deeds and correspondence while the client owes unpaid fees. The solicitor may exercise a general lien over those documents and refuse to return them until the outstanding fees are paid in full, provided the solicitor obtained possession in their professional capacity and the lien was not excluded by agreement.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/lien' },
+
+  { id:'xt17', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Rectification',
+    body:"Rectification is an equitable remedy that corrects a written instrument to give effect to the parties' true prior agreement, where the document fails to reflect that agreement through a mistake in the recording of it. The court does not rewrite the parties' deal; it amends the document so that it accurately records what was actually agreed. Evidence of the prior agreement — even oral — is admissible for this purpose notwithstanding the parol evidence rule. In cases of unilateral mistake, rectification may also be available where one party had a clear and definite intention of which the other was aware.",
+    example:"A landlord and tenant agree verbally that a new lease will run for ten years from 2020. Through a typographical error the lease as executed states 'five years'. The tenant may seek rectification of the lease to correct the term to ten years, bringing the document into line with the common intention the parties had at the time of execution.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/rectification' },
+
+  { id:'xt18', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Passing Off',
+    body:"Passing off is a common-law tort protecting the goodwill and reputation associated with a trader's goods or services against misrepresentation by another. The three elements — goodwill attached to the claimant's goods, a misrepresentation by the defendant likely to lead the public to believe its goods or services are the claimant's, and damage to the claimant's goodwill — were authoritatively stated in Reckitt & Colman Products v Borden Inc (the 'Jif Lemon' case). Unlike registered trade mark infringement, passing off requires actual goodwill to be proved. The tort protects traders rather than consumers: it prevents one trader from appropriating the reputation built by another.",
+    example:"A new manufacturer begins selling sweets in a yellow triangular wrapper closely resembling a well-known confectionery brand's distinctive trade dress. Even if the new product has a different name, the established brand may bring a passing off claim if goodwill is attached to the distinctive get-up and consumers are likely to be misled into thinking the new product is the same brand or authorised by it.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/passing-off' },
+
+  { id:'xt19', type:'curated', cat:'legal-term', area:'Company',
+    title:'Floating Charge',
+    body:"A floating charge is a form of company security interest over a class of circulating or fluctuating assets — such as stock-in-trade, book debts, or the undertaking generally — that leaves the company free to deal with those assets in the ordinary course of business until the charge crystallises. On crystallisation, typically triggered by appointment of an administrator or receiver, commencement of winding-up, or an express trigger in the charge document, the floating charge converts into a fixed charge over the assets then comprised in the class. Floating charges are central to corporate lending and to the priority waterfall in insolvency; they rank behind fixed charges and preferential creditors.",
+    example:"A bank lends £5m to a manufacturing company secured by a floating charge over all its stock and raw materials. The company can sell finished goods and acquire new materials without the bank's consent. When the company later falls into administration the floating charge crystallises and the bank gains a quasi-fixed security interest over whatever stock is then held in the warehouses.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/floating-charge' },
+
+  { id:'xt20', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Mitigation',
+    body:"The rule of mitigation requires a claimant who has suffered a wrong to take all reasonable steps to minimise the loss flowing from it; they may not recover for loss that reasonable action on their part would have avoided. The rule operates at the remedies stage — liability is unaffected — and the defendant bears the burden of proving that the claimant failed to mitigate. A claimant is not required to take unduly speculative, risky, or onerous steps; the test is reasonableness in the circumstances. Any cost reasonably incurred in mitigating loss is recoverable as additional damages.",
+    example:"An employee is wrongfully dismissed with three months' notice still to run. They cannot simply do nothing and then claim their full salary for the notice period. They are expected to take reasonable steps to find equivalent work; if a comparable job became available after six weeks and they made no effort to apply, the court may assess damages as if they had taken that position, reducing the employer's liability for the remaining weeks.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/mitigation' },
+
+  { id:'xt21', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Affirmation',
+    body:"Affirmation is the election by an innocent party to treat a voidable contract as continuing in full force and effect, despite becoming aware of circumstances — such as a repudiatory breach or misrepresentation — that would otherwise entitle them to rescind or terminate it. Affirmation may be express or implied from conduct that is unequivocally inconsistent with an intention to treat the contract as at an end; it requires knowledge of both the facts giving rise to the right and of the right itself. Once the contract is affirmed the right to terminate for that particular breach is lost, though the right to claim damages remains.",
+    example:"A buyer discovers that goods delivered under a commercial supply contract are defective, giving her a right to reject them and treat the contract as discharged. Instead of exercising that right she pays the invoice, orders a further delivery, and only raises the issue six months later. By continuing to perform and accepting benefits under the contract she has affirmed it and can no longer reject the original goods, though she retains her claim for damages for the breach.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/affirmation' },
 
   ],
 
