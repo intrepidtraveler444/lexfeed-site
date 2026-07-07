@@ -322,5 +322,151 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Refill 2026-07-07 ──────────────────────────────────────────────────
+
+  // ── Equity/Trusts — case ──
+  { id:'r20260707a', type:'curated', cat:'case-law', area:'Equity',
+    title:'FHR European Ventures LLP & Ors v Cedar Capital Partners LLC [2014] UKSC 45',
+    court:'UK Supreme Court',
+    facts:'FHR retained Cedar Capital as its agent to negotiate the acquisition of the Hotel Negresco in Monaco for €211.5m. Without FHR\'s knowledge Cedar also agreed with the vendor to receive a €10m commission on completion. FHR discovered the arrangement and claimed the commission from Cedar, arguing it was held on constructive trust as a bribe or secret commission paid to their agent in breach of fiduciary duty.',
+    judgment:'The Supreme Court unanimously held that the €10m commission was held on constructive trust for FHR and must be disgorged with its traceable proceeds, overruling the earlier line of authority that such payments gave rise only to a personal claim in equity.',
+    ratio:'Where an agent receives a bribe or secret commission in breach of their fiduciary duty to a principal, the agent holds those proceeds on constructive trust for the principal from the moment of receipt. The principal accordingly has a proprietary right enabling tracing into substitute assets and priority in insolvency, not merely a personal claim for an account of profits.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/45.html' },
+
+  // ── Company — case ──
+  { id:'r20260707b', type:'curated', cat:'case-law', area:'Company',
+    title:'Sevilleja v Marex Financial Ltd [2020] UKSC 31',
+    court:'UK Supreme Court',
+    facts:'Marex Financial held a court judgment against two BVI companies for €944,000. Mr Sevilleja, their sole controller, then systematically stripped the companies of their assets before the judgment could be enforced, rendering them unable to satisfy the debt. Marex sued Sevilleja personally for the tort of inducing breach of the companies\' obligation. He argued that Marex\'s loss — being unable to recover the judgment debt — was "reflective" of the companies\' loss and so barred by the Prudential Assurance principle.',
+    judgment:'The Supreme Court (4:1) held that the reflective loss principle does not apply to creditors: only shareholders are barred from claiming for loss that mirrors the company\'s loss. Marex\'s claim was not caught by the rule and could proceed.',
+    ratio:'The reflective loss principle — that a shareholder cannot bring a personal claim for loss that is merely the reflection of a diminution in the company\'s assets — is a specific rule of company law grounded in the separate legal personality of the company and the structure of shareholder remedies. It extends no further than the shareholder context. A creditor who suffers separate loss because a wrongdoer has stripped a company of assets owed to it is not precluded by the reflective loss principle from bringing a personal tort claim.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2020/31.html' },
+
+  // ── Employment — case ──
+  { id:'r20260707c', type:'curated', cat:'case-law', area:'Employment',
+    title:'Tillman v Egon Zehnder Ltd [2019] UKSC 32',
+    court:'UK Supreme Court',
+    facts:'Ms Tillman, a senior executive search consultant, had a post-termination non-compete clause preventing her from being "interested in" any competing business for six months. On leaving, she wished to join a rival firm. Egon Zehnder sought an injunction. Tillman argued the clause was void as an unreasonable restraint of trade because "interested in" was so widely drafted it would prevent her holding even a single share in a publicly listed competitor.',
+    judgment:'The Supreme Court unanimously held that the objectionable words "interested in" could be severed from the clause by the blue pencil, leaving the remaining restriction on engagement and employment enforceable as a reasonable restraint of trade.',
+    ratio:'The blue pencil severance doctrine permits the court to strike out objectionable words from a restraint of trade clause provided: the unenforceable part can be removed without adding to or varying the remainder; the severance does not change the overall character of the contract; and the remaining terms are reasonable and supported by adequate consideration. The courts take a somewhat more liberal approach to severance in employment contracts than the strict tests suggest, and need not simply sever whole clauses.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2019/32.html' },
+
+  // ── Tort — case ──
+  { id:'r20260707d', type:'curated', cat:'case-law', area:'Tort',
+    title:'WM Morrison Supermarkets plc v Various Claimants [2020] UKSC 12',
+    court:'UK Supreme Court',
+    facts:'Mr Skelton, a Morrison\'s payroll auditor, was given an official warning by his employer. Harbouring a grievance, he deliberately posted the personal and financial data of nearly 100,000 Morrison employees online and sent copies to newspapers, for which he was later convicted and imprisoned. Around 5,500 affected employees claimed that Morrison\'s was vicariously liable for his data protection and misuse of private information torts.',
+    judgment:'The Supreme Court unanimously allowed Morrison\'s appeal, holding it was not vicariously liable for Skelton\'s wrongdoing.',
+    ratio:'Vicarious liability requires a sufficiently close connection between the employee\'s role and the wrongdoing: the employee\'s conduct must be a seamless extension of the performance of their duties. Where an employee\'s tortious acts are driven by personal motives entirely unrelated to the employer\'s business — here, personal vengeance — the wrongdoing falls outside the scope of employment even if the employment provided the opportunity. Proximity of time and place alone does not establish the necessary connection.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2020/12.html' },
+
+  // ── Contract — case ──
+  { id:'r20260707e', type:'curated', cat:'case-law', area:'Contract',
+    title:'Morris-Garner & Anor v One Step (Support) Ltd [2018] UKSC 20',
+    court:'UK Supreme Court',
+    facts:'Two employees of One Step (Support) Ltd, which provided supported housing for vulnerable adults, left and set up a competing business in clear breach of post-employment non-compete covenants. One Step struggled to quantify its financial losses precisely and sought an award measured by the sum the parties would notionally have agreed as a licence fee to release the defendants from the covenants — so-called "negotiating damages" or Wrotham Park damages.',
+    judgment:'The Supreme Court (3:2) held that negotiating damages were not available on these facts and remitted the case for assessment of conventional compensatory damages for the proven financial loss.',
+    ratio:'Negotiating damages (an award based on the hypothetical release sum) are available for breach of contract only where the claimant has a legitimate interest in performance that cannot adequately be protected by compensatory damages — typically where performance itself had value to the claimant beyond mere financial gain. They are not a general substitute for compensatory damages where the claimant has not proved loss. The label "Wrotham Park damages" has generated confusion; the principled basis is gain-based or hybrid, not purely loss-based, and its availability depends on the nature of the contractual interest protected.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2018/20.html' },
+
+  // ── Contract — case ──
+  { id:'r20260707f', type:'curated', cat:'case-law', area:'Contract',
+    title:'Pakistan International Airline Corporation v Times Travel (UK) Ltd [2021] UKSC 40',
+    court:'UK Supreme Court',
+    facts:'Times Travel, a small travel agency, was almost entirely dependent on PIAC for its business. PIAC presented it with a new contract requiring it to waive all past claims for unpaid commission and threatened to cut its ticket allocation and refuse renewal of the existing agreement unless it signed. Times Travel signed the new contract under protest but later sought to set aside the waiver clause on grounds of economic duress.',
+    judgment:'The Supreme Court (4:1) dismissed Times Travel\'s appeal, holding there was no actionable economic duress.',
+    ratio:'The doctrine of economic duress requires both illegitimate pressure and a causal link between that pressure and the claimant\'s entry into the contract. A threat to do something one is entirely lawfully entitled to do — including threatening not to renew a contract or to reduce a trading relationship — cannot constitute illegitimate pressure, even if it leaves the other party in a commercially desperate position. Superior bargaining power does not per se render a contract voidable. The rationale is that courts must respect freedom of contract and cannot routinely review the fairness of commercial bargains.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2021/40.html' },
+
+  // ── Tort / Public Law — case ──
+  { id:'r20260707g', type:'curated', cat:'case-law', area:'Tort',
+    title:'Poole Borough Council v GN & Anor [2019] UKSC 25',
+    court:'UK Supreme Court',
+    facts:'Two children, GN and SR, suffered severe and prolonged abuse from a neighbouring family over several years. Despite multiple reports to Poole Borough Council — which had statutory powers and duties under the Children Act 1989 to protect children at risk — no meaningful protective action was taken. The children brought negligence claims against the Council, arguing its repeated failure to act created a duty of care.',
+    judgment:'The Supreme Court unanimously dismissed the claims, holding the Council owed no duty of care in the circumstances.',
+    ratio:'A public authority does not generally owe a private law duty of care merely because it has statutory powers or duties to protect members of the public. Creating a duty of care for failure to exercise a statutory function would require either: a voluntary assumption of responsibility to the individual claimant; or the authority having directly created the danger causing the harm. Statutory powers for the benefit of a class do not, without more, give rise to a duty to individual members of that class. Stovin v Wise [1996] is affirmed: omissions by public bodies, like omissions generally, do not ordinarily sound in negligence.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2019/25.html' },
+
+  // ── Tort / Company — case ──
+  { id:'r20260707h', type:'curated', cat:'case-law', area:'Tort',
+    title:'Okpabi & Ors v Royal Dutch Shell Plc & Anor [2021] UKSC 3',
+    court:'UK Supreme Court',
+    facts:'Nigerian communities in the Niger Delta suffered severe oil pollution from pipelines and infrastructure operated by Shell Petroleum Development Company of Nigeria Ltd (SPDC). The claimants brought proceedings in England against SPDC\'s English-incorporated parent, Royal Dutch Shell (RDS), on the basis that RDS owed them a duty of care in respect of SPDC\'s activities by virtue of parent-level policies and standards that governed the Nigerian operations. The Court of Appeal had struck out the claim against RDS at the pleading stage.',
+    judgment:'The Supreme Court (3:2) allowed the appeal, holding that the claimants had a real prospect of establishing a duty of care owed by RDS, and restored the claim against the parent.',
+    ratio:'Whether a parent company owes a duty of care to those affected by its subsidiary\'s operations is determined by ordinary negligence principles, not any special parent-company rule. A duty may arise where the parent: actively took control of or supervised the relevant operations; or promulgated group-wide policies or standards that effectively governed how the subsidiary operated the relevant activities. The question is one of fact about the substance of the parent\'s intervention in the subsidiary\'s affairs. Claims should not be dismissed on summary grounds where relevant evidence about the group\'s operational structure has not been disclosed.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2021/3.html' },
+
+  // ── Criminal — statute ──
+  { id:'r20260707i', type:'curated', cat:'statute', area:'Criminal',
+    title:'Proceeds of Crime Act 2002',
+    body:"The principal UK statute for recovering criminal proceeds and criminalising money laundering. It created a powerful confiscation regime enabling courts to recover assets equivalent to the defendant's criminal benefit following conviction, introduced civil recovery independent of any criminal conviction, and consolidated the money laundering offences that bind businesses and professionals in the regulated sector.",
+    sections:[
+      { num:'6', head:'Making of Confiscation Order', text:'Where a defendant is convicted and the court finds they have a criminal lifestyle or have benefited from their criminal conduct, it must make a confiscation order for the recoverable amount, subject to available assets.' },
+      { num:'76', head:'Criminal Lifestyle', text:'Defines when a defendant has a criminal lifestyle — principally where they are convicted of a listed offence or of four or more offences in a single proceeding that together generate at least £5,000 benefit.' },
+      { num:'327', head:'Concealing Criminal Property', text:'An offence to conceal, disguise, convert, transfer or remove criminal property from England and Wales, knowing or suspecting it to be the proceeds of crime.' },
+      { num:'328', head:'Arrangements Concerning Criminal Property', text:'An offence to enter into or facilitate an arrangement knowing or suspecting that it facilitates the acquisition, retention, use or control of criminal property by or on behalf of another.' },
+      { num:'330', head:'Failure to Disclose (Regulated Sector)', text:'An offence committed where a person in the regulated sector knows or suspects money laundering is occurring and fails to make a disclosure to a nominated officer or the National Crime Agency as soon as reasonably practicable.' },
+      { num:'Pt 5', head:'Civil Recovery', text:'Enables the enforcement authorities to recover property that is, or represents, the proceeds of unlawful conduct, through civil proceedings in the High Court — without the need for a criminal conviction.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/29/contents' },
+
+  // ── Employment — statute ──
+  { id:'r20260707j', type:'curated', cat:'statute', area:'Employment',
+    title:'Health and Safety at Work etc Act 1974',
+    body:"The foundational statute governing workplace health and safety in Great Britain. It imposes broad general duties on employers, the self-employed, and others in control of premises to ensure, so far as is reasonably practicable, the health, safety and welfare of employees and others affected by their undertakings. It underpins both criminal prosecution by the Health and Safety Executive and civil claims for breach of statutory duty, and provides the framework for an extensive body of health and safety regulations.",
+    sections:[
+      { num:'2', head:'General Duties of Employers to Employees', text:'Every employer must, so far as is reasonably practicable, ensure the health, safety and welfare at work of all its employees, including safe systems of work, safe premises, adequate information and training, and a safe working environment.' },
+      { num:'3', head:'Duties to Non-Employees', text:'Employers and self-employed persons must conduct their undertakings so as to ensure, so far as reasonably practicable, that persons not in their employment who may be affected are not exposed to risks to their health or safety.' },
+      { num:'7', head:'Duties of Employees', text:'Every employee must take reasonable care for their own health and safety and that of others affected by their acts or omissions at work, and must cooperate with their employer in discharging statutory duties.' },
+      { num:'37', head:'Offences by Bodies Corporate', text:'Where an offence under the Act is committed by a body corporate with the consent, connivance or neglect of a director, manager or similar officer, that individual as well as the company may be prosecuted and punished.' },
+      { num:'47', head:'Civil Liability', text:'Breach of a duty imposed by health and safety regulations (made under the Act) may, unless the regulations otherwise provide, give rise to civil liability in an action for breach of statutory duty.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1974/37/contents' },
+
+  // ── Company — case ──
+  { id:'n1', type:'curated', cat:'case-law', area:'Company',
+    title:'Salomon v A Salomon & Co Ltd [1896] UKHL 1',
+    court:'House of Lords',
+    facts:'Aron Salomon ran a boot and shoe manufacturing business as a sole trader for many years before incorporating it as a limited company under the Companies Act 1862. He transferred the business to the company in exchange for shares and debentures secured over the company\'s assets. His wife and five children each held one share. When the company failed and was wound up, unsecured trade creditors argued the company was a sham — merely an alias for Salomon himself — and that he should be personally liable for the debts ranking ahead of his secured debenture. The Court of Appeal agreed, characterising the company as Salomon\'s agent or trustee.',
+    judgment:'The House of Lords unanimously reversed the Court of Appeal. The company had been validly constituted under the statute; it was a separate legal person and Salomon was entitled to repayment of his secured debt in priority to the unsecured creditors.',
+    ratio:'Once a company is lawfully incorporated under the Companies Acts it is a legal person entirely distinct from its members and controllers, however few in number and however dominant one individual may be. Courts may not look behind the corporate form simply because the company is closely held or because one person effectively runs it. The separate personality of the company is a matter of law, not commercial convenience, and any policy objections to that outcome are for Parliament, not the courts, to address.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1896/1.html' },
+
+  // ── Criminal — case ──
+  { id:'n2', type:'curated', cat:'case-law', area:'Criminal',
+    title:'DPP v Majewski [1976] UKHL 2',
+    court:'House of Lords',
+    facts:'Majewski spent the day consuming substantial quantities of alcohol and non-prescribed barbiturate drugs. That evening he became involved in a violent confrontation at a public house and later with the police officers called to the scene. He was convicted on three counts of assault occasioning actual bodily harm and three counts of assaulting a police constable in the execution of his duty. Majewski argued that his intoxication had been so extreme that he lacked any awareness of what he was doing and therefore the necessary mental element for the offences.',
+    judgment:'The House of Lords dismissed the appeal. The convictions were upheld. Self-induced intoxication is no defence to a crime of basic intent.',
+    ratio:'Criminal offences divide into those requiring specific intent — a purpose or ulterior mental element beyond the act itself — and those of basic intent, where recklessness suffices. Voluntary intoxication may negative specific intent (for example the premeditation required for murder) but it cannot excuse offences of basic intent such as assault. A person who deliberately consumes intoxicants to the point of losing control is taken in law to have been reckless at the moment of consumption; that recklessness satisfies the mens rea of any offence that can be committed recklessly.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1976/2.html' },
+
+  // ── Tort — case ──
+  { id:'n3', type:'curated', cat:'case-law', area:'Tort',
+    title:'OBG Ltd v Allan [2007] UKHL 21',
+    court:'House of Lords',
+    facts:'Three appeals were heard together, each raising questions about intentional economic torts. In OBG, administrators were wrongly appointed over a company and proceeded to deal with its contracts and assets as if they had authority; the company claimed the receivers were liable in conversion and for inducing breach of contract. In Douglas v Hello!, an unofficial photographer obtained access to a celebrity wedding and sold photographs to a rival magazine, in breach of the couple\'s exclusive deal with another publication. In Mainstream Properties, a director procured two employees to divert a development opportunity to their own joint venture.',
+    judgment:'The House of Lords restated and rationalised the economic torts of inducing breach of contract and causing loss by unlawful means, treating them as two distinct causes of action with separate requirements.',
+    ratio:'The tort of inducing breach of contract requires knowledge of the contract, an intention to procure its breach, and an actual breach caused to the claimant. The tort of causing loss by unlawful means requires that the defendant intentionally cause loss to the claimant by using unlawful means directed at a third party so as to interfere with that third party\'s freedom of action in relation to the claimant. There is no overarching principle of liability for intentionally causing economic harm; outside the established categories, intentional harm without more is not tortious.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2007/21.html' },
+
+  // ── Constitutional — case ──
+  { id:'n4', type:'curated', cat:'case-law', area:'Constitutional',
+    title:'R (Jackson) v Attorney General [2005] UKHL 56',
+    court:'House of Lords',
+    facts:'A group of hunting supporters challenged the validity of the Hunting Act 2004, which had been enacted using the procedure in the Parliament Act 1911 (as amended by the Parliament Act 1949) after the House of Lords declined to pass it. Their challenge rested on the argument that the Parliament Act 1949 — which shortened the period of the Lords\' delaying power from two years to one — was itself invalid, having been enacted under the 1911 procedure without the Lords\' consent, thereby purportedly enlarging the powers conferred by the 1911 Act.',
+    judgment:'The House of Lords unanimously held that the Parliament Act 1949 and the Hunting Act 2004 were valid Acts of Parliament.',
+    ratio:'Parliament Act legislation enacted without the Lords\' consent is primary legislation carrying the full force of an Act of Parliament; it is not delegated legislation and is not amenable to the same challenge as subordinate legislation. The 1911 Act conferred power to enact primary legislation by a different procedure, and that power extended to amending the procedure itself unless expressly restricted. In extensive obiter dicta, their Lordships suggested that Parliamentary sovereignty rests ultimately on common law foundations and that courts would not necessarily give effect to legislation that sought to abolish judicial review or undermine fundamental constitutional principles.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/56.html' },
+
+  // ── Tort — case ──
+  { id:'n5', type:'curated', cat:'case-law', area:'Tort',
+    title:'Various Claimants v Catholic Child Welfare Society [2012] UKSC 56',
+    court:'UK Supreme Court',
+    facts:'Former pupils at a residential school for boys brought claims against the Institute of the Brothers of the Christian Schools, a religious order whose members had taught at the school, for sexual and physical abuse inflicted by individual Brothers over many decades. The Institute was not the employer of the Brothers in any contractual sense; they taught as an expression of their religious vocation, lived in a community under the authority of the Order, and received no wages from the school.',
+    judgment:'The Supreme Court held that the Institute was vicariously liable for the torts committed by the Brothers, even in the absence of a conventional employment contract.',
+    ratio:'Vicarious liability is not limited to relationships of employment in the strict contractual sense. It extends to any relationship sufficiently analogous to employment — where one party carries on activities as an integral part of the other\'s business operation and under its direction and authority, creating a risk that the tortfeasor will commit the type of wrong that occurred. The second element — close connection between the relationship and the tort — is satisfied where the defendant\'s enterprise placed the tortfeasor in the position that enabled the abuse. The combined effect of these principles means a religious organisation may be vicariously liable for the acts of its members exercising a vocation under its governance.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2012/56.html' },
+
   ];
 });
