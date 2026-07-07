@@ -423,5 +423,50 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1974/37/contents' },
 
+  // ── Company — case ──
+  { id:'n1', type:'curated', cat:'case-law', area:'Company',
+    title:'Salomon v A Salomon & Co Ltd [1896] UKHL 1',
+    court:'House of Lords',
+    facts:'Aron Salomon ran a boot and shoe manufacturing business as a sole trader for many years before incorporating it as a limited company under the Companies Act 1862. He transferred the business to the company in exchange for shares and debentures secured over the company\'s assets. His wife and five children each held one share. When the company failed and was wound up, unsecured trade creditors argued the company was a sham — merely an alias for Salomon himself — and that he should be personally liable for the debts ranking ahead of his secured debenture. The Court of Appeal agreed, characterising the company as Salomon\'s agent or trustee.',
+    judgment:'The House of Lords unanimously reversed the Court of Appeal. The company had been validly constituted under the statute; it was a separate legal person and Salomon was entitled to repayment of his secured debt in priority to the unsecured creditors.',
+    ratio:'Once a company is lawfully incorporated under the Companies Acts it is a legal person entirely distinct from its members and controllers, however few in number and however dominant one individual may be. Courts may not look behind the corporate form simply because the company is closely held or because one person effectively runs it. The separate personality of the company is a matter of law, not commercial convenience, and any policy objections to that outcome are for Parliament, not the courts, to address.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1896/1.html' },
+
+  // ── Criminal — case ──
+  { id:'n2', type:'curated', cat:'case-law', area:'Criminal',
+    title:'DPP v Majewski [1976] UKHL 2',
+    court:'House of Lords',
+    facts:'Majewski spent the day consuming substantial quantities of alcohol and non-prescribed barbiturate drugs. That evening he became involved in a violent confrontation at a public house and later with the police officers called to the scene. He was convicted on three counts of assault occasioning actual bodily harm and three counts of assaulting a police constable in the execution of his duty. Majewski argued that his intoxication had been so extreme that he lacked any awareness of what he was doing and therefore the necessary mental element for the offences.',
+    judgment:'The House of Lords dismissed the appeal. The convictions were upheld. Self-induced intoxication is no defence to a crime of basic intent.',
+    ratio:'Criminal offences divide into those requiring specific intent — a purpose or ulterior mental element beyond the act itself — and those of basic intent, where recklessness suffices. Voluntary intoxication may negative specific intent (for example the premeditation required for murder) but it cannot excuse offences of basic intent such as assault. A person who deliberately consumes intoxicants to the point of losing control is taken in law to have been reckless at the moment of consumption; that recklessness satisfies the mens rea of any offence that can be committed recklessly.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1976/2.html' },
+
+  // ── Tort — case ──
+  { id:'n3', type:'curated', cat:'case-law', area:'Tort',
+    title:'OBG Ltd v Allan [2007] UKHL 21',
+    court:'House of Lords',
+    facts:'Three appeals were heard together, each raising questions about intentional economic torts. In OBG, administrators were wrongly appointed over a company and proceeded to deal with its contracts and assets as if they had authority; the company claimed the receivers were liable in conversion and for inducing breach of contract. In Douglas v Hello!, an unofficial photographer obtained access to a celebrity wedding and sold photographs to a rival magazine, in breach of the couple\'s exclusive deal with another publication. In Mainstream Properties, a director procured two employees to divert a development opportunity to their own joint venture.',
+    judgment:'The House of Lords restated and rationalised the economic torts of inducing breach of contract and causing loss by unlawful means, treating them as two distinct causes of action with separate requirements.',
+    ratio:'The tort of inducing breach of contract requires knowledge of the contract, an intention to procure its breach, and an actual breach caused to the claimant. The tort of causing loss by unlawful means requires that the defendant intentionally cause loss to the claimant by using unlawful means directed at a third party so as to interfere with that third party\'s freedom of action in relation to the claimant. There is no overarching principle of liability for intentionally causing economic harm; outside the established categories, intentional harm without more is not tortious.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2007/21.html' },
+
+  // ── Constitutional — case ──
+  { id:'n4', type:'curated', cat:'case-law', area:'Constitutional',
+    title:'R (Jackson) v Attorney General [2005] UKHL 56',
+    court:'House of Lords',
+    facts:'A group of hunting supporters challenged the validity of the Hunting Act 2004, which had been enacted using the procedure in the Parliament Act 1911 (as amended by the Parliament Act 1949) after the House of Lords declined to pass it. Their challenge rested on the argument that the Parliament Act 1949 — which shortened the period of the Lords\' delaying power from two years to one — was itself invalid, having been enacted under the 1911 procedure without the Lords\' consent, thereby purportedly enlarging the powers conferred by the 1911 Act.',
+    judgment:'The House of Lords unanimously held that the Parliament Act 1949 and the Hunting Act 2004 were valid Acts of Parliament.',
+    ratio:'Parliament Act legislation enacted without the Lords\' consent is primary legislation carrying the full force of an Act of Parliament; it is not delegated legislation and is not amenable to the same challenge as subordinate legislation. The 1911 Act conferred power to enact primary legislation by a different procedure, and that power extended to amending the procedure itself unless expressly restricted. In extensive obiter dicta, their Lordships suggested that Parliamentary sovereignty rests ultimately on common law foundations and that courts would not necessarily give effect to legislation that sought to abolish judicial review or undermine fundamental constitutional principles.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/56.html' },
+
+  // ── Tort — case ──
+  { id:'n5', type:'curated', cat:'case-law', area:'Tort',
+    title:'Various Claimants v Catholic Child Welfare Society [2012] UKSC 56',
+    court:'UK Supreme Court',
+    facts:'Former pupils at a residential school for boys brought claims against the Institute of the Brothers of the Christian Schools, a religious order whose members had taught at the school, for sexual and physical abuse inflicted by individual Brothers over many decades. The Institute was not the employer of the Brothers in any contractual sense; they taught as an expression of their religious vocation, lived in a community under the authority of the Order, and received no wages from the school.',
+    judgment:'The Supreme Court held that the Institute was vicariously liable for the torts committed by the Brothers, even in the absence of a conventional employment contract.',
+    ratio:'Vicarious liability is not limited to relationships of employment in the strict contractual sense. It extends to any relationship sufficiently analogous to employment — where one party carries on activities as an integral part of the other\'s business operation and under its direction and authority, creating a risk that the tortfeasor will commit the type of wrong that occurred. The second element — close connection between the relationship and the tort — is satisfied where the defendant\'s enterprise placed the tortfeasor in the position that enabled the abuse. The combined effect of these principles means a religious organisation may be vicariously liable for the acts of its members exercising a vocation under its governance.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2012/56.html' },
+
   ];
 });
