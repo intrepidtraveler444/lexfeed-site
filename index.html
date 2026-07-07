@@ -8448,19 +8448,42 @@ window.buildCard=function(card,delayMs=0){
 // cards are merged. Selecting from this fixed pool means adding (or removing) a
 // post never shifts "Today's Key Case" — it stays identical for everyone.
 let FEATURED_POOL=null;
-function buildFeaturedCard(){
+// Featured-case order: the pool ROUND-ROBINED across areas of law (one case from
+// each area in turn, cycling) so that walking one step per day lands on a
+// DIFFERENT area of law each day — no two consecutive days share an area (until
+// an area is exhausted, only possible if one area heavily outnumbers the rest).
+// Deterministic (areas sorted, cases sorted by id within each) so every user sees
+// the same key case on the same day. Cached — the pool is pinned at init.
+let _featuredOrder=null;
+function featuredOrder(){
+  if(_featuredOrder) return _featuredOrder;
   const pool=(FEATURED_POOL&&FEATURED_POOL.length)?FEATURED_POOL:CURATED.filter(c=>c.cat==='case-law'&&c.facts);
-  if(!pool.length) return null;
-  // dayIndex() = whole days since epoch, so the key case advances by exactly
-  // one each calendar day and cycles through the whole list over time.
+  const groups={};
+  pool.forEach(c=>{ const a=c.area||cardArea(c)||'General'; (groups[a]=groups[a]||[]).push(c); });
+  const areas=Object.keys(groups).sort();
+  areas.forEach(a=>groups[a].sort((x,y)=>String(x.id).localeCompare(String(y.id))));
+  const out=[]; let row=0, added=true;
+  while(added){
+    added=false;
+    for(const a of areas){ if(row<groups[a].length){ out.push(groups[a][row]); added=true; } }
+    row++;
+  }
+  _featuredOrder=out;
+  return out;
+}
+function buildFeaturedCard(){
+  const order=featuredOrder();
+  if(!order.length) return null;
+  // dayIndex() = whole days since epoch, so the key case advances by exactly one
+  // each calendar day and cycles through the area-interleaved order over time.
   const di=(typeof dayIndex==='function'?dayIndex():Math.floor(Date.now()/86400000));
-  const n=pool.length;
+  const n=order.length;
   let idx=((di%n)+n)%n;
-  let c=pool[idx];
-  // If today's pick happens to have been admin-removed, step to the next one —
-  // without changing the pool length (so the global pick stays stable).
+  let c=order[idx];
+  // If today's pick was admin-removed, step to the next one in the interleaved
+  // order (keeps the area spread) without changing n (so the global pick stays stable).
   const rm=new Set(typeof getRemoved==='function'?getRemoved():[]);
-  for(let k=0;k<n && c && rm.has(c.id);k++){ idx=(idx+1)%n; c=pool[idx]; }
+  for(let k=0;k<n && c && rm.has(c.id);k++){ idx=(idx+1)%n; c=order[idx]; }
   if(!c) return null;
   const el=window.buildCard(c,0);
   el.classList.add('featured');
