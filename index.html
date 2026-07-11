@@ -7666,13 +7666,16 @@ function profileBag(){
 let _syncTimer=null;
 function queueSync(){
   if(!AUTH.token) return;
+  LS.set('profileDirty', true);   // there are local changes not yet confirmed on the server
   clearTimeout(_syncTimer);
   _syncTimer = setTimeout(flushSync, 1500);
 }
 function flushSync(){
   if(!AUTH.token) return;
   clearTimeout(_syncTimer); _syncTimer=null;
-  accountApi('save', { token:AUTH.token, plan:AUTH.plan, data:profileBag() }).catch(()=>{});
+  accountApi('save', { token:AUTH.token, plan:AUTH.plan, data:profileBag() })
+    .then(()=>{ LS.set('profileDirty', false); })   // server now holds these changes
+    .catch(()=>{});
 }
 function hydrateFromProfile(resp){
   AUTH.plan = (resp && resp.plan) || 'free'; LS.set('plan', AUTH.plan);
@@ -7709,12 +7712,19 @@ function hydrateFromProfile(resp){
   // Saved cards are AUTHORITATIVE from the account so removals propagate across
   // devices. The very first time this device links to this account we merge the
   // device's existing saves UP (so nothing pre-account is lost); after that the
-  // account is the source of truth and we adopt it wholesale.
+  // account is the source of truth and we adopt it wholesale — EXCEPT when this
+  // device still has local save changes that were never confirmed pushed (e.g. you
+  // saved a card then refreshed inside the 1.5s sync debounce). In that case the
+  // local copy is newer than the last synced state, so we keep it and push it up
+  // instead of letting the stale server copy clobber the just-made change.
   const linked = LS.get('syncedAccount',null) === AUTH.username;
+  const dirty  = LS.get('profileDirty', false);
   if(!linked){
     (d.saves||[]).forEach(id=>saves.add(id));
-    if(d.savedData) Object.assign(savedData, d.savedData);
+    savedData = Object.assign({}, d.savedData||{}, savedData);   // union; keep local copies on conflict
     LS.set('syncedAccount', AUTH.username);
+  } else if(dirty){
+    // Keep this device's local saves/savedData (already loaded from LS) as-is.
   } else {
     saves = new Set(d.saves||[]);
     savedData = d.savedData ? Object.assign({}, d.savedData) : {};
@@ -7728,7 +7738,7 @@ function hydrateFromProfile(resp){
   try{ if(showSaved && !quizMode) renderSavedView(); }catch{}   // don't clobber an active Quiz Me session
   try{ refreshGoalRing(); }catch{}   // reflect the merged daily-goal progress (and reconcile the streak)
   refreshAccountUI();
-  if(!linked) flushSync();   // push the merged union up the first time we link
+  if(!linked || dirty) flushSync();   // push the merged union / kept-local changes up
 }
 
 // Pull the latest profile from the account (throttled). Adopts server saves so
@@ -7929,6 +7939,7 @@ function resetLocalProgress(){
   LS.set('streak',{date:'',count:0});
   LS.set('goal',{date:'',read:0,qotd:false,quiz:false,celebrated:false}); LS.set('today',{date:'',count:0});
   LS.set('syncedAccount',null);   // next login re-links this device from scratch
+  LS.set('profileDirty',false);   // local state is wiped — no un-pushed changes to protect
   // Reset the toggles and rebuild a fresh feed so nothing keeps a stale "Saved"
   // (gold) state and any open Saved / Quiz view drops back to the normal feed.
   try{
