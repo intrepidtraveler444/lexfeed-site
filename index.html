@@ -8346,28 +8346,54 @@ const readObserver=new IntersectionObserver(entries=>{
 },{threshold:0.7});
 
 // ── Quiz interaction ──────────────────────────
-function onQuizAnswer(cardEl,chosen,correct,exp){
+// `correct` is the correct option's DISPLAYED position — options are re-shuffled
+// on every render (see renderQuizOpts), so it isn't fixed to q.ans.
+function onQuizAnswer(cardEl,chosen,correct,q){
   const opts=cardEl.querySelectorAll('.qopt');
-  opts.forEach((o,i)=>{
-    o.disabled=true;
-    if(i===correct) o.classList.add('reveal');
-  });
-  opts[chosen].classList.remove('reveal');
-  opts[chosen].classList.add(chosen===correct?'correct':'wrong');
-  const expEl=cardEl.querySelector('.quiz-exp');
-  expEl.classList.add('show');
+  const right=chosen===correct;
+  const isDaily=cardEl.classList.contains('qotd');
   const scoreEl=cardEl.querySelector('.quiz-score');
-  if(scoreEl){
-    scoreEl.textContent=chosen===correct?'✓ Correct!':'✗ Incorrect';
-    scoreEl.className='quiz-score'+(chosen===correct?'':' wrong');
+  // Count every submitted answer; only correct ones count toward qcorrect.
+  LS.set('qcount',LS.get('qcount',0)+1);
+  if(right) LS.set('qcorrect',LS.get('qcorrect',0)+1);
+
+  if(!right && isDaily){
+    // The Question of the Day counts toward the daily goal only when answered
+    // CORRECTLY. On a wrong answer, flash "incorrect" (without revealing the right
+    // option) then re-roll the card with a freshly shuffled option order so the
+    // user can resubmit.
+    opts.forEach(o=>o.disabled=true);
+    opts[chosen].classList.add('wrong');
+    if(scoreEl){ scoreEl.textContent='✗ Incorrect — try again'; scoreEl.className='quiz-score wrong'; scoreEl.style.display='inline-block'; }
+    checkAchievements();
+    setTimeout(()=>{ if(cardEl.parentNode) renderQuizOpts(cardEl,q); },900);
+    return;
   }
-  // Count quiz answer (and correct answers separately, for learning achievements)
-  const qc=LS.get('qcount',0)+1;
-  LS.set('qcount',qc);
-  if(chosen===correct) LS.set('qcorrect',LS.get('qcorrect',0)+1);
-  // Only the Question of the Day counts toward the daily goal
-  if(cardEl.classList.contains('qotd')) goalQotdDone();
+
+  // Correct answer, or a wrong answer on a non-goal quiz card → reveal + explain.
+  opts.forEach((o,i)=>{ o.disabled=true; if(i===correct) o.classList.add('reveal'); });
+  opts[chosen].classList.remove('reveal');
+  opts[chosen].classList.add(right?'correct':'wrong');
+  cardEl.querySelector('.quiz-exp').classList.add('show');
+  if(scoreEl){ scoreEl.textContent=right?'✓ Correct!':'✗ Incorrect'; scoreEl.className='quiz-score'+(right?'':' wrong'); scoreEl.style.display='inline-block'; }
+  if(right && isDaily) goalQotdDone();   // daily goal completes only on a correct answer
   checkAchievements();
+}
+
+// (Re)render a quiz card's options in a freshly randomized order and wire them up.
+// Called on first build and again after each wrong Question-of-the-Day answer, so
+// every attempt shows a different option order.
+function renderQuizOpts(cardEl,q){
+  const order=shuffle(q.opts.map((_,i)=>i));   // displayed position → original option index
+  const correct=order.indexOf(q.ans);          // the correct option's displayed position
+  const optsWrap=cardEl.querySelector('.quiz-opts');
+  optsWrap.innerHTML=order.map((oi,pos)=>`<button class="qopt" data-i="${pos}">${q.opts[oi]}</button>`).join('');
+  const scoreEl=cardEl.querySelector('.quiz-score');
+  if(scoreEl){ scoreEl.style.display='none'; scoreEl.className='quiz-score'; }
+  cardEl.querySelector('.quiz-exp')?.classList.remove('show');
+  optsWrap.querySelectorAll('.qopt').forEach(btn=>{
+    btn.addEventListener('click',()=>onQuizAnswer(cardEl,+btn.dataset.i,correct,q));
+  });
 }
 
 // ── Build quiz card ───────────────────────────
@@ -8377,7 +8403,6 @@ function buildQuizCard(q,delayMs=0){
   el.dataset.c='quiz';
   el.dataset.id=q.id;
   el.style.animationDelay=delayMs+'ms';
-  const optsHtml=q.opts.map((o,i)=>`<button class="qopt" data-i="${i}">${o}</button>`).join('');
   const daily=q._isDaily?'<div class="qotd-banner">⭐ Question of the Day</div>':'';
   el.innerHTML=`
     ${daily}
@@ -8386,18 +8411,12 @@ function buildQuizCard(q,delayMs=0){
       <span class="badge">Test yourself</span>
     </div>
     <div class="quiz-q">${safe(q.q).replace(/&lt;br\s*\/?&gt;/gi,'<br>')}</div>
-    <div class="quiz-opts">${optsHtml}</div>
+    <div class="quiz-opts"></div>
     <div class="quiz-exp">${safe(q.exp)}</div>
     <div class="act-bar">
       <span class="quiz-score" style="display:none">Answer to see score</span>
     </div>`;
-  el.querySelectorAll('.qopt').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const chosen=+btn.dataset.i;
-      onQuizAnswer(el,chosen,q.ans,q.exp);
-      el.querySelector('.quiz-score').style.display='inline-block';
-    });
-  });
+  renderQuizOpts(el,q);   // fills .quiz-opts with a freshly randomized order + click wiring
   return el;
 }
 
@@ -8760,8 +8779,14 @@ function refreshGoalRing(){
   // progress (cleared/total) until the run is mastered, then counts as full.
   // Target = the current run's size if one is going, else all quizzable saved
   // cards (capped at 25). Shown so the user knows exactly how many they must ace.
-  const qTot=qmSessionTotal||quizTarget()||GOAL_QUIZ;
-  const quizFrac=g.quiz?1:Math.min(qmClearedIds.size,qTot)/qTot;
+  // Quiz Me credits the daily goal only when the run covers ALL areas of law — an
+  // area-filtered run is practice and doesn't count (see showQmMastery). So the
+  // live progress/target track an all-areas run; a scoped run shows no goal
+  // progress here (its clears don't advance the objective).
+  const qmAllAreas = !qmScope.areas.length;
+  const qTot=(qmAllAreas&&qmSessionTotal)?qmSessionTotal:(quizTarget()||GOAL_QUIZ);
+  const qmCleared=qmAllAreas?qmClearedIds.size:0;
+  const quizFrac=g.quiz?1:Math.min(qmCleared,qTot)/qTot;
   const parts=[Math.min(g.read,GOAL_READ)/GOAL_READ, g.qotd?1:0, quizFrac];
   const pct=Math.round(parts.reduce((a,b)=>a+b,0)/3*100);
   const circ=144.5;
@@ -8777,9 +8802,9 @@ function refreshGoalRing(){
   if(cb){
     if(g.quiz){ cb.innerHTML=`🎯 Quiz Me <b>✓</b>`; cb.classList.add('done'); cb.title='Daily Quiz Me goal complete.'; }
     else{
-      cb.innerHTML=`🎯 Quiz Me <b>${Math.min(qmClearedIds.size,qTot)}/${qTot}</b>`; cb.classList.remove('done');
-      cb.title=`Complete Quiz Me: answer all ${qTot} question${qTot!==1?'s':''} correctly, through every retry round. `
-        +`It covers all your saved cards (or 25 once you've saved more than that).`;
+      cb.innerHTML=`🎯 Quiz Me <b>${Math.min(qmCleared,qTot)}/${qTot}</b>`; cb.classList.remove('done');
+      cb.title=`Complete Quiz Me: run it with “All areas” selected and answer all ${qTot} question${qTot!==1?'s':''} correctly, through every retry round. `
+        +`It covers all your saved cards (or 25 once you've saved more than that). An area-filtered run doesn't count toward the goal.`;
     }
   }
 
@@ -8799,7 +8824,7 @@ function refreshGoalRing(){
     const bits=[];
     if(g.read<GOAL_READ) bits.push(`read ${GOAL_READ-g.read} more post${GOAL_READ-g.read!==1?'s':''}`);
     if(!g.qotd) bits.push('answer the Question of the Day');
-    if(!g.quiz){ const t=qmSessionTotal||quizTarget()||GOAL_QUIZ; bits.push(`finish Quiz Me — get all ${t} question${t!==1?'s':''} right`); }
+    if(!g.quiz){ bits.push(`finish Quiz Me over all areas — get all ${qTot} question${qTot!==1?'s':''} right`); }
     sub.textContent=bits.length?('To finish today: '+bits.join(', ')+'.'):'';
   }
 }
@@ -9915,14 +9940,20 @@ function maybeFinishRound(){
 
 // Final mastery screen — reached when a whole round is answered with no misses.
 function showQmMastery(){
-  goalQuizDone();   // whole run completed (all questions correct) → daily objective done
+  // The daily Quiz Me goal is credited ONLY for a run that covered ALL areas of
+  // law; an area-filtered run is practice and doesn't complete the goal.
+  const countsForGoal=!qmScope.areas.length;
+  if(countsForGoal) goalQuizDone();   // all-areas run mastered → daily objective done
   const grid=document.getElementById('grid');
   const el=document.createElement('div');
   el.className='caught-up';
+  const note=countsForGoal?'' :
+    `<div class="cu-sub" style="margin-top:8px;color:#b45309">This run was limited to selected area(s), so it doesn't count toward today's Quiz Me goal — run Quiz Me with “All areas” selected to complete it.</div>`;
   el.innerHTML=`
     <div class="cu-ico">🏆</div>
     <div class="cu-title">Mastered! Everything correct.</div>
-    <div class="cu-sub">You worked through every saved card and cleared all the ones you missed. That's the whole set learned for this session.</div>
+    <div class="cu-sub">You worked through every card in this quiz and cleared all the ones you missed.</div>
+    ${note}
     <button class="cu-btn" id="qmAgain">Go again 🔁</button>`;
   grid.appendChild(el);
   el.scrollIntoView({behavior:'smooth',block:'center'});
@@ -10023,6 +10054,7 @@ function renderQuizMode(){
         <button type="button" data-v="0">All</button>
       </div></div>
     <div class="qm-setup-count" id="qmScN"></div>
+    <div id="qmScGoal" style="font-size:12.5px;line-height:1.45;padding:8px 10px;border-radius:8px;margin:0 0 4px"></div>
     <button class="qm-setup-go" id="qmScGo" type="button">Start quiz →</button>`;
   grid.appendChild(box);
   const mark=(sel,val)=>box.querySelector(sel).querySelectorAll('button').forEach(b=>b.classList.toggle('on', b.dataset.v===String(val)));
@@ -10037,6 +10069,19 @@ function renderQuizMode(){
     const q=qmScope.length?Math.min(qmScope.length,n):n;
     box.querySelector('#qmScN').textContent=n?`${n} card${n!==1?'s':''} match · ${q} question${q!==1?'s':''}`:'No saved cards match — adjust the filters.';
     box.querySelector('#qmScGo').disabled=!n;
+    // Tell the user up-front whether THIS selection completes the daily Quiz Me
+    // goal: only an "All areas" run counts (see showQmMastery).
+    const goalEl=box.querySelector('#qmScGoal');
+    if(goalEl){
+      const done=getGoalState().quiz;
+      const allAreas=!qmScope.areas.length;
+      let msg,bg,fg,bd;
+      if(done){ msg='🎯 Today’s <b>Quiz Me</b> goal is already complete.'; fg='#475569'; bg='rgba(100,116,139,.10)'; bd='rgba(100,116,139,.22)'; }
+      else if(allAreas){ msg='⭐ Get every question right (through all retry rounds) to complete today’s <b>Quiz Me</b> daily goal.'; fg='#15803d'; bg='rgba(21,128,61,.10)'; bd='rgba(21,128,61,.22)'; }
+      else{ msg='⚠️ An area-filtered run is practice only — it won’t count toward your daily goal. Pick <b>All areas</b> to complete <b>Quiz Me</b> today.'; fg='#b45309'; bg='rgba(180,83,9,.10)'; bd='rgba(180,83,9,.28)'; }
+      goalEl.innerHTML=msg;
+      goalEl.style.color=fg; goalEl.style.background=bg; goalEl.style.border='1px solid '+bd;
+    }
   };
   // Toggle a value in a multi-select array; clicking "All" (empty value) clears it.
   const toggleMulti=(arr,v)=>{ if(v===''){ arr.length=0; } else { const i=arr.indexOf(v); if(i>=0) arr.splice(i,1); else arr.push(v); } };
@@ -11145,7 +11190,7 @@ const TOUR_STEPS=[
   { sel:'.fbtn[data-c="quiz"]', title:'SQE practice', placement:'bottom',
     body:'Five-option, single-best-answer questions across every FLK area — plus a fresh Question of the Day.' },
   { sel:'.hdr-stat.streak', title:'Build a daily streak', placement:'bottom',
-    body:'Your 🔥 streak grows by one each day you complete <b>all</b> of your daily goals — read 50 posts, answer the Question of the Day, and finish Quiz Me by answering <b>every</b> question correctly (through all retry rounds). Quiz Me covers all your saved cards, or 25 once you\'ve saved more than that. Do all three every day to keep the streak alive and unlock achievements 🏆.' },
+    body:'Your 🔥 streak grows by one each day you complete <b>all</b> of your daily goals — read 50 posts, answer the Question of the Day, and finish Quiz Me by answering <b>every</b> question correctly (through all retry rounds). Quiz Me must be run with <b>“All areas”</b> selected and covers all your saved cards, or 25 once you\'ve saved more than that. Do all three every day to keep the streak alive and unlock achievements 🏆.' },
   { center:true, emoji:'📖', title:'Go to the source',
     body:'Every card is a <b>simplified study aid, not legal advice</b> — summaries can be incomplete or out of date. Use LexFeed to discover and revise, then tap <b>Read the full judgment</b> / <b>LexisNexis</b> / <b>legislation.gov.uk</b> to learn it properly from the primary source. Opening full sources even earns you progress.' },
   { center:true, emoji:'🎉', title:'You’re all set!',
