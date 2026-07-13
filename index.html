@@ -4619,6 +4619,11 @@ function oaToCard(item){
   return {
     id:uid('oa',link||title),type:'live',cat:'journal-article',
     title:title.length>110?title.slice(0,110)+'…':title,
+    // Structured OSCOLA citation metadata (kept untruncated) so the Cite button
+    // can produce "Author, 'Title' (Year) Vol(Issue) Journal FirstPage".
+    fullTitle:title, authors, year,
+    vol:item.biblio?.volume||'', issue:item.biblio?.issue||'',
+    page:item.biblio?.first_page||'', journalName:journal||'',
     body,src:journal||'OpenAlex',link,
     date:item.publication_date||(year?`${year}-01-01`:'')
   };
@@ -4721,9 +4726,14 @@ async function fetchCrossRef(){
         const doi=item.DOI||'';
         const link=safeUrl(doi?`https://doi.org/${doi}`:`https://scholar.google.com/scholar?q=${encodeURIComponent(title)}`);
         const body=abs||`${journal?`Published in ${journal}. `:''}${authors?`Authors: ${authors}. `:''}${year?`(${year}). `:''}Click to view the full article.`;
+        const vol=(item.volume||'').toString().trim();
+        const issue=(item.issue||'').toString().trim();
+        const page=(item.page||'').toString().split(/[-–—]/)[0].trim();   // OSCOLA cites the first page only
         return {
           id:uid('cr',link||title),type:'live',cat:'journal-article',
           title:title.length>110?title.slice(0,110)+'…':title,
+          // Structured OSCOLA citation metadata (kept untruncated).
+          fullTitle:title, authors, year, vol, issue, page, journalName:journal,
           body,src:journal,link,date
         };
       }).filter(Boolean);
@@ -5447,6 +5457,19 @@ function courtCite(card){
   if(!ab) return '';
   const n=caseNumber(card);
   return n?`${ab} ${n}`:ab;
+}
+
+// OSCOLA-form medium neutral citation for a live case, "[year] Court Number"
+// (OSCOLA 2.1.3), taking the year + judgment number from a National Archives /
+// BAILII neutral-citation URL. The EWHC division moves after the number, e.g.
+// "[2024] EWHC 12 (Admin)". Returns '' if the year/number can't be determined.
+function neutralCite(card){
+  const ab=courtAbbr(card.court);
+  if(!ab) return '';
+  const m=(card.link||'').match(/\/(\d{4})\/(\d+)(?:$|[/?#])/);
+  if(!m) return '';
+  const div=ab.match(/^EWHC \((\w+)\)$/);
+  return div ? `[${m[1]}] EWHC ${m[2]} (${div[1]})` : `[${m[1]}] ${ab} ${m[2]}`;
 }
 
 // Display title for a card. For live cases we append the court citation after
@@ -8277,7 +8300,10 @@ function onSave(id,btn,card){
         desc:card.desc,court:card.court,legType:card.legType,sections:card.sections,
         date:card.date,src:card.src,link:card.link,naUrl:card.naUrl,
         // study-guide fields (otherwise the saved card / its quiz render blank)
-        guide:card.guide,intro:card.intro,steps:card.steps,sides:card.sides,key:card.key};
+        guide:card.guide,intro:card.intro,steps:card.steps,sides:card.sides,key:card.key,
+        // journal-article citation fields (so Cite works on a saved live article)
+        fullTitle:card.fullTitle,authors:card.authors,year:card.year,
+        vol:card.vol,issue:card.issue,page:card.page,journalName:card.journalName};
     }
     checkAchievements();
   }
@@ -8292,6 +8318,15 @@ function onSave(id,btn,card){
 // Produces an OSCOLA-format citation appropriate to the card type.
 function todayAccessed(){
   return new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+}
+// Format an author list OSCOLA-style: forename-first, separated by commas with
+// "and" before the last (e.g. "Cecil Abungu"; "A Smith and B Jones"). OSCOLA 1.3.1:
+// initials in authors' names take no full stops ("HLA Hart", not "H.L.A. Hart").
+function oscolaAuthors(s){
+  const clean=v=>String(v).replace(/([A-Za-z])\./g,'$1').replace(/\s+/g,' ').trim();
+  const parts=String(s||'').split(/\s*,\s*/).map(clean).filter(Boolean);
+  if(parts.length<=1) return parts[0]||'';
+  return parts.slice(0,-1).join(', ')+' and '+parts[parts.length-1];
 }
 
 function buildOSCOLA(card){
@@ -8315,10 +8350,13 @@ function buildOSCOLA(card){
     }
     // If title already contains a [year] or (year) citation, use it as-is.
     if(/\[\d{4}\]|\(\d{4}\)/.test(title)) return title;
-    // Live case: append the court citation (abbreviation + number) if we have one.
-    const cite=courtCite(card);
-    const court=cite?` (${cite})`:(card.court?` (${card.court})`:'');
-    return `${title}${court}`;
+    // Live case: append the medium neutral citation "[year] Court Number"
+    // (OSCOLA 2.1.3) when we can derive it; else the court identifier in brackets
+    // (OSCOLA 2.1.5, e.g. "(HL)") as a best-effort fallback.
+    const nc=neutralCite(card);
+    if(nc) return `${title} ${nc}`;
+    const ab=courtAbbr(card.court);
+    return ab ? `${title} (${ab})` : (card.court ? `${title} (${card.court})` : title);
   }
 
   // STATUTE — OSCOLA cites by short title + year, which the title already gives
@@ -8328,28 +8366,52 @@ function buildOSCOLA(card){
     return title.replace(/\s*\(.*?\)\s*$/,'').trim();
   }
 
-  // JOURNAL ARTICLE — OSCOLA: Author, 'Title' (Year) Volume Journal Page.
-  // Curated titles are pre-formatted "Author — 'Title' (...)". Try to parse;
-  // otherwise fall back to a sensible reconstruction.
+  // JOURNAL ARTICLE — OSCOLA 3.3:
+  //   Author, 'Title' (Year) Volume(Issue) Journal FirstPage   [volume identifies year]
+  //   Author, 'Title' [Year] Journal FirstPage                 [year identifies volume]
+  // The issue is included only when a journal restarts pagination each issue; we
+  // keep it where the source supplies one. No URL/"accessed" — that is for
+  // websites, not journals (OSCOLA 3.1.4, 3.3).
   if(cat==='journal-article'){
-    // Pattern: "Surname — 'Article Title' (...rest...)"
+    const journalOf=c=>c.journalName||(c.src&&!/scholar|openalex|semantic|crossref/i.test(c.src)?c.src:'');
+    // 1) Structured metadata (live articles carry author/year/vol/issue/page):
+    //    build the full OSCOLA reference directly from the fields.
+    if(card.authors||card.author){
+      const author=oscolaAuthors(card.authors||card.author);
+      const artTitle=(card.fullTitle||title).trim();
+      const year=card.year||(card.date?String(card.date).slice(0,4):'');
+      const vol=(card.vol||'').toString().trim();
+      const issue=(card.issue||'').toString().trim();
+      const page=(card.page||'').toString().trim();
+      const journal=journalOf(card);
+      let cite=`${author}, '${artTitle}'`;
+      // Round brackets when a volume number identifies the volume; square brackets
+      // when the year itself does (no volume) — OSCOLA 3.3.
+      if(year) cite+= vol ? ` (${year})` : ` [${year}]`;
+      if(vol)  cite+=` ${vol}${issue?`(${issue})`:''}`;
+      if(journal) cite+=` ${journal}`;
+      if(page)    cite+=` ${page}`;
+      return cite.replace(/\s+/g,' ').trim();
+    }
+    // 2) Curated titles pre-formatted as "Author — 'Title' (Year) Vol Journal Page".
     let m=title.match(/^(.*?)\s+[—-]\s+['‘](.+?)['’]\s*(.*)$/);
     if(m){
-      const author=m[1].trim();
+      const author=oscolaAuthors(m[1].trim());
       const artTitle=m[2].trim();
       const rest=m[3].trim(); // often already "(Year) Vol Journal Page"
-      const journal=card.src&&!/scholar|openalex|semantic|crossref/i.test(card.src)?card.src:'';
+      const journal=journalOf(card);
       let cite=`${author}, '${artTitle}'`;
       if(rest) cite+=` ${rest}`;
       else if(journal) cite+=` (${journal})`;
       return cite.replace(/\s+/g,' ').trim();
     }
-    // Live article without parseable author: 'Title' (Journal) <url> accessed date
-    const journal=card.src&&!/scholar|openalex|semantic|crossref/i.test(card.src)?card.src:'';
+    // 3) No author (OSCOLA: begin with the title). Give the details we have.
+    const journal=journalOf(card);
+    const year=card.year||(card.date?String(card.date).slice(0,4):'');
     let cite=`'${title}'`;
-    if(journal) cite+=` (${journal})`;
-    cite+=` <${link}> accessed ${todayAccessed()}`;
-    return cite;
+    if(year)    cite+=` [${year}]`;
+    if(journal) cite+=` ${journal}`;
+    return cite.replace(/\s+/g,' ').trim();
   }
 
   // LEGAL NEWS (blogs / news sites) — OSCOLA website/blog format:
