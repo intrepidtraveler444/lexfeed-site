@@ -4120,6 +4120,46 @@ const CURATED = [
     ],
     key:"A primary victim is in the zone of danger and recovers so long as physical injury was foreseeable (Page v Smith); a secondary victim only witnesses harm to another and must satisfy the strict Alcock control mechanisms. Both must suffer a recognised psychiatric illness — not mere grief or distress.",
     src:'LexFeed · Study Guide' },
+
+  { id:'sg22', type:'curated', cat:'study-guide', guide:'compare', area:'Contract',
+    title:'Offer vs Invitation to Treat',
+    intro:"Both are steps towards a contract, but only one can be accepted to create a binding deal — telling them apart fixes when (and whether) a contract exists.",
+    sides:[
+      { name:'Offer', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1892/1.html', text:"A clear statement of the terms on which the offeror is prepared to be bound, made with the intention that it becomes binding the moment it is accepted. It can be made to one person, a group, or the whole world (Carlill v Carbolic Smoke Ball)." },
+      { name:'Invitation to treat', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1953/6.html', text:"An invitation to others to make offers, or to open negotiations — it cannot itself be accepted to form a contract. Shop displays, advertisements and price lists are usually invitations to treat, so the customer makes the offer, which the seller is free to accept or reject (Pharmaceutical Society v Boots)." }
+    ],
+    key:"An offer can be accepted to form a binding contract; an invitation to treat only invites offers. A shop display is an invitation to treat, so it is the customer who offers to buy.",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg23', type:'curated', cat:'study-guide', guide:'compare', area:'Criminal',
+    title:'Murder vs Manslaughter',
+    intro:"Both are unlawful homicides — the killing of another person — but they differ in the mental element and in the sentences and defences available.",
+    sides:[
+      { name:'Murder', text:"The unlawful killing of a person with ‘malice aforethought’ — an intention either to kill or to cause grievous bodily harm. Nothing less than that intent will do, and conviction carries a mandatory life sentence." },
+      { name:'Manslaughter', link:'https://www.legislation.gov.uk/ukpga/Eliz2/5-6/11/contents', text:"A less culpable unlawful killing, giving the judge sentencing discretion. It is either voluntary — a murder reduced by a partial defence such as diminished responsibility or loss of control (Homicide Act 1957, as amended) — or involuntary, where death results from an unlawful and dangerous act or from gross negligence, without intent to kill or cause GBH." }
+    ],
+    key:"Murder requires intention to kill or cause GBH and carries a mandatory life sentence; manslaughter covers killings that either lack that intent (involuntary) or are reduced from murder by a partial defence (voluntary).",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg24', type:'curated', cat:'study-guide', guide:'compare', area:'Criminal',
+    title:'Actual Bodily Harm vs Grievous Bodily Harm',
+    intro:"Both are non-fatal offences against the person under the Offences Against the Person Act 1861, but they differ in the seriousness of the harm and the intent required.",
+    sides:[
+      { name:'Actual bodily harm (ABH)', link:'https://www.legislation.gov.uk/ukpga/Vict/24-25/100/section/47', text:"Assault occasioning actual bodily harm under s.47. ‘Actual bodily harm’ is any hurt or injury that is more than trifling — it can include psychiatric harm — but need not be serious or permanent. The prosecution need only prove the mens rea for the assault or battery; no intent as to the harm itself is required (R v Savage; DPP v Parmenter)." },
+      { name:'Grievous bodily harm (GBH)', link:'https://www.legislation.gov.uk/ukpga/Vict/24-25/100/section/20', text:"Really serious harm. Under s.20 it must be inflicted maliciously — intending or foreseeing some harm (R v Cunningham). Under s.18 it must be caused with intent to cause GBH; that is the more serious offence and carries a maximum of life imprisonment." }
+    ],
+    key:"ABH (s.47) is more-than-trivial harm needing only the mens rea for the assault; GBH is really serious harm, either reckless/malicious (s.20) or with intent (s.18) — s.18 being the gravest, carrying life.",
+    src:'LexFeed · Study Guide' },
+
+  { id:'sg25', type:'curated', cat:'study-guide', guide:'compare', area:'Contract',
+    title:'Condition vs Warranty',
+    intro:"Both are terms of a contract, but which label a term carries decides what the innocent party can do when it is broken.",
+    sides:[
+      { name:'Condition', link:'https://www.legislation.gov.uk/ukpga/1979/54/section/11', text:"A major term going to the root of the contract. Breach of a condition lets the innocent party terminate — treat the contract as repudiated — AND claim damages, or else affirm the contract and claim damages instead (Sale of Goods Act 1979, s.11)." },
+      { name:'Warranty', link:'https://www.legislation.gov.uk/ukpga/1979/54/section/11', text:"A minor or subsidiary term. Breach of a warranty gives a right to damages only — the innocent party must carry on performing and cannot terminate the contract." }
+    ],
+    key:"Breach of a condition lets the innocent party terminate and claim damages; breach of a warranty gives damages alone. Whether a term is a condition or a warranty turns on its importance, not merely the label used.",
+    src:'LexFeed · Study Guide' },
 ];
 
 // ══════════════════════════════════════════════
@@ -8765,6 +8805,11 @@ function quizTarget(){
   try{ return Math.min([...saves].map(id=>savedData[id]).filter(qmEligible).length, GOAL_QUIZ); }
   catch(_){ return GOAL_QUIZ; }
 }
+// A Quiz Me run credits the daily goal ONLY when it covers all areas of law AND
+// uses a full length — the 25 option (which tests all saved cards when you have
+// fewer than 25) or "All". The 10-question option is practice only and never
+// counts. Area-filtered or 10-length runs still practise but don't tick the goal.
+function qmCountsForGoal(){ return !qmScope.areas.length && (qmScope.length===25 || qmScope.length===0); }
 
 function getGoalState(){
   const today=new Date().toISOString().slice(0,10);
@@ -8789,13 +8834,14 @@ function refreshGoalRing(){
   // progress (cleared/total) until the run is mastered, then counts as full.
   // Target = the current run's size if one is going, else all quizzable saved
   // cards (capped at 25). Shown so the user knows exactly how many they must ace.
-  // Quiz Me credits the daily goal only when the run covers ALL areas of law — an
-  // area-filtered run is practice and doesn't count (see showQmMastery). So the
-  // live progress/target track an all-areas run; a scoped run shows no goal
+  // Quiz Me credits the daily goal only when the run covers ALL areas of law AND
+  // uses a full length (25 or All) — an area-filtered or 10-question run is
+  // practice and doesn't count (see qmCountsForGoal / showQmMastery). So the live
+  // progress/target track a qualifying run; a non-qualifying run shows no goal
   // progress here (its clears don't advance the objective).
-  const qmAllAreas = !qmScope.areas.length;
-  const qTot=(qmAllAreas&&qmSessionTotal)?qmSessionTotal:(quizTarget()||GOAL_QUIZ);
-  const qmCleared=qmAllAreas?qmClearedIds.size:0;
+  const qmCounts = qmCountsForGoal();
+  const qTot=(qmCounts&&qmSessionTotal)?qmSessionTotal:(quizTarget()||GOAL_QUIZ);
+  const qmCleared=qmCounts?qmClearedIds.size:0;
   const quizFrac=g.quiz?1:Math.min(qmCleared,qTot)/qTot;
   const parts=[Math.min(g.read,GOAL_READ)/GOAL_READ, g.qotd?1:0, quizFrac];
   const pct=Math.round(parts.reduce((a,b)=>a+b,0)/3*100);
@@ -8813,8 +8859,8 @@ function refreshGoalRing(){
     if(g.quiz){ cb.innerHTML=`🎯 Quiz Me <b>✓</b>`; cb.classList.add('done'); cb.title='Daily Quiz Me goal complete.'; }
     else{
       cb.innerHTML=`🎯 Quiz Me <b>${Math.min(qmCleared,qTot)}/${qTot}</b>`; cb.classList.remove('done');
-      cb.title=`Complete Quiz Me: run it with “All areas” selected and answer all ${qTot} question${qTot!==1?'s':''} correctly, through every retry round. `
-        +`It covers all your saved cards (or 25 once you've saved more than that). An area-filtered run doesn't count toward the goal.`;
+      cb.title=`Complete Quiz Me: run it with “All areas” selected and the 25 or All length, then answer all ${qTot} question${qTot!==1?'s':''} correctly, through every retry round. `
+        +`It covers all your saved cards (or 25 once you've saved more than that). Area-filtered or 10-question runs don't count toward the goal.`;
     }
   }
 
@@ -8834,7 +8880,7 @@ function refreshGoalRing(){
     const bits=[];
     if(g.read<GOAL_READ) bits.push(`read ${GOAL_READ-g.read} more post${GOAL_READ-g.read!==1?'s':''}`);
     if(!g.qotd) bits.push('answer the Question of the Day');
-    if(!g.quiz){ bits.push(`finish Quiz Me over all areas — get all ${qTot} question${qTot!==1?'s':''} right`); }
+    if(!g.quiz){ bits.push(`finish Quiz Me (all areas, 25 or All length) — get all ${qTot} question${qTot!==1?'s':''} right`); }
     sub.textContent=bits.length?('To finish today: '+bits.join(', ')+'.'):'';
   }
 }
@@ -9951,14 +9997,15 @@ function maybeFinishRound(){
 // Final mastery screen — reached when a whole round is answered with no misses.
 function showQmMastery(){
   // The daily Quiz Me goal is credited ONLY for a run that covered ALL areas of
-  // law; an area-filtered run is practice and doesn't complete the goal.
-  const countsForGoal=!qmScope.areas.length;
-  if(countsForGoal) goalQuizDone();   // all-areas run mastered → daily objective done
+  // law at a full length (25 or All); an area-filtered or 10-question run is
+  // practice and doesn't complete the goal.
+  const countsForGoal=qmCountsForGoal();
+  if(countsForGoal) goalQuizDone();   // qualifying run mastered → daily objective done
   const grid=document.getElementById('grid');
   const el=document.createElement('div');
   el.className='caught-up';
   const note=countsForGoal?'' :
-    `<div class="cu-sub" style="margin-top:8px;color:#b45309">This run was limited to selected area(s), so it doesn't count toward today's Quiz Me goal — run Quiz Me with “All areas” selected to complete it.</div>`;
+    `<div class="cu-sub" style="margin-top:8px;color:#b45309">This run doesn't count toward today's Quiz Me goal — run Quiz Me with “All areas” selected and the 25 or All length to complete it (the 10-question option is practice only).</div>`;
   el.innerHTML=`
     <div class="cu-ico">🏆</div>
     <div class="cu-title">Mastered! Everything correct.</div>
@@ -10085,10 +10132,17 @@ function renderQuizMode(){
     if(goalEl){
       const done=getGoalState().quiz;
       const allAreas=!qmScope.areas.length;
+      const fullLen=(qmScope.length===25||qmScope.length===0);
       let msg,bg,fg,bd;
       if(done){ msg='🎯 Today’s <b>Quiz Me</b> goal is already complete.'; fg='#475569'; bg='rgba(100,116,139,.10)'; bd='rgba(100,116,139,.22)'; }
-      else if(allAreas){ msg='⭐ Get every question right (through all retry rounds) to complete today’s <b>Quiz Me</b> daily goal.'; fg='#15803d'; bg='rgba(21,128,61,.10)'; bd='rgba(21,128,61,.22)'; }
-      else{ msg='⚠️ An area-filtered run is practice only — it won’t count toward your daily goal. Pick <b>All areas</b> to complete <b>Quiz Me</b> today.'; fg='#b45309'; bg='rgba(180,83,9,.10)'; bd='rgba(180,83,9,.28)'; }
+      else if(allAreas&&fullLen){ msg='⭐ Get every question right (through all retry rounds) to complete today’s <b>Quiz Me</b> daily goal.'; fg='#15803d'; bg='rgba(21,128,61,.10)'; bd='rgba(21,128,61,.22)'; }
+      else{
+        const fixes=[];
+        if(!allAreas) fixes.push('select <b>All areas</b>');
+        if(!fullLen)  fixes.push('use the <b>25</b> or <b>All</b> length');
+        msg='⚠️ This selection is practice only — it won’t count toward your daily goal. To complete <b>Quiz Me</b> today, '+fixes.join(' and ')+'.';
+        fg='#b45309'; bg='rgba(180,83,9,.10)'; bd='rgba(180,83,9,.28)';
+      }
       goalEl.innerHTML=msg;
       goalEl.style.color=fg; goalEl.style.background=bg; goalEl.style.border='1px solid '+bd;
     }
@@ -11200,7 +11254,7 @@ const TOUR_STEPS=[
   { sel:'.fbtn[data-c="quiz"]', title:'SQE practice', placement:'bottom',
     body:'Five-option, single-best-answer questions across every FLK area — plus a fresh Question of the Day.' },
   { sel:'.hdr-stat.streak', title:'Build a daily streak', placement:'bottom',
-    body:'Your 🔥 streak grows by one each day you complete <b>all</b> of your daily goals — read 50 posts, answer the Question of the Day, and finish Quiz Me by answering <b>every</b> question correctly (through all retry rounds). Quiz Me must be run with <b>“All areas”</b> selected and covers all your saved cards, or 25 once you\'ve saved more than that. Do all three every day to keep the streak alive and unlock achievements 🏆.' },
+    body:'Your 🔥 streak grows by one each day you complete <b>all</b> of your daily goals — read 50 posts, answer the Question of the Day, and finish Quiz Me by answering <b>every</b> question correctly (through all retry rounds). Quiz Me must be run with <b>“All areas”</b> selected and the <b>25</b> or <b>All</b> length (the 10-question option doesn\'t count); it covers all your saved cards, or 25 once you\'ve saved more than that. Do all three every day to keep the streak alive and unlock achievements 🏆.' },
   { center:true, emoji:'📖', title:'Go to the source',
     body:'Every card is a <b>simplified study aid, not legal advice</b> — summaries can be incomplete or out of date. Use LexFeed to discover and revise, then tap <b>Read the full judgment</b> / <b>LexisNexis</b> / <b>legislation.gov.uk</b> to learn it properly from the primary source. Opening full sources even earns you progress.' },
   { center:true, emoji:'🎉', title:'You’re all set!',
