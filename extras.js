@@ -104,6 +104,41 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  { id:'xa20260714a', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Edelman — 'When Do Fiduciary Duties Arise?' (2010) 126 LQR 302",
+    body:"James Edelman examines the conditions that trigger fiduciary duties and argues that they arise whenever one party has a discretionary power over another's legal or practical interests, rather than only within pre-specified categories of relationship. Drawing on Privy Council and High Court authority, he contends that the categories of fiduciary relationship remain open and that the key question is always functional — whether one party has undertaken to act in another's interest. The article provides a principled analytical framework for identifying fiduciary duties and has been widely cited in cases concerning novel claimant-defendant relationships.",
+    src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1697656' },
+
+  { id:'xa20260714b', type:'curated', cat:'journal-article', area:'Contract',
+    title:"Burrows — 'Illegality after Patel v Mirza' (2017) 70 CLP 55",
+    body:"Andrew Burrows analyses the Supreme Court's landmark decision in Patel v Mirza [2016] UKSC 42 and its restructuring of the illegality defence in private law. He examines the 'range of factors' approach adopted by the majority — which asks whether enforcing the agreement would harm the integrity of the legal system, having regard to the purpose of the prohibition, potential penalties and proportionality — and contrasts it with the minority's preferred rule-based approach. The article provides a rigorous unpacking of the competing methodologies and assesses which better serves coherence across contract, unjust enrichment and tort.",
+    src:'Current Legal Problems', link:'https://doi.org/10.1093/clp/cux008' },
+
+  { id:'xa20260714c', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Tofaris & Steel — 'Negligence Liability for Omissions and the Police' (2016) 75 CLJ 128",
+    body:"Stelios Tofaris and Sandy Steel scrutinise the law's general refusal to impose negligence liability for pure omissions, and in particular the special treatment of the police as defendants. Beginning from the conceptual distinction between acts and omissions and its grounding in autonomy, they examine the recognised exceptions — assumption of responsibility, creation of danger, and control over third parties — and argue that the immunity enjoyed by the police is broader than principle demands. The article shaped academic debate before the Supreme Court's decisions in Robinson v Chief Constable of West Yorkshire and subsequent omissions cases.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/negligence-liability-for-omissions-and-the-police/AC83F61745C4326FEE217D993868C08D' },
+
+  { id:'xa20260714d', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Steel — 'Justifying Exceptions to Proof of Causation in Tort Law' (2015) 78 MLR 729",
+    body:"Sandy Steel examines cases where courts have relaxed strict 'but for' proof of causation — from the Fairchild material increase in risk doctrine to Chester v Afshar's departure for patient autonomy — and asks whether they can be coherently justified. He argues that the exceptions are better understood as modifications to the standard of proof or as policy-driven liability rules, rather than as genuine alternatives to factual causal proof, and proposes principled criteria by which further exceptions should be evaluated. The article is a leading modern treatment of causation's role in defining the outer limits of tort liability.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/1468-2230.12142' },
+
+  { id:'xa20260714e', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Nolan — 'Equitable Property' (2006) 122 LQR 232",
+    body:"Richard Nolan surveys the category of equitable property rights — interests recognised as proprietary by equity even though the common law does not — and asks what, if anything, makes such rights distinctively equitable. He argues that equitable property is best understood not as a second tier of ownership but as a set of rights that equity confers in particular circumstances, principally to address the unconscionable exercise of legal entitlements. The article illuminates the relationship between equity and property law and has been influential in debates about beneficial interests under trusts, tracing and the content of equitable remedies.",
+    src:'Law Quarterly Review', link:'https://heinonline.org/hol-cgi-bin/get_pdf.cgi?handle=hein.journals/lqr122&section=16' },
+
+  { id:'xa20260714f', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Robertson — 'Policy-Based Reasoning in Duty of Care Cases' (2013) 33 Legal Studies 119",
+    body:"Andrew Robertson examines the role of policy arguments in determining whether a duty of care exists in novel negligence cases and argues that courts and commentators have misconceived the relationship between principle and policy. He contends that policy considerations operate as constraints on the application of principle rather than as a free-standing basis for finding or denying a duty, and that treating policy as a trump card produces incoherent and unpredictable results. The article is a significant contribution to the methodology of duty of care analysis and has informed subsequent debate about the role of policy in private law.",
+    src:'Legal Studies', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1748-121X.2012.00242.x' },
+
+  { id:'xa20260714g', type:'curated', cat:'journal-article', area:'Employment',
+    title:"Freedland & Prassl — 'Employees, Workers, and the Sharing Economy: Changing Practices and Changing Concepts in the United Kingdom' (2017) 42 ELRev 272",
+    body:"Mark Freedland and Jeremias Prassl analyse the legal status of workers in the 'gig economy' against the background of the Employment Rights Act 1996 and the established tripartite taxonomy of employee, worker and independent contractor. They argue that the expansion of work through digital intermediary platforms challenges the foundational assumptions of personal employment law, and propose a 'personal work nexus' theory that focuses on the personal character of the work relationship rather than on formal categorisation. The article anticipated and shaped the subsequent cascade of litigation — including Uber, Deliveroo and Pimlico Plumbers — that culminated in Supreme Court decisions redefining worker status.",
+    src:'European Labour Law Journal', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2932757' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +229,48 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  { id:'xt20260714a', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Contributory Negligence',
+    body:"Contributory negligence is the claimant's own failure to take reasonable care for their own safety which, together with the defendant's negligence, caused or contributed to their loss. Under the Law Reform (Contributory Negligence) Act 1945 it does not defeat the claim outright but reduces the damages by such proportion as the court considers just and equitable having regard to the claimant's share in responsibility. It is assessed objectively — the standard is that of the reasonable person in the claimant's position — and both causative contribution and blameworthiness are relevant to the apportionment.",
+    example:"A pedestrian steps into the road without looking and is struck by a negligently speeding driver. The court finds both parties at fault and apportions liability 70% to the driver and 30% to the pedestrian, so damages are reduced by 30% to reflect the pedestrian's contributory negligence.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/contributory-negligence' },
+
+  { id:'xt20260714b', type:'curated', cat:'legal-term', area:'Criminal',
+    title:'Mens Rea',
+    body:"Mens rea (Latin: 'guilty mind') denotes the mental element required by the definition of a criminal offence — the state of mind the prosecution must prove alongside the actus reus before a defendant can be convicted. Different offences require different forms of mens rea: intention (the highest degree, where the defendant desired the result), recklessness (conscious and unjustifiable risk-taking), knowledge, or negligence. Strict liability offences are the exception: they require no proof of mens rea as to one or more elements, which is constitutionally significant for the presumption of innocence.",
+    example:"A defendant is charged with theft, which requires an intention to permanently deprive the owner. If the defendant genuinely believed the property was abandoned, he lacks the necessary mens rea — the dishonest intention — and must be acquitted even though he took another's goods.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/mens-rea' },
+
+  { id:'xt20260714c', type:'curated', cat:'legal-term', area:'Criminal',
+    title:'Actus Reus',
+    body:"Actus reus (Latin: 'guilty act') describes the external, physical element of a criminal offence — the conduct, consequence, or state of affairs that the law prohibits and that the prosecution must establish as a precondition of liability. It encompasses acts, omissions where there is a legal duty to act, and states of being or possession in status offences. The actus reus must ordinarily be a voluntary act of the defendant; involuntary movements caused by automatism do not constitute an actus reus and provide a complete defence.",
+    example:"In a charge of assault occasioning actual bodily harm, the actus reus is the infliction of the bodily harm. A defendant who causes injury during an epileptic seizure, having no voluntary control over his movements, has not committed the actus reus of the offence and may be acquitted on the ground of automatism.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/actus-reus' },
+
+  { id:'xt20260714d', type:'curated', cat:'legal-term', area:'Property',
+    title:'Adverse Possession',
+    body:"Adverse possession is the process by which a person who is not the paper title owner may acquire title to land by factual possession of it, without the owner's licence, for the required limitation period. At common law and under the Limitation Act 1980 the period was twelve years, after which the owner's right to recover the land was statute-barred. The Land Registration Act 2002 significantly reformed the position for registered land: after ten years' adverse possession the squatter may apply to be registered, but the registered owner then has two years to object and recover the land.",
+    example:"A farmer has maintained and cultivated a strip of unregistered land bordering his field for over twelve years, treating it as his own without the true owner's permission or protest. Under the Limitation Act 1980 the owner's right of action is extinguished and the farmer may apply to be registered as the new proprietor by adverse possession.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/adverse-possession' },
+
+  { id:'xt20260714e', type:'curated', cat:'legal-term', area:'Criminal',
+    title:'Self-Defence',
+    body:"Self-defence is a common-law and statutory defence (now partly governed by s.76 Criminal Justice and Immigration Act 2008) that justifies the use of force against an actual or apprehended unlawful attack on oneself or another. The force used must be reasonable in the circumstances as the defendant believed them to be, even if that belief was mistaken (provided it was honest). Force is not reasonable if it is disproportionate to the threat or if it is pre-emptive beyond what is immediately necessary, though the jury must bear in mind that a person acting in the heat of the moment cannot be expected to weigh responses to a nicety.",
+    example:"A man is set upon by an attacker and, believing he faces a serious assault, strikes the attacker once to escape. If the jury finds his belief was genuinely held and his response was what a reasonable person could regard as proportionate in the moment, he will be acquitted on the ground of self-defence.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/self-defence' },
+
+  { id:'xt20260714f', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Passing Off',
+    body:"Passing off is a common-law tort that protects the goodwill of a business from misrepresentation. The classic formulation from Jif Lemon requires proof of three elements: (1) goodwill or reputation attached to the claimant's goods or services; (2) a misrepresentation (whether or not intentional) by the defendant likely to lead the public to believe the defendant's goods or services are those of the claimant; and (3) damage to the claimant's goodwill as a result. It is distinct from registered trade mark infringement and protects the trader's business reputation rather than any intellectual property right in a name or mark per se.",
+    example:"A new tea company begins selling 'Tetly Tea' in packaging nearly identical to Tetley's. Tetley can sue in passing off: it has established goodwill in the name and get-up; consumers are likely to be deceived into thinking they are buying Tetley's product; and Tetley suffers loss of sales and damage to its reputation as a result.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/passing-off' },
+
+  { id:'xt20260714g', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Consideration',
+    body:"Consideration is the element of a contract that distinguishes it from a gratuitous promise: something of value that each party gives in exchange for the other's promise or act, so that the agreement is made for value and not as a gift. English law defines it as 'some right, interest, profit or benefit accruing to one party, or some forbearance, detriment, loss or responsibility given, suffered or undertaken by the other' (Currie v Misa). Consideration must be sufficient (legally recognised) but need not be adequate (commercially fair); it must not be past; and it must move from the promisee — rules that distinguish binding bargains from moral obligations.",
+    example:"A seller promises to deliver a car in exchange for a buyer's promise to pay £5,000. Each party's promise is consideration for the other's: the seller's legal obligation to deliver and the buyer's legal obligation to pay are what make the agreement enforceable as a contract, rather than a gratuitous undertaking by either side.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/consideration' },
 
   ],
 

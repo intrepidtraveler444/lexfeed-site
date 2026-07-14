@@ -322,5 +322,90 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Criminal — case-law ──
+  { id:'r20260714a', type:'curated', cat:'case-law', area:'Criminal',
+    title:'Ivey v Genting Casinos (UK) Ltd t/a Crockfords [2017] UKSC 67',
+    court:'UK Supreme Court',
+    facts:"Phil Ivey, a professional gambler, used a technique called 'edge sorting' with the connivance of a croupier to identify high-value cards at baccarat, winning £7.7 million. Genting refused to pay, alleging that Ivey had cheated. Ivey sued for his winnings and the question arose whether his conduct was 'cheating' under the Gambling Act 2005 and, more broadly, whether the Ghosh test correctly stated the common law of dishonesty.",
+    judgment:"The Supreme Court held that edge sorting did amount to cheating within the Gambling Act 2005, so Ivey could not recover his winnings. More significantly, the Court stated obiter — but emphatically — that the two-stage Ghosh direction on dishonesty was wrong and should no longer be followed.",
+    ratio:"The test for dishonesty is objective: the jury (1) ascertains the defendant's actual state of knowledge and belief as to the facts and (2) asks whether the defendant's conduct was honest by the standards of ordinary decent people. The defendant's own view of whether the conduct was dishonest is irrelevant. The subjective limb of Ghosh, which had allowed a defendant to escape liability by proving ignorance of society's norms, is abolished.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2017/67.html' },
+
+  // ── Contract — case-law ──
+  { id:'r20260714b', type:'curated', cat:'case-law', area:'Contract',
+    title:'Patel v Mirza [2016] UKSC 42',
+    court:'UK Supreme Court',
+    facts:"Patel paid Mirza £620,000 to place bets on RBS share prices using inside information Mirza expected to receive from contacts at the bank. No inside information materialised, the bet was never placed, and Patel sought return of his money. Mirza resisted on the ground that the contract was illegal and that Patel, as a party to the illegality, could not recover.",
+    judgment:"The Supreme Court (by a majority) held that Patel was entitled to restitution of the money he had paid. It rejected the prior 'reliance principle', which had made recoverability turn on whether the claimant was required to plead the illegality to make good the claim.",
+    ratio:"Courts should take a flexible, policy-based approach to the illegality defence, asking: what is the purpose of the prohibition that was transgressed; whether that purpose would be advanced by denying the claim; and whether denial is a proportionate response, having regard to any legitimate interests the claimant has. The former rigid rules — in particular the reliance principle and the public conscience test — are replaced by this multifactorial balance.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/42.html' },
+
+  // ── Company — case-law ──
+  { id:'r20260714c', type:'curated', cat:'case-law', area:'Company',
+    title:'Sevilleja v Marex Financial Ltd [2020] UKSC 31',
+    court:'UK Supreme Court',
+    facts:"Marex obtained a judgment against two BVI companies controlled by Sevilleja. It alleged that Sevilleja then caused the companies to dissipate their assets to frustrate enforcement. Sevilleja argued the claim was barred by the reflective loss principle because any loss to Marex reflected the same diminution in the companies' assets.",
+    judgment:"The Supreme Court (by a majority) held that the reflective loss principle does not extend to creditors: it is a rule specific to shareholders and is grounded in company law, not a general principle of law. Marex's tortious claim was not barred.",
+    ratio:"The reflective loss principle — preventing a shareholder from recovering separately for loss that merely mirrors the company's own loss — is a company-law rule rooted in the proper plaintiff rule in Foss v Harbottle. Its scope is confined to shareholders claiming qua shareholder; it does not prevent creditors or other third parties from bringing independent tortious claims for the same underlying wrong.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2020/31.html' },
+
+  // ── Family — case-law ──
+  { id:'r20260714d', type:'curated', cat:'case-law', area:'Family',
+    title:'Radmacher v Granatino [2010] UKSC 42',
+    court:'UK Supreme Court',
+    facts:"A wealthy German heiress (Radmacher) and a French banker (Granatino) entered a German pre-nuptial agreement renouncing financial claims against each other before their English marriage. On divorce, Granatino sought financial provision under the Matrimonial Causes Act 1973, arguing the agreement should be disregarded as contrary to public policy.",
+    judgment:"The Supreme Court (8-1) held that a pre-nuptial agreement should be given decisive weight in ancillary relief proceedings unless it would be unfair to hold the parties to it, departing from earlier authority that treated such agreements as contrary to public policy.",
+    ratio:"A nuptial agreement should be upheld if the parties entered it freely with a full appreciation of its implications unless in the circumstances prevailing it would not be fair to hold them to it. Relevant considerations include whether one party did not understand the agreement, whether it was not freely entered into, and whether in the light of later events (especially the birth of children) it would be unfair to hold a party to its terms so far as needs are not met.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2010/42.html' },
+
+  // ── Tort — case-law ──
+  { id:'r20260714e', type:'curated', cat:'case-law', area:'Tort',
+    title:'Khan v Meadows [2021] UKSC 21',
+    court:'UK Supreme Court',
+    facts:"Ms Khan carried a gene causing haemophilia and consulted Dr Meadows to discover whether she was a carrier. An inadequate test led to her being negligently told she was not. She became pregnant and gave birth to a son who had haemophilia; the son also had autism, a condition unrelated to haemophilia. She claimed damages including the cost attributable to the autism.",
+    judgment:"The Supreme Court held that the scope of the doctor's duty was to advise about haemophilia. The additional costs attributable solely to the child having autism were therefore outside the scope of the duty and irrecoverable, even though the birth would not have occurred but for the negligent advice.",
+    ratio:"Applying the SAAMCO principle, a defendant who assumes responsibility to provide information about one risk is not liable for all consequences of the decision taken in reliance on that information, but only for losses which flow from the information being wrong as to the risk about which the duty extended. The 'scope of duty' analysis applies in clinical negligence as much as in professional advice cases generally.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2021/21.html' },
+
+  { id:'r20260714f', type:'curated', cat:'case-law', area:'Tort',
+    title:'Paul v Royal Wolverhampton NHS Trust [2024] UKSC 1',
+    court:'UK Supreme Court',
+    facts:"Three conjoined appeals concerned secondary victims — principally close family members — who developed psychiatric illness after witnessing traumatic events caused by NHS clinical negligence. In each case the claimant satisfied the Alcock proximity requirements and argued that clinical negligence should attract a special, more permissive, approach to secondary victim claims.",
+    judgment:"The Supreme Court dismissed the claims, holding that no special rule or exception exists for secondary victim cases arising from clinical negligence. The Alcock control mechanisms apply without modification and the claimants had not satisfied all of them.",
+    ratio:"There is no principled basis for relaxing the Alcock requirements in the clinical negligence context. A secondary victim must show: a close tie of love and affection; proximity in time and space to the accident or its immediate aftermath; and that psychiatric injury was caused by direct perception of the accident or its immediate aftermath. The normal rules of foreseeability and proximity that govern other secondary victim claims govern clinical negligence cases equally.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2024/1.html' },
+
+  { id:'r20260714g', type:'curated', cat:'case-law', area:'Tort',
+    title:'Armes v Nottinghamshire County Council [2017] UKSC 60',
+    court:'UK Supreme Court',
+    facts:"Ms Armes suffered physical and sexual abuse at the hands of foster carers with whom she had been placed by Nottinghamshire County Council as a child in care. She brought a claim against the council in vicarious liability for the carers' torts, accepting that they were independent contractors rather than employees.",
+    judgment:"The Supreme Court (by a majority) held the council vicariously liable for the abuse inflicted by the foster carers. The relationship between the council and the carers was sufficiently akin to employment, and the torts were sufficiently closely connected to that relationship.",
+    ratio:"Vicarious liability may arise outside a contract of employment where the defendant has created an enterprise and integrated others into it in a manner that is akin to employment. The local authority placed children with carers, defined and controlled the terms of the placement, and the carers acted on the authority's behalf in discharging a statutory child-care function. That relationship, combined with the intimate opportunity for abuse arising from it, satisfied both limbs of the test in Various Claimants v Catholic Child Welfare Society.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2017/60.html' },
+
+  // ── Human Rights — statute ──
+  { id:'r20260714h', type:'curated', cat:'statute', area:'Human Rights',
+    title:'Equality Act 2010',
+    body:"Consolidated and replaced nine major pieces of anti-discrimination legislation — including the Race Relations Act 1976, Sex Discrimination Act 1975 and Disability Discrimination Act 1995 — into a single harmonised framework. It defined nine protected characteristics, set out the core prohibitions of direct discrimination, indirect discrimination, harassment and victimisation, and applied them consistently across employment, education, services and public functions. The public sector equality duty extended the Act's reach beyond individual claims to the governance of public bodies, requiring them to advance equality proactively.",
+    sections:[
+      { num:'4', head:'Protected Characteristics', text:'Lists the nine protected characteristics — age, disability, gender reassignment, marriage and civil partnership, pregnancy and maternity, race, religion or belief, sex, and sexual orientation — around which the Act\'s protections are organised.' },
+      { num:'13', head:'Direct Discrimination', text:'Prohibits treating a person less favourably because of a protected characteristic than a comparator is or would be treated; the comparator need not exist in fact if the circumstances are materially the same.' },
+      { num:'19', head:'Indirect Discrimination', text:'Prohibits applying a provision, criterion or practice that is facially neutral but puts persons sharing a protected characteristic at a particular disadvantage compared with persons who do not share it, unless the practice is a proportionate means of achieving a legitimate aim.' },
+      { num:'26', head:'Harassment', text:'Prohibits unwanted conduct related to a protected characteristic that has the purpose or effect of violating a person\'s dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment.' },
+      { num:'149', head:'Public Sector Equality Duty', text:'Requires public bodies, in exercising their functions, to have due regard to eliminating discrimination, advancing equality of opportunity and fostering good relations between persons who share a protected characteristic and those who do not.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2010/15/contents' },
+
+  // ── Company — statute ──
+  { id:'r20260714i', type:'curated', cat:'statute', area:'Company',
+    title:'Companies Act 2006',
+    body:"The largest Act of Parliament by clause count when enacted, the Companies Act 2006 restated and modernised the whole of UK company law, replacing the Companies Act 1985. It codified directors' duties for the first time in statutory form, simplified company formation and administration, extended the rights of shareholders (particularly in quoted companies), and introduced a 'think small first' approach to reduce the regulatory burden on private companies. The Act implemented the EU Company Law Directives and represents the definitive source of English company law for practitioners and students.",
+    sections:[
+      { num:'ss.171–177', head:"Directors' General Duties", text:'Codifies the general duties owed by directors to their company: to act within powers, to promote the success of the company, to exercise independent judgment, to exercise reasonable care skill and diligence, to avoid conflicts of interest, not to accept benefits from third parties, and to declare interests in proposed transactions.' },
+      { num:'172', head:'Duty to Promote the Success of the Company', text:'Requires a director to act in the way they consider, in good faith, would be most likely to promote the success of the company for the benefit of its members as a whole, having regard to long-term consequences, employees, suppliers, community, environment, and the company\'s reputation for high standards of conduct.' },
+      { num:'994', head:'Unfair Prejudice Petition', text:'Enables a member to petition the court for relief on the ground that the company\'s affairs are being or have been conducted in a manner that is unfairly prejudicial to the interests of members generally or of some part of its members, including the petitioner; the court may make any order it thinks fit to remedy the prejudice.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2006/46/contents' },
+
   ];
 });
