@@ -5136,7 +5136,9 @@ async function fetchNationalArchives(feed){
       id:uid('na',link||title),
       type:'live',
       cat:'case-law',
-      title: fullTitle,
+      title: fullTitle,      // DISPLAY title — long names are shortened with "…"
+      caseName: title,       // FULL, untruncated case name (used for the OSCOLA citation)
+      caseCite: cite,        // neutral citation, e.g. "[2026] EWHC 1390 (Comm)"
       court: courtShort,
       desc: summary||'Loading preview…',
       date,
@@ -8339,6 +8341,8 @@ function onSave(id,btn,card){
         body:card.body,facts:card.facts,judgment:card.judgment,ratio:card.ratio,
         desc:card.desc,court:card.court,legType:card.legType,sections:card.sections,
         date:card.date,src:card.src,link:card.link,naUrl:card.naUrl,
+        // full case name + neutral citation (so a saved live case still cites in full)
+        caseName:card.caseName,caseCite:card.caseCite,
         // legal-term worked example (otherwise a newly-saved term card shows no example)
         example:card.example,
         // study-guide fields (otherwise the saved card / its quiz render blank)
@@ -8389,6 +8393,13 @@ function buildOSCOLA(card){
       const parties=(m?m[1]:title).trim();
       const num=(m?m[2]:'').replace(/^Case\s+/i,'').trim();   // "Case 26/62"→"26/62"; keep "Joined Cases …"
       return `${num?num+' ':''}${parties} ${card.ecr}`.replace(/\s+/g,' ').trim();
+    }
+    // Live case whose DISPLAY title shortens a long name with "…": cite the FULL
+    // case name (never truncated), followed by its neutral citation.
+    if(card.caseName){
+      const nm=String(card.caseName).trim();
+      const cc=(String(card.caseCite||'').trim())||neutralCite(card);
+      return (cc?`${nm} ${cc}`:nm).replace(/\s+/g,' ').trim();
     }
     // If title already contains a [year] or (year) citation, use it as-is.
     if(/\[\d{4}\]|\(\d{4}\)/.test(title)) return title;
@@ -9118,7 +9129,8 @@ function savedDataLite(card){
   savedData[card.id]={id:card.id,type:card.type,cat:card.cat,area:card.area,title:card.title,
     body:card.body,facts:card.facts,judgment:card.judgment,ratio:card.ratio,
     desc:card.desc,court:card.court,legType:card.legType,sections:card.sections,
-    date:card.date,src:card.src,link:card.link,example:card.example};
+    date:card.date,src:card.src,link:card.link,example:card.example,
+    caseName:card.caseName,caseCite:card.caseCite};
   LS.set('savedData',savedData);
 }
 
@@ -11377,12 +11389,43 @@ function buildFreeAllFeed(){
 // ══════════════════════════════════════════════
 //  STARTER SAVED DECK + PREMIUM WELCOME
 // ══════════════════════════════════════════════
-// New users are seeded ONCE with a small starter deck of saved cards, so Quiz Me
-// and the Saved view work from day one — but ONLY for someone with an empty saved
-// pile (a genuinely new Free or newly-Premium user). An existing account with
-// saved cards is never touched. After seeding the user can add or remove any of
-// them freely; it never re-seeds.
+// A small starter deck of saved cards so Quiz Me and the Saved view work from day
+// one. Two behaviours:
+//   • Signed-OUT free users ALWAYS have the deck present (restored on every reload,
+//     so an anonymous visitor's Saved view is never empty) — see ensureStarterDeckForGuest.
+//   • Signed-IN users are seeded ONCE and only if their account is empty (a genuinely
+//     new Free or newly-Premium account); an existing collection is never touched.
 const STARTER_DECK=['c1','c2','cc3','cn5','s5','s12','lt11','lt1','sg4','sg26'];
+// Compact, storable copy of a card for the saved pile (mirrors onSave's fields).
+function starterCopy(c){
+  return {id:c.id,type:c.type,cat:c.cat,area:c.area,title:c.title,
+    body:c.body,facts:c.facts,judgment:c.judgment,ratio:c.ratio,
+    desc:c.desc,court:c.court,legType:c.legType,sections:c.sections,
+    date:c.date,src:c.src,link:c.link,naUrl:c.naUrl,caseName:c.caseName,caseCite:c.caseCite,
+    example:c.example,
+    guide:c.guide,intro:c.intro,steps:c.steps,sides:c.sides,key:c.key,
+    fullTitle:c.fullTitle,authors:c.authors,year:c.year,vol:c.vol,issue:c.issue,page:c.page,journalName:c.journalName};
+}
+// Signed-out free users: guarantee the starter deck is present on EVERY load. Any
+// starter card that's missing is (re)added, so a reload always shows the deck in
+// Saved; cards the guest saves themselves persist alongside it.
+function ensureStarterDeckForGuest(){
+  if(AUTH.token || isPremium()) return;   // guests only
+  const byId={}; CURATED.forEach(c=>{ if(c&&c.id) byId[c.id]=c; });
+  let changed=false;
+  STARTER_DECK.forEach(id=>{
+    if(saves.has(id)) return;
+    const c=byId[id]; if(!c) return;
+    saves.add(id); savedData[id]=starterCopy(c); changed=true;
+  });
+  LS.set('starterSeeded',true);
+  LS.set('starterIds',STARTER_DECK.slice());   // mark as auto-added (dropped if later linked to a populated account)
+  if(changed){
+    LS.set('saves',[...saves]); LS.set('savedData',savedData);
+    try{ const sc=document.getElementById('savedCnt'); if(sc) sc.textContent=saves.size; }catch(_){}
+  }
+}
+// Signed-in users: seed once, only into an EMPTY account.
 function seedStarterDeck(){
   if(LS.get('starterSeeded',false)) return;
   if(saves.size>0) return;   // only bootstrap an EMPTY saved pile — never alter an existing collection
@@ -11390,15 +11433,7 @@ function seedStarterDeck(){
   const seeded=[];
   STARTER_DECK.forEach(id=>{
     const c=byId[id]; if(!c||saves.has(id)) return;
-    saves.add(id);
-    savedData[id]={id,type:c.type,cat:c.cat,area:c.area,title:c.title,
-      body:c.body,facts:c.facts,judgment:c.judgment,ratio:c.ratio,
-      desc:c.desc,court:c.court,legType:c.legType,sections:c.sections,
-      date:c.date,src:c.src,link:c.link,naUrl:c.naUrl,
-      example:c.example,
-      guide:c.guide,intro:c.intro,steps:c.steps,sides:c.sides,key:c.key,
-      fullTitle:c.fullTitle,authors:c.authors,year:c.year,vol:c.vol,issue:c.issue,page:c.page,journalName:c.journalName};
-    seeded.push(id);
+    saves.add(id); savedData[id]=starterCopy(c); seeded.push(id);
   });
   LS.set('starterSeeded',true);
   if(seeded.length){
@@ -11448,10 +11483,11 @@ applyCanonDrip();     // reveal date-gated verified landmark posts from the bank
 applyExtrasDrip();    // reveal 1 journal article + 1 glossary term per day from extras.js
 applyRemovedCards();  // drop any admin-removed posts
 applyCardEdits();
-// Signed-out new visitor → seed now. Logged-in users are seeded (only if their
-// account turns out empty) inside hydrateFromProfile, AFTER their saves load — so
-// an existing account's saved cards are never touched.
-if(!AUTH.token) seedStarterDeck();
+// Signed-out free visitor → always ensure the starter deck is present (restored on
+// every reload). Logged-in users are seeded (only if their account turns out empty)
+// inside hydrateFromProfile, AFTER their saves load — so an existing account's
+// saved cards are never touched.
+if(!AUTH.token) ensureStarterDeckForGuest();
 syncRemote();         // pull globally-persisted new posts, removals + edits (best-effort)
 maybePremiumWelcome();   // first-time Premium celebration (once) — e.g. plan restored from a prior session
 if(isAdminRoute()){ initAdmin(); }
