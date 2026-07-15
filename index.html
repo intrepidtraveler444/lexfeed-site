@@ -4191,6 +4191,7 @@ let curCycle      = 0;
 let curFilter     = 'all';
 let liveOnly      = false;   // header toggle: show only live (RSS/API) posts
 let isLoading     = false;
+let freeFeedFrozen= false;  // Free tier: All-feed is a fixed 50 + upgrade box; no infinite scroll
 let feedsStarted  = false;  // background fetch kicked off
 let feedsDone     = false;  // first fetch completed
 
@@ -6018,6 +6019,9 @@ function startFeedsInBackground(){
 // ══════════════════════════════════════════════
 async function loadMore(){
   if(isLoading) return;
+  // Free tier: the All feed is a fixed, persisted set of 50 cards + the Unlock
+  // Premium box — never append more to it on scroll (Premium is unaffected).
+  if(freeFeedFrozen && !isPremium() && curFilter==='all' && !showSaved && !liveOnly) return;
   isLoading=true;
 
   // Kick off feed fetch in background (non-blocking)
@@ -8055,6 +8059,7 @@ function applyCode(code){
 
 function liftFreeGate(){
   freeBlocked=false;
+  freeFeedFrozen=false;   // upgraded → resume the endless stream instead of the fixed 50
   document.querySelectorAll('.upsell-card').forEach(el=>{ const c=el.closest('.card')||el; c.remove(); });
   if(typeof window.loadMore==='function' && !showSaved) window.loadMore();
 }
@@ -8305,6 +8310,8 @@ function onSave(id,btn,card){
         body:card.body,facts:card.facts,judgment:card.judgment,ratio:card.ratio,
         desc:card.desc,court:card.court,legType:card.legType,sections:card.sections,
         date:card.date,src:card.src,link:card.link,naUrl:card.naUrl,
+        // legal-term worked example (otherwise a newly-saved term card shows no example)
+        example:card.example,
         // study-guide fields (otherwise the saved card / its quiz render blank)
         guide:card.guide,intro:card.intro,steps:card.steps,sides:card.sides,key:card.key,
         // journal-article citation fields (so Cite works on a saved live article)
@@ -9082,7 +9089,7 @@ function savedDataLite(card){
   savedData[card.id]={id:card.id,type:card.type,cat:card.cat,area:card.area,title:card.title,
     body:card.body,facts:card.facts,judgment:card.judgment,ratio:card.ratio,
     desc:card.desc,court:card.court,legType:card.legType,sections:card.sections,
-    date:card.date,src:card.src,link:card.link};
+    date:card.date,src:card.src,link:card.link,example:card.example};
   LS.set('savedData',savedData);
 }
 
@@ -10247,8 +10254,10 @@ function exitToFeed(){
   liveShown.clear(); curShown.clear(); feedTail=null;
   curQueue=spreadByCategory(CURATED);
   historyShown=false; dailyQuizInjected=false; caughtUpShown=false;
-  const f=buildFeaturedCard(); document.getElementById('grid').appendChild(f);
-  window.loadMore();
+  if(isPremium()){
+    const f=buildFeaturedCard(); document.getElementById('grid').appendChild(f);
+    window.loadMore();
+  } else { buildFreeAllFeed(); }
 }
 
 document.getElementById('savedToggle').addEventListener('click',function(){
@@ -10271,8 +10280,10 @@ document.getElementById('savedToggle').addEventListener('click',function(){
     liveShown.clear(); curShown.clear(); feedTail=null;
     curQueue=spreadByCategory(CURATED);
     historyShown=false; dailyQuizInjected=false; caughtUpShown=false;
-    const f=buildFeaturedCard(); document.getElementById('grid').appendChild(f);
-    window.loadMore();
+    if(isPremium()){
+      const f=buildFeaturedCard(); document.getElementById('grid').appendChild(f);
+      window.loadMore();
+    } else { buildFreeAllFeed(); }
   }
 });
 
@@ -11248,6 +11259,93 @@ function applyExtrasDrip(){
 }
 
 // ══════════════════════════════════════════════
+//  FREE-TIER DAILY FEED
+// ══════════════════════════════════════════════
+// Free users get a fixed set of 50 random cards — a mix of LIVE (BAILII /
+// National Archives / legislation.gov.uk / news) and CURATED posts — chosen once
+// per UK day and refreshed at 00:00 Europe/London. The selection (with the live
+// cards' data) is persisted, so the SAME 50 reappear verbatim on every reload for
+// the whole 24 hours, then a fresh 50 is drawn the next day. Around them sit the
+// daily anchors (Today's Key Case, Question of the Day, digest) and the Unlock
+// Premium box. Premium is unaffected and streams endlessly.
+
+// Calendar day in the UK (changes at Europe/London midnight, DST-safe): "YYYY-MM-DD".
+function ukDayKey(){
+  try{ return new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()); }
+  catch(_){ return String(Math.floor(Date.now()/86400000)); }
+}
+
+// Draw today's 50: a blend of up to 15 live posts + curated to fill, shuffled
+// together. Persists a self-contained snapshot (full card data) keyed to the UK
+// day so reloads are identical and live content stays frozen for the day.
+function pickFreeMix(day){
+  const removed=new Set(typeof getRemoved==='function'?getRemoved():[]);
+  const eligible=c=>!!c&&!!c.id&&c.cat!=='quiz'&&!removed.has(c.id);
+  const live=(Array.isArray(livePool)?livePool:[]).filter(eligible);
+  const pickLive=shuffle([...live]).slice(0,Math.min(live.length,15));
+  const haveLive=new Set(pickLive.map(c=>c.id));
+  const cur=shuffle(CURATED.filter(c=>eligible(c)&&!haveLive.has(c.id)));
+  const cards=shuffle([...pickLive, ...cur.slice(0,50-pickLive.length)])
+    .map(c=>Object.assign({},c));                         // detach a plain, storable copy
+  LS.set('freeFeedSnap',{ day, cards });                  // persist → identical on reload
+  return cards;
+}
+
+function renderFreeCards(cards, featuredEl){
+  const grid=document.getElementById('grid');
+  const featuredId=featuredEl?featuredEl.dataset.id:null; // don't repeat the pinned key case
+  const seen=new Set();
+  (cards||[]).forEach(c=>{
+    if(!c||!c.id||seen.has(c.id)||c.id===featuredId) return;
+    seen.add(c.id);
+    try{ grid.appendChild(window.buildCard(c,0)); }catch(_){}
+  });
+  const up=buildFlairCard('upgrade',0); if(up) grid.appendChild(up);
+  freeFeedFrozen=true;
+}
+
+// Build the Free-tier All feed: daily anchors, then today's fixed 50 (live +
+// curated), then the Unlock Premium box. Frozen so scrolling adds nothing more.
+let freeBuildGen=0;
+function buildFreeAllFeed(){
+  const grid=document.getElementById('grid');
+  const gen=++freeBuildGen;
+  freeFeedFrozen=true;                                    // freeze immediately (also during any live-load wait)
+  dailyQuizInjected=false; digestShown=false;             // reset one-shot anchor flags
+  const f=buildFeaturedCard(); if(f) grid.appendChild(f);
+  try{
+    const qEl=buildQuizCard(getDailyQuiz(),0);
+    if(qEl){ grid.appendChild(qEl); dailyQuizInjected=true; }
+    const dMode=digestMode();                             // only in its timed window (17:00–05:00 daily / weekend weekly)
+    if(dMode){ const dEl=buildFlairCard(dMode==='weekly'?'weekly':'digest',0); if(dEl){ grid.appendChild(dEl); digestShown=true; } }
+  }catch(_){}
+  const day=ukDayKey();
+  const snap=LS.get('freeFeedSnap',null);
+  if(snap&&snap.day===day&&Array.isArray(snap.cards)&&snap.cards.length){
+    renderFreeCards(snap.cards, f);                       // same UK day → identical set, no fetch needed
+    return;
+  }
+  // New UK day (or first access): draw a live+curated mix once the live feeds are
+  // in. Show a brief note, and don't wait forever if feeds are slow/unavailable.
+  const note=document.createElement('div');
+  note.style.cssText='text-align:center;color:#64748b;padding:28px 12px;font-size:14px';
+  note.textContent='Curating today’s feed — mixing live and curated posts…';
+  grid.appendChild(note);
+  startFeedsInBackground();
+  let built=false;
+  const build=()=>{
+    if(built||gen!==freeBuildGen) return;                 // superseded by a newer build
+    built=true; try{ note.remove(); }catch(_){}
+    renderFreeCards(pickFreeMix(day), f);
+  };
+  if(feedsDone){ build(); }
+  else{
+    const iv=setInterval(()=>{ if(feedsDone){ clearInterval(iv); build(); } },400);
+    setTimeout(()=>{ clearInterval(iv); build(); }, 7000); // build with whatever's loaded so far
+  }
+}
+
+// ══════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════
 // Pin the base case pool for "Today's Key Case" before any admin/drip cards are
@@ -11265,24 +11363,6 @@ curQueue=spreadByCategory(CURATED);
 refreshStats();
 refreshGoalRing();
 updateReviewBadge();
-// Insert featured card at top immediately
-const featuredEl=buildFeaturedCard();
-if(featuredEl) document.getElementById('grid').appendChild(featuredEl);
-// Daily anchors pinned at the top on EVERY visit: Today's Key Case (above),
-// the Question of the Day, and the daily/weekly digest. Injecting them here —
-// before loadMore — guarantees they appear even for a signed-out visitor who has
-// already used up their Free daily posts. The feed's cap gate can stop ordinary
-// cards, but these anchors are added directly and never counted against the cap.
-try{
-  const grid=document.getElementById('grid');
-  const qEl=buildQuizCard(getDailyQuiz(),0);
-  if(qEl){ grid.appendChild(qEl); dailyQuizInjected=true; }   // stop getBatch re-adding it
-  const dMode=digestMode();                                   // only in its timed window (daily 17:00–05:00, weekly weekends); nothing otherwise
-  if(dMode){
-    const dEl=buildFlairCard(dMode==='weekly'?'weekly':'digest',0);
-    if(dEl){ grid.appendChild(dEl); digestShown=true; }
-  }
-}catch(_){}
 window.setupScroll();
 setupFilters();
 // Add quiz category to filter handler
@@ -11294,9 +11374,29 @@ document.querySelectorAll('.fbtn[data-c="quiz"]').forEach(btn=>{
     window.applyFilter();
   });
 });
-window.loadMore();
-// Quietly enrich the "All" feed with news + articles after first paint
-deferSecondaryFeeds();
+if(isPremium()){
+  // Premium — pin the daily anchors (Today's Key Case, the Question of the Day,
+  // and the daily/weekly digest in its window), then stream the endless feed.
+  const grid=document.getElementById('grid');
+  const featuredEl=buildFeaturedCard();
+  if(featuredEl) grid.appendChild(featuredEl);
+  try{
+    const qEl=buildQuizCard(getDailyQuiz(),0);
+    if(qEl){ grid.appendChild(qEl); dailyQuizInjected=true; }   // stop getBatch re-adding it
+    const dMode=digestMode();                                   // only in its timed window (daily 17:00–05:00, weekly weekends); nothing otherwise
+    if(dMode){
+      const dEl=buildFlairCard(dMode==='weekly'?'weekly':'digest',0);
+      if(dEl){ grid.appendChild(dEl); digestShown=true; }
+    }
+  }catch(_){}
+  window.loadMore();
+  // Quietly enrich the "All" feed with news + articles after first paint
+  deferSecondaryFeeds();
+} else {
+  // Free — a fixed, persisted set of 50 curated cards + the same daily anchors +
+  // the Unlock Premium box, identical on every reload (no infinite scroll).
+  buildFreeAllFeed();
+}
 
 // ══════════════════════════════════════════════
 //  GUIDED TOUR — shown to logged-out visitors on every visit (incl. a plans
