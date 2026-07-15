@@ -4166,6 +4166,19 @@ const CURATED = [
     ],
     key:"Breach of a condition lets the innocent party terminate and claim damages; breach of a warranty gives damages alone. Whether a term is a condition or a warranty turns on its importance, not merely the label used.",
     src:'LexFeed · Study Guide' },
+
+  { id:'sg26', type:'curated', cat:'study-guide', guide:'test', area:'Criminal',
+    title:'Test for Theft (Theft Act 1968)',
+    intro:"Section 1(1) Theft Act 1968: a person is guilty of theft if they dishonestly appropriate property belonging to another intending to permanently deprive the other of it. Five elements — three actus reus, two mens rea — must all be proved.",
+    steps:[
+      { head:'Appropriation (s.3)', text:"Any assumption of the rights of an owner — taking, using, selling, destroying or simply keeping. It can occur even with the owner's consent (R v Gomez), and a later keeping or dealing can amount to appropriation." },
+      { head:'Property (s.4)', text:"Money and all other property, real or personal, including things in action and intangible property. Land, wild plants and wild creatures can be stolen only in limited circumstances." },
+      { head:'Belonging to another (s.5)', text:"Property is treated as another's where they have possession or control, or any proprietary right or interest — so a person can even steal their own property back from someone entitled to it." },
+      { head:'Dishonesty (s.2)', text:"Section 2 sets out what is NOT dishonest (a belief in a legal right to the property, in the owner's consent, or that the owner cannot be traced). Otherwise dishonesty is judged by the standards of ordinary decent people (Ivey v Genting; Barton v Morris)." },
+      { head:'Intention to permanently deprive (s.6)', text:"Meaning to treat the thing as one's own to dispose of regardless of the other's rights; even a borrowing can suffice if it is for a period and in circumstances making it equivalent to an outright taking." }
+    ],
+    key:"Actus reus = appropriation (s.3) of property (s.4) belonging to another (s.5); mens rea = dishonesty (s.2) + intention to permanently deprive (s.6). All five elements must be proved.",
+    src:'LexFeed · Study Guide' },
 ];
 
 // ══════════════════════════════════════════════
@@ -7803,6 +7816,17 @@ function hydrateFromProfile(resp){
   const linked = LS.get('syncedAccount',null) === AUTH.username;
   const dirty  = LS.get('profileDirty', false);
   if(!linked){
+    // First time this device links to this account. If the account already has its
+    // own saved cards, don't merge the auto-added starter deck into it — the user's
+    // real collection stays exactly as it was. (Cards they saved themselves aren't
+    // in starterIds, so those are still merged up.)
+    if(Array.isArray(d.saves)&&d.saves.length){
+      const starter=LS.get('starterIds',[]);
+      if(Array.isArray(starter)&&starter.length){
+        starter.forEach(id=>{ if(!d.saves.includes(id)){ saves.delete(id); delete savedData[id]; } });
+        LS.set('starterIds',[]);
+      }
+    }
     (d.saves||[]).forEach(id=>saves.add(id));
     savedData = Object.assign({}, d.savedData||{}, savedData);   // union; keep local copies on conflict
     LS.set('syncedAccount', AUTH.username);
@@ -7820,8 +7844,10 @@ function hydrateFromProfile(resp){
   try{ const sc=document.getElementById('savedCnt'); if(sc) sc.textContent=saves.size; }catch{}
   try{ if(showSaved && !quizMode) renderSavedView(); }catch{}   // don't clobber an active Quiz Me session
   try{ refreshGoalRing(); }catch{}   // reflect the merged daily-goal progress (and reconcile the streak)
+  seedStarterDeck();   // seeds ONLY if the loaded account is empty (new user); an existing account (e.g. 78 saves) is untouched
   refreshAccountUI();
   if(!linked || dirty) flushSync();   // push the merged union / kept-local changes up
+  maybePremiumWelcome();   // first-time Premium celebration (once) — e.g. just signed into a Premium account
 }
 
 // Pull the latest profile from the account (throttled). Adopts server saves so
@@ -8054,6 +8080,9 @@ function applyCode(code){
     if(AUTH.token) flushSync();
     refreshAccountUI(); renderAccountModal(); liftFreeGate();
     const m=document.getElementById('acctMsg'); if(m){ m.className='acct-msg ok'; m.textContent='Premium unlocked! 🎉'; }
+    seedStarterDeck();       // newly-Premium user gets the starter deck (only if their saved pile is empty)
+    try{ closeAccount(); }catch(_){}
+    maybePremiumWelcome();   // first-time Premium celebration (once)
   } else if(msg){ msg.className='acct-msg err'; msg.textContent='Invalid code.'; }
 }
 
@@ -11346,6 +11375,69 @@ function buildFreeAllFeed(){
 }
 
 // ══════════════════════════════════════════════
+//  STARTER SAVED DECK + PREMIUM WELCOME
+// ══════════════════════════════════════════════
+// New users are seeded ONCE with a small starter deck of saved cards, so Quiz Me
+// and the Saved view work from day one — but ONLY for someone with an empty saved
+// pile (a genuinely new Free or newly-Premium user). An existing account with
+// saved cards is never touched. After seeding the user can add or remove any of
+// them freely; it never re-seeds.
+const STARTER_DECK=['c1','c2','cc3','cn5','s5','s12','lt11','lt1','sg4','sg26'];
+function seedStarterDeck(){
+  if(LS.get('starterSeeded',false)) return;
+  if(saves.size>0) return;   // only bootstrap an EMPTY saved pile — never alter an existing collection
+  const byId={}; CURATED.forEach(c=>{ if(c&&c.id) byId[c.id]=c; });
+  const seeded=[];
+  STARTER_DECK.forEach(id=>{
+    const c=byId[id]; if(!c||saves.has(id)) return;
+    saves.add(id);
+    savedData[id]={id,type:c.type,cat:c.cat,area:c.area,title:c.title,
+      body:c.body,facts:c.facts,judgment:c.judgment,ratio:c.ratio,
+      desc:c.desc,court:c.court,legType:c.legType,sections:c.sections,
+      date:c.date,src:c.src,link:c.link,naUrl:c.naUrl,
+      example:c.example,
+      guide:c.guide,intro:c.intro,steps:c.steps,sides:c.sides,key:c.key,
+      fullTitle:c.fullTitle,authors:c.authors,year:c.year,vol:c.vol,issue:c.issue,page:c.page,journalName:c.journalName};
+    seeded.push(id);
+  });
+  LS.set('starterSeeded',true);
+  if(seeded.length){
+    LS.set('starterIds',seeded);   // remember which were auto-added (so linking to a real account can drop them)
+    LS.set('saves',[...saves]); LS.set('savedData',savedData);
+    try{ const sc=document.getElementById('savedCnt'); if(sc) sc.textContent=saves.size; }catch(_){}
+    queueSync();   // push the seeded deck up for logged-in users
+  }
+}
+
+// One-time "You're Premium — here's what's unlocked" celebration, shown the first
+// time a user is Premium (via upgrade code or by signing into a Premium account).
+function showPremiumWelcome(){
+  if(document.getElementById('premiumWelcome')) return;
+  const ov=document.createElement('div');
+  ov.id='premiumWelcome';
+  ov.style.cssText='position:fixed;inset:0;z-index:900;display:flex;align-items:center;justify-content:center;background:rgba(15,23,42,.6);backdrop-filter:blur(2px);padding:20px';
+  ov.innerHTML='<div style="background:var(--card,#fff);max-width:430px;width:100%;border-radius:18px;padding:26px 24px;box-shadow:0 24px 70px rgba(0,0,0,.4);text-align:center">'+
+    '<div style="font-size:46px;line-height:1">💎</div>'+
+    '<h2 style="margin:8px 0 4px;font-size:1.4rem;color:var(--navy,#1f2a44)">You’re Premium!</h2>'+
+    '<p style="color:#64748b;font-size:.92rem;margin:0 0 16px">Thanks for upgrading — here’s everything that’s now unlocked.</p>'+
+    '<ul style="list-style:none;padding:0;margin:0 0 18px;text-align:left;font-size:.93rem;line-height:1.5">'+
+      '<li style="margin-bottom:9px">♾️ <b>Unlimited scrolling</b> — the full feed of cases, statutes, terms, articles &amp; news, with no daily cap.</li>'+
+      '<li style="margin-bottom:9px">🔖 <b>Unlimited saves</b> — build as big a revision pile as you like (Free is capped at '+FREE_MAX_SAVES+').</li>'+
+      '<li style="margin-bottom:9px">🎯 <b>Full Quiz Me</b> — test yourself across everything you save, with mastery retries.</li>'+
+      '<li style="margin-bottom:9px">📚 <b>Everything, in full</b> — live BAILII / legislation / news and the daily digest.</li>'+
+    '</ul>'+
+    '<button id="pwStart" class="acct-btn" style="max-width:260px;margin:0 auto">Start exploring →</button>'+
+  '</div>';
+  document.body.appendChild(ov);
+  const close=()=>{ try{ ov.remove(); }catch(_){} };
+  ov.querySelector('#pwStart').onclick=close;
+  ov.addEventListener('click',e=>{ if(e.target===ov) close(); });
+}
+function maybePremiumWelcome(){
+  try{ if(isPremium() && !LS.get('premiumWelcomed',false)){ LS.set('premiumWelcomed',true); showPremiumWelcome(); } }catch(_){}
+}
+
+// ══════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════
 // Pin the base case pool for "Today's Key Case" before any admin/drip cards are
@@ -11356,7 +11448,12 @@ applyCanonDrip();     // reveal date-gated verified landmark posts from the bank
 applyExtrasDrip();    // reveal 1 journal article + 1 glossary term per day from extras.js
 applyRemovedCards();  // drop any admin-removed posts
 applyCardEdits();
+// Signed-out new visitor → seed now. Logged-in users are seeded (only if their
+// account turns out empty) inside hydrateFromProfile, AFTER their saves load — so
+// an existing account's saved cards are never touched.
+if(!AUTH.token) seedStarterDeck();
 syncRemote();         // pull globally-persisted new posts, removals + edits (best-effort)
+maybePremiumWelcome();   // first-time Premium celebration (once) — e.g. plan restored from a prior session
 if(isAdminRoute()){ initAdmin(); }
 else {
 curQueue=spreadByCategory(CURATED);
