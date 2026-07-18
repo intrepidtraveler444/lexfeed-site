@@ -7729,8 +7729,32 @@ let showSaved = false;
 const FREE_DAILY_VIEWS = 50;   // distinct new posts a Free user can see per day
 const FREE_MAX_SAVES    = 20;   // saved posts a Free user can keep in total
 const AUTH = { token: LS.get('token',null), username: LS.get('username',null), plan: LS.get('plan','free'),
-               email: LS.get('email',''), hasRecovery: false };
+               email: LS.get('email',''), hasRecovery: false, sub: null };
 function isPremium(){ return AUTH.plan === 'premium'; }
+
+// Redirect to Stripe Checkout to start the 7-day free trial (server picks the price).
+async function startCheckout(){
+  if(!AUTH.token){ acctTab='login'; renderAccountModal(); return; }
+  const btn=document.getElementById('acctSubscribe'); if(btn){ btn.disabled=true; btn.textContent='Redirecting…'; }
+  const fail=msg=>{ const m=document.getElementById('acctMsg'); if(m){ m.className='acct-msg err'; m.textContent=msg; } if(btn){ btn.disabled=false; btn.textContent='Start 7-day free trial'; } };
+  try{
+    const r=await fetch('/api/create-checkout-session',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:AUTH.token})});
+    const d=await r.json().catch(()=>null);
+    if(r.ok && d && d.url){ window.location.href=d.url; return; }
+    fail((d&&d.error)||'Couldn’t start checkout — please try again.');
+  }catch(_){ fail('Network error — please try again.'); }
+}
+// Open Stripe's Customer Portal to manage / cancel the subscription.
+async function openBillingPortal(){
+  const btn=document.getElementById('acctManage'); if(btn){ btn.disabled=true; btn.textContent='Opening…'; }
+  const fail=msg=>{ const m=document.getElementById('acctMsg'); if(m){ m.className='acct-msg err'; m.textContent=msg; } if(btn){ btn.disabled=false; btn.textContent='Manage subscription'; } };
+  try{
+    const r=await fetch('/api/create-portal-session',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:AUTH.token})});
+    const d=await r.json().catch(()=>null);
+    if(r.ok && d && d.url){ window.location.href=d.url; return; }
+    fail((d&&d.error)||'Couldn’t open the billing portal.');
+  }catch(_){ fail('Network error — please try again.'); }
+}
 
 async function accountApi(action, body){
   const r = await fetch('/api/account', {
@@ -7777,6 +7801,7 @@ function flushSync(){
 }
 function hydrateFromProfile(resp){
   AUTH.plan = (resp && resp.plan) || 'free'; LS.set('plan', AUTH.plan);
+  AUTH.sub = (resp && resp.sub) || null;   // subscription status snapshot (server-authoritative)
   if(resp && 'email' in resp){ AUTH.email = resp.email || ''; LS.set('email', AUTH.email); }
   if(resp && 'hasRecovery' in resp){ AUTH.hasRecovery = !!resp.hasRecovery; }
   const d = (resp && resp.data) || {};
@@ -7906,10 +7931,25 @@ function renderAccountModal(){
           '<p>You have no recovery code yet — without one, a forgotten password can\'t be reset. Generate one and keep it safe.</p>'+
           '<button class="acct-btn" id="acctGenRec" style="max-width:240px;margin:0">Generate recovery code</button>'+
         '</div>';
-    const codeBlock = isPremium() ? '' :
-      '<hr style="border:none;border-top:1px solid #ececf3;margin:14px 0">'+
-      '<input class="acct-field" id="acctCode" placeholder="Access code (Premium)" autocomplete="off">'+
-      '<button class="acct-btn" id="acctCodeBtn">Unlock Premium</button>';
+    // Premium: manage the live subscription via Stripe's Customer Portal.
+    // Free: start a 7-day free trial (Stripe Checkout). The £3 student rate is
+    // applied server-side once a .ac.uk email is verified — never chosen here.
+    const sub = AUTH.sub || {};
+    const hasSub = !!sub.status;   // a real Stripe subscription exists (vs complimentary / grandfathered Premium)
+    const trialLine = (sub.status==='trialing' && sub.currentPeriodEnd)
+      ? ' Your trial runs until '+new Date(sub.currentPeriodEnd*1000).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+'.'
+      : (sub.status==='active' ? ' Thanks for subscribing.' : '');
+    const planBlock = isPremium()
+      // Premium with a live Stripe subscription → let them manage/cancel it.
+      // Premium WITHOUT a subscription (comped / grandfathered account) → nothing to
+      // pay and nothing to manage, so just confirm their complimentary access.
+      ? '<hr style="border:none;border-top:1px solid #ececf3;margin:14px 0">'+
+        '<p class="acct-note">💎 You’re on <b>Premium</b>.'+(hasSub?trialLine:' Complimentary access — nothing to pay.')+'</p>'+
+        (hasSub?'<button class="acct-btn sec" id="acctManage">Manage subscription</button>':'')
+      : '<hr style="border:none;border-top:1px solid #ececf3;margin:14px 0">'+
+        '<p class="acct-note">Unlock <b>Premium</b> — a <b>7-day free trial</b>, then £5/month.'+
+        (sub.isStudent?' Your student rate of £3/month will apply.':' Verify a university (.ac.uk) email for the £3/month student rate.')+'</p>'+
+        '<button class="acct-btn" id="acctSubscribe">Start 7-day free trial</button>';
     body.innerHTML =
       '<div class="acct-row"><span class="who">'+u+'</span>'+
         '<span class="plan-badge '+(isPremium()?'premium':'')+'">'+(isPremium()?'Premium':'Free')+'</span></div>'+
@@ -7917,15 +7957,13 @@ function renderAccountModal(){
       '<label class="acct-note" style="display:block;margin-top:8px">Recovery email (optional)</label>'+
       '<input class="acct-field" id="acctEmail" type="email" placeholder="you@example.com" value="'+escAttr(AUTH.email)+'" autocomplete="email">'+
       '<button class="acct-btn sec" id="acctSaveEmail">Save email</button>'+
-      codeBlock+
+      planBlock+
       '<div class="acct-msg" id="acctMsg"></div>'+
       '<button class="acct-btn sec" id="acctSignout" style="margin-top:14px">Sign out</button>';
     body.querySelector('#acctGenRec').onclick=e=>{ e.preventDefault(); genRecovery(); };
     body.querySelector('#acctSaveEmail').onclick=saveEmail;
-    if(!isPremium()){
-      body.querySelector('#acctCodeBtn').onclick=()=>applyCode(body.querySelector('#acctCode').value);
-      body.querySelector('#acctCode').addEventListener('keydown',e=>{ if(e.key==='Enter') applyCode(e.target.value); });
-    }
+    if(isPremium()){ const mb=body.querySelector('#acctManage'); if(mb) mb.onclick=openBillingPortal; }
+    else { const sb=body.querySelector('#acctSubscribe'); if(sb) sb.onclick=startCheckout; }
     body.querySelector('#acctSignout').onclick=signOut;
     return;
   }
@@ -8075,18 +8113,11 @@ function signOut(){
   refreshAccountUI(); renderAccountModal();
 }
 
-function applyCode(code){
-  const msg=document.getElementById('acctMsg');
-  if(String(code||'').trim()==='premium4'){
-    AUTH.plan='premium'; LS.set('plan','premium');
-    if(AUTH.token) flushSync();
-    refreshAccountUI(); renderAccountModal(); liftFreeGate();
-    const m=document.getElementById('acctMsg'); if(m){ m.className='acct-msg ok'; m.textContent='Premium unlocked! 🎉'; }
-    seedStarterDeck();       // newly-Premium user gets the starter deck (only if their saved pile is empty)
-    try{ closeAccount(); }catch(_){}
-    maybePremiumWelcome();   // first-time Premium celebration (once)
-  } else if(msg){ msg.className='acct-msg err'; msg.textContent='Invalid code.'; }
-}
+// (Removed) The old 'premium4' access-code bypass. Premium is now granted ONLY by
+// the Stripe webhook (netlify/functions/stripe-webhook.mjs) in response to a real
+// subscription — the browser can never self-grant Premium (account.mjs ignores any
+// client-supplied plan). Newly-Premium users are seeded + welcomed inside
+// hydrateFromProfile when the plan flips server-side.
 
 function liftFreeGate(){
   freeBlocked=false;
@@ -8101,6 +8132,22 @@ document.getElementById('acctClose').addEventListener('click', closeAccount);
 document.getElementById('acctModal').addEventListener('click', e=>{ if(e.target.id==='acctModal') closeAccount(); });
 refreshAccountUI();
 if(AUTH.token){ setTimeout(()=>{ accountApi('me',{token:AUTH.token}).then(hydrateFromProfile).catch(()=>{}); }, 0); }
+// Returning from Stripe Checkout — the webhook grants Premium; re-pull the profile
+// a few times so the plan flips as soon as Stripe finishes processing.
+(function(){
+  const m=/[?&]checkout=(success|cancel)\b/.exec(location.search);
+  if(!m) return;
+  try{ history.replaceState(null,'',location.pathname); }catch(_){}
+  if(m[1]==='cancel'){ try{ showToast('Checkout cancelled — no charge was made.'); }catch(_){} return; }
+  try{ showToast('✓ Thanks! Setting up your Premium trial…'); }catch(_){}
+  if(AUTH.token){
+    let tries=0;
+    const poll=()=>{ if(tries++>=6) return; accountApi('me',{token:AUTH.token})
+      .then(r=>{ hydrateFromProfile(r); if(!isPremium()) setTimeout(poll,1500); })
+      .catch(()=>setTimeout(poll,1500)); };
+    setTimeout(poll,1200);
+  }
+})();
 window.addEventListener('pagehide', flushSync);
 window.addEventListener('focus', pullRemote);
 document.addEventListener('visibilitychange', ()=>{
