@@ -7755,6 +7755,34 @@ async function openBillingPortal(){
     fail((d&&d.error)||'Couldn’t open the billing portal.');
   }catch(_){ fail('Network error — please try again.'); }
 }
+// ── Student rate: verify a .ac.uk email → server sets isStudent → checkout uses £3 ──
+async function sendStudentCode(){
+  const email=(document.getElementById('stuEmail')?.value||'').trim();
+  const msg=document.getElementById('acctMsg');
+  const set=(cls,t)=>{ if(msg){ msg.className='acct-msg '+cls; msg.textContent=t; } };
+  if(!/@[^@\s]+\.ac\.uk$/i.test(email)){ set('err','Enter a UK university (.ac.uk) email.'); return; }
+  const btn=document.getElementById('stuSend'); if(btn){ btn.disabled=true; btn.textContent='Sending…'; }
+  try{
+    const r=await fetch('/api/send-student-verification',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:AUTH.token,email})});
+    if(!r.ok){ const t=await r.text().catch(()=>''); throw new Error(t||'failed'); }
+    set('ok','Code sent — check your university inbox.');
+    const w=document.getElementById('stuCodeWrap'); if(w) w.style.display='';
+  }catch(e){ set('err','Couldn’t send the code. '+String(e.message||'').slice(0,120)); }
+  finally{ if(btn){ btn.disabled=false; btn.textContent='Send code'; } }
+}
+async function verifyStudentCode(){
+  const code=(document.getElementById('stuCode')?.value||'').trim();
+  const msg=document.getElementById('acctMsg');
+  const set=(cls,t)=>{ if(msg){ msg.className='acct-msg '+cls; msg.textContent=t; } };
+  const btn=document.getElementById('stuVerifyBtn'); if(btn){ btn.disabled=true; btn.textContent='Verifying…'; }
+  try{
+    const r=await fetch('/api/verify-student-email',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:AUTH.token,code})});
+    if(!r.ok){ const t=await r.text().catch(()=>''); throw new Error(t||'failed'); }
+    try{ const me=await accountApi('me',{token:AUTH.token}); hydrateFromProfile(me); }catch(_){}   // pull isStudent through
+    renderAccountModal();                                    // re-render → now shows the £3 rate
+    const m2=document.getElementById('acctMsg'); if(m2){ m2.className='acct-msg ok'; m2.textContent='✓ Verified — your £3/month student rate is applied.'; }
+  }catch(e){ set('err','Verification failed. '+String(e.message||'').slice(0,120)); if(btn){ btn.disabled=false; btn.textContent='Verify'; } }
+}
 
 async function accountApi(action, body){
   const r = await fetch('/api/account', {
@@ -7948,8 +7976,18 @@ function renderAccountModal(){
         (hasSub?'<button class="acct-btn sec" id="acctManage">Manage subscription</button>':'')
       : '<hr style="border:none;border-top:1px solid #ececf3;margin:14px 0">'+
         '<p class="acct-note">Unlock <b>Premium</b> — a <b>7-day free trial</b>, then £5/month.'+
-        (sub.isStudent?' Your student rate of £3/month will apply.':' Verify a university (.ac.uk) email for the £3/month student rate.')+'</p>'+
-        '<button class="acct-btn" id="acctSubscribe">Start 7-day free trial</button>';
+        (sub.isStudent?' Your student rate of £3/month will apply.':'')+'</p>'+
+        '<button class="acct-btn" id="acctSubscribe">Start 7-day free trial</button>'+
+        (sub.isStudent ? '' :
+          '<div style="margin-top:10px;padding:10px 12px;border:1px solid #ececf3;border-radius:10px">'+
+            '<p class="acct-note" style="margin:0 0 6px">🎓 Student? Verify a <b>.ac.uk</b> email for <b>£3/month</b>.</p>'+
+            '<input class="acct-field" id="stuEmail" type="email" placeholder="you@uni.ac.uk" autocomplete="email">'+
+            '<button class="acct-btn sec" id="stuSend">Send code</button>'+
+            '<div id="stuCodeWrap" style="display:none">'+
+              '<input class="acct-field" id="stuCode" inputmode="numeric" placeholder="6-digit code" autocomplete="one-time-code">'+
+              '<button class="acct-btn sec" id="stuVerifyBtn">Verify</button>'+
+            '</div>'+
+          '</div>');
     body.innerHTML =
       '<div class="acct-row"><span class="who">'+u+'</span>'+
         '<span class="plan-badge '+(isPremium()?'premium':'')+'">'+(isPremium()?'Premium':'Free')+'</span></div>'+
@@ -7963,7 +8001,11 @@ function renderAccountModal(){
     body.querySelector('#acctGenRec').onclick=e=>{ e.preventDefault(); genRecovery(); };
     body.querySelector('#acctSaveEmail').onclick=saveEmail;
     if(isPremium()){ const mb=body.querySelector('#acctManage'); if(mb) mb.onclick=openBillingPortal; }
-    else { const sb=body.querySelector('#acctSubscribe'); if(sb) sb.onclick=startCheckout; }
+    else {
+      const sb=body.querySelector('#acctSubscribe'); if(sb) sb.onclick=startCheckout;
+      const ss=body.querySelector('#stuSend'); if(ss) ss.onclick=sendStudentCode;
+      const sv=body.querySelector('#stuVerifyBtn'); if(sv) sv.onclick=verifyStudentCode;
+    }
     body.querySelector('#acctSignout').onclick=signOut;
     return;
   }
