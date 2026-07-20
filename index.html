@@ -7739,10 +7739,10 @@ async function startCheckout(){
   const fail=msg=>{ const m=document.getElementById('acctMsg'); if(m){ m.className='acct-msg err'; m.textContent=msg; } if(btn){ btn.disabled=false; btn.textContent='Start 7-day free trial'; } };
   try{
     const r=await fetch('/api/create-checkout-session',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:AUTH.token})});
-    const d=await r.json().catch(()=>null);
-    if(r.ok && d && d.url){ window.location.href=d.url; return; }
-    fail((d&&d.error)||'Couldn’t start checkout — please try again.');
-  }catch(_){ fail('Network error — please try again.'); }
+    if(r.ok){ const d=await r.json().catch(()=>null); if(d&&d.url){ window.location.href=d.url; return; } fail('Checkout didn’t return a link — please try again.'); return; }
+    const t=(await r.text().catch(()=>''))||('HTTP '+r.status);
+    fail('Couldn’t start checkout: '+t.slice(0,180));   // surfaces the real server reason
+  }catch(_){ fail('Network error — is the site deployed on Netlify (not opened as a local file)?'); }
 }
 // Open Stripe's Customer Portal to manage / cancel the subscription.
 async function openBillingPortal(){
@@ -7750,9 +7750,9 @@ async function openBillingPortal(){
   const fail=msg=>{ const m=document.getElementById('acctMsg'); if(m){ m.className='acct-msg err'; m.textContent=msg; } if(btn){ btn.disabled=false; btn.textContent='Manage subscription'; } };
   try{
     const r=await fetch('/api/create-portal-session',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:AUTH.token})});
-    const d=await r.json().catch(()=>null);
-    if(r.ok && d && d.url){ window.location.href=d.url; return; }
-    fail((d&&d.error)||'Couldn’t open the billing portal.');
+    if(r.ok){ const d=await r.json().catch(()=>null); if(d&&d.url){ window.location.href=d.url; return; } fail('No portal link returned.'); return; }
+    const t=(await r.text().catch(()=>''))||('HTTP '+r.status);
+    fail('Couldn’t open billing: '+t.slice(0,180));
   }catch(_){ fail('Network error — please try again.'); }
 }
 // ── Student rate: verify a .ac.uk email → server sets isStudent → checkout uses £3 ──
