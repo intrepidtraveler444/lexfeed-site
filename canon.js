@@ -421,5 +421,50 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1986/45/contents' },
 
+  // ── Trusts — case ──
+  { id:'m11', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Westdeutsche Landesbank Girozentrale v Islington LBC [1996] UKHL 12',
+    court:'House of Lords',
+    facts:'A German bank entered an interest rate swap contract with Islington Borough Council in 1987. The bank paid net sums to the council before a later House of Lords ruling (Hazell v Hammersmith) declared all such swap contracts void as ultra vires local authorities. The bank sought return of the money, arguing the council held it on resulting or constructive trust so as to attract a proprietary remedy carrying compound interest.',
+    judgment:'The House of Lords dismissed the trust claims but allowed recovery in unjust enrichment. No proprietary remedy was available; the bank was confined to a personal claim in restitution.',
+    ratio:'A resulting trust arises from the presumed intention of the transferor at the moment of transfer, not as a later response to changed circumstances. A constructive trust can arise where a recipient\'s conscience is affected by knowledge of the relevant circumstances, but receipt of money under a contract that is void for reasons unknown to the recipient at the time does not, of itself, generate a trust. Unjust enrichment gives rise to a personal, not a proprietary, remedy unless a trust or other proprietary base independently exists.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1996/12.html' },
+
+  // ── Trusts — case ──
+  { id:'m12', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Barclays Bank Ltd v Quistclose Investments Ltd [1968] UKHL 4',
+    court:'House of Lords',
+    facts:'Rolls Razor Ltd, in financial difficulties, agreed to pay a declared dividend to its shareholders. To fund this, it borrowed £209,719 from Quistclose Investments Ltd on the express condition that the money be used solely to pay the dividend and be kept in a separate account at Barclays. Before the dividend was paid, Rolls Razor went into voluntary liquidation. Barclays sought to set the account balance off against the company\'s overdraft.',
+    judgment:'The House of Lords held the money was held on trust for Quistclose. Once the purpose of paying the dividend had failed, a resulting trust arose and the money was recoverable by Quistclose in full, in priority to the general creditors.',
+    ratio:'Where money is paid for a specific purpose only, a primary trust arises in favour of the contemplated payees; if that purpose fails or becomes impossible before the money is applied, a secondary resulting trust arises in favour of the lender. The borrower never obtains the beneficial interest in the money, and the lender\'s proprietary claim survives the borrower\'s insolvency and defeats a bank\'s right of combination.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1968/4.html' },
+
+  // ── Criminal — case ──
+  { id:'m13', type:'curated', cat:'case-law', area:'Criminal',
+    title:'R v Nedrick [1986] EWCA Crim 2',
+    court:'Court of Appeal (Criminal Division)',
+    facts:'Nedrick poured paraffin through the letterbox of a house and set it alight, harbouring a grudge against the occupant. A child died in the fire. At trial Nedrick denied intending to kill or cause serious harm, saying he only wished to frighten. The jury convicted him of murder and the judge gave no direction distinguishing intention from foresight.',
+    judgment:'The Court of Appeal quashed the murder conviction and substituted a verdict of manslaughter. Lord Lane CJ formulated a model direction to guide juries where intent is disputed and death or serious harm was not the defendant\'s aim.',
+    ratio:'Where a defendant does not directly aim at death or grievous bodily harm, the jury should ask: was the prohibited result a virtual certainty of the defendant\'s actions (barring some unforeseen intervention), and did the defendant appreciate that it was? Only if both questions are answered yes may the jury infer the necessary intent for murder. Foresight of virtual certainty is evidence from which intent may be inferred — it is not itself intent. (The direction was later approved and refined in R v Woollin [1998] UKHL 28.)',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Crim/1986/2.html' },
+
+  // ── Contract — case ──
+  { id:'m14', type:'curated', cat:'case-law', area:'Contract',
+    title:'Central London Property Trust Ltd v High Trees House Ltd [1946] EWHC KB 1',
+    court:'King\'s Bench Division',
+    facts:'In 1937 the plaintiff granted the defendant a 99-year lease of a block of flats at £2,500 per year. In 1940, wartime conditions having left many flats empty, the plaintiff informally promised to reduce the rent to £1,250. No new deed was executed. The defendant paid at the reduced rate throughout the war. In 1945 the plaintiff claimed the full rent both prospectively and as arrears running back to the beginning of the term.',
+    judgment:'Denning J held the plaintiff estopped from recovering arrears for the period when the promise held good. Once the flats were fully let again after the war, the original contractual rent was enforceable going forward.',
+    ratio:'A party who makes a clear and unequivocal promise intending the promisee to rely on it, and the promisee does rely on it, is held in equity to that promise for as long as it would be inequitable to depart from it. This doctrine — later known as promissory estoppel — does not require consideration. It suspends rather than extinguishes strict legal rights and operates as a defence against a claim rather than as a free-standing cause of action: it is a shield, not a sword.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWHC/KB/1946/1.html' },
+
+  // ── Evidence — case ──
+  { id:'m15', type:'curated', cat:'case-law', area:'Evidence',
+    title:'R v Davis [2008] UKHL 36',
+    court:'House of Lords',
+    facts:'Davis was tried in 2004 for two murders at a party in 2002. Three prosecution witnesses who had given evidence at committal were granted anonymity: they gave evidence from behind screens, with voices distorted by electronic equipment, and using pseudonyms. Davis\'s counsel was prevented from asking any question liable to reveal their identity. Davis was convicted of murder and appealed, arguing the measures denied him a fair trial.',
+    judgment:'The House of Lords unanimously allowed the appeal, quashed the murder convictions and substituted verdicts of manslaughter. Parliament responded within weeks by enacting the Criminal Evidence (Witness Anonymity) Act 2008, placing a statutory regime for witness anonymity on a proper footing.',
+    ratio:'At common law a defendant in a criminal trial has a fundamental right to be confronted by, and to know the identity of, those who give evidence against him, so that their credibility can be effectively tested in cross-examination. Measures that substantially and permanently remove that ability render the trial unfair. A conviction that depends to a decisive extent on anonymous witness evidence which the defence had no adequate means to challenge cannot safely stand.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2008/36.html' },
+
   ];
 });
