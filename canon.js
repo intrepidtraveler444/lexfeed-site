@@ -322,5 +322,149 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Tort — case ──
+  { id:'r20260721a', type:'curated', cat:'case-law', area:'Tort',
+    title:'Coventry (t/a RDC Promotions) & Ors v Lawrence & Anor [2014] UKSC 13',
+    court:'UK Supreme Court',
+    facts:'The claimants purchased a bungalow near a motor-racing stadium and motocross track in East Anglia. They complained of persistent noise from racing events conducted by the defendants under planning permissions dating back to 1975. They sought an injunction in private nuisance.',
+    judgment:'The Supreme Court unanimously held that the noise constituted an actionable private nuisance, rejecting the defendants\' principal arguments. A separate judgment on remedies followed in [2014] UKSC 46.',
+    ratio:'Planning permission does not itself constitute a defence to an action in private nuisance, nor does it alter the character of a locality so as to extinguish an otherwise good claim. The question of what is a reasonable use of land is assessed by reference to the locality including any development lawfully permitted, but coming to a nuisance is not in itself a complete defence. A prescriptive right to commit a nuisance requires the relevant activities to have been conducted continuously and openly for the full prescriptive period.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/13.html' },
+
+  // ── Equity — case ──
+  { id:'r20260721b', type:'curated', cat:'case-law', area:'Equity',
+    title:'FHR European Ventures LLP & Ors v Cedar Capital Partners LLC [2014] UKSC 45',
+    court:'UK Supreme Court',
+    facts:'The claimants retained Cedar Capital Partners as their agent to negotiate the purchase of the Monte Carlo Grand Hotel. Unknown to the claimants, Cedar had also contracted with the vendor to receive a commission of €10 million on completion. The claimants sought to recover the commission as held on constructive trust — a proprietary remedy — rather than merely as a personal debt.',
+    judgment:'The Supreme Court unanimously held that the commission was held on constructive trust for the claimants, entitling them to a proprietary claim. Earlier Court of Appeal authority (Lister & Co v Stubbs) that denied a proprietary remedy for bribes was overruled.',
+    ratio:'Any benefit received by a fiduciary in breach of their fiduciary duty — including a bribe or secret commission — is held on constructive trust for the principal. This applies equally to bribes as to other unauthorised gains. The principal\'s proprietary remedy means they can claim the asset itself and any increase in its value, and rank ahead of the fiduciary\'s general creditors in insolvency.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/45.html' },
+
+  // ── Tort — case ──
+  { id:'r20260721c', type:'curated', cat:'case-law', area:'Tort',
+    title:'Woodland v Essex County Council [2013] UKSC 66',
+    court:'UK Supreme Court',
+    facts:'A ten-year-old pupil at a state school maintained by Essex County Council suffered near-fatal brain injury during a swimming lesson at a public pool. Swimming tuition was provided by an independent contractor engaged by the Council; the swimming teacher and lifeguard present were employees of that contractor, not of the Council. The claimant\'s parents argued that the Council owed a non-delegable duty of care to their daughter that could not be discharged by delegation.',
+    judgment:'The Supreme Court allowed the appeal, holding that Essex County Council owed the pupil a non-delegable duty of care in respect of swimming lessons forming part of the school\'s educational provision, and was therefore liable for the contractor\'s staff\'s negligence.',
+    ratio:'A non-delegable duty of care arises where a defendant assumes responsibility for a vulnerable person in their care, performs that duty through a third party, and the third party negligently causes injury while carrying out the delegated function. Schools owe such a duty to pupils in respect of activities forming part of the school\'s curricular provision, regardless of whether those activities are delivered in-house or by independent contractors. The principle rests on the relationship of care and vulnerability, not the employment status of the individual who performs the duty.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2013/66.html' },
+
+  // ── Equity / Trusts — case ──
+  { id:'r20260721d', type:'curated', cat:'case-law', area:'Equity',
+    title:'Futter & Anor v Revenue and Customs; Pitt & Anor v Holt & Anor [2013] UKSC 26',
+    court:'UK Supreme Court',
+    facts:'Two joined appeals. In Futter, trustees distributed settlement assets in reliance on incorrect tax advice, generating an unexpected capital-gains-tax liability; they sought to set aside the distributions under the equitable rule in Re Hastings-Bass. In Pitt, a personal-injury settlement was placed in trust without regard to its inheritance-tax consequences; Mrs Pitt applied to have the settlement set aside for mistake.',
+    judgment:'The Supreme Court dismissed the Futter appeal and allowed the Pitt appeal, reformulating the rule in Hastings-Bass and clarifying the scope of equitable relief for mistake.',
+    ratio:'The Hastings-Bass rule requires that the trustee actually breached a duty — by failing to consider relevant matters or by taking account of irrelevant ones — before the court can set aside the resulting transaction; mere reliance on incorrect professional advice, without more, is not such a breach and does not entitle the trustees to relief. Separately, equity has jurisdiction to set aside a voluntary disposition for a mistake that is sufficiently fundamental and renders it unconscionable for the donor to be held to the transaction; a grave mistake as to the fiscal consequences of a disposition can satisfy this test.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2013/26.html' },
+
+  // ── Tort — case ──
+  { id:'r20260721e', type:'curated', cat:'case-law', area:'Tort',
+    title:'Sienkiewicz v Greif (UK) Ltd [2011] UKSC 10',
+    court:'UK Supreme Court',
+    facts:'Mrs Costello died of mesothelioma after working at the defendant\'s factory where she was exposed to asbestos dust. She had also experienced some general environmental background asbestos exposure — at a level that approximately doubled the ordinary ambient rate. The defendant argued that the epidemiological "doubles the risk" test should apply, and that the special Fairchild causation rule did not extend to cases involving a single potential tortious source of exposure.',
+    judgment:'The Supreme Court unanimously dismissed the appeal, holding that the Fairchild/Compensation Act 2006 regime applied regardless of the presence of non-tortious background exposure and that a "doubles the risk" epidemiological test was not required.',
+    ratio:'In mesothelioma litigation, a defendant who materially increased the claimant\'s risk of contracting mesothelioma through tortious asbestos exposure is fully liable, even where non-tortious environmental background exposure also played a role. The Fairchild exception to "but for" causation is not confined to multi-defendant situations. The "doubles the risk" test is appropriate in ordinary negligence actions involving divisible cumulative conditions, but not in the context of the indivisible disease of mesothelioma governed by the Fairchild/s.3 Compensation Act 2006 regime.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2011/10.html' },
+
+  // ── Tort — case ──
+  { id:'r20260721f', type:'curated', cat:'case-law', area:'Tort',
+    title:'Jones v Kaney [2011] UKSC 13',
+    court:'UK Supreme Court',
+    facts:'Dr Kaney, a consultant psychologist instructed as an expert witness for the claimant in a personal-injury claim, participated in a telephone discussion with the defendant\'s expert and signed a joint statement conceding that the claimant did not suffer from PTSD and had exaggerated her symptoms. The claimant alleged that Dr Kaney\'s conduct in signing the statement was negligent and caused the claim to settle at an undervalue. Dr Kaney invoked the longstanding immunity of expert witnesses from suit.',
+    judgment:'The Supreme Court (5:2) abolished the immunity of expert witnesses from suit in respect of negligent preparation of reports or evidence for use in litigation.',
+    ratio:'Expert witnesses owe a duty of care to the party who instructs them. There is no compelling policy justification for maintaining a blanket immunity from suit — the rationales relied on to support advocates\' immunity (itself abrogated in Hall v Simons [2002] 1 AC 615) were considered and rejected equally in the context of experts. An expert\'s overriding duty to give honest opinion to the court is not inconsistent with concurrent liability to the instructing party for negligent conduct in the expert role.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2011/13.html' },
+
+  // ── Tort — case ──
+  { id:'r20260721g', type:'curated', cat:'case-law', area:'Tort',
+    title:'Knauer v Ministry of Justice [2016] UKSC 9',
+    court:'UK Supreme Court',
+    facts:'Sally Ann Knauer died of mesothelioma caused by asbestos exposure in the course of her employment by the Ministry of Justice. Her widower continued the claim under the Fatal Accidents Act 1976. The disputed question was whether the multiplier for future pecuniary losses should be calculated from the date of death (as established in Cookson v Knowles [1979] AC 556) or from the date of trial.',
+    judgment:'The Supreme Court unanimously overruled Cookson v Knowles and held that the multiplier for future pecuniary losses in fatal-accident claims should be calculated from the date of trial.',
+    ratio:'In fatal-accident claims for future pecuniary loss, calculating the multiplier from the date of death systematically under-compensates claimants because no credit is given for the period between death and trial during which the discount for early receipt is already absorbed by the passage of time. The correct starting point is the date of trial. Departure from Cookson v Knowles was warranted under the 1966 Practice Statement: the rule was both unjust and incapable of principled justification.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/9.html' },
+
+  // ── Company — case ──
+  { id:'r20260721h', type:'curated', cat:'case-law', area:'Company',
+    title:'National Westminster Bank plc v Spectrum Plus Ltd & Ors [2005] UKHL 41',
+    court:'House of Lords',
+    facts:'Spectrum Plus Ltd granted National Westminster Bank a debenture purporting to create a fixed charge over its book debts. Under the arrangement, debts collected by Spectrum were paid into its current account with the bank, from which it could freely withdraw and spend in the ordinary course of business. When Spectrum went into insolvent liquidation, the question arose whether the charge was fixed (giving the bank priority over preferential creditors) or floating.',
+    judgment:'The House of Lords unanimously held (overruling Siebe Gorman v Barclays Bank [1979]) that the charge was a floating charge. The House also confirmed its power to make prospective-only rulings, though this was not exercised on the facts.',
+    ratio:'A charge over book debts is a fixed charge only if the chargor is prevented, without the chargee\'s consent, from dealing with the proceeds of those debts; where the chargor is free to pay the collected proceeds into an unrestricted account and use them in the ordinary course of business, the charge is floating regardless of how it is labelled. The distinction depends on substance, not the form of the document. The House also confirmed its power under the 1966 Practice Statement to confine the effect of a new ruling to future transactions in exceptional circumstances where retrospective overruling would cause disproportionate injustice.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/41.html' },
+
+  // ── Criminal — statute ──
+  { id:'r20260721i', type:'curated', cat:'statute', area:'Criminal',
+    title:'Proceeds of Crime Act 2002',
+    body:"The principal modern statute consolidating and extending the law on recovering the proceeds of crime. It created a comprehensive regime comprising criminal confiscation, civil asset recovery, and money-laundering offences, and imposed reporting obligations on regulated professionals. It remains central to UK financial crime practice and is frequently amended.",
+    sections:[
+      { num:'Pt 2', head:'Confiscation Orders', text:'Empowers Crown Court judges, on conviction, to make a confiscation order requiring a defendant to pay the assessed amount of their benefit from criminal conduct. A "criminal lifestyle" triggers statutory assumptions that assets and expenditure over a six-year period represent criminal proceeds unless the defendant can show otherwise.' },
+      { num:'Pt 5', head:'Civil Recovery', text:'Allows the National Crime Agency and other authorised enforcement authorities to bring civil proceedings in the High Court to recover property that is, or represents, the proceeds of unlawful conduct — without requiring a criminal conviction of any individual.' },
+      { num:'327', head:'Concealing Criminal Property', text:'A criminal offence to conceal, disguise, convert or transfer criminal property or to remove it from the jurisdiction.' },
+      { num:'328', head:'Arrangements Facilitating Acquisition of Criminal Property', text:'Makes it an offence to enter into or become concerned in an arrangement that a person knows or suspects facilitates the acquisition, retention, use or control of criminal property by or on behalf of another person.' },
+      { num:'330', head:'Failure to Disclose: Regulated Sector', text:'Imposes a duty on persons in the regulated sector who know or suspect (or have reasonable grounds to know or suspect) that another is engaged in money laundering to make an authorised disclosure as soon as practicable, subject to a "tipping off" prohibition.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/29/contents' },
+
+  // ── Company — statute ──
+  { id:'r20260721j', type:'curated', cat:'statute', area:'Company',
+    title:'Insolvency Act 1986',
+    body:"The foundational statute governing corporate and personal insolvency in England and Wales. It consolidated earlier insolvency law into a single code setting out the procedures for company administration, voluntary arrangements, receivership and winding up, and individual bankruptcy, and regulating the conduct and qualifications of insolvency practitioners. Heavily amended since enactment — most significantly by the Enterprise Act 2002 — it remains the primary insolvency reference.",
+    sections:[
+      { num:'Pt I', head:'Company Voluntary Arrangements', text:'Allows an insolvent company to propose a binding compromise or arrangement with its creditors, supervised by an insolvency practitioner, to avoid entering formal insolvency proceedings.' },
+      { num:'Pt II', head:'Administration', text:'Provides for the appointment of an administrator to manage a company\'s affairs with a statutory hierarchy of objectives: rescuing the company as a going concern; achieving a better result for creditors as a whole than winding up; or realising assets to make a distribution to secured or preferential creditors.' },
+      { num:'Pt IV', head:'Winding Up', text:'Sets out the grounds and procedures for compulsory and voluntary winding up of companies, the role and powers of the liquidator, and the order of priority for distributing assets.' },
+      { num:'213', head:'Fraudulent Trading', text:'Where a company is wound up and its business has been carried on with intent to defraud creditors, the court may declare persons knowingly party to that conduct personally liable for the company\'s debts without limit.' },
+      { num:'214', head:'Wrongful Trading', text:'Imposes liability on directors who allowed a company to continue trading when they knew or ought to have concluded there was no reasonable prospect of avoiding insolvent liquidation, unless they took every step to minimise the potential loss to creditors.' },
+      { num:'Pt IX', head:'Bankruptcy', text:'Establishes the individual bankruptcy regime: petition and order procedures, automatic vesting of the bankrupt\'s estate in the trustee, the bankrupt\'s duties of co-operation, and discharge — normally after one year — releasing the bankrupt from provable debts.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1986/45/contents' },
+
+  // ── Trusts — case ──
+  { id:'m11', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Westdeutsche Landesbank Girozentrale v Islington LBC [1996] UKHL 12',
+    court:'House of Lords',
+    facts:'A German bank entered an interest rate swap contract with Islington Borough Council in 1987. The bank paid net sums to the council before a later House of Lords ruling (Hazell v Hammersmith) declared all such swap contracts void as ultra vires local authorities. The bank sought return of the money, arguing the council held it on resulting or constructive trust so as to attract a proprietary remedy carrying compound interest.',
+    judgment:'The House of Lords dismissed the trust claims but allowed recovery in unjust enrichment. No proprietary remedy was available; the bank was confined to a personal claim in restitution.',
+    ratio:'A resulting trust arises from the presumed intention of the transferor at the moment of transfer, not as a later response to changed circumstances. A constructive trust can arise where a recipient\'s conscience is affected by knowledge of the relevant circumstances, but receipt of money under a contract that is void for reasons unknown to the recipient at the time does not, of itself, generate a trust. Unjust enrichment gives rise to a personal, not a proprietary, remedy unless a trust or other proprietary base independently exists.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1996/12.html' },
+
+  // ── Trusts — case ──
+  { id:'m12', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Barclays Bank Ltd v Quistclose Investments Ltd [1968] UKHL 4',
+    court:'House of Lords',
+    facts:'Rolls Razor Ltd, in financial difficulties, agreed to pay a declared dividend to its shareholders. To fund this, it borrowed £209,719 from Quistclose Investments Ltd on the express condition that the money be used solely to pay the dividend and be kept in a separate account at Barclays. Before the dividend was paid, Rolls Razor went into voluntary liquidation. Barclays sought to set the account balance off against the company\'s overdraft.',
+    judgment:'The House of Lords held the money was held on trust for Quistclose. Once the purpose of paying the dividend had failed, a resulting trust arose and the money was recoverable by Quistclose in full, in priority to the general creditors.',
+    ratio:'Where money is paid for a specific purpose only, a primary trust arises in favour of the contemplated payees; if that purpose fails or becomes impossible before the money is applied, a secondary resulting trust arises in favour of the lender. The borrower never obtains the beneficial interest in the money, and the lender\'s proprietary claim survives the borrower\'s insolvency and defeats a bank\'s right of combination.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1968/4.html' },
+
+  // ── Criminal — case ──
+  { id:'m13', type:'curated', cat:'case-law', area:'Criminal',
+    title:'R v Nedrick [1986] EWCA Crim 2',
+    court:'Court of Appeal (Criminal Division)',
+    facts:'Nedrick poured paraffin through the letterbox of a house and set it alight, harbouring a grudge against the occupant. A child died in the fire. At trial Nedrick denied intending to kill or cause serious harm, saying he only wished to frighten. The jury convicted him of murder and the judge gave no direction distinguishing intention from foresight.',
+    judgment:'The Court of Appeal quashed the murder conviction and substituted a verdict of manslaughter. Lord Lane CJ formulated a model direction to guide juries where intent is disputed and death or serious harm was not the defendant\'s aim.',
+    ratio:'Where a defendant does not directly aim at death or grievous bodily harm, the jury should ask: was the prohibited result a virtual certainty of the defendant\'s actions (barring some unforeseen intervention), and did the defendant appreciate that it was? Only if both questions are answered yes may the jury infer the necessary intent for murder. Foresight of virtual certainty is evidence from which intent may be inferred — it is not itself intent. (The direction was later approved and refined in R v Woollin [1998] UKHL 28.)',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Crim/1986/2.html' },
+
+  // ── Contract — case ──
+  { id:'m14', type:'curated', cat:'case-law', area:'Contract',
+    title:'Central London Property Trust Ltd v High Trees House Ltd [1946] EWHC KB 1',
+    court:'King\'s Bench Division',
+    facts:'In 1937 the plaintiff granted the defendant a 99-year lease of a block of flats at £2,500 per year. In 1940, wartime conditions having left many flats empty, the plaintiff informally promised to reduce the rent to £1,250. No new deed was executed. The defendant paid at the reduced rate throughout the war. In 1945 the plaintiff claimed the full rent both prospectively and as arrears running back to the beginning of the term.',
+    judgment:'Denning J held the plaintiff estopped from recovering arrears for the period when the promise held good. Once the flats were fully let again after the war, the original contractual rent was enforceable going forward.',
+    ratio:'A party who makes a clear and unequivocal promise intending the promisee to rely on it, and the promisee does rely on it, is held in equity to that promise for as long as it would be inequitable to depart from it. This doctrine — later known as promissory estoppel — does not require consideration. It suspends rather than extinguishes strict legal rights and operates as a defence against a claim rather than as a free-standing cause of action: it is a shield, not a sword.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWHC/KB/1946/1.html' },
+
+  // ── Evidence — case ──
+  { id:'m15', type:'curated', cat:'case-law', area:'Evidence',
+    title:'R v Davis [2008] UKHL 36',
+    court:'House of Lords',
+    facts:'Davis was tried in 2004 for two murders at a party in 2002. Three prosecution witnesses who had given evidence at committal were granted anonymity: they gave evidence from behind screens, with voices distorted by electronic equipment, and using pseudonyms. Davis\'s counsel was prevented from asking any question liable to reveal their identity. Davis was convicted of murder and appealed, arguing the measures denied him a fair trial.',
+    judgment:'The House of Lords unanimously allowed the appeal, quashed the murder convictions and substituted verdicts of manslaughter. Parliament responded within weeks by enacting the Criminal Evidence (Witness Anonymity) Act 2008, placing a statutory regime for witness anonymity on a proper footing.',
+    ratio:'At common law a defendant in a criminal trial has a fundamental right to be confronted by, and to know the identity of, those who give evidence against him, so that their credibility can be effectively tested in cross-examination. Measures that substantially and permanently remove that ability render the trial unfair. A conviction that depends to a decisive extent on anonymous witness evidence which the defence had no adequate means to challenge cannot safely stand.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2008/36.html' },
+
   ];
 });
