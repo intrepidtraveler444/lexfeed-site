@@ -104,6 +104,41 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  { id:'xa20260728a', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Howarth — 'Many Duties of Care—Or a Duty of Care? Notes from the Underground' (2006) 26 OJLS 449",
+    body:"David Howarth intervenes in the debate about whether the duty of care in negligence is a single unitary concept or a collection of separate, context-specific duties. He argues against the 'many duties' approach, associated with Barker and others, which treats each recognised situation of liability as generating its own distinct duty. Howarth contends this approach is unworkable because it collapses into an infinite regress of situation-specific obligations, and that a unified account of the duty of care better serves coherence and predictability. The article is a lucid analytical contribution to an enduring debate about the architecture of negligence liability, widely assigned in advanced tort courses.",
+    src:'Oxford Journal of Legal Studies', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1096826' },
+
+  { id:'xa20260728b', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Varuhas — 'The Concept of \"Vindication\" in the Law of Torts: Rights, Interests and Damages' (2014) 34 OJLS 253",
+    body:"Jason Varuhas analyses the concept of vindication in tort damages — the idea that damages can be awarded not merely to compensate loss but to recognise and enforce the claimant's primary right. Drawing on R (Lumba) v Secretary of State for the Home Department and other authorities, he argues that English law is developing a rights-based account of tortious liability in which the infringement of a right is itself actionable regardless of consequential loss. The piece is a significant contribution to the debate about the relationship between rights, interests and remedies in private law, and has influenced subsequent thinking on constitutional torts and the measure of damages.",
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article-abstract/34/2/253/1448858' },
+
+  { id:'xa20260728c', type:'curated', cat:'journal-article', area:'Public Law',
+    title:"Nolan — 'The Liability of Public Authorities for Failing to Confer Benefits' (2011) 127 LQR 260",
+    body:"Donal Nolan examines when public authorities may be liable in negligence for omissions that deprive individuals of benefits they would otherwise have received. He argues that the general rule against liability for omissions, combined with courts' traditional deference to public authorities, has produced a body of case law that is incoherent and overly restrictive. Nolan maps the situations in which liability has been imposed or denied, proposes a principled framework based on assumption of responsibility, and demonstrates how that framework resolves apparent inconsistencies in cases such as X v Bedfordshire and Gorringe v Calderdale. The article is a leading modern statement on public authority negligence liability.",
+    src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3097171' },
+
+  { id:'xa20260728d', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Robertson — 'On the Function of the Law of Negligence' (2013) 33 OJLS 31",
+    body:"Andrew Robertson asks what negligence law is for, and whether the answer should shape the conditions of liability. Rejecting purely instrumentalist accounts and refining corrective justice theories, he argues that negligence law serves the function of holding people responsible for wrongs they commit against others where a sufficiently close relational and normative link exists. He examines how this functional account illuminates otherwise puzzling features of negligence — the duty of care, its personal character, and the distinction between acts and omissions — and explains limits on recovery that would otherwise be hard to justify. A rigorous contribution to the theory of tort, widely assigned in jurisprudence and tort-law courses.",
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article-abstract/33/1/31/1470917' },
+
+  { id:'xa20260728e', type:'curated', cat:'journal-article', area:'Human Rights',
+    title:"Letsas — 'Strasbourg\\'s Interpretive Ethic: Lessons for the International Lawyer' (2010) 21 EJIL 509",
+    body:"George Letsas analyses the European Court of Human Rights' interpretive methodology — the evolutive approach, the margin of appreciation doctrine, and the Convention as a living instrument — and argues they cannot be understood in isolation from the Court's underlying theory of rights. He contends that the ECtHR applies an intrinsic rights-based theory under which Convention rights are independent moral guarantees owed to individuals, explaining why the Court refuses to treat subsequent state practice or drafters' original intent as determinative. The article draws lessons for international law more broadly, distinguishing human rights treaties from ordinary bilateral commitments, and is a benchmark contribution to the methodology of the ECHR.",
+    src:'European Journal of International Law', link:'https://academic.oup.com/ejil/article/21/3/509/508670' },
+
+  { id:'xa20260728f', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Swadling — 'Ignorance and Unjust Enrichment: The Problem of Title' (2008) 28 OJLS 627",
+    body:"William Swadling examines one of the most contested issues in unjust enrichment: what happens to title when property is transferred under a mistake or without consent. Against the orthodox view that such transfers do not pass title, Swadling argues the correct analysis recognises a vitiated but operative transfer, leaving the transferor with a personal or proprietary claim to recover. He demonstrates that a property-rights analysis produces different — and more satisfactory — outcomes from the unjust-enrichment model in cases of tracing, priority and third-party rights. The article is a landmark intervention in private law theory about the interplay of property and obligation.",
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article-abstract/28/4/627/1549259' },
+
+  { id:'xa20260728g', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Etherton — 'Constructive Trusts: A New Model for Equity and Unjust Enrichment' (2008) 67 CLJ 265",
+    body:"Sir Terence Etherton (then Etherton J) proposes a rationalised account of constructive trusts in English law, arguing that existing doctrine draws too sharp a distinction between institutional and remedial constructive trusts and suffers from incoherence as a result. He argues the constructive trust is best explained as equity's response to unconscionable enrichment: property held by the constructive trustee passes subject to an obligation to give effect to the claimant's equity. The article advocates an approach closer to unjust enrichment principles while remaining anchored in equitable doctrine. Written by a judge who subsequently became Lord Justice and then Chancellor of the High Court, it is an authoritative reformist contribution to equity's most contested trust.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/constructive-trusts-a-new-model-for-equity-and-unjust-enrichment/71DEA48C91BF1990C21B3CD530D3B204' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +229,48 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  { id:'xt20260728a', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Contributory Negligence',
+    body:"Contributory negligence is the partial defence, codified by the Law Reform (Contributory Negligence) Act 1945, available where a claimant's own failure to take reasonable care for their own safety contributed to the damage they suffered. A finding of contributory negligence does not defeat the claim entirely; instead damages are reduced by such proportion as the court thinks just and equitable having regard to the claimant's share in the responsibility for the damage. It is distinct from volenti non fit injuria, which bars the claim completely.",
+    example:"A motorcyclist rides without a helmet and is knocked off by a driver who pulls out without looking. The driver is liable in negligence, but the court finds the motorcyclist contributed to the severity of his head injuries by riding unprotected and reduces his damages by 25% for contributory negligence.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/contributory-negligence' },
+
+  { id:'xt20260728b', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Assignment',
+    body:"Assignment is the transfer of an existing right — a chose in action — from one party (the assignor) to a third party (the assignee). In English law, the benefit of a contract (rights, not obligations) may be assigned without the other party's consent, provided the right is not of a personal nature and any contractual restrictions are observed. Under s.136 of the Law of Property Act 1925 an absolute, written assignment of a legal chose in action, with written notice to the debtor, effects a legal assignment giving the assignee a direct right to sue.",
+    example:"A contractor is owed £50,000 by a client under a completed building contract. Needing immediate funds, the contractor assigns this debt in writing to a lender and gives the client written notice. The lender, as assignee, can now sue the client directly to recover the £50,000 without the contractor's involvement.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/assignment' },
+
+  { id:'xt20260728c', type:'curated', cat:'legal-term', area:'Trusts',
+    title:'Beneficial Interest',
+    body:"A beneficial interest is the equitable entitlement to enjoy the use and fruits of property even though legal title is vested in another, typically a trustee. In the context of trusts, the beneficiary holds the beneficial interest — the right to have the trust property used or applied for their benefit — while the trustee holds the legal estate and the formal powers of management. Beneficial interests may be fixed or discretionary, and are enforceable in equity against the trustee and in many circumstances against third parties who acquire the property with notice of the trust.",
+    example:"Under a family trust land is conveyed to trustees on trust for a daughter absolutely. The trustees hold legal title and manage the land, but the daughter holds the beneficial interest: the right to occupy the property, receive its income or have the capital applied for her benefit, enforceable against the trustees if they act in breach of trust.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/beneficial-interest' },
+
+  { id:'xt20260728d', type:'curated', cat:'legal-term', area:'Trusts',
+    title:'Breach of Trust',
+    body:"A breach of trust occurs when a trustee fails to carry out the terms of the trust, to observe the duties imposed by equity, or to exercise the standard of care and skill required of them under the Trustee Act 2000. It encompasses both positive acts — such as misapplying trust property for personal gain — and omissions, such as failing to invest trust funds appropriately. A trustee who commits a breach of trust is personally liable to restore any resulting loss to the trust estate and must account for any unauthorised profit. All trustees are jointly and severally liable unless one can establish a right of contribution or exoneration.",
+    example:"A trustee lends trust money to a business associate on inadequate security without seeking co-trustees' agreement, in breach of the trust terms and the duty of care. When the associate defaults and the money is lost, all trustees are jointly and severally liable to restore the lost amount to the trust fund out of their own assets.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/breach-of-trust' },
+
+  { id:'xt20260728e', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Good Faith',
+    body:"Good faith in contract law refers to the obligation to act honestly, fairly and consistently with the reasonable expectations of the other contracting party. English common law has traditionally resisted a general implied duty of good faith in performance, preferring specific doctrines such as implied terms and estoppel. However, it is recognised in defined contexts — including long-term relational contracts, insurance (where the duty of utmost good faith applies under the Insurance Act 2015), and EU-derived consumer legislation — and the courts have become more willing to imply it in particular commercial relationships.",
+    example:"A long-term exclusive distribution agreement requires the distributor to use 'best endeavours' to promote the supplier's products. The supplier terminates the contract after a disappointing first year without giving the distributor a chance to improve. A court may find this termination was not in good faith under the relational contract and that best endeavours had not yet been tested over a reasonable period.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/good-faith' },
+
+  { id:'xt20260728f', type:'curated', cat:'legal-term', area:'Property',
+    title:'Nemo Dat Rule',
+    body:"The nemo dat rule — from the maxim nemo dat quod non habet (no one gives what they do not have) — provides that a person cannot transfer to another a better title to goods or land than they themselves possess. It is a foundational principle protecting the original owner: someone who obtains goods from a thief acquires no title, even as a bona fide purchaser for value. The rule is modified by important statutory exceptions, notably under the Sale of Goods Act 1979 (ss.21–25) and the Factors Act 1889, designed to protect good-faith purchasers in commercial contexts.",
+    example:"A car stolen from its owner is sold to an unsuspecting buyer who pays a fair price and has no reason to suspect anything is wrong. Despite the buyer's good faith, the nemo dat rule means they acquire no title — the thief had none to pass. The true owner can reclaim the car unless a specific statutory exception, such as the private purchase exception under the Hire Purchase Act 1964, applies.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/nemo-dat-rule' },
+
+  { id:'xt20260728g', type:'curated', cat:'legal-term', area:'Constitutional',
+    title:'Doctrine of Precedent',
+    body:"The doctrine of precedent (stare decisis) is the rule that courts are bound to follow the legal principles (ratio decidendi) established in earlier decisions of courts at the same or a higher level in the judicial hierarchy. In England and Wales, Supreme Court decisions bind all lower courts; Court of Appeal decisions bind all courts below it and (subject to the 1966 Practice Statement) generally bind its own future sittings. Precedent provides certainty and consistency, but higher courts may distinguish, limit or overrule earlier decisions. Obiter dicta — remarks made by the way — are persuasive but not binding.",
+    example:"A trial judge hearing a negligence claim encounters a Court of Appeal decision whose ratio decidendi supports the defendant. Though the judge considers the earlier decision may be wrongly decided, the doctrine of precedent requires them to apply its ratio and dismiss the claim, leaving it to the Court of Appeal or Supreme Court to depart from the precedent if it sees fit.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/doctrine-of-precedent' },
 
   ],
 
