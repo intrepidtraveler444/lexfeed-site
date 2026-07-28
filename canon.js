@@ -402,5 +402,59 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/29/contents' },
 
+  // ── Tort — case ──
+  { id:'n1', type:'curated', cat:'case-law', area:'Tort',
+    title:'Donoghue v Stevenson [1932] UKHL 100',
+    court:'House of Lords',
+    facts:'May Donoghue visited a café in Paisley where her friend purchased a bottle of ginger beer manufactured by Stevenson. The bottle was opaque; when the contents were poured, the decomposed remains of a snail floated out. Having already consumed part of the drink, Donoghue suffered gastroenteritis and nervous shock. She sued the manufacturer in negligence, having no contractual relationship with him.',
+    judgment:'The House of Lords held by a majority (3:2) that Stevenson owed a duty of care to Donoghue as the ultimate consumer of his product and was liable in negligence for the harm caused.',
+    ratio:'A manufacturer who intends a product to reach the ultimate consumer without the possibility of intermediate examination owes that consumer a duty to take reasonable care. Lord Atkin\'s "neighbour principle" — that one must take reasonable care to avoid acts or omissions which one can reasonably foresee would be likely to injure those so closely and directly affected by one\'s conduct that they ought reasonably to be in one\'s contemplation — provides the foundation of the modern law of negligence.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1932/100.html' },
+
+  // ── Tort — case ──
+  { id:'n2', type:'curated', cat:'case-law', area:'Tort',
+    title:'Caparo Industries plc v Dickman [1990] UKHL 2',
+    court:'House of Lords',
+    facts:'Caparo had begun acquiring shares in Fidelity plc before and after the publication of Fidelity\'s audited accounts. Relying on those accounts, Caparo made a takeover bid and gained full control, only to discover that the company\'s true financial position was far worse than the accounts showed. Caparo sued the auditors in negligence, arguing the accounts had been prepared carelessly.',
+    judgment:'The House of Lords held that the auditors owed no duty of care to members of the public at large who acquired shares in reliance on company accounts; any duty to existing shareholders was owed to them as a class, not as individuals seeking to make investment decisions.',
+    ratio:'A duty of care in novel situations arises only where: (1) damage of the type caused was reasonably foreseeable; (2) there was a relationship of sufficient proximity between the parties; and (3) it is fair, just and reasonable to impose a duty. The three-stage Caparo test must be applied incrementally and by analogy with established categories, not as a formula capable of generating unlimited new duties. The purpose for which a statement is made is central to determining whether a duty exists.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1990/2.html' },
+
+  // ── Public Law — case ──
+  { id:'n3', type:'curated', cat:'case-law', area:'Public Law',
+    title:'Associated Provincial Picture Houses Ltd v Wednesbury Corporation [1947] EWCA Civ 1',
+    court:'Court of Appeal',
+    facts:'Wednesbury Corporation licensed a cinema to open on Sundays under the Sunday Entertainments Act 1932 but imposed a condition prohibiting children under fifteen from being admitted, whether accompanied by an adult or not. The cinema company challenged the condition as outside the corporation\'s powers and as so unreasonable as to be unlawful.',
+    judgment:'The Court of Appeal (Lord Greene MR) dismissed the appeal and upheld the condition, finding the corporation had not exceeded its statutory powers and had not acted unreasonably in any legally relevant sense.',
+    ratio:'A court will not interfere with the exercise of a statutory discretion merely because it considers a different decision might have been reached. Review is available where the authority: acts on irrelevant considerations, ignores relevant ones, acts in bad faith, or makes a decision so outrageous in its defiance of logic or accepted moral standards that no sensible person who properly applied their mind to the question could have arrived at it — the threshold known as Wednesbury unreasonableness.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1947/1.html' },
+
+  // ── Company — case ──
+  { id:'n4', type:'curated', cat:'case-law', area:'Company',
+    title:'Salomon v Salomon & Co Ltd [1896] UKHL 1',
+    court:'House of Lords',
+    facts:'Salomon, a boot and shoe manufacturer, transferred his long-established business to a limited company he had formed with his wife and five children as co-shareholders, each holding one share. In part payment of the purchase price the company issued Salomon with debentures, giving him a secured charge over the company\'s assets. When the company later became insolvent, the liquidator sought to hold Salomon personally liable for the company\'s debts, arguing the company was simply an alias for himself.',
+    judgment:'The House of Lords unanimously overruled the courts below and held that the company was a separate legal person from its members; Salomon was not personally liable for its debts and was entitled to enforce his debentures as a secured creditor in priority to the unsecured trade creditors.',
+    ratio:'A company duly incorporated under the Companies Acts is a legal person separate and distinct from the persons who formed it, however few in number or closely connected to the business those persons may be. The fact that a single individual effectively controls and carries on the business through the corporate form does not make the company his agent or alter ego — the corporate veil is real and the statutory consequences of incorporation follow automatically.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1896/1.html' },
+
+  // ── Public Law — case ──
+  { id:'n5', type:'curated', cat:'case-law', area:'Public Law',
+    title:'Anisminic Ltd v Foreign Compensation Commission [1969] 2 AC 147',
+    court:'House of Lords',
+    facts:'Anisminic Ltd, a British company, had its Egyptian property sequestrated during the Suez crisis of 1956. It applied to the Foreign Compensation Commission for a share of a property compensation fund established by treaty. The Commission held Anisminic ineligible, misinterpreting its own enabling order by wrongly requiring the successor in title to its property to be a British national — a condition that on a correct reading applied only to a different category of claim. The Foreign Compensation Act 1950 contained an ouster clause providing that the Commission\'s determinations should not "be called in question in any court of law".',
+    judgment:'The House of Lords held that the Commission\'s determination was a nullity because it had misconstrued its enabling order and thereby acted outside its jurisdiction; the ouster clause was no bar to review of such a determination.',
+    ratio:'An ouster clause protecting a tribunal\'s "determination" from judicial review can only extend to decisions made within the four corners of the tribunal\'s jurisdiction. A decision that goes outside those limits — because the tribunal has misinterpreted its governing statute — is not a true determination at all and is therefore not protected by the ouster. Statutory ousters of judicial review are construed narrowly to preserve the supervisory role of the courts and the rule of law.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1968/6.html' },
+
+  // ── Contract — case ──
+  { id:'n6', type:'curated', cat:'case-law', area:'Contract',
+    title:'Foakes v Beer [1884] UKHL 1',
+    court:'House of Lords',
+    facts:'Beer had obtained a judgment against Foakes for a substantial sum. She later agreed in writing to accept payment of the debt by instalments and to refrain from enforcing the judgment so long as Foakes met the schedule. Foakes paid every instalment of the principal in full, but Beer then claimed the accrued interest on the judgment, which had not been mentioned in their agreement.',
+    judgment:'The House of Lords held unanimously that Beer was entitled to recover the judgment interest. The agreement not to enforce the debt was unsupported by consideration — part payment of an existing debt cannot satisfy a larger debt.',
+    ratio:'A promise to accept a lesser sum in full satisfaction of a greater debt is not binding at common law for want of consideration: the debtor provides nothing beyond what was already owed. Performing an existing legal obligation cannot constitute good consideration for a new promise by the other party. Equity does not generally supplement this rule, though the doctrine of promissory estoppel (developed later in Central London Property Trust v High Trees House) may in certain circumstances prevent a creditor from resiling from such a promise.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1884/1.html' },
+
   ];
 });
