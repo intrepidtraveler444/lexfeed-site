@@ -322,5 +322,85 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Contract — case ──
+  { id:'r20260728a', type:'curated', cat:'case-law', area:'Contract',
+    title:'Shogun Finance Ltd v Hudson [2003] UKHL 62',
+    court:'House of Lords',
+    facts:'A fraudster stole the identity of a Mr Patel and, posing as him, signed a hire-purchase agreement for a Mitsubishi Shogun at a dealership. The dealer checked the credit of the real Mr Patel and found it satisfactory. The fraudster drove away and sold the car to Hudson, an innocent private purchaser, who argued he had acquired good title as a bona fide purchaser for value.',
+    judgment:'The House of Lords (3:2) held the hire-purchase agreement was void for mistake as to identity: no property in the car had ever passed to the fraudster, so none could pass to Hudson. His appeal was dismissed.',
+    ratio:'Where a contract is concluded in writing and the document identifies the contracting party by name, the contract is made with the named party and no one else. A fraudster who impersonates the named person does not become a party to the contract; the agreement is void ab initio for non-existence of the offeree. Because the rogue obtained no title, the nemo dat rule prevents any title passing to a subsequent purchaser, even one acting in good faith.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2003/62.html' },
+
+  // ── Contract — case ──
+  { id:'r20260728b', type:'curated', cat:'case-law', area:'Contract',
+    title:'Great Peace Shipping Ltd v Tsavliris (International) Ltd [2002] EWCA Civ 1407',
+    court:'Court of Appeal',
+    facts:'Tsavliris, a professional salvage company, contracted with Great Peace Shipping to hire a vessel to stand by a distressed cargo ship in the South Indian Ocean. Both parties believed the Great Peace was approximately 35 miles from the stricken vessel. It was in fact some 410 miles away. Once this was discovered, Tsavliris hired a nearer vessel and cancelled the contract, purporting to rely on common mistake.',
+    judgment:'The Court of Appeal upheld the judge\'s decision that the contract was not void for common mistake. A mistake about proximity did not render performance of the salvage-standby contract impossible.',
+    ratio:'Common mistake at common law voids a contract only where the shared false assumption renders performance of the agreed bargain impossible — not merely less valuable or commercially inconvenient. The court also disapproved Solle v Butcher [1950], holding there is no separate equitable jurisdiction to rescind a contract for common mistake that does not satisfy the more demanding common-law test laid down in Bell v Lever Brothers Ltd [1932] AC 161.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/2002/1407.html' },
+
+  // ── Employment — case ──
+  { id:'r20260728c', type:'curated', cat:'case-law', area:'Employment',
+    title:'Johnson v Unisys Ltd [2001] UKHL 13',
+    court:'House of Lords',
+    facts:'After twenty years\' employment, Mr Johnson was summarily dismissed without a fair hearing. He suffered a severe psychiatric breakdown that destroyed his employment prospects. He brought a common-law claim for substantial damages, arguing his employer\'s manner of dismissal breached an implied contractual term and caused his psychiatric illness.',
+    judgment:'The House of Lords dismissed the claim. The majority held that no implied term limited the employer\'s right to dismiss so as to give rise to common-law damages for the manner of dismissal.',
+    ratio:'Parliament enacted the statutory unfair dismissal regime (now in the Employment Rights Act 1996) to address precisely the loss arising from dismissal without good reason, setting compensation limits and procedures. The common law cannot develop implied contractual terms that would circumvent or cut across that statutory framework. The resulting "Johnson exclusion zone" bars common-law claims for loss flowing from the manner or circumstances of dismissal.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2001/13.html' },
+
+  // ── Employment — case ──
+  { id:'r20260728d', type:'curated', cat:'case-law', area:'Employment',
+    title:'Serco Ltd v Lawson [2006] UKHL 3',
+    court:'House of Lords',
+    facts:'Three joined appeals concerned employees working abroad under UK contracts — including a security supervisor on Ascension Island and a flight crew member based in Germany — who sought unfair dismissal rights under the Employment Rights Act 1996. Their employers argued that the Act did not extend to those working outside Great Britain.',
+    judgment:'The House of Lords, in a leading speech by Lord Hoffmann, held that two of the three claimants were entitled to bring unfair dismissal claims; the third was not. The Act can apply extraterritorially in defined circumstances.',
+    ratio:'The Employment Rights Act 1996 generally applies to employees whose employment is based in Great Britain. However, it also protects peripatetic workers whose home base is in Great Britain, and may extend to employees working in a British enclave abroad (such as an overseas military base effectively governed by UK employment law and customs) where there is a sufficiently strong connection with Great Britain. Parliament is presumed not to legislate extraterritorially, but employment protections follow the employee where that territorial nexus exists.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2006/3.html' },
+
+  // ── Property — case ──
+  { id:'r20260728e', type:'curated', cat:'case-law', area:'Property',
+    title:'Bruton v London & Quadrant Housing Trust [1999] UKHL 26',
+    court:'House of Lords',
+    facts:'Mr Bruton occupied a Brixton flat under an agreement with a charitable housing trust. The trust itself held the flat only under a licence from Lambeth Borough Council and had no power to grant a tenancy. Bruton claimed the trust owed him statutory repairing obligations under s.11 of the Landlord and Tenant Act 1985, which applied only to leases; he therefore had to establish his agreement was a tenancy rather than a licence.',
+    judgment:'The House of Lords unanimously held that the agreement created a tenancy as between the parties inter se, and that the trust was accordingly bound by the statutory repairing covenant.',
+    ratio:'A tenancy arises whenever there is an agreement granting exclusive possession of defined premises for a fixed or periodic term in exchange for rent or other consideration, in circumstances consistent with the intention to create a legal relationship. It is not necessary for the grantor to hold a legal estate in the land. Such a "Bruton tenancy" or "non-estate lease" is a contractual relationship that binds the parties and engages statutory obligations applicable to leases, but, lacking a proprietary foundation, cannot bind third parties who take the land.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1999/26.html' },
+
+  // ── Equity / Unjust Enrichment — case ──
+  { id:'r20260728f', type:'curated', cat:'case-law', area:'Equity',
+    title:'Lipkin Gorman v Karpnale Ltd [1988] UKHL 12',
+    court:'House of Lords',
+    facts:'Mr Cass, a partner in the firm of solicitors Lipkin Gorman, was a compulsive gambler. Without the firm\'s knowledge he systematically withdrew client moneys from the firm\'s bank account and used them to gamble at the Playboy Club, owned by Karpnale. The firm sued the club to recover the stolen moneys paid over in the gambling transactions.',
+    judgment:'The House of Lords unanimously held that the firm was entitled to restitution from the club. The club had been enriched at the firm\'s expense. It was required to give credit for money Cass had won from it during the transactions, but must repay the net balance received.',
+    ratio:'This is the foundational English decision establishing unjust enrichment as an independent third source of the law of obligations. Where one person\'s money is received by another without consideration, the recipient is enriched at the first person\'s expense and a prima facie right to restitution arises. The House of Lords also gave authoritative recognition to the change-of-position defence: a defendant who has in good faith changed position in reliance on a receipt may resist or reduce a restitutionary claim to the extent that repayment would be unjust in light of that change.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1988/12.html' },
+
+  // ── Trusts — statute ──
+  { id:'r20260728g', type:'curated', cat:'statute', area:'Trusts',
+    title:'Trustee Act 2000',
+    body:"Modernised the law governing trustee investment and management powers, replacing the Trustee Investments Act 1961. Introduced a general power of investment, a statutory duty of care, and a regime for delegation to agents, nominees and custodians. It is the primary statutory framework for the law of trust administration studied by UK law students.",
+    sections:[
+      { num:'1', head:'Duty of Care', text:'Trustees must exercise such care and skill as is reasonable in the circumstances, having regard in particular to any special knowledge or experience a trustee has or holds themselves out as having, and (if the trustee acts in a business capacity) to any special knowledge or experience reasonably expected of a person acting in that capacity.' },
+      { num:'3', head:'General Power of Investment', text:'Trustees have a general power to make any kind of investment as if they were absolutely entitled to the trust property, including investments in land and assets of any kind, subject to compliance with the standard investment criteria and the duty of care.' },
+      { num:'4', head:'Standard Investment Criteria', text:'In exercising investment powers, trustees must have regard to the suitability of the investment for the trust and the need for diversification, and must keep investments under review.' },
+      { num:'11', head:'Power to Appoint Agents', text:'Subject to restrictions, trustees may appoint agents (such as investment managers) to carry out delegable functions, including investment management, provided they comply with policy statements set by the trustees.' },
+      { num:'23', head:'Review of Agents', text:'Trustees must keep arrangements with agents, nominees and custodians under review and intervene if it becomes necessary or appropriate to do so, overseeing the agent\'s acts and ensuring they continue to be appropriate.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2000/29/contents' },
+
+  // ── Criminal — statute ──
+  { id:'r20260728h', type:'curated', cat:'statute', area:'Criminal',
+    title:'Proceeds of Crime Act 2002',
+    body:"The principal statute governing the recovery of the proceeds of crime in England and Wales. It established confiscation orders, created civil recovery proceedings, and consolidated and strengthened the money-laundering offences. Widely studied for its extraterritorial reach, its presumptions of criminal benefit, and the draconian consequences for those convicted of organised or financial crime.",
+    sections:[
+      { num:'6', head:'Making of Confiscation Order', text:'Where a defendant is convicted and the prosecution applies, the court must decide whether the defendant has a criminal lifestyle and has benefited from general criminal conduct, and if so must make a confiscation order equal to the recoverable amount.' },
+      { num:'10', head:'Assumptions to be Made', text:'In lifestyle cases the court applies statutory assumptions treating property held or transferred during a specified period, and any unexplained expenditure, as the proceeds of general criminal conduct, unless the defendant shows this would be wrong or would cause a serious risk of injustice.' },
+      { num:'327', head:'Concealing Criminal Property', text:'An offence to conceal, disguise, convert, transfer or remove from England and Wales criminal property, including attempts to conceal its nature, source, location, disposition, movement, ownership or any rights with respect to it.' },
+      { num:'330', head:'Failure to Disclose', text:'A person in the regulated sector who knows or suspects (or has reasonable grounds to suspect) that another person is engaged in money laundering and does not disclose this as soon as practicable to the National Crime Agency commits an offence.' },
+      { num:'240', head:'Civil Recovery', text:'The enforcement authority may apply to the High Court for a recovery order to recover property that is, or represents, property obtained through unlawful conduct — without the need for a criminal conviction.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/29/contents' },
+
   ];
 });
