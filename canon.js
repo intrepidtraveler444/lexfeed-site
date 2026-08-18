@@ -419,5 +419,59 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2018/12/contents' },
 
+  // ── Public Law — case ──
+  { id:'n1', type:'curated', cat:'case-law', area:'Public Law',
+    title:'Associated Provincial Picture Houses Ltd v Wednesbury Corporation [1948] 1 KB 223',
+    court:'Court of Appeal',
+    facts:'Wednesbury Corporation granted the claimant a licence to open cinemas on Sundays under the Sunday Entertainments Act 1932, but attached a condition prohibiting the admission of children under fifteen, with or without an adult. The cinema company argued the condition was ultra vires and so unreasonable as to be beyond the Corporation\'s power.',
+    judgment:'The Court of Appeal (Lord Greene MR) dismissed the appeal. The condition could not be said to be unreasonable in the relevant legal sense: the Corporation had not taken into account irrelevant factors nor ignored relevant ones, and the condition was not one that no reasonable authority could have imposed.',
+    ratio:'A discretionary decision can only be impugned in judicial review if the decision-maker considered matters that were irrelevant, disregarded matters that were relevant, or reached a decision so outrageous in its defiance of logic that no sensible person who had applied their mind to the question could have reached it. This threshold — Wednesbury unreasonableness or irrationality — is the foundational standard of review for administrative discretion.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1947/1.html' },
+
+  // ── Human Rights — case ──
+  { id:'n2', type:'curated', cat:'case-law', area:'Human Rights',
+    title:'A v Secretary of State for the Home Department [2004] UKHL 56',
+    court:'House of Lords',
+    facts:'Following the September 2001 attacks the United Kingdom derogated from Article 5 ECHR and enacted Part IV of the Anti-terrorism, Crime and Security Act 2001, which permitted indefinite detention without charge of foreign nationals certified as suspected international terrorists who could not lawfully be deported. Nine detainees held at Belmarsh Prison challenged both the derogation order and the detention power, contending the measures were disproportionate and discriminatory because equivalent powers did not apply to British nationals who posed the same risk.',
+    judgment:'The House of Lords (8-1, Lord Hoffmann concurring on the narrower constitutional ground) held the derogation order unlawful and declared s 23 ATCSA 2001 incompatible with Articles 5 and 14 ECHR. The threat was real, but detaining only foreign nationals while British suspects remained free demonstrated that nationality was the operative distinction rather than the risk posed — making the measure disproportionate and discriminatory.',
+    ratio:'A derogating emergency measure under Article 15 ECHR must be strictly necessary and non-discriminatory. A regime that applies only to foreign nationals cannot be justified as a response to a threat that is not limited to that group. The courts are not precluded from examining whether the factual basis for an asserted public emergency supports the scope of the derogating legislation.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/56.html' },
+
+  // ── Constitutional — case ──
+  { id:'n3', type:'curated', cat:'case-law', area:'Constitutional',
+    title:'R (Jackson) v Attorney General [2005] UKHL 56',
+    court:'House of Lords',
+    facts:'The Hunting Act 2004, which banned hunting with dogs, was enacted without the consent of the House of Lords using the procedure created by the Parliament Acts 1911 and 1949. Jackson and others, who sought to preserve hunting, challenged the validity of the Hunting Act on the basis that the Parliament Act 1949 was itself not a true Act of Parliament — having been passed under the 1911 Act procedure — and could not therefore enlarge the power given by the 1911 Act.',
+    judgment:'The House of Lords unanimously dismissed the challenge. The Parliament Act 1949 was a valid Act of Parliament and the Hunting Act 2004, enacted under its procedure, had full legal effect. Their Lordships also offered extensive obiter observations questioning whether parliamentary sovereignty is truly unlimited or whether the courts might, in an extreme case, decline to recognise legislation that destroyed the very constitutional foundations on which Parliament\'s authority rests.',
+    ratio:'An Act passed under the Parliament Acts 1911 and 1949 without the Lords\' consent is a valid Act of Parliament, not delegated legislation, and is not open to challenge on grounds of procedural invalidity. The case is also noteworthy for the obiter suggestion that parliamentary sovereignty may not be absolute and could, in extremis, be subject to common-law constitutional constraints.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/56.html' },
+
+  // ── Trusts — case ──
+  { id:'n4', type:'curated', cat:'case-law', area:'Trusts',
+    title:'McPhail v Doulton [1971] AC 424',
+    court:'House of Lords',
+    facts:'Bertram Baden executed a deed in 1941 establishing a fund for the benefit of the staff, ex-staff, and relatives and dependants of a company. The trustees had complete discretion as to how to distribute the income. The Revenue argued the trust was void for uncertainty because it was impossible to compile a comprehensive list of every potential beneficiary — the test then applied to both powers and trusts following the Court of Appeal\'s decision in Broadway Cottages.',
+    judgment:'The House of Lords (Lord Wilberforce) overruled Inland Revenue Commissioners v Broadway Cottages Trust [1955] Ch 20 and held that the correct test for certainty of objects in a discretionary trust is the same as that applicable to powers: it is sufficient if it can be said with certainty whether any given individual is or is not a member of the class, even if the complete membership cannot be listed.',
+    ratio:'The test for certainty of objects of a discretionary trust is the "is or is not" test: the trust is valid if it can be said with certainty of any postulant whether they are or are not within the beneficial class. A complete list of all potential beneficiaries is not required. This overruled the stricter "complete list" test previously applied and greatly extended the range of valid dispositions.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1970/1.html' },
+
+  // ── Criminal — case ──
+  { id:'n5', type:'curated', cat:'case-law', area:'Criminal',
+    title:'R v Ghosh [1982] QB 1053',
+    court:'Court of Appeal (Criminal Division)',
+    facts:'A surgeon claimed, through a hospital, fees for operations he had not carried out or for which the National Health Service was entitled to payment. He was convicted of obtaining property by deception under the Theft Act 1968. On appeal he argued that the trial judge\'s direction on dishonesty was defective because it did not ask the jury to consider his own understanding of whether his conduct was honest.',
+    judgment:'The Court of Appeal (Lord Lane CJ) upheld the conviction and articulated a two-stage test for dishonesty: first, whether the defendant\'s conduct was dishonest by the ordinary standards of reasonable and honest people; and second, whether the defendant himself must have realised that what he was doing was dishonest by those standards.',
+    ratio:'Dishonesty in criminal law requires both an objective element — that the conduct would be regarded as dishonest by ordinary honest people — and a subjective element — that the defendant appreciated this. This test governed criminal dishonesty for over thirty years, until the Supreme Court in Ivey v Genting Casinos [2017] UKSC 67 effectively abolished the subjective second limb, leaving only the objective standard.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Crim/1982/2.html' },
+
+  // ── Evidence — case ──
+  { id:'n6', type:'curated', cat:'case-law', area:'Evidence',
+    title:'Conway v Rimmer [1968] UKHL 2',
+    court:'House of Lords',
+    facts:'Conway, a former probationer constable in the Cheshire Constabulary, brought a malicious prosecution action against Rimmer, his former superintendent. Conway sought discovery of five reports held by the Home Office. The Crown objected to production on grounds of public interest immunity, and the Home Secretary signed a ministerial certificate claiming that disclosure would be injurious to the public interest. The Court of Appeal held itself bound by Duncan v Cammell Laird & Co Ltd [1942] AC 624, in which the House of Lords had held that a ministerial certificate was conclusive and unreviewable by the courts.',
+    judgment:'The House of Lords unanimously overruled Duncan v Cammell Laird on this point and held that the court has the power and duty to inspect documents for which public interest immunity is claimed and to decide for itself whether production should be ordered. On inspection, the committee held the reports should be disclosed; the routine personnel reports did not fall within any class whose protection was required by the public interest.',
+    ratio:'A certificate by a minister asserting public interest immunity is not conclusive: the court retains the power to inspect the documents and to balance the public interest in non-disclosure against the interests of justice in disclosure. The conclusive deference previously accorded to ministerial certificates was inconsistent with the rule of law and is overruled.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1968/2.html' },
+
   ];
 });
