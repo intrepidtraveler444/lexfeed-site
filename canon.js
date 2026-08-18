@@ -322,5 +322,102 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── 2026-08-18 weekly refill ──
+
+  // ── Tort — case-law ──
+  { id:'r20260818a', type:'curated', cat:'case-law', area:'Tort',
+    title:'Home Office v Dorset Yacht Co Ltd [1970] UKHL 2',
+    court:'House of Lords',
+    facts:"Borstal trainees under the supervision of Home Office officers escaped from a training exercise on Brownsea Island and damaged yachts moored nearby. The yacht owners sued the Home Office in negligence.",
+    judgment:"The House of Lords held (4-1) that the Home Office owed a duty of care to the yacht owners. This was the first time the House recognised that a public authority could be liable in negligence for the acts of a third party it was under a duty to control.",
+    ratio:"A duty of care can arise where the defendant has a sufficient degree of control over a third party whose conduct causes damage, and where it was reasonably foreseeable that failure to exercise that control would cause the claimant's type of loss. Public authorities are not automatically exempt from such liability.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1970/2.html' },
+
+  { id:'r20260818b', type:'curated', cat:'case-law', area:'Tort',
+    title:'Henderson v Merrett Syndicates Ltd [1994] UKHL 5',
+    court:'House of Lords',
+    facts:"Names at Lloyd's of London sued their managing agents for negligent underwriting that produced catastrophic losses. The question was whether a concurrent tortious duty of care could arise alongside an existing contractual relationship, and whether such a duty extended to sub-agents with whom the Names had no direct contract.",
+    judgment:"The House of Lords held unanimously that liability in the Hedley Byrne sense could arise from an assumption of responsibility, and that such liability could co-exist with contract. The managing agents owed concurrent duties in contract and tort to direct Names, and also owed a duty of care to indirect Names through the chain of agency.",
+    ratio:"Where a party assumes responsibility for the economic welfare of another — including in a professional or quasi-professional context — that assumption of responsibility gives rise to a duty of care in negligence for pure economic loss, even where a contractual framework also governs the relationship. No contract between the parties is required.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1994/5.html' },
+
+  { id:'r20260818c', type:'curated', cat:'case-law', area:'Employment',
+    title:'Spring v Guardian Assurance plc [1994] UKHL 7',
+    court:'House of Lords',
+    facts:"A former insurance salesman was refused employment elsewhere because his ex-employer gave an unfavourable reference that was carelessly, though honestly, written. He sued in negligence for the economic loss suffered.",
+    judgment:"The House of Lords held (4-1) that an employer who provides a reference for a former employee owes that employee a duty of care to take reasonable care in its preparation. The claimant could recover for pure economic loss caused by a negligent, inaccurate reference.",
+    ratio:"An employer who undertakes to provide a reference for a former employee assumes responsibility towards that employee and owes a duty of care to take reasonable care in its preparation. The duty exists independently of any contract between them and can ground a claim for pure economic loss.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1994/7.html' },
+
+  { id:'r20260818d', type:'curated', cat:'case-law', area:'Tort',
+    title:'Stovin v Wise [1996] UKHL 15',
+    court:'House of Lords',
+    facts:"A local authority identified a dangerous road junction and resolved to remove a bank of earth obscuring visibility, but then took no further action. A motorcyclist was injured in an accident at the junction. He sued the authority in negligence for failing to exercise its statutory power to carry out the works.",
+    judgment:"The House of Lords held (3-2) that the local authority owed no duty of care to the claimant. The mere existence of a statutory power did not give rise to a common-law duty to exercise it; something additional — minimum conduct requirements under the statute or an assumption of responsibility — was required before liability could follow from an omission.",
+    ratio:"Public authorities are not generally liable in negligence for failing to exercise a statutory power. An omission to act will not found a duty of care unless the statute imposes a minimum standard of conduct, the authority has assumed responsibility in the Hedley Byrne sense, or an individual is in a relationship of proximity that generates a positive duty to protect.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1996/15.html' },
+
+  // ── Criminal — case-law ──
+  { id:'r20260818e', type:'curated', cat:'case-law', area:'Criminal',
+    title:'R v Looseley [2001] UKHL 53',
+    court:'House of Lords',
+    facts:"An undercover police officer repeatedly approached the defendant and asked to buy heroin, which the defendant supplied. The defendant argued that the police had incited him to commit an offence he would not otherwise have committed (entrapment) and sought a stay of proceedings as an abuse of process.",
+    judgment:"The House of Lords upheld the stay of proceedings on the facts of a companion case and set out the governing principles for entrapment in English law. The courts have an inherent jurisdiction to stay proceedings where allowing them would endorse unacceptable police conduct. Where the police do no more than present the defendant with an unexceptional opportunity to commit a crime, no stay is warranted; but where the officer actively incites or persuades the defendant to commit an offence he would not otherwise have committed, a stay is appropriate.",
+    ratio:"Entrapment does not provide a substantive defence in English law, but evidence of it may ground a stay of proceedings as an abuse of process or, alternatively, lead to the exclusion of evidence under s.78 PACE. The key question is whether the police acted in good faith and did no more than give the defendant an opportunity to commit the offence, without incitement, undue pressure, or conduct that would have seduced a person who was not predisposed to offend.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2001/53.html' },
+
+  // ── Contract — case-law ──
+  { id:'r20260818f', type:'curated', cat:'case-law', area:'Contract',
+    title:'Shogun Finance Ltd v Hudson [2003] UKHL 62',
+    court:'House of Lords',
+    facts:"A fraudster attended a car dealer's premises, produced a stolen driving licence in the name of Patel, and persuaded the dealer to allow him to take a car on hire-purchase. The finance company checked the real Patel's credit rating and signed a written contract with 'Patel'. The car was sold to Hudson, a private buyer. When the fraud was discovered, Shogun Finance claimed the car from Hudson as its owner.",
+    judgment:"The House of Lords held (3-2) that the hire-purchase agreement between Shogun Finance and the fraudster was void for mistake as to identity. Shogun intended to deal only with the real Patel, and the written contract, being addressed to 'Patel', meant there could be no contract with the fraudster. Title therefore never passed to the fraudster, and he could not pass good title to Hudson under the nemo dat rule.",
+    ratio:"Where a contract is made in writing, the identity of the contracting parties is determined by the document itself, not by any subjective intention of the offeror. If a fraudster is not the person named in a written contract, the contract is void ab initio for mistake as to identity, and no title passes to the fraudster or any subsequent purchaser.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2003/62.html' },
+
+  { id:'r20260818g', type:'curated', cat:'case-law', area:'Company',
+    title:'National Westminster Bank plc v Spectrum Plus Ltd [2005] UKHL 41',
+    court:'House of Lords',
+    facts:"A bank held a charge over a company's book debts which permitted the company to collect and pay them into a bank account. The question was whether the charge was a fixed charge (ranking ahead of preferential creditors in insolvency) or a floating charge (ranking behind). The House of Lords was also invited to overrule Re Siebe Gorman, the leading case in the area.",
+    judgment:"The House of Lords held that the charge was a floating charge, overruling Re Siebe Gorman and clarifying that a fixed charge over book debts requires the chargor to be prohibited from disposing of the debts or their proceeds without the chargee's consent; freedom to collect and use the proceeds negates the quality of a fixed charge. The House also addressed, for the first time, the circumstances in which a prospective overruling might be appropriate.",
+    ratio:"A fixed charge requires the chargor to be unable to deal with the charged assets without the chargee's consent. A charge over book debts that allows the company to collect debts and use the proceeds in the ordinary course of business is necessarily a floating charge, regardless of its label. The distinction is commercially significant because floating-charge holders rank behind preferential creditors in insolvency.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/41.html' },
+
+  // ── Company — statute ──
+  { id:'r20260818h', type:'curated', cat:'statute', area:'Company',
+    title:'Companies Act 2006',
+    body:"The largest Act ever passed by the UK Parliament at the time of its enactment, the Companies Act 2006 consolidated and modernised the whole of company law, replacing a patchwork of earlier legislation. It codified directors' duties for the first time, simplified the rules for private companies, introduced derivative claims for shareholders, and implemented the EU Takeover and Transparency Directives. It remains the constitutional bedrock of UK company law.",
+    sections:[
+      { num:'170–177', head:"Directors' General Duties", text:'Codifies the seven general duties owed by directors to the company: to act within powers, to promote the success of the company for the benefit of its members as a whole, to exercise independent judgement, to exercise reasonable care, skill and diligence, to avoid conflicts of interest, not to accept benefits from third parties, and to declare an interest in proposed transactions.' },
+      { num:'172', head:'Duty to Promote the Success of the Company', text:'Requires a director to act in the way they consider, in good faith, would be most likely to promote the success of the company for the benefit of its members as a whole, having regard to a non-exhaustive list of factors including long-term consequences, interests of employees, community and environmental impact, and the desirability of maintaining a reputation for high standards of business conduct.' },
+      { num:'260–264', head:'Derivative Claims', text:'Allows a shareholder, with the court\'s permission, to bring a claim on behalf of the company against a director for negligence, default, breach of duty or breach of trust, replacing the restrictive common-law rule in Foss v Harbottle with a more accessible statutory procedure.' },
+      { num:'994', head:'Protection of Members Against Unfair Prejudice', text:'Gives any member the right to petition the court where the company\'s affairs are being, or have been, conducted in a manner that is unfairly prejudicial to the interests of its members generally or some part of them, with a wide discretion to grant relief including ordering a purchase of shares.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2006/46/contents' },
+
+  // ── Contract — statute ──
+  { id:'r20260818i', type:'curated', cat:'statute', area:'Contract',
+    title:'Consumer Rights Act 2015',
+    body:"The Consumer Rights Act 2015 consolidated and modernised the law governing contracts between traders and consumers, replacing the Sale of Goods Act 1979 and the Unfair Contract Terms Act 1977 as they applied to consumer contracts. It created a unified regime for the supply of goods, digital content, and services, and overhauled the regime for unfair terms in consumer contracts in line with the EU Unfair Terms Directive. It is now the primary reference point for student-facing consumer law.",
+    sections:[
+      { num:'9', head:'Goods to be of Satisfactory Quality', text:'Goods supplied under a consumer contract must be of satisfactory quality, meaning of a standard that a reasonable person would regard as satisfactory having regard to description, price and all other relevant circumstances, including fitness for common purposes, appearance, freedom from minor defects, safety and durability.' },
+      { num:'19–24', head:'Consumer Remedies for Faulty Goods', text:'Gives consumers a short-term right to reject within 30 days for breach of the quality standards, and thereafter a right to repair or replacement in the first instance, with a reduction in price or a final right to reject if repair or replacement is impossible, disproportionate or fails.' },
+      { num:'61–76', head:'Unfair Terms in Consumer Contracts', text:'A term in a consumer contract is not binding if, contrary to the requirement of good faith, it causes a significant imbalance in the parties\' rights and obligations to the detriment of the consumer. Core terms (price and subject matter, if transparent and prominent) are exempt from the fairness test. The list of potentially unfair terms in Schedule 2 provides a non-exhaustive grey list.' },
+      { num:'50', head:'Information about Trader or Service to be Binding', text:'Where a trader gives information about themselves or their service before the consumer is bound, that information is to be treated as included as a term of the contract, so that the consumer can sue in contract if the information turns out to be wrong.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2015/15/contents' },
+
+  // ── Constitutional — statute ──
+  { id:'r20260818j', type:'curated', cat:'statute', area:'Constitutional',
+    title:'Data Protection Act 2018',
+    body:"The Data Protection Act 2018 implemented the EU General Data Protection Regulation (GDPR) into UK law, supplemented the Regulation's requirements, and provided the domestic framework for data processing outside the GDPR's scope (including law-enforcement and intelligence-services processing). Together with the UK GDPR (retained and adapted post-Brexit), it now governs the processing of personal data in the United Kingdom and confers important rights on data subjects alongside duties on controllers and processors.",
+    sections:[
+      { num:'2–27', head:'General Processing (Part 2)', text:'Supplements the UK GDPR for general processing, including conditions for processing special categories of data (such as health or criminal records) and criminal-conviction data, and modifying the GDPR\'s provisions on children\'s consent and research exemptions for the UK context.' },
+      { num:'29–81', head:'Law Enforcement Processing (Part 3)', text:'Implements the Law Enforcement Directive, creating a separate regime for personal data processed for crime-prevention, detection, investigation or prosecution purposes, with its own rights for data subjects and obligations for competent authorities.' },
+      { num:'142–181', head:'The Information Commissioner (Part 6)', text:'Establishes the Information Commissioner\'s Office as the supervisory authority, with powers to investigate, impose civil monetary penalties of up to £17.5 million or 4% of global annual turnover, issue enforcement notices, and bring criminal prosecutions for offences under the Act.' },
+      { num:'170', head:'Unlawful Obtaining of Personal Data', text:'Creates a criminal offence, triable either way, of knowingly or recklessly obtaining, disclosing, procuring or retaining personal data without the consent of the controller. A defence exists where a journalist obtained the data for the public interest.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2018/12/contents' },
+
   ];
 });
