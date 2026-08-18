@@ -104,6 +104,43 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  // ── 2026-08-18 weekly refill ──
+
+  { id:'xa20260818a', type:'curated', cat:'journal-article', area:'Constitutional',
+    title:"Bingham — 'The Rule of Law' (2007) 66 CLJ 67",
+    body:"Lord Bingham's landmark article — drawn from his Hamlyn Lectures and later the basis of his celebrated monograph — offers the most authoritative modern elaboration of the rule of law from a practising jurist. He identifies eight sub-rules that together constitute the concept: that law must be accessible, clear and predictable; that it should be settled by law rather than discretion; that equality before the law; that fundamental rights must be protected; that dispute resolution must be accessible; that public officers must act in good faith within their powers; that fair trial rights must be guaranteed; and that states must comply with international law obligations. The article is a touchstone for public-law scholarship and a required starting point for any discussion of constitutional fundamentals in the UK.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/rule-of-law/0E971B5BB930C2E363D351C5CBC3B855' },
+
+  { id:'xa20260818b', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Varuhas — 'The Concept of Vindication in the Law of Torts' (2014) 34 OJLS 253",
+    body:"Jason Varuhas advances a sustained argument that tort law serves a distinct 'vindicatory' function — the affirmation and protection of the claimant's rights — that is not fully captured by the dominant compensatory or deterrence accounts. Drawing on the law of trespass, defamation and the emerging recognition of rights-based damages, he contends that vindicatory awards are doctrinally coherent and theoretically defensible as part of a rights-based conception of tort. The article sharpened the academic debate following the Supreme Court's rejection of vindicatory damages in Lumba and is widely cited in tort theory literature.",
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article-abstract/34/2/253/1448858' },
+
+  { id:'xa20260818c', type:'curated', cat:'journal-article', area:'Human Rights',
+    title:"Tsakyrakis — 'Proportionality: An Assault on Human Rights?' (2009) 7 ICON 468",
+    body:"Stavros Tsakyrakis mounts a striking challenge to the near-universal adoption of proportionality as the master-test in human rights adjudication. He argues that proportionality analysis, in practice, invites judges to weigh incommensurable values — individual rights against collective interests — under the illusion of rational calculation, thereby concealing political choices as technical legal judgements. The article is a key point of reference in the ongoing debate between proportionality's proponents (notably Alexy and Rivers) and its sceptics, and is regularly cited in UK human rights scholarship.",
+    src:'International Journal of Constitutional Law', link:'https://academic.oup.com/icon/article-abstract/7/3/468/703178' },
+
+  { id:'xa20260818d', type:'curated', cat:'journal-article', area:'Contract',
+    title:"Carter & Courtney — 'Good Faith in Contracts: Is There an Implied Promise to Act Honestly?' (2016) 75 CLJ 608",
+    body:"J. W. Carter and Wayne Courtney examine whether English contract law should recognise a general implied duty of good faith, a question given fresh urgency by Leggatt J's obiter remarks in Yam Seng v International Trade Corporation. Their analysis isolates the strand of good faith reducible to honest dealing and asks whether it can be implied as a matter of law across all contracts or only in specific relational contracts. They conclude that while honest dealing can be implied in particular relational contracts, a general doctrine remains incompatible with the adversarial premises of English contract law — a position the Court of Appeal subsequently confirmed in TSG Building Services.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/good-faith-in-contracts-is-there-an-implied-promise-to-act-honestly/00A6FE955B9CEA616A15EEBEEBB6E5E5' },
+
+  { id:'xa20260818e', type:'curated', cat:'journal-article', area:'Criminal',
+    title:"Cornford — 'Beyond Fair Labelling: Offence Differentiation in Criminal Law' (2022) 42 OJLS 985",
+    body:"Tom Cornford revisits the concept of fair labelling — the principle that offences should be named and graded so as accurately to communicate their moral gravity to the public and the offender — and argues that existing accounts focus too narrowly on the communicative function of conviction labels. He proposes that offence differentiation has an additional role in structuring sentencing and generating consistency, so that the design of offences cannot be assessed by looking at the label alone. The article reopens a settled debate with fresh analytical tools and connects it to contemporary controversies about serious violence offences.",
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article/42/4/985/6594404' },
+
+  { id:'xa20260818f', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Etherton — 'Constructive Trusts: A New Model for Equity and Unjust Enrichment' (2008) 67 CLJ 265",
+    body:"Sir Terence Etherton (later Sir Terence, Master of the Rolls) examines the constructive trust following the House of Lords' decision in Stack v Dowden and argues that a coherent doctrine cannot rest on the single concept of 'common intention', which is too malleable to provide principled outcomes. He proposes that constructive trusts in domestic property cases would be better rationalised through the unjust enrichment principle — supplemented by a remedial constructive trust jurisdiction — aligning English law with the emerging international consensus. A landmark contribution to the property-equity interface, the article is frequently assigned in land law and equity courses.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/constructive-trusts-a-new-model-for-equity-and-unjust-enrichment/71DEA48C91BF1990C21B3CD530D3B204' },
+
+  { id:'xa20260818g', type:'curated', cat:'journal-article', area:'Employment',
+    title:"Atkinson — 'Employment Status and Human Rights: An Emerging Approach' (2023) 86 MLR 1166",
+    body:"Joe Atkinson analyses the growing judicial tendency to determine employment status — worker, employee, or independent contractor — through a human-rights lens, particularly via Article 8 ECHR (private and family life) and the right against forced labour under Article 4. Drawing on recent Supreme Court and ECtHR decisions, he argues that human rights norms are reshaping the traditional factors-based test and producing a distinct strand of cases in which the vulnerability of the individual rather than formal contractual arrangements drives the outcome. The article speaks directly to the gig economy cases that have generated enormous academic and policy interest.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/full/10.1111/1468-2230.12803' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +231,50 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  // ── 2026-08-18 weekly refill ──
+
+  { id:'xt20260818a', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Joint and Several Liability',
+    body:"Joint and several liability arises where two or more defendants are each independently responsible for the whole of the claimant's loss. The claimant may enforce the full judgment against any one of them, leaving the defendant who pays to seek contribution from the others under the Civil Liability (Contribution) Act 1978. It is the default position in English tort law where multiple tortfeasors have caused an indivisible harm, and is contrasted with several (proportionate) liability, where each defendant is liable only for their share.",
+    example:"Three contractors negligently install a gas system, and an explosion injures a homeowner. All three are found liable. Because the harm is indivisible, the homeowner may recover the full damages from whichever contractor has the deepest pocket, and that contractor must then claim contribution from the others.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/joint-several-liability' },
+
+  { id:'xt20260818b', type:'curated', cat:'legal-term', area:'Property',
+    title:'Lien',
+    body:"A lien is the right of a person in possession of another's goods or property to retain that possession as security until a debt or obligation owed to them is discharged. At common law it is a passive right only — the lien-holder cannot sell the goods; they may merely detain them. Equitable liens and statutory liens (e.g. under the Torts (Interference with Goods) Act 1977) may confer a right of sale after notice. Liens arise in many professional and commercial contexts, including solicitors' liens over client files and ship-owners' liens on cargo.",
+    example:"A garage carries out extensive repairs to a customer's car and presents an invoice the customer refuses to pay. The garage may exercise a common-law lien, retaining the car until the bill is settled, without needing a court order.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/lien' },
+
+  { id:'xt20260818c', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Non Est Factum',
+    body:"Non est factum ('it is not my deed') is a plea that a party who signed a document is not bound by it because the document is fundamentally different from what they believed they were signing, and the signer was not careless in making the mistake. It is an extremely narrow doctrine, available only to those who, by reason of incapacity or fraud, were unable to understand the nature or effect of the document and who took reasonable precautions. Where it succeeds, the document is void, not merely voidable.",
+    example:"An elderly woman with poor sight is asked to sign what she is told is a birthday card, but is in fact a guarantee of her son's debts. If she can show that she was not negligent and that the document was fundamentally different from what she understood she was signing, she may avoid liability under the guarantee by pleading non est factum.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/non-est-factum' },
+
+  { id:'xt20260818d', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Passing Off',
+    body:"Passing off is a common-law tort protecting unregistered goodwill and reputation in trade. The classic trinity of elements, established in Reckitt & Colman v Borden, requires the claimant to show: (1) that they possess goodwill or reputation attached to their goods or services; (2) a misrepresentation by the defendant, whether deliberate or not, that is likely to lead the public to believe that the defendant's goods or services are the claimant's; and (3) damage or a likelihood of damage to the claimant's goodwill. It is the domestic common-law counterpart to the registered-trade-mark regime.",
+    example:"A small brewery builds up a strong local reputation under the name 'Golden Fox Ale'. A competitor begins selling beer in almost identical packaging under a name likely to be confused with it. The original brewery may sue in passing off, without needing a registered trade mark, if the confusion causes it to lose custom.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/passing-off' },
+
+  { id:'xt20260818e', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Remoteness of Damage',
+    body:"Remoteness of damage is the legal principle that limits a defendant's liability in negligence to loss that is not too remote a consequence of the breach of duty. Following The Wagon Mound (No 1), the test is whether the type of damage suffered was reasonably foreseeable at the time of the breach — the defendant need not foresee the precise manner in which it occurs or its full extent, only its general kind. In contract, the comparable rule from Hadley v Baxendale requires that loss falls within the reasonable contemplation of the parties at the time of contract formation.",
+    example:"A ship negligently spills fuel oil into Sydney Harbour and the oil is ignited by welding work on a nearby vessel, burning it out. The shipowner is not liable for the fire damage because fire caused by the oil on water was not reasonably foreseeable, even though some oil damage to the claimant's ship was foreseeable. The Wagon Mound (No 1).",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/remoteness' },
+
+  { id:'xt20260818f', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Implied Term',
+    body:"An implied term is a term read into a contract by law or by the court, notwithstanding its absence from the parties' express agreement. Terms may be implied in fact — to give the contract business efficacy or to reflect what the parties must obviously have intended (applying the 'officious bystander' test) — or implied in law — as incidents of a recognised category of contract (such as the employer's duty of mutual trust and confidence), or by statute (such as the quality terms in the Consumer Rights Act 2015). The Supreme Court in Marks & Spencer v BNP Paribas confirmed the high threshold for implication in fact.",
+    example:"An employment contract says nothing about confidentiality. A court may imply a term in law obliging the employee to keep the employer's trade secrets confidential during employment, because such a term is a standard incident of employment relationships, without needing to find that the parties specifically agreed to it.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/implied-term' },
+
+  { id:'xt20260818g', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Good Faith',
+    body:"Good faith in English contract law is a contested concept. Unlike many civil-law systems, English law has traditionally declined to recognise a general implied duty of good faith in negotiations or contractual performance, preferring party autonomy and certainty. However, the courts increasingly accept that specific relational contracts may contain implied duties of honesty and fair dealing, and good faith obligations are expressly incorporated in areas such as insurance (utmost good faith under s.14 Insurance Act 2015) and consumer contracts (the 'significant imbalance' test in the Consumer Rights Act 2015). The debate was reinvigorated by Leggatt J's remarks in Yam Seng v International Trade Corporation [2013].",
+    example:"A long-term commercial distribution agreement says nothing about how the distributor must exercise its discretion over ordering quantities. A court may, in an appropriate relational contract, imply a duty that the discretion be exercised in good faith and not in a way designed to undermine the other party's legitimate expectations — though it would not impose an overarching good-faith duty in a purely one-off arm's-length transaction.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/good-faith' },
 
   ],
 

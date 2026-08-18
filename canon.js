@@ -322,5 +322,156 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── 2026-08-18 weekly refill ──
+
+  // ── Tort — case-law ──
+  { id:'r20260818a', type:'curated', cat:'case-law', area:'Tort',
+    title:'Home Office v Dorset Yacht Co Ltd [1970] UKHL 2',
+    court:'House of Lords',
+    facts:"Borstal trainees under the supervision of Home Office officers escaped from a training exercise on Brownsea Island and damaged yachts moored nearby. The yacht owners sued the Home Office in negligence.",
+    judgment:"The House of Lords held (4-1) that the Home Office owed a duty of care to the yacht owners. This was the first time the House recognised that a public authority could be liable in negligence for the acts of a third party it was under a duty to control.",
+    ratio:"A duty of care can arise where the defendant has a sufficient degree of control over a third party whose conduct causes damage, and where it was reasonably foreseeable that failure to exercise that control would cause the claimant's type of loss. Public authorities are not automatically exempt from such liability.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1970/2.html' },
+
+  { id:'r20260818b', type:'curated', cat:'case-law', area:'Tort',
+    title:'Henderson v Merrett Syndicates Ltd [1994] UKHL 5',
+    court:'House of Lords',
+    facts:"Names at Lloyd's of London sued their managing agents for negligent underwriting that produced catastrophic losses. The question was whether a concurrent tortious duty of care could arise alongside an existing contractual relationship, and whether such a duty extended to sub-agents with whom the Names had no direct contract.",
+    judgment:"The House of Lords held unanimously that liability in the Hedley Byrne sense could arise from an assumption of responsibility, and that such liability could co-exist with contract. The managing agents owed concurrent duties in contract and tort to direct Names, and also owed a duty of care to indirect Names through the chain of agency.",
+    ratio:"Where a party assumes responsibility for the economic welfare of another — including in a professional or quasi-professional context — that assumption of responsibility gives rise to a duty of care in negligence for pure economic loss, even where a contractual framework also governs the relationship. No contract between the parties is required.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1994/5.html' },
+
+  { id:'r20260818c', type:'curated', cat:'case-law', area:'Employment',
+    title:'Spring v Guardian Assurance plc [1994] UKHL 7',
+    court:'House of Lords',
+    facts:"A former insurance salesman was refused employment elsewhere because his ex-employer gave an unfavourable reference that was carelessly, though honestly, written. He sued in negligence for the economic loss suffered.",
+    judgment:"The House of Lords held (4-1) that an employer who provides a reference for a former employee owes that employee a duty of care to take reasonable care in its preparation. The claimant could recover for pure economic loss caused by a negligent, inaccurate reference.",
+    ratio:"An employer who undertakes to provide a reference for a former employee assumes responsibility towards that employee and owes a duty of care to take reasonable care in its preparation. The duty exists independently of any contract between them and can ground a claim for pure economic loss.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1994/7.html' },
+
+  { id:'r20260818d', type:'curated', cat:'case-law', area:'Tort',
+    title:'Stovin v Wise [1996] UKHL 15',
+    court:'House of Lords',
+    facts:"A local authority identified a dangerous road junction and resolved to remove a bank of earth obscuring visibility, but then took no further action. A motorcyclist was injured in an accident at the junction. He sued the authority in negligence for failing to exercise its statutory power to carry out the works.",
+    judgment:"The House of Lords held (3-2) that the local authority owed no duty of care to the claimant. The mere existence of a statutory power did not give rise to a common-law duty to exercise it; something additional — minimum conduct requirements under the statute or an assumption of responsibility — was required before liability could follow from an omission.",
+    ratio:"Public authorities are not generally liable in negligence for failing to exercise a statutory power. An omission to act will not found a duty of care unless the statute imposes a minimum standard of conduct, the authority has assumed responsibility in the Hedley Byrne sense, or an individual is in a relationship of proximity that generates a positive duty to protect.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1996/15.html' },
+
+  // ── Criminal — case-law ──
+  { id:'r20260818e', type:'curated', cat:'case-law', area:'Criminal',
+    title:'R v Looseley [2001] UKHL 53',
+    court:'House of Lords',
+    facts:"An undercover police officer repeatedly approached the defendant and asked to buy heroin, which the defendant supplied. The defendant argued that the police had incited him to commit an offence he would not otherwise have committed (entrapment) and sought a stay of proceedings as an abuse of process.",
+    judgment:"The House of Lords upheld the stay of proceedings on the facts of a companion case and set out the governing principles for entrapment in English law. The courts have an inherent jurisdiction to stay proceedings where allowing them would endorse unacceptable police conduct. Where the police do no more than present the defendant with an unexceptional opportunity to commit a crime, no stay is warranted; but where the officer actively incites or persuades the defendant to commit an offence he would not otherwise have committed, a stay is appropriate.",
+    ratio:"Entrapment does not provide a substantive defence in English law, but evidence of it may ground a stay of proceedings as an abuse of process or, alternatively, lead to the exclusion of evidence under s.78 PACE. The key question is whether the police acted in good faith and did no more than give the defendant an opportunity to commit the offence, without incitement, undue pressure, or conduct that would have seduced a person who was not predisposed to offend.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2001/53.html' },
+
+  // ── Contract — case-law ──
+  { id:'r20260818f', type:'curated', cat:'case-law', area:'Contract',
+    title:'Shogun Finance Ltd v Hudson [2003] UKHL 62',
+    court:'House of Lords',
+    facts:"A fraudster attended a car dealer's premises, produced a stolen driving licence in the name of Patel, and persuaded the dealer to allow him to take a car on hire-purchase. The finance company checked the real Patel's credit rating and signed a written contract with 'Patel'. The car was sold to Hudson, a private buyer. When the fraud was discovered, Shogun Finance claimed the car from Hudson as its owner.",
+    judgment:"The House of Lords held (3-2) that the hire-purchase agreement between Shogun Finance and the fraudster was void for mistake as to identity. Shogun intended to deal only with the real Patel, and the written contract, being addressed to 'Patel', meant there could be no contract with the fraudster. Title therefore never passed to the fraudster, and he could not pass good title to Hudson under the nemo dat rule.",
+    ratio:"Where a contract is made in writing, the identity of the contracting parties is determined by the document itself, not by any subjective intention of the offeror. If a fraudster is not the person named in a written contract, the contract is void ab initio for mistake as to identity, and no title passes to the fraudster or any subsequent purchaser.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2003/62.html' },
+
+  { id:'r20260818g', type:'curated', cat:'case-law', area:'Company',
+    title:'National Westminster Bank plc v Spectrum Plus Ltd [2005] UKHL 41',
+    court:'House of Lords',
+    facts:"A bank held a charge over a company's book debts which permitted the company to collect and pay them into a bank account. The question was whether the charge was a fixed charge (ranking ahead of preferential creditors in insolvency) or a floating charge (ranking behind). The House of Lords was also invited to overrule Re Siebe Gorman, the leading case in the area.",
+    judgment:"The House of Lords held that the charge was a floating charge, overruling Re Siebe Gorman and clarifying that a fixed charge over book debts requires the chargor to be prohibited from disposing of the debts or their proceeds without the chargee's consent; freedom to collect and use the proceeds negates the quality of a fixed charge. The House also addressed, for the first time, the circumstances in which a prospective overruling might be appropriate.",
+    ratio:"A fixed charge requires the chargor to be unable to deal with the charged assets without the chargee's consent. A charge over book debts that allows the company to collect debts and use the proceeds in the ordinary course of business is necessarily a floating charge, regardless of its label. The distinction is commercially significant because floating-charge holders rank behind preferential creditors in insolvency.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/41.html' },
+
+  // ── Company — statute ──
+  { id:'r20260818h', type:'curated', cat:'statute', area:'Company',
+    title:'Companies Act 2006',
+    body:"The largest Act ever passed by the UK Parliament at the time of its enactment, the Companies Act 2006 consolidated and modernised the whole of company law, replacing a patchwork of earlier legislation. It codified directors' duties for the first time, simplified the rules for private companies, introduced derivative claims for shareholders, and implemented the EU Takeover and Transparency Directives. It remains the constitutional bedrock of UK company law.",
+    sections:[
+      { num:'170–177', head:"Directors' General Duties", text:'Codifies the seven general duties owed by directors to the company: to act within powers, to promote the success of the company for the benefit of its members as a whole, to exercise independent judgement, to exercise reasonable care, skill and diligence, to avoid conflicts of interest, not to accept benefits from third parties, and to declare an interest in proposed transactions.' },
+      { num:'172', head:'Duty to Promote the Success of the Company', text:'Requires a director to act in the way they consider, in good faith, would be most likely to promote the success of the company for the benefit of its members as a whole, having regard to a non-exhaustive list of factors including long-term consequences, interests of employees, community and environmental impact, and the desirability of maintaining a reputation for high standards of business conduct.' },
+      { num:'260–264', head:'Derivative Claims', text:'Allows a shareholder, with the court\'s permission, to bring a claim on behalf of the company against a director for negligence, default, breach of duty or breach of trust, replacing the restrictive common-law rule in Foss v Harbottle with a more accessible statutory procedure.' },
+      { num:'994', head:'Protection of Members Against Unfair Prejudice', text:'Gives any member the right to petition the court where the company\'s affairs are being, or have been, conducted in a manner that is unfairly prejudicial to the interests of its members generally or some part of them, with a wide discretion to grant relief including ordering a purchase of shares.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2006/46/contents' },
+
+  // ── Contract — statute ──
+  { id:'r20260818i', type:'curated', cat:'statute', area:'Contract',
+    title:'Consumer Rights Act 2015',
+    body:"The Consumer Rights Act 2015 consolidated and modernised the law governing contracts between traders and consumers, replacing the Sale of Goods Act 1979 and the Unfair Contract Terms Act 1977 as they applied to consumer contracts. It created a unified regime for the supply of goods, digital content, and services, and overhauled the regime for unfair terms in consumer contracts in line with the EU Unfair Terms Directive. It is now the primary reference point for student-facing consumer law.",
+    sections:[
+      { num:'9', head:'Goods to be of Satisfactory Quality', text:'Goods supplied under a consumer contract must be of satisfactory quality, meaning of a standard that a reasonable person would regard as satisfactory having regard to description, price and all other relevant circumstances, including fitness for common purposes, appearance, freedom from minor defects, safety and durability.' },
+      { num:'19–24', head:'Consumer Remedies for Faulty Goods', text:'Gives consumers a short-term right to reject within 30 days for breach of the quality standards, and thereafter a right to repair or replacement in the first instance, with a reduction in price or a final right to reject if repair or replacement is impossible, disproportionate or fails.' },
+      { num:'61–76', head:'Unfair Terms in Consumer Contracts', text:'A term in a consumer contract is not binding if, contrary to the requirement of good faith, it causes a significant imbalance in the parties\' rights and obligations to the detriment of the consumer. Core terms (price and subject matter, if transparent and prominent) are exempt from the fairness test. The list of potentially unfair terms in Schedule 2 provides a non-exhaustive grey list.' },
+      { num:'50', head:'Information about Trader or Service to be Binding', text:'Where a trader gives information about themselves or their service before the consumer is bound, that information is to be treated as included as a term of the contract, so that the consumer can sue in contract if the information turns out to be wrong.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2015/15/contents' },
+
+  // ── Constitutional — statute ──
+  { id:'r20260818j', type:'curated', cat:'statute', area:'Constitutional',
+    title:'Data Protection Act 2018',
+    body:"The Data Protection Act 2018 implemented the EU General Data Protection Regulation (GDPR) into UK law, supplemented the Regulation's requirements, and provided the domestic framework for data processing outside the GDPR's scope (including law-enforcement and intelligence-services processing). Together with the UK GDPR (retained and adapted post-Brexit), it now governs the processing of personal data in the United Kingdom and confers important rights on data subjects alongside duties on controllers and processors.",
+    sections:[
+      { num:'2–27', head:'General Processing (Part 2)', text:'Supplements the UK GDPR for general processing, including conditions for processing special categories of data (such as health or criminal records) and criminal-conviction data, and modifying the GDPR\'s provisions on children\'s consent and research exemptions for the UK context.' },
+      { num:'29–81', head:'Law Enforcement Processing (Part 3)', text:'Implements the Law Enforcement Directive, creating a separate regime for personal data processed for crime-prevention, detection, investigation or prosecution purposes, with its own rights for data subjects and obligations for competent authorities.' },
+      { num:'142–181', head:'The Information Commissioner (Part 6)', text:'Establishes the Information Commissioner\'s Office as the supervisory authority, with powers to investigate, impose civil monetary penalties of up to £17.5 million or 4% of global annual turnover, issue enforcement notices, and bring criminal prosecutions for offences under the Act.' },
+      { num:'170', head:'Unlawful Obtaining of Personal Data', text:'Creates a criminal offence, triable either way, of knowingly or recklessly obtaining, disclosing, procuring or retaining personal data without the consent of the controller. A defence exists where a journalist obtained the data for the public interest.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2018/12/contents' },
+
+  // ── Public Law — case ──
+  { id:'n1', type:'curated', cat:'case-law', area:'Public Law',
+    title:'Associated Provincial Picture Houses Ltd v Wednesbury Corporation [1948] 1 KB 223',
+    court:'Court of Appeal',
+    facts:'Wednesbury Corporation granted the claimant a licence to open cinemas on Sundays under the Sunday Entertainments Act 1932, but attached a condition prohibiting the admission of children under fifteen, with or without an adult. The cinema company argued the condition was ultra vires and so unreasonable as to be beyond the Corporation\'s power.',
+    judgment:'The Court of Appeal (Lord Greene MR) dismissed the appeal. The condition could not be said to be unreasonable in the relevant legal sense: the Corporation had not taken into account irrelevant factors nor ignored relevant ones, and the condition was not one that no reasonable authority could have imposed.',
+    ratio:'A discretionary decision can only be impugned in judicial review if the decision-maker considered matters that were irrelevant, disregarded matters that were relevant, or reached a decision so outrageous in its defiance of logic that no sensible person who had applied their mind to the question could have reached it. This threshold — Wednesbury unreasonableness or irrationality — is the foundational standard of review for administrative discretion.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1947/1.html' },
+
+  // ── Human Rights — case ──
+  { id:'n2', type:'curated', cat:'case-law', area:'Human Rights',
+    title:'A v Secretary of State for the Home Department [2004] UKHL 56',
+    court:'House of Lords',
+    facts:'Following the September 2001 attacks the United Kingdom derogated from Article 5 ECHR and enacted Part IV of the Anti-terrorism, Crime and Security Act 2001, which permitted indefinite detention without charge of foreign nationals certified as suspected international terrorists who could not lawfully be deported. Nine detainees held at Belmarsh Prison challenged both the derogation order and the detention power, contending the measures were disproportionate and discriminatory because equivalent powers did not apply to British nationals who posed the same risk.',
+    judgment:'The House of Lords (8-1, Lord Hoffmann concurring on the narrower constitutional ground) held the derogation order unlawful and declared s 23 ATCSA 2001 incompatible with Articles 5 and 14 ECHR. The threat was real, but detaining only foreign nationals while British suspects remained free demonstrated that nationality was the operative distinction rather than the risk posed — making the measure disproportionate and discriminatory.',
+    ratio:'A derogating emergency measure under Article 15 ECHR must be strictly necessary and non-discriminatory. A regime that applies only to foreign nationals cannot be justified as a response to a threat that is not limited to that group. The courts are not precluded from examining whether the factual basis for an asserted public emergency supports the scope of the derogating legislation.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/56.html' },
+
+  // ── Constitutional — case ──
+  { id:'n3', type:'curated', cat:'case-law', area:'Constitutional',
+    title:'R (Jackson) v Attorney General [2005] UKHL 56',
+    court:'House of Lords',
+    facts:'The Hunting Act 2004, which banned hunting with dogs, was enacted without the consent of the House of Lords using the procedure created by the Parliament Acts 1911 and 1949. Jackson and others, who sought to preserve hunting, challenged the validity of the Hunting Act on the basis that the Parliament Act 1949 was itself not a true Act of Parliament — having been passed under the 1911 Act procedure — and could not therefore enlarge the power given by the 1911 Act.',
+    judgment:'The House of Lords unanimously dismissed the challenge. The Parliament Act 1949 was a valid Act of Parliament and the Hunting Act 2004, enacted under its procedure, had full legal effect. Their Lordships also offered extensive obiter observations questioning whether parliamentary sovereignty is truly unlimited or whether the courts might, in an extreme case, decline to recognise legislation that destroyed the very constitutional foundations on which Parliament\'s authority rests.',
+    ratio:'An Act passed under the Parliament Acts 1911 and 1949 without the Lords\' consent is a valid Act of Parliament, not delegated legislation, and is not open to challenge on grounds of procedural invalidity. The case is also noteworthy for the obiter suggestion that parliamentary sovereignty may not be absolute and could, in extremis, be subject to common-law constitutional constraints.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/56.html' },
+
+  // ── Trusts — case ──
+  { id:'n4', type:'curated', cat:'case-law', area:'Trusts',
+    title:'McPhail v Doulton [1971] AC 424',
+    court:'House of Lords',
+    facts:'Bertram Baden executed a deed in 1941 establishing a fund for the benefit of the staff, ex-staff, and relatives and dependants of a company. The trustees had complete discretion as to how to distribute the income. The Revenue argued the trust was void for uncertainty because it was impossible to compile a comprehensive list of every potential beneficiary — the test then applied to both powers and trusts following the Court of Appeal\'s decision in Broadway Cottages.',
+    judgment:'The House of Lords (Lord Wilberforce) overruled Inland Revenue Commissioners v Broadway Cottages Trust [1955] Ch 20 and held that the correct test for certainty of objects in a discretionary trust is the same as that applicable to powers: it is sufficient if it can be said with certainty whether any given individual is or is not a member of the class, even if the complete membership cannot be listed.',
+    ratio:'The test for certainty of objects of a discretionary trust is the "is or is not" test: the trust is valid if it can be said with certainty of any postulant whether they are or are not within the beneficial class. A complete list of all potential beneficiaries is not required. This overruled the stricter "complete list" test previously applied and greatly extended the range of valid dispositions.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1970/1.html' },
+
+  // ── Criminal — case ──
+  { id:'n5', type:'curated', cat:'case-law', area:'Criminal',
+    title:'R v Ghosh [1982] QB 1053',
+    court:'Court of Appeal (Criminal Division)',
+    facts:'A surgeon claimed, through a hospital, fees for operations he had not carried out or for which the National Health Service was entitled to payment. He was convicted of obtaining property by deception under the Theft Act 1968. On appeal he argued that the trial judge\'s direction on dishonesty was defective because it did not ask the jury to consider his own understanding of whether his conduct was honest.',
+    judgment:'The Court of Appeal (Lord Lane CJ) upheld the conviction and articulated a two-stage test for dishonesty: first, whether the defendant\'s conduct was dishonest by the ordinary standards of reasonable and honest people; and second, whether the defendant himself must have realised that what he was doing was dishonest by those standards.',
+    ratio:'Dishonesty in criminal law requires both an objective element — that the conduct would be regarded as dishonest by ordinary honest people — and a subjective element — that the defendant appreciated this. This test governed criminal dishonesty for over thirty years, until the Supreme Court in Ivey v Genting Casinos [2017] UKSC 67 effectively abolished the subjective second limb, leaving only the objective standard.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Crim/1982/2.html' },
+
+  // ── Evidence — case ──
+  { id:'n6', type:'curated', cat:'case-law', area:'Evidence',
+    title:'Conway v Rimmer [1968] UKHL 2',
+    court:'House of Lords',
+    facts:'Conway, a former probationer constable in the Cheshire Constabulary, brought a malicious prosecution action against Rimmer, his former superintendent. Conway sought discovery of five reports held by the Home Office. The Crown objected to production on grounds of public interest immunity, and the Home Secretary signed a ministerial certificate claiming that disclosure would be injurious to the public interest. The Court of Appeal held itself bound by Duncan v Cammell Laird & Co Ltd [1942] AC 624, in which the House of Lords had held that a ministerial certificate was conclusive and unreviewable by the courts.',
+    judgment:'The House of Lords unanimously overruled Duncan v Cammell Laird on this point and held that the court has the power and duty to inspect documents for which public interest immunity is claimed and to decide for itself whether production should be ordered. On inspection, the committee held the reports should be disclosed; the routine personnel reports did not fall within any class whose protection was required by the public interest.',
+    ratio:'A certificate by a minister asserting public interest immunity is not conclusive: the court retains the power to inspect the documents and to balance the public interest in non-disclosure against the interests of justice in disclosure. The conclusive deference previously accorded to ministerial certificates was inconsistent with the rule of law and is overruled.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1968/2.html' },
+
   ];
 });
