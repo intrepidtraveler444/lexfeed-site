@@ -322,5 +322,84 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Public Law — case-law ──
+  { id:'r20260825a', type:'curated', cat:'case-law', area:'Public Law',
+    title:'R (Cart) v Upper Tribunal [2011] UKSC 28',
+    court:'UK Supreme Court',
+    facts:"Cart, a litigant in person, sought judicial review of the Upper Tribunal's refusal to grant permission to appeal in an immigration matter. The central question was whether the High Court retained supervisory jurisdiction to review the Upper Tribunal — an expert tribunal Parliament had deliberately placed at the apex of the first-tier/upper tribunal structure — and if so on what basis.",
+    judgment:"The Supreme Court held unanimously that the supervisory jurisdiction of the High Court over the Upper Tribunal could not be ousted by statute. However, emphasising that judicial review should not replicate the internal permission-to-appeal system, the Court imposed the same 'second-tier appeals' criteria: review would be granted only where the case raised an important point of principle or practice, or there was some other compelling reason.",
+    ratio:"The High Court retains inherent supervisory jurisdiction over the Upper Tribunal and that jurisdiction cannot be excluded by statute; but it will be exercised only where the case raises an important point of principle or practice, or some other compelling reason exists.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2011/28.html' },
+
+  // ── Tort — case-law ──
+  { id:'r20260825b', type:'curated', cat:'case-law', area:'Tort',
+    title:'OBG Ltd v Allan [2007] UKHL 21',
+    court:'House of Lords',
+    facts:"Three consolidated appeals concerning the economic torts. OBG Ltd argued that receivers appointed under an invalid floating charge had interfered with its contracts. Douglas and Hello! Magazine concerned unlawful publication of exclusive wedding photographs. Mainstream Properties claimed its managing director had induced employees to divert a development opportunity for personal gain.",
+    judgment:"The House of Lords rationalised the economic torts. Lord Hoffmann (majority) held that inducing breach of contract and causing loss by unlawful means are distinct torts. The unlawful means tort requires the defendant to use unlawful means against a third party intending thereby to harm the claimant; it does not extend to every conversion or breach of statute. Pure inducement of breach of contract is a narrower, separate tort requiring knowledge of the contract and an intention to procure the breach.",
+    ratio:"The tort of causing loss by unlawful means requires unlawful acts directed at a third party who is thereby prevented from dealing with the claimant; it is distinct from inducing breach of contract, which requires knowledge of and intention to procure the breach.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2007/21.html' },
+
+  { id:'r20260825c', type:'curated', cat:'case-law', area:'Tort',
+    title:'Coventry v Lawrence [2014] UKSC 13',
+    court:'UK Supreme Court',
+    facts:"The defendants operated a speedway stadium and motocross track that had been in operation for many years before the claimants purchased a nearby property. The claimants brought a private nuisance action for noise. The defendants argued they had acquired a prescriptive right, that planning permission for the activities authorised any resulting nuisance, and that the claimants could not complain having 'come to the nuisance'.",
+    judgment:"The Supreme Court held that planning permission cannot of itself authorise a private nuisance, though it may alter the character of a locality and thereby affect what constitutes an actionable nuisance. 'Coming to the nuisance' is relevant to remedy but does not automatically bar a claim. A prescriptive right to commit a nuisance must be established strictly in accordance with the ordinary rules for acquiring an easement by prescription.",
+    ratio:"Planning permission may re-characterise a neighbourhood but does not grant immunity from nuisance; coming to the nuisance is relevant to remedy rather than liability; a prescriptive right to commit a nuisance requires strict proof over the statutory period.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/13.html' },
+
+  { id:'r20260825d', type:'curated', cat:'case-law', area:'Tort',
+    title:'Stovin v Wise [1996] UKHL 15',
+    court:'House of Lords',
+    facts:"A motorcyclist was injured in a collision at a road junction where a bank of earth on adjacent private land restricted sightlines. The highway authority had previously identified the hazard, corresponded with the landowner about removing the obstruction, and had the statutory power to require the works — but never exercised it. The claimant argued the authority owed a common law duty of care arising from that statutory power.",
+    judgment:"The House of Lords (3:2) held the authority owed no duty of care for its failure to act. Lord Hoffmann, for the majority, held that a statutory power to prevent harm does not itself create a common law duty to act; something more — such as an assumption of responsibility — is required before omission liability can arise against a public body.",
+    ratio:"A statutory power to act conferred on a public body does not of itself generate a private law duty of care; public authority liability for omissions requires additional features such as an assumption of responsibility going beyond the mere existence of the power.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1996/15.html' },
+
+  // ── Company — case-law ──
+  { id:'r20260825e', type:'curated', cat:'case-law', area:'Company',
+    title:'National Westminster Bank plc v Spectrum Plus Ltd [2005] UKHL 41',
+    court:'House of Lords',
+    facts:"National Westminster Bank held a charge described as 'fixed' over Spectrum Plus's book debts. Proceeds had to be paid into the company's account at the bank, but the company could draw freely on that account in the ordinary course of business. On liquidation the question was whether the charge was truly fixed (senior to preferential creditors) or floating (subordinate). The House also considered whether, if overruling prior authority, it could do so prospectively only.",
+    judgment:"The House of Lords held unanimously that the charge was a floating charge: because Spectrum Plus had unfettered ability to draw on the account, the charge did not control the assets in the manner required of a fixed charge. The House also unanimously rejected the concept of prospective-only overruling, holding that when courts overrule a decision they do so retrospectively as a matter of constitutional necessity.",
+    ratio:"A charge over book debts is floating rather than fixed where the chargor retains an unrestricted right to use the proceeds in the ordinary course of business; overruling by an English court is inherently retrospective and cannot be made to operate prospectively only.",
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/41.html' },
+
+  // ── Criminal — statute ──
+  { id:'r20260825f', type:'curated', cat:'statute', area:'Criminal',
+    title:'Corporate Manslaughter and Corporate Homicide Act 2007',
+    body:"Creates the statutory offence of corporate manslaughter (corporate homicide in Scotland) under which an organisation whose gross breach of a relevant duty of care causes a person's death is criminally liable. Liability is assessed by reference to the way the organisation's activities were managed or organised by its senior management, removing the common-law identification doctrine bottleneck that had prevented successful prosecution of large corporations. Remedial orders and publicity orders may accompany a conviction.",
+    sections:[
+      { num:'1', head:'The offence', text:"An organisation is guilty of an offence if the way in which its activities are managed or organised causes a person's death and amounts to a gross breach of a relevant duty of care owed by the organisation to the deceased." },
+      { num:'1(3)', head:'Senior management', text:"The way in which activities were managed or organised by senior management must be a substantial element in the gross breach giving rise to liability." },
+      { num:'8', head:'Factors for jury', text:"In deciding whether a breach is 'gross', the jury must consider whether the evidence shows that the organisation's health and safety management fell far below what could reasonably be expected; it may also have regard to attitudes, policies, systems and accepted practices." },
+      { num:'9', head:'Remedial orders', text:"A court that convicts an organisation may order it to take specified steps to remedy the breach, any matter that appears to have resulted from the breach, or any deficiency in policies, systems or practices." },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2007/19/contents' },
+
+  // ── Constitutional — statute ──
+  { id:'r20260825g', type:'curated', cat:'statute', area:'Constitutional',
+    title:'Constitutional Reform Act 2005',
+    body:"Fundamentally restructures the senior judiciary and the apex court of the United Kingdom. Transfers the judicial functions of the House of Lords to the newly created Supreme Court of the United Kingdom, separating the legislature and the highest court for the first time. Removes the judicial functions of the Lord Chancellor and transfers the function of head of the judiciary in England and Wales to the Lord Chief Justice. Establishes the independent Judicial Appointments Commission to depoliticise the selection of judges.",
+    sections:[
+      { num:'1', head:'The rule of law', text:"The Act does not adversely affect the existing constitutional principle of the rule of law or the Lord Chancellor's existing constitutional role in relation to that principle." },
+      { num:'23', head:'The Supreme Court', text:"There is to be a Supreme Court of the United Kingdom, consisting of twelve Justices of the Supreme Court." },
+      { num:'25', head:'Appointment of Justices', text:"Justices are appointed by Her Majesty on the recommendation of the Prime Minister following a process of selection by an independent selection commission convened for the purpose." },
+      { num:'61', head:'The Judicial Appointments Commission', text:"The Judicial Appointments Commission is established to select candidates for recommendation for appointment to judicial office in England and Wales on the basis of merit." },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2005/4/contents' },
+
+  // ── Criminal — statute ──
+  { id:'r20260825h', type:'curated', cat:'statute', area:'Criminal',
+    title:'Proceeds of Crime Act 2002',
+    body:"Provides a comprehensive statutory regime for recovering the proceeds of crime and combating money laundering. Creates powers for criminal confiscation (following conviction, with a statutory 'criminal lifestyle' assumption), civil recovery of property without a conviction, and cash seizure at the border. Establishes the principal money laundering offences applicable to the regulated sector and the public, including the duty to make Suspicious Activity Reports. Replaced piecemeal legislation with a unified framework now administered through the National Crime Agency.",
+    sections:[
+      { num:'6', head:'Making a confiscation order', text:"If the defendant has a criminal lifestyle the court must make assumptions about property and expenditure when calculating the benefit from criminal conduct, unless this would give rise to a serious risk of injustice." },
+      { num:'327-329', head:'Money laundering offences', text:"A person commits an offence if he conceals or transfers criminal property (s327), enters into an arrangement facilitating another's acquisition of criminal property (s328), or acquires or uses criminal property (s329)." },
+      { num:'330', head:'Failure to disclose: regulated sector', text:"A person in the regulated sector commits an offence if he knows or suspects that another person is engaged in money laundering and fails to make the required disclosure to the National Crime Agency." },
+      { num:'340', head:'Key definitions', text:"'Criminal conduct' means conduct constituting an offence in any part of the United Kingdom; 'criminal property' means a person's benefit from criminal conduct or property representing such benefit." },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/29/contents' },
+
   ];
 });
