@@ -401,5 +401,41 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/29/contents' },
 
+  // ── Contract — case ──
+  { id:'k19', type:'curated', cat:'case-law', area:'Contract',
+    title:'Hong Kong Fir Shipping Co Ltd v Kawasaki Kisen Kaisha Ltd [1961] EWCA Civ 7',
+    court:'Court of Appeal',
+    facts:'The claimant chartered its ageing cargo ship to the defendants for a 24-month voyage. The vessel proved unseaworthy owing to an incompetent engine room crew and poor maintenance. Breakdowns caused the ship to be off-hire for approximately 20 of the first 24 weeks of service. The defendants purported to terminate the charterparty, claiming that the unseaworthiness entitled them to treat the contract as at an end.',
+    judgment:'The Court of Appeal (Diplock LJ giving the leading judgment) held that the defendants had no right to terminate. The seaworthiness clause was not a condition, and the consequences of the breaches were not so serious as to deprive the charterers of substantially the whole benefit of the contract.',
+    ratio:'Contractual terms are not limited to conditions (breach of which entitles the innocent party to terminate regardless of consequences) and warranties (breach of which sounds only in damages). An innominate or intermediate term exists wherever the gravity of the consequences of breach may vary widely. Whether a breach of such a term justifies termination depends not on the label given to the term but on whether the actual breach goes to the root of the contract, depriving the innocent party of substantially the whole benefit they were intended to receive.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1961/7.html' },
+
+  // ── Equity — case ──
+  { id:'k20', type:'curated', cat:'case-law', area:'Equity',
+    title:'Westdeutsche Landesbank Girozentrale v Islington London Borough Council [1996] UKHL 12',
+    court:'House of Lords',
+    facts:'A German bank entered an interest rate swap agreement with a local council, paying an upfront sum and net periodic payments over several years. The swap was subsequently declared void as ultra vires the local authority. The bank recovered its net overpayment in restitution but sought compound interest in equity on the ground that a resulting or constructive trust had arisen over the money from the moment of payment.',
+    judgment:'The House of Lords rejected the trust argument and awarded only simple interest. No trust arose from the void contract, so the equitable jurisdiction to award compound interest was not engaged.',
+    ratio:'A resulting trust arises in only two situations: where property is transferred voluntarily without explanation, and where a purchase money resulting trust is established. It does not arise merely because money is paid under a void contract, because the recipient has no relevant knowledge at the time of payment affecting their conscience. Equity acts on the conscience of the holder; a trust requires that conscience to be affected by knowledge of a factor that makes retention unconscionable. Beneficial interests under a resulting trust arise at the moment of the relevant payment, not retrospectively on later declaration.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1996/12.html' },
+
+  // ── Contract — case ──
+  { id:'k21', type:'curated', cat:'case-law', area:'Contract',
+    title:'Davis Contractors Ltd v Fareham Urban District Council [1956] UKHL 3',
+    court:'House of Lords',
+    facts:'A building contractor agreed to construct 78 council houses within eight months for a fixed price. An unforeseen and severe shortage of skilled labour meant the project took 22 months to complete. The contractor argued the contract had been frustrated by the supervening labour shortage, which would entitle it to payment on a quantum meruit basis — more than the agreed contract price.',
+    judgment:'The House of Lords unanimously rejected the frustration argument. The contractor was bound by the contract price.',
+    ratio:'Frustration occurs where, without the fault of either party, a supervening event not within the reasonable contemplation of the parties at the time of contracting renders performance of the obligation something radically different from what was undertaken. An increase in difficulty, expense, or inconvenience does not engage the doctrine; the test is whether the thing now required to be performed is, fairly and objectively construed, a fundamentally different thing from what was promised. The hardship or subjective expectations of one party are irrelevant.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1956/3.html' },
+
+  // ── Contract — case ──
+  { id:'k22', type:'curated', cat:'case-law', area:'Contract',
+    title:'Liverpool City Council v Irwin [1976] UKHL 1',
+    court:'House of Lords',
+    facts:'Tenants of a high-rise tower block withheld rent in protest at the chronic state of disrepair of the common parts — lifts, stairwells, and rubbish chutes — caused largely by persistent vandalism. The tenancy agreements made no mention of the council\'s obligations regarding the common parts. The tenants counterclaimed for breach of a term they said must be implied requiring the council to maintain those areas.',
+    judgment:'The House of Lords held that a term requiring the council to take reasonable care to maintain the common parts was to be implied as a necessary incident of the tenancy relationship. On the facts, however, the council had done enough to discharge that duty.',
+    ratio:'A court may imply a term into a contract by law, as a necessary incident of a recognised type of contractual relationship, where the nature of the relationship so requires — even where the parties have not addressed the point at all. The implied term must be reasonable and equitable, necessary to give the contract business efficacy, so obvious as to go without saying, capable of clear expression, and consistent with the express terms. Implication by law as a necessary incident of a relationship type is conceptually distinct from implication in fact (the business efficacy and officious bystander tests), which depends on the actual or presumed intention of the particular parties.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1976/1.html' },
+
   ];
 });
