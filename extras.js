@@ -104,6 +104,41 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  { id:'xa20260825a', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Howarth — 'Many Duties of Care—Or A Duty of Care? Notes from the Underground' (2006) 26 OJLS 449",
+    body:"David Howarth challenges the orthodoxy that English negligence law rests on a single unified duty of care. Through close analysis of the case law, he demonstrates that courts apply distinct duties calibrated to the relationship, the type of harm, and the context, and that the Caparo three-stage test conceals rather than resolves the underlying disagreements about the scope of liability. Howarth's taxonomic critique has shaped subsequent academic and judicial debate about the coherence of duty of care doctrine, influencing how the boundaries of liability are approached in areas from public authority liability to pure economic loss.",
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article/26/3/449/1451997' },
+
+  { id:'xa20260825b', type:'curated', cat:'journal-article', area:'Public Law',
+    title:"Bingham — 'The Rule of Law' (2007) 66 CLJ 67",
+    body:"Written before his landmark book of the same name, Lord Bingham's article sets out eight sub-rules that together constitute the rule of law in its thickest sense. The piece moves beyond purely procedural requirements — that law must be clear, accessible, and prospective — to insist on substantive demands: that the law must protect fundamental human rights and that government must comply with international obligations. Drawing on English constitutional history and comparative examples, Bingham provides an indispensable starting-point for serious study of constitutionalism and deeply influenced subsequent Supreme Court jurisprudence on legality and parliamentary sovereignty.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/rule-of-law/0E971B5BB930C2E363D351C5CBC3B855' },
+
+  { id:'xa20260825c', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Webb — 'What is Unjust Enrichment?' (2009) 29 OJLS 215",
+    body:"Charlie Webb critically examines the concept of unjust enrichment as it has developed in English law since Lipkin Gorman v Karpnale. Challenging the Birksian orthodoxy that unjust enrichment is a unifying principle for all restitutionary claims, Webb argues that the 'unjust' element is genuinely normative rather than merely technical, and that its content cannot be understood by reference to 'unjust factors' alone. The piece dissects the 'at the expense of' requirement and examines the interaction with defences, offering a more sophisticated map of the restitutionary landscape than a simple event-based classification provides.",
+    src:'Oxford Journal of Legal Studies', link:'https://doi.org/10.1093/ojls/gqp008' },
+
+  { id:'xa20260825d', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Steel & Ibbetson — 'More Grief on Uncertain Causation in Tort' (2011) 70 CLJ 451",
+    body:"Sandy Steel and David Ibbetson interrogate the troubled relationship between material contribution to risk and material contribution to damage following Barker v Corus and Sienkiewicz v Greif. They trace how the House of Lords' expansions in Fairchild opened doctrinal fault lines that have not been consistently resolved, and carefully distinguish genuine scientific uncertainty from cases where claimants simply cannot prove a factual causal link. The article argues that conflating the two categories distorts causation doctrine and produces unjust outcomes for both claimants and defendants, and has been widely cited in subsequent causation scholarship.",
+    src:'Cambridge Law Journal', link:'https://www.jstor.org/stable/41300983' },
+
+  { id:'xa20260825e', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Goudkamp & Nolan — 'Contributory Negligence in the Twenty-First Century: An Empirical Study of First Instance Decisions' (2016) 79 MLR 575",
+    body:"Through systematic empirical study of over 300 first-instance judgments in which contributory negligence was pleaded, James Goudkamp and Donal Nolan reveal striking patterns in how courts apportion liability under the Law Reform (Contributory Negligence) Act 1945. Deductions cluster around round numbers — especially 25%, 33% and 50% — suggesting judges rely on intuition rather than principled analysis of relative blameworthiness and causal contribution. The article challenges the assumption that the 1945 Act delivers calibrated proportionate justice and provides an empirical baseline that has informed subsequent calls for legislative and doctrinal reform.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/1468-2230.12202' },
+
+  { id:'xa20260825f', type:'curated', cat:'journal-article', area:'Employment',
+    title:"Freedland — 'From the Contract of Employment to the Personal Work Nexus' (2006) 35 ILJ 1",
+    body:"Mark Freedland argues that the traditional binary of employment contract versus self-employment is no longer adequate to capture the variety of working relationships in modern labour markets. He develops the concept of the 'personal work nexus' — a broader normative category encompassing all personal work relationships — as the appropriate unit of analysis for employment law. Drawing on comparative and contractual theory, the article traces how courts have strained the contract of employment to accommodate atypical workers, and proposes a new analytical framework that better reflects economic reality and the protective goals of labour law.",
+    src:'Industrial Law Journal', link:'https://academic.oup.com/ilj/article-abstract/35/1/1/690475' },
+
+  { id:'xa20260825g', type:'curated', cat:'journal-article', area:'Criminal',
+    title:"Lacey — 'Historicising Criminalisation: Conceptual and Empirical Issues for a Research Agenda' (2009) 72 MLR 936",
+    body:"Nicola Lacey proposes a research agenda for understanding criminalisation — the process by which conduct comes to be defined and enforced as criminal — in its historical, social, and institutional context. She argues that the analytic jurisprudence of criminalisation must be supplemented by empirical and comparative scholarship that traces how criminal law categories have expanded and contracted across time, and why similar societies diverge in what they criminalise. Lacey's framework has been highly influential in criminal law theory, stimulating a generation of comparative and sociological work on the politics of criminal legislation.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/10.1111/j.1468-2230.2009.00775.x' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +229,48 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  { id:'xt20260825a', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Contributory Negligence',
+    body:"Contributory negligence is the failure of a claimant to take reasonable care for their own safety, which contributes to the damage they suffer. Under the Law Reform (Contributory Negligence) Act 1945 it does not bar recovery entirely, as it did at common law, but reduces the claimant's damages by such proportion as the court considers just and equitable having regard to the claimant's share in responsibility for the damage. The apportionment reflects both the relative blameworthiness of the parties' conduct and the causative potency of each party's fault.",
+    example:"A cyclist rides at night without lights and is struck by a motorist who jumps a red light. The court finds the motorist primarily liable but reduces the cyclist's damages by 25% to reflect the contributory negligence of riding unlit, which increased the risk and severity of the collision.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/contributory-negligence' },
+
+  { id:'xt20260825b', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Joint and Several Liability',
+    body:"Where two or more defendants are jointly and severally liable for the same damage, each is liable for the full amount of the claimant's loss and the claimant may recover the whole from any one of them, regardless of their respective degrees of fault. As between themselves the defendants may seek a contribution under the Civil Liability (Contribution) Act 1978. Joint and several liability is the default position where multiple tortfeasors independently cause the same indivisible damage, contrasted with several liability where each defendant is responsible only for a distinct divisible portion of the harm.",
+    example:"Two factories independently discharge chemicals into a river and together destroy a downstream fish farm; neither discharge alone would have caused the damage. Both may be jointly and severally liable: the fish farmer can recover the full loss from either, leaving the factories to sort out contribution between themselves.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/joint-several-liability' },
+
+  { id:'xt20260825c', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Mitigation',
+    body:"Mitigation is the duty on a party who has suffered a breach of contract (or a tort) to take all reasonable steps to minimise the loss flowing from that breach. A claimant who fails to mitigate cannot recover losses that reasonable mitigation would have avoided. The burden of proving failure to mitigate lies on the defendant. The duty is not absolute: a claimant need not take exceptional or unduly risky steps, and need not sacrifice commercial interests or dignity to placate the defaulting party.",
+    example:"An employee who is wrongfully dismissed is under a duty to mitigate by seeking alternative employment. If she declines a reasonable offer of comparable work at similar pay, her employer can reduce the damages payable to reflect the wages she would have earned had she accepted the available role.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/mitigation' },
+
+  { id:'xt20260825d', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Remoteness',
+    body:"In negligence, remoteness limits the type of damage for which a defendant is liable: only damage of a kind that was a reasonably foreseeable consequence of the breach of duty is recoverable. The test, established in The Wagon Mound (No 1), replaced the earlier 'direct consequences' rule from Re Polemis. The defendant need not foresee the precise manner of injury or its full extent — the 'thin skull' rule means they take the claimant as they find them — but the type or kind of damage must be within the range of reasonable foresight.",
+    example:"A contractor negligently spills oil on water near a wharf. He could not reasonably foresee that sparks from nearby welding would ignite the oil and destroy the wharf by fire. The fire damage is too remote: although he was negligent, the type of damage (fire) was not a reasonably foreseeable consequence of spilling oil in those circumstances.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/remoteness' },
+
+  { id:'xt20260825e', type:'curated', cat:'legal-term', area:'Equity',
+    title:'Breach of Confidence',
+    body:"Breach of confidence is an equitable action that lies where information carrying the necessary quality of confidence is communicated in circumstances imposing an obligation of confidence and is then used or disclosed without the confider's consent. Following the Human Rights Act 1998, the doctrine expanded — particularly for private information — to incorporate Article 8 ECHR privacy values, becoming the primary vehicle in English law for protecting personal privacy in the absence of a standalone privacy tort.",
+    example:"An employee during her employment receives access to a confidential customer database. After leaving, she copies and shares it with a competitor. The former employer may sue for breach of confidence to restrain further disclosure and recover any profits the competitor derived from the information.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/breach-of-confidence' },
+
+  { id:'xt20260825f', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Non est factum',
+    body:"Non est factum (Latin: 'it is not my deed') is a plea by which a party seeks to avoid a written contract or deed on the ground that it is fundamentally different in character from that which they believed themselves to be signing, and that they were not careless in signing it. The doctrine is very narrowly construed: the document must be radically different in nature, not merely in its terms, from what the signer understood; and the signer must not have been negligent. It is available only to a limited class who, through disability such as blindness or illiteracy, were genuinely unable to understand what they signed.",
+    example:"An elderly woman is told a document she is asked to sign is a simple guarantee of her son's small overdraft; in reality it is a second mortgage over her home for a much larger sum. If she can show the document was fundamentally different from what she believed and that she was not careless, she may plead non est factum to avoid liability under it.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/non-est-factum' },
+
+  { id:'xt20260825g', type:'curated', cat:'legal-term', area:'Tort',
+    title:"Occupiers' Liability",
+    body:"Occupiers' liability governs the duties owed by a person in control of premises to those who enter them. In England and Wales it is governed primarily by two statutes: the Occupiers' Liability Act 1957 imposes a 'common duty of care' on occupiers toward lawful visitors, requiring reasonable care in all the circumstances to ensure the visitor is reasonably safe; and the Occupiers' Liability Act 1984 imposes a more limited duty in respect of trespassers. The content of each duty depends on the category of entrant, the nature of the premises, and any warnings or exclusions.",
+    example:"A supermarket knows a freezer cabinet has been leaking and creating a slippery floor but leaves the hazard unattended for over an hour. A customer slips and is injured. The supermarket, as occupier, has breached the common duty of care owed to lawful visitors under the 1957 Act by failing to inspect, remedy, or adequately warn of the hazard.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/occupiers-liability' },
 
   ],
 
