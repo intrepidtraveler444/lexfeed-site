@@ -322,5 +322,109 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Contract — case ──
+  { id:'r20260901a', type:'curated', cat:'case-law', area:'Contract',
+    title:'Patel v Mirza [2016] UKSC 42',
+    court:'UK Supreme Court',
+    facts:'Patel transferred £620,000 to Mirza for the purpose of betting on the price of RBS shares using insider information Mirza expected to obtain from RBS contacts about a forthcoming government announcement. The anticipated announcement never materialised and the planned betting did not take place, but Mirza refused to repay the money. The agreement amounted to a conspiracy to commit insider dealing under the Criminal Justice Act 1993.',
+    judgment:'The Supreme Court held that Patel was entitled to recover his money. By a majority it overruled the "reliance test" from Tinsley v Milligan and replaced it with a flexible, policy-based approach.',
+    ratio:'Where a person seeks to recover money paid under an illegal contract, the court must consider whether allowing recovery would be consistent with or would undermine the policies underlying the illegality. The old reliance rule from Tinsley v Milligan is replaced by a range-of-factors approach weighing the purpose of the prohibition breached, the need for deterrence, the gravity of the illegality, and whether refusing recovery would be a proportionate response having regard to those interests. In most cases a party may recover money paid under a contract that was not performed because the illegal purpose was not carried out.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/42.html' },
+
+  // ── Human Rights — case ──
+  { id:'r20260901b', type:'curated', cat:'case-law', area:'Human Rights',
+    title:'Ghaidan v Godin-Mendoza [2004] UKHL 30',
+    court:'House of Lords',
+    facts:'Following the death of the original tenant of a protected tenancy, the deceased\'s surviving same-sex partner of eighteen years, Godin-Mendoza, claimed a right to succeed to the statutory tenancy. The Rent Act 1977 permitted only a "spouse" living with the tenant "as his or her wife or husband" to succeed as a statutory tenant; the earlier Fitzpatrick decision had held that a same-sex partner could not succeed in that capacity.',
+    judgment:'The House of Lords upheld the Court of Appeal\'s ruling that s.3 of the Human Rights Act 1998 required the relevant Rent Act provisions to be read so as to include same-sex partners who lived together as husband and wife, giving the survivor full statutory tenancy rights.',
+    ratio:'Section 3(1) of the Human Rights Act 1998 imposes a strong obligation to read and give effect to legislation in a way compatible with Convention rights "so far as it is possible to do so". This can require a court to depart from the natural and ordinary meaning of a provision, reading words in or out — the only limit being that the interpretation must not cross from interpretation into legislation by contradicting a fundamental feature of the enactment. Where a discriminatory reading of a statute would violate Art.14 read with Art.8 ECHR, the court must strain to read the provision compatibly even if this gives it a meaning Parliament did not intend.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/30.html' },
+
+  // ── Tort — case ──
+  { id:'r20260901c', type:'curated', cat:'case-law', area:'Tort',
+    title:'Chester v Afshar [2004] UKHL 41',
+    court:'House of Lords',
+    facts:'Miss Chester consulted Mr Afshar, a neurosurgeon, about persistent back trouble. He recommended disc surgery but failed to warn her of a small (1–2%) risk of cauda equina damage, a risk that materialised. Evidence showed she would not have consented to surgery at that time had she been warned; however, since she might subsequently have undergone the operation (carrying the same statistical risk), she could not prove on a strict "but for" basis that the failure to warn had caused the injury.',
+    judgment:'The House of Lords (3:2) allowed the appeal and held that causation was made out as a matter of law, modifying the ordinary but-for test to vindicate the patient\'s right to informed consent.',
+    ratio:'A doctor\'s duty to warn a patient of material risks exists to enable the patient to exercise autonomous and informed choice over treatment of her body. Where a failure to warn causes the very risk materialise in the very operation the patient would not have consented to at that time, it would be unjust and contrary to the policy of the duty to deny recovery by strict application of the but-for test. The law therefore treats the breach as having caused the harm. This is a narrow and principled modification of causation rules tied to the specific scope and purpose of the duty to inform.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/41.html' },
+
+  // ── Tort — case ──
+  { id:'r20260901d', type:'curated', cat:'case-law', area:'Tort',
+    title:'Lister & Ors v Hesley Hall Ltd [2001] UKHL 22',
+    court:'House of Lords',
+    facts:'Boys who had been resident at a boarding school\'s annex brought claims against the employers of the school warden, who had systematically sexually abused them while performing his duty of looking after the boys and living alongside them. The question was whether the employers were vicariously liable for deliberate wrongs committed by the warden in the course of his employment.',
+    judgment:'The House of Lords held the employers vicariously liable for the warden\'s assaults, departing from the traditional Salmond test and reformulating the close-connection approach.',
+    ratio:'The test for an employer\'s vicarious liability for an employee\'s deliberate wrongdoing is whether the tortious acts were so closely connected with the employment as to make it fair and just to hold the employer liable. The traditional "improper mode of a proper act" formulation is inadequate for deliberate wrongs; the court must consider the field of activities entrusted to the employee as a whole. Where the employer has delegated a duty of care to the employee and the wrong was committed in performance of that very function — not merely incidentally — the connection is sufficiently close to engage vicarious liability.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2001/22.html' },
+
+  // ── Human Rights — case ──
+  { id:'r20260901e', type:'curated', cat:'case-law', area:'Human Rights',
+    title:'A & Ors v Secretary of State for the Home Department [2004] UKHL 56',
+    court:'House of Lords',
+    facts:'Fourteen foreign nationals were detained indefinitely without trial under s.23 Anti-terrorism, Crime and Security Act 2001. The UK had purported to derogate from Art.5 ECHR on the ground that there was a "public emergency threatening the life of the nation". The detainees challenged both the validity of the derogation order and the compatibility of the detention scheme with Arts 5 and 14 ECHR, arguing that it discriminated between nationals and non-nationals in a way that could not be justified.',
+    judgment:'The House of Lords (8:1) held the derogation order flawed and issued a declaration that s.23 ATCSA was incompatible with Arts 5 and 14 ECHR.',
+    ratio:'Even in a national emergency, a measure derogating from Convention rights must be strictly required by the exigencies of the situation. Where the legislative scheme permitted indefinite detention of foreign nationals on terrorism suspicion while leaving nationals in an identical position at liberty, the discrimination between the two groups revealed that the threat did not make such a drastic measure strictly necessary. Courts must scrutinise executive claims about the existence and scope of a national emergency, applying appropriate but not absolute deference to security judgments; they retain responsibility for ensuring the substance of rights is not hollowed out.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/56.html' },
+
+  // ── Constitutional — case ──
+  { id:'r20260901f', type:'curated', cat:'case-law', area:'Constitutional',
+    title:'R (Jackson & Ors) v Her Majesty\'s Attorney General [2005] UKHL 56',
+    court:'House of Lords',
+    facts:'Appellants with an interest in fox-hunting challenged the legal validity of the Hunting Act 2004, which had been passed under the Parliament Acts 1911 and 1949 procedure without the consent of the House of Lords. They argued that the Parliament Act 1949 was itself invalid because the 1911 Act procedure could not be used to amend the 1911 Act itself, and that the Parliament Acts could not lawfully be used to enact fundamental constitutional changes.',
+    judgment:'The House of Lords unanimously upheld the validity of both the Parliament Act 1949 and the Hunting Act 2004.',
+    ratio:'The Parliament Acts 1911 and 1949 together create a valid alternative route to legislation that does not require the consent of the House of Lords, and the 1949 Act was validly enacted under the 1911 procedure. However, several Law Lords stated obiter that parliamentary sovereignty may not be absolute: there are constitutional fundamentals that the courts might decline to enforce if legislation purported to override them, and that the rule of law itself may constrain what Parliament can validly enact. These remarks, though not binding, are the most prominent modern judicial endorsement of common-law constitutional limits on Parliament.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/56.html' },
+
+  // ── Tort — case ──
+  { id:'r20260901g', type:'curated', cat:'case-law', area:'Tort',
+    title:'Various Claimants v The Catholic Child Welfare Society & Ors [2012] UKSC 56',
+    court:'UK Supreme Court',
+    facts:'Former residents of a residential school for troubled boys brought claims against several defendants for systematic abuse by Brothers of the De La Salle Institute who had taught and supervised them. The Brothers were members of a religious order, unpaid and not employees in any conventional sense. The issue was whether the Institute could be vicariously liable for their torts.',
+    judgment:'The Supreme Court held that the Institute was vicariously liable for the brothers\' abuse, extending vicarious liability beyond orthodox employment relationships.',
+    ratio:'Vicarious liability is not confined to relationships of employment; it can arise where the relationship between wrongdoer and defendant is "akin to employment" — sufficiently close and integrated to make it fair and just to impose liability. Relevant factors include whether the wrongdoer carries on activities for the benefit of the defendant enterprise, whether the defendant selects, trains and controls the wrongdoer, and how closely integrated into the enterprise the wrongdoing was. The religious brothers here, though unpaid, satisfied these criteria because they served the Institute\'s mission, were subject to its control, and their abuse was closely connected with their assigned pastoral function.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2012/56.html' },
+
+  // ── Employment — statute ──
+  { id:'r20260901h', type:'curated', cat:'statute', area:'Employment',
+    title:'Equality Act 2010',
+    body:"Consolidated nine earlier discrimination statutes into a single harmonised framework protecting nine protected characteristics across employment, education, the provision of goods and services, and the exercise of public functions. It also introduced the public sector equality duty and extended the reach of discrimination law in significant respects.",
+    sections:[
+      { num:'4', head:'The Protected Characteristics', text:'Lists the nine protected characteristics: age, disability, gender reassignment, marriage and civil partnership, pregnancy and maternity, race, religion or belief, sex, and sexual orientation.' },
+      { num:'13', head:'Direct Discrimination', text:'A person discriminates against another if, because of a protected characteristic, they treat them less favourably than they treat or would treat others who do not share that characteristic.' },
+      { num:'15', head:'Discrimination Arising from Disability', text:'A person discriminates against a disabled person if they treat them unfavourably because of something arising in consequence of their disability, and cannot show the treatment is a proportionate means of achieving a legitimate aim.' },
+      { num:'19', head:'Indirect Discrimination', text:'Applying a provision, criterion or practice equally to all is indirect discrimination if it puts people sharing a protected characteristic at a particular disadvantage, unless it is a proportionate means of achieving a legitimate aim.' },
+      { num:'26', head:'Harassment', text:'Unwanted conduct related to a protected characteristic which has the purpose or effect of violating a person\'s dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment constitutes harassment.' },
+      { num:'149', head:'Public Sector Equality Duty', text:'Public authorities must have due regard to the need to eliminate discrimination, advance equality of opportunity, and foster good relations between persons sharing and not sharing a protected characteristic.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2010/15/contents' },
+
+  // ── Human Rights — statute ──
+  { id:'r20260901i', type:'curated', cat:'statute', area:'Human Rights',
+    title:'Human Rights Act 1998',
+    body:"Gave direct domestic effect to most rights and freedoms guaranteed under the European Convention on Human Rights, enabling individuals to invoke them before UK courts without first going to Strasbourg. It is the constitutional centrepiece of the modern rights framework in England and Wales, and radically changed the relationship between courts, Parliament, and the executive.",
+    sections:[
+      { num:'2', head:'Interpretation of Convention Rights', text:'Courts and tribunals determining a question involving a Convention right must take into account judgments, decisions and opinions of the European Court of Human Rights.' },
+      { num:'3', head:'Interpretation of Legislation', text:'So far as it is possible to do so, primary legislation and subordinate legislation must be read and given effect in a way which is compatible with the Convention rights.' },
+      { num:'4', head:'Declaration of Incompatibility', text:'Where a higher court is satisfied that a provision of primary legislation is incompatible with a Convention right, it may make a declaration of incompatibility; this does not affect the continuing validity of the legislation.' },
+      { num:'6', head:'Acts of Public Authorities', text:'It is unlawful for a public authority to act in a way which is incompatible with a Convention right, unless primary legislation requires the authority so to act.' },
+      { num:'7', head:'Proceedings', text:'A person who claims that a public authority has acted — or proposes to act — unlawfully under s.6 may bring proceedings in the appropriate court or tribunal.' },
+      { num:'10', head:'Power to Take Remedial Action', text:'Where a declaration of incompatibility has been made, or following an adverse Strasbourg judgment, a minister may by remedial order make such amendments to the legislation as they consider necessary.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1998/42/contents' },
+
+  // ── Property — statute ──
+  { id:'r20260901j', type:'curated', cat:'statute', area:'Property',
+    title:'Land Registration Act 2002',
+    body:"Replaced the Land Registration Act 1925 and fundamentally modernised the framework for registered land in England and Wales. It streamlined overriding interests, introduced a new scheme for adverse possession, paved the way for electronic conveyancing, and made the register the definitive record of title.",
+    sections:[
+      { num:'4', head:'When First Registration is Required', text:'Lists the events triggering compulsory first registration, including the transfer of a qualifying estate in land and the grant of a lease for a term of more than seven years.' },
+      { num:'27', head:'Dispositions Required to be Registered', text:'A legal estate or charge does not operate at law until the relevant disposition is completed by registration; until then it takes effect in equity only.' },
+      { num:'Sch 1 & 3', head:'Overriding Interests', text:'Schedule 1 sets out interests that override first registration; Schedule 3 sets out interests that override subsequent registered dispositions. Both schedules significantly narrow the categories of overriding interest compared with the 1925 Act, closing gaps that had previously allowed unregistered interests to take priority over registered proprietors.' },
+      { num:'60', head:'Boundary', text:'The boundary of a registered estate as shown for the purposes of the register is a general boundary only and does not fix the precise legal boundary.' },
+      { num:'96–98', head:'Adverse Possession', text:'Replaces the old limitation-period approach with a notification scheme: a squatter may apply for registration after ten years of adverse possession, but the registered proprietor must be notified and given the opportunity to object before any registration takes effect.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/9/contents' },
+
   ];
 });

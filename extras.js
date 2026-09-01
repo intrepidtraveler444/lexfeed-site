@@ -104,6 +104,41 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  { id:'xa20260901a', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Howarth — 'Many Duties of Care — or a Duty of Care? Notes from the Underground' (2006) 26 OJLS 449",
+    body:"David Howarth challenges the assumption, common after Caparo, that English negligence law operates through a single general duty of care test qualified by incrementalism and policy. He argues instead that the case law is best understood as a set of distinct, context-specific duties — duties not to cause physical injury, not to cause economic loss, not to make careless statements, and so on — each with its own conditions and limits. Treating the 'duty of care' as a single concept, he contends, distorts analysis by importing the reasoning appropriate to one context into another where it does not belong. The article is a significant challenge to unified duty-of-care thinking.",
+    src:'Oxford Journal of Legal Studies', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1096826' },
+
+  { id:'xa20260901b', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Nolan — 'New Forms of Damage in Negligence' (2007) 70 MLR 59",
+    body:"Donal Nolan examines the courts' willingness to recognise novel heads of compensable damage in negligence, focusing in particular on the development of 'loss of a chance' claims after Gregg v Scott and of psychiatric injury liability after Page v Smith. He argues that extending the concept of recoverable damage is a more principled and transparent way to expand negligence liability than manipulating the duty of care, and analyses the conditions under which new forms of damage should be recognised. The article is a leading contribution on how the damage element shapes and limits the scope of negligence.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-2230.2006.00626.x' },
+
+  { id:'xa20260901c', type:'curated', cat:'journal-article', area:'Constitutional',
+    title:"Kavanagh — 'Deference or Defiance? The Limits of the Judicial Role in Constitutional Adjudication' (2008)",
+    body:"Aileen Kavanagh examines the appropriate degree of judicial deference to legislative and executive decisions under the Human Rights Act. She argues that 'deference' is an unhelpful label that obscures the real question — when should courts exercise strong or weak review? — and proposes instead a 'due deference' model that calibrates judicial scrutiny to the relative institutional competence and constitutional role of the courts versus the other branches. The chapter is a leading statement of a principled, differentiated approach to the intensity of human rights review, contrasting with both strong judicial supremacy and blanket legislative deference.",
+    src:'Cambridge University Press', link:'https://www.cambridge.org/core/books/abs/expounding-the-constitution/deference-or-defiance-the-limits-of-the-judicial-role-in-constitutional-adjudication/687BA9FA306DA3F5B5C433A26397E5BD' },
+
+  { id:'xa20260901d', type:'curated', cat:'journal-article', area:'Trusts',
+    title:"Etherton — 'Constructive Trusts: A New Model for Equity and Unjust Enrichment' (2008) 67 CLJ 265",
+    body:"Sir Terence Etherton (later Master of the Rolls) argues that the English law of constructive trusts is fragmented across too many disparate categories — common intention trusts, strangers who receive or assist, unconscionable retention — none of which has a unifying principle. He proposes a new model in which constructive trusts in the personal property sphere are properly understood as part of the law of unjust enrichment: the trust arises wherever, on analogy with unjust enrichment, there is no basis for the defendant to retain the benefit against the claimant. The article opened a significant debate about the doctrinal foundations of the constructive trust.",
+    src:'Cambridge Law Journal', link:'https://doi.org/10.1017/S0008197308000342' },
+
+  { id:'xa20260901e', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Webb — 'What Right Does Unjust Enrichment Law Protect?' (2008) 28 OJLS 245",
+    body:"Charlie Webb argues that the standard answer — that unjust enrichment law protects a property right the claimant already had — is circular and incomplete, and that the right protected must instead be identified by examining the grounds for restitution themselves. On his account, the law of unjust enrichment protects an entitlement to the direct transfers of value for which no legal basis has been provided, and this explains both the conditions for the obligation to arise and the measure of recovery. The article is an important analytical intervention on the normative foundation of unjust enrichment doctrine.",
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article-abstract/28/2/245/1477573' },
+
+  { id:'xa20260901f', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Tofaris & Steel — 'Negligence Liability for Omissions and the Police' (2016) 75 CLJ 128",
+    body:"Stelios Tofaris and Sandy Steel examine the no-liability-for-omissions rule in negligence and the exceptional police immunity from suit affirmed in cases such as Michael v Chief Constable of South Wales. They argue the policy justifications conventionally offered for both doctrines — that defendants cannot control third parties, that liability would over-deter and cause defensive behaviour — fail on their own terms when tested against the actual cases. The article mounts a sustained empirical and normative critique of the immunity and calls for the Supreme Court to reconsider it, and remains a leading academic response to the controversial Michael decision.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/negligence-liability-for-omissions-and-the-police/AC83F61745C4326FEE217D993868C08D' },
+
+  { id:'xa20260901g', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Goudkamp & Nolan — 'Contributory Negligence in the Twenty-First Century: An Empirical Study of First Instance Decisions' (2016) 79 MLR 575",
+    body:"James Goudkamp and Donal Nolan present a systematic empirical analysis of how English first-instance courts actually apply contributory negligence — the defence that reduces a claimant's damages for their own fault — across a large sample of decided cases. They find striking inconsistency in the approach taken to both the liability and quantum stages, including wide variation in the reduction percentages awarded for comparable conduct and a tendency for courts to treat the defence as a rough-and-ready device rather than a principled apportionment of responsibility. The study is both a valuable empirical baseline and a call for greater doctrinal coherence.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/1468-2230.12202' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +229,48 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  { id:'xt20260901a', type:'curated', cat:'legal-term', area:'Trusts',
+    title:'Constructive Trust',
+    body:"A constructive trust is a trust imposed by equity irrespective of the parties' expressed intention, arising by operation of law wherever conscience dictates that one person should not retain a beneficial interest in property that legally belongs to them. It is not a single doctrine but a family of situations — including common intention constructive trusts of the family home, receipt of trust property with knowledge, and stranger assistance in a breach of fiduciary duty — united by the equitable principle that the legal owner holds the property for the benefit of another. The remedy is proprietary rather than personal and so takes priority in insolvency.",
+    example:"A cohabiting couple buy a house in the man's sole name, but both contribute to the purchase price and decorating with a common intention to share ownership. On separation equity may impose a constructive trust, giving the woman a proportionate beneficial interest in the property even though she holds no legal title.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/constructive-trust' },
+
+  { id:'xt20260901b', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Volenti Non Fit Injuria',
+    body:"Volenti non fit injuria — 'to one who consents, no wrong is done' — is a complete defence in tort law that bars a claimant who has freely and voluntarily consented to the very risk that caused their injury. The consent must be genuine and informed: the defendant must show not merely that the claimant knew of the risk but that they accepted it as their own, and consent obtained under pressure or without full knowledge of the danger does not suffice. The defence has been narrowed by statute in the employment context, and knowledge of risk alone (scienti) is not sufficient — there must be voluntary agreement (volenti).",
+    example:"A spectator at a cricket match is struck by a ball hit over the boundary in the ordinary course of play. Because the spectator voluntarily attended a match knowing that balls occasionally clear the boundary, the club can rely on volenti non fit injuria — the claimant accepted the inherent risk of attending.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/volenti-non-fit-injuria' },
+
+  { id:'xt20260901c', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Quantum Meruit',
+    body:"Quantum meruit — 'as much as he has earned' — is a restitutionary remedy by which a party who has performed work or provided services under a void or discharged contract, or at the request of the other party without an agreed price, may recover a reasonable sum for the value of the benefit conferred. It is available both as a claim in unjust enrichment and, where a contract is partly performed before frustration or discharge for breach, as a way of ensuring that the performing party is not left entirely without compensation.",
+    example:"A builder completes three-quarters of a renovation contract before the owner wrongfully refuses to permit further access and terminates the contract. Even though the work is incomplete, the builder can claim quantum meruit — a reasonable sum reflecting the value of the work actually done — rather than being left empty-handed because the contract price was for full completion.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/quantum-meruit' },
+
+  { id:'xt20260901d', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Frustration of Contract',
+    body:"Frustration automatically discharges a contract where, after formation, an event occurs that is not the fault of either party and makes performance radically different from what was undertaken. The supervening event must be unforeseen and must destroy the commercial purpose of the contract or render it physically impossible: mere increased difficulty or expense will not suffice. The consequences of frustration are governed partly by the common law and partly by the Law Reform (Frustrated Contracts) Act 1943, which provides for recovery of money paid and recompense for valuable benefits conferred before discharge.",
+    example:"A hall is booked for a concert but burns down before the date. Neither party is at fault, and performance has become physically impossible: the contract is frustrated. Under the 1943 Act any advance booking fee already paid may be recovered, and the hall owner can offset expenses reasonably incurred in preparing for the event.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/frustration-of-contract' },
+
+  { id:'xt20260901e', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Undue Influence',
+    body:"Undue influence is an equitable doctrine that allows a contract or gift to be set aside where one party's consent was obtained by the improper exertion of influence over them by the other. Actual undue influence is proved by demonstrating that specific illegitimate pressure was brought to bear; presumed undue influence arises automatically from certain relationships of trust and confidence (e.g. solicitor/client, doctor/patient) once the transaction calls for explanation. Where a third party's undue influence causes a party to enter a transaction with a lender, the lender may also lose the benefit of the transaction if they had notice of the circumstances.",
+    example:"An elderly woman in poor health transfers her house to her sole carer under a deed the carer drafted and presented without encouraging her to seek independent legal advice. This falls within a relationship of trust and confidence, so a presumption of undue influence arises; the carer must rebut it, or equity will set the transfer aside.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/undue-influence' },
+
+  { id:'xt20260901f', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Res Ipsa Loquitur',
+    body:"Res ipsa loquitur — 'the thing speaks for itself' — is an evidentiary doctrine in negligence that allows the fact of an accident to raise an inference of the defendant's negligence, without the claimant needing to prove the specific act or omission that caused it. Three conditions must be satisfied: the defendant must have been in control of the situation, the accident must be of a kind that does not ordinarily happen without negligence, and there must be no explanation pointing elsewhere. Once the inference arises the evidential burden shifts; the defendant may rebut it by proving they exercised all reasonable care.",
+    example:"A patient goes under general anaesthetic for an operation on their left knee and wakes to find their right knee has been operated on. The facts are sufficient to raise res ipsa loquitur — a surgical team in full control does not operate on the wrong limb without some negligence — and the burden shifts to the surgeon to explain what happened.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/res-ipsa-loquitur-' },
+
+  { id:'xt20260901g', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Specific Performance (Commercial)',
+    body:"Specific performance is an equitable remedy that compels a party in breach of contract to perform their contractual obligations rather than simply paying damages. In commercial contexts it is ordered where monetary compensation would be inadequate — most commonly on a sale of land (since each parcel is unique) or a sale of goods that are rare or unique — and the court has a broad discretion to refuse it where enforcement would cause undue hardship, where the order would require constant supervision, or where the claimant has acted inequitably. It does not lie against personal service contracts.",
+    example:"A vendor contracts to sell a 500-year-old manor house and then refuses to complete. The buyer cannot easily purchase an equivalent property, so damages would be inadequate. The court may grant specific performance ordering the vendor to complete the conveyance, since land is unique and equity's jurisdiction in such cases is well established.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/specific-performance-commercial' },
 
   ],
 
