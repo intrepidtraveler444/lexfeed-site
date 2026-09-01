@@ -57,12 +57,12 @@
   // ── 4. Criminal — statute ──
   { id:'k4', type:'curated', cat:'statute', area:'Criminal',
     title:'Bribery Act 2010',
-    body:"Modernised and consolidated UK anti-bribery law, replacing a patchwork of common law and older statutes. Notable for its broad offences, extensive extraterritorial reach, and a distinctive corporate ‘failure to prevent’ offence.",
+    body:"Modernised and consolidated UK anti-bribery law, replacing a patchwork of common law and older statutes. Notable for its broad offences, extensive extraterritorial reach, and a distinctive corporate 'failure to prevent' offence.",
     sections:[
       { num:'1', head:'Bribing Another Person', text:'Offering, promising or giving a financial or other advantage to induce or reward improper performance of a relevant function.' },
       { num:'2', head:'Being Bribed', text:'Requesting, agreeing to receive or accepting an advantage in connection with the improper performance of a function or activity.' },
       { num:'6', head:'Bribery of Foreign Public Officials', text:'A separate offence of bribing a foreign public official to obtain or retain business or a business advantage.' },
-      { num:'7', head:'Failure of Commercial Organisations to Prevent Bribery', text:'A strict-liability corporate offence committed where a person associated with an organisation bribes another to benefit it — subject to the “adequate procedures” defence.' },
+      { num:'7', head:'Failure of Commercial Organisations to Prevent Bribery', text:'A strict-liability corporate offence committed where a person associated with an organisation bribes another to benefit it — subject to the "adequate procedures" defence.' },
       { num:'9', head:'Guidance', text:'Requires the Secretary of State to publish guidance on procedures organisations can put in place to prevent bribery.' },
       { num:'12', head:'Territorial Application', text:'Offences may be prosecuted even where the conduct occurs wholly abroad, provided the person has a close connection with the UK.' },
     ],
@@ -129,7 +129,7 @@
       { num:'3', head:'Civil Remedy', text:'An actual or apprehended breach may found a civil claim, allowing damages (including for anxiety) and an injunction.' },
       { num:'4', head:'Fear of Violence', text:'A more serious offence where the course of conduct causes another to fear, on at least two occasions, that violence will be used against them.' },
       { num:'4A', head:'Stalking Involving Fear or Distress', text:'Targets stalking that causes fear of violence or serious alarm or distress with a substantial adverse effect on daily activities.' },
-      { num:'7', head:'Interpretation', text:'Defines a “course of conduct” (conduct on at least two occasions) and provides that references to harassing a person include alarming them or causing distress.' },
+      { num:'7', head:'Interpretation', text:'Defines a "course of conduct" (conduct on at least two occasions) and provides that references to harassing a person include alarming them or causing distress.' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1997/40/contents' },
 
@@ -276,7 +276,7 @@
   // ── Criminal — statute ──
   { id:'m7', type:'curated', cat:'statute', area:'Criminal',
     title:'Sentencing Act 2020',
-    body:"Consolidated the law on sentencing procedure in England and Wales into a single ‘Sentencing Code’, bringing together the powers of the criminal courts when dealing with offenders. It restates rather than reforms the law, aiming to make sentencing more accessible and to cut the errors caused by scattered, frequently-amended provisions.",
+    body:"Consolidated the law on sentencing procedure in England and Wales into a single 'Sentencing Code', bringing together the powers of the criminal courts when dealing with offenders. It restates rather than reforms the law, aiming to make sentencing more accessible and to cut the errors caused by scattered, frequently-amended provisions.",
     sections:[
       { num:'1', head:'The Sentencing Code', text:'Introduces the Sentencing Code as the consolidated framework governing the sentencing of offenders in the criminal courts.' },
       { num:'57', head:'Purposes of Sentencing', text:'For offenders aged 18 or over, the court must have regard to the punishment of offenders, the reduction of crime (including by deterrence), reform and rehabilitation, the protection of the public, and reparation by offenders.' },
@@ -291,10 +291,10 @@
     title:'Domestic Abuse Act 2021',
     body:"Created the first statutory definition of domestic abuse in England and Wales, recognising that abuse extends well beyond physical violence. It strengthened protections for victims, treated children exposed to abuse as victims in their own right, and closed gaps in the criminal law.",
     sections:[
-      { num:'1', head:'Definition of “Domestic Abuse”', text:'Defines domestic abuse between persons aged 16 or over who are personally connected, covering physical or sexual abuse, violent or threatening behaviour, controlling or coercive behaviour, economic abuse, and psychological, emotional or other abuse.' },
-      { num:'2', head:'Definition of “Personally Connected”', text:'Sets out the relationships that count — including partners, former partners, those who are or were married or in a civil partnership, and certain relatives.' },
+      { num:'1', head:'Definition of \"Domestic Abuse\"', text:'Defines domestic abuse between persons aged 16 or over who are personally connected, covering physical or sexual abuse, violent or threatening behaviour, controlling or coercive behaviour, economic abuse, and psychological, emotional or other abuse.' },
+      { num:'2', head:'Definition of \"Personally Connected\"', text:'Sets out the relationships that count — including partners, former partners, those who are or were married or in a civil partnership, and certain relatives.' },
       { num:'3', head:'Children as Victims', text:'A child who sees, hears or experiences the effects of domestic abuse, and is related to the perpetrator or victim, is also to be regarded as a victim of domestic abuse.' },
-      { num:'71', head:'Consent to Serious Harm for Sexual Gratification', text:'Confirms that a person cannot consent to the infliction of serious harm for the purposes of sexual gratification, so such consent is not a defence to the resulting offence (the so-called “rough sex” defence).' },
+      { num:'71', head:'Consent to Serious Harm for Sexual Gratification', text:'Confirms that a person cannot consent to the infliction of serious harm for the purposes of sexual gratification, so such consent is not a defence to the resulting offence (the so-called "rough sex" defence).' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2021/17/contents' },
 
@@ -310,15 +310,60 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2021/30/contents' },
 
+  // ── Constitutional — case ──
+  { id:'n1', type:'curated', cat:'case-law', area:'Constitutional',
+    title:'R (Jackson) v Attorney General [2005] UKHL 56',
+    court:'House of Lords',
+    facts:'The Hunting Act 2004 was enacted using the Parliament Acts procedure, with the Commons alone giving assent after the Lords withheld consent. The claimants argued that the Parliament Act 1949, which had itself been passed under the 1911 Act without the Lords\' approval, was not a valid Act of Parliament, and that any legislation made under it — including the Hunting Act — was therefore invalid.',
+    judgment:'The House of Lords unanimously dismissed the challenge, holding that both the 1949 Act and the Hunting Act were valid Acts of Parliament. However, several Law Lords delivered wide-ranging obiter observations about the constitutional limits of Parliament\'s power.',
+    ratio:'Legislation enacted under the Parliament Acts procedure without the consent of the House of Lords is a valid Act of Parliament. Obiter: the principle of parliamentary sovereignty is not unconditional — Parliament cannot use the Parliament Acts to enact legislation that subverts the rule of law or removes the supervisory jurisdiction of the courts, and such an attempt might not be recognised by the judiciary.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/56.html' },
+
+  // ── Human Rights — case ──
+  { id:'n2', type:'curated', cat:'case-law', area:'Human Rights',
+    title:'A v Secretary of State for the Home Department [2004] UKHL 56',
+    court:'House of Lords',
+    facts:'In the aftermath of the September 2001 terrorist attacks, the UK derogated from Article 5 ECHR and enacted the Anti-terrorism, Crime and Security Act 2001, s.23, which authorised indefinite detention without charge of foreign nationals certified by the Home Secretary as suspected international terrorists who could not be deported. Nine foreign nationals held at Belmarsh Prison challenged the legality of their detention.',
+    judgment:'By an 8–1 majority, the House of Lords quashed the derogation order and made a declaration of incompatibility under the Human Rights Act 1998, finding s.23 incompatible with Articles 5 and 14 ECHR. The detention was discriminatory — nationals posing an equivalent threat were not detained — and the derogation could not be justified.',
+    ratio:'A derogation from Convention rights under Article 15 ECHR is only lawful where the threat is genuine and the measures taken are strictly required. Indefinite detention of foreign but not British terrorism suspects, where both groups presented a comparable risk, was unjustifiably discriminatory. Courts retain constitutional authority to scrutinise executive assessments of necessity even in a national emergency, though they should give appropriate weight to the executive\'s superior access to intelligence.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/56.html' },
+
+  // ── Criminal — case ──
+  { id:'n3', type:'curated', cat:'case-law', area:'Criminal',
+    title:'Ivey v Genting Casinos (UK) Ltd t/a Crockfords [2017] UKSC 67',
+    court:'UK Supreme Court',
+    facts:'A professional gambler used "edge-sorting" — exploiting minute manufacturing asymmetries visible on the backs of playing cards — to identify high-value cards in advance. Using this technique he won approximately £7.7 million at Punto Banco. The casino refused to pay, claiming he had cheated contrary to s.42 Gambling Act 2005. Ivey argued that edge-sorting was a legitimate skill and that he had not been dishonest.',
+    judgment:'The Supreme Court held unanimously that Ivey had cheated within the meaning of the Act. It also used the opportunity to restate the test for dishonesty, departing from the second limb of the direction given in R v Ghosh.',
+    ratio:'Dishonesty in criminal law is tested by a single objective standard: the court first ascertains the defendant\'s actual subjective knowledge and beliefs about the relevant facts, then asks whether the conduct was dishonest according to the standards of ordinary, decent people. There is no further requirement to ask whether the defendant knew their conduct would be so regarded. The Ghosh direction is disapproved and should no longer be given.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2017/67.html' },
+
+  // ── Company — case ──
+  { id:'n4', type:'curated', cat:'case-law', area:'Company',
+    title:'Regal (Hastings) Ltd v Gulliver [1942] UKHL 1',
+    court:'House of Lords',
+    facts:'Regal (Hastings) Ltd sought to acquire two further cinemas through a subsidiary, Hastings Amalgamated Cinemas Ltd. The lessor required the subsidiary to be capitalised at £5,000, but Regal could contribute only £2,000. The directors personally subscribed for the remaining shares. When Regal and the subsidiary were sold together, the directors each realised a profit of around £2.80 per share on their personal holdings.',
+    judgment:'The House of Lords held that the directors were accountable to Regal for the profits they had made, notwithstanding that they had acted in good faith and that Regal itself had suffered no financial loss.',
+    ratio:'A director who makes a profit by virtue of and in the course of their fiduciary office is liable to account to the company for that profit. The liability is strict: it is irrelevant that the company could not or would not itself have exploited the opportunity, that no loss was suffered, or that the director acted honestly. Only fully informed shareholder approval can authorise the director to retain such a profit.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1942/1.html' },
+
+  // ── Equity — case ──
+  { id:'n5', type:'curated', cat:'case-law', area:'Equity',
+    title:'Barclays Bank plc v O\'Brien [1993] UKHL 6',
+    court:'House of Lords',
+    facts:'Mrs O\'Brien signed a second charge over the matrimonial home to secure her husband\'s company overdraft. The bank\'s clerk witnessed the signature without ensuring she understood the extent of the liability, as internal bank instructions required. Mrs O\'Brien later sought to have the charge set aside, claiming she had signed in reliance on her husband\'s misrepresentation that it was a short-term guarantee for a modest sum.',
+    judgment:'The House of Lords held that the bank had constructive notice of the husband\'s misrepresentation and could not enforce the charge. It set out the steps a creditor must take to avoid being fixed with notice in such circumstances.',
+    ratio:'Where a transaction is entered into by a surety who is in a personal relationship with the principal debtor and is on its face not financially advantageous to the surety, the creditor is put on inquiry of possible undue influence or misrepresentation. To avoid being fixed with constructive notice, the creditor must take reasonable steps to ensure the surety has received independent advice and has entered the transaction freely and in full understanding of the risks — typically by insisting on independent legal advice before the security is taken.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1993/6.html' },
+
   // ── Public Law — statute ──
   { id:'m10', type:'curated', cat:'statute', area:'Public Law',
     title:'Investigatory Powers Act 2016',
-    body:"Overhauled and avowed the legal framework governing the use of interception and surveillance powers by the intelligence agencies and law enforcement, following revelations about bulk data collection. Dubbed the ‘Snoopers’ Charter’, it introduced new oversight in exchange for placing sweeping powers on a clear statutory footing.",
+    body:"Overhauled and avowed the legal framework governing the use of interception and surveillance powers by the intelligence agencies and law enforcement, following revelations about bulk data collection. Dubbed the 'Snoopers\' Charter', it introduced new oversight in exchange for placing sweeping powers on a clear statutory footing.",
     sections:[
       { num:'Pt 2', head:'Lawful Interception', text:'Sets out the warrant regime for intercepting the content of communications and makes intentional interception without lawful authority a criminal offence.' },
       { num:'Pt 4', head:'Retention of Communications Data', text:'Allows the Secretary of State to require telecommunications operators to retain communications data — including internet connection records — for up to 12 months.' },
       { num:'Pt 6', head:'Bulk Powers', text:'Authorises bulk interception, bulk acquisition of communications data, and bulk equipment interference, subject to statutory safeguards and warrants.' },
-      { num:'227', head:'The Investigatory Powers Commissioner', text:'Creates the Investigatory Powers Commissioner and Judicial Commissioners, who must approve the most intrusive warrants under a “double-lock” alongside the Secretary of State.' },
+      { num:'227', head:'The Investigatory Powers Commissioner', text:'Creates the Investigatory Powers Commissioner and Judicial Commissioners, who must approve the most intrusive warrants under a "double-lock" alongside the Secretary of State.' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
