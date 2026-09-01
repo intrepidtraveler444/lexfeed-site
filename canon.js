@@ -57,12 +57,12 @@
   // ── 4. Criminal — statute ──
   { id:'k4', type:'curated', cat:'statute', area:'Criminal',
     title:'Bribery Act 2010',
-    body:"Modernised and consolidated UK anti-bribery law, replacing a patchwork of common law and older statutes. Notable for its broad offences, extensive extraterritorial reach, and a distinctive corporate ‘failure to prevent’ offence.",
+    body:"Modernised and consolidated UK anti-bribery law, replacing a patchwork of common law and older statutes. Notable for its broad offences, extensive extraterritorial reach, and a distinctive corporate 'failure to prevent' offence.",
     sections:[
       { num:'1', head:'Bribing Another Person', text:'Offering, promising or giving a financial or other advantage to induce or reward improper performance of a relevant function.' },
       { num:'2', head:'Being Bribed', text:'Requesting, agreeing to receive or accepting an advantage in connection with the improper performance of a function or activity.' },
       { num:'6', head:'Bribery of Foreign Public Officials', text:'A separate offence of bribing a foreign public official to obtain or retain business or a business advantage.' },
-      { num:'7', head:'Failure of Commercial Organisations to Prevent Bribery', text:'A strict-liability corporate offence committed where a person associated with an organisation bribes another to benefit it — subject to the “adequate procedures” defence.' },
+      { num:'7', head:'Failure of Commercial Organisations to Prevent Bribery', text:'A strict-liability corporate offence committed where a person associated with an organisation bribes another to benefit it — subject to the "adequate procedures" defence.' },
       { num:'9', head:'Guidance', text:'Requires the Secretary of State to publish guidance on procedures organisations can put in place to prevent bribery.' },
       { num:'12', head:'Territorial Application', text:'Offences may be prosecuted even where the conduct occurs wholly abroad, provided the person has a close connection with the UK.' },
     ],
@@ -129,7 +129,7 @@
       { num:'3', head:'Civil Remedy', text:'An actual or apprehended breach may found a civil claim, allowing damages (including for anxiety) and an injunction.' },
       { num:'4', head:'Fear of Violence', text:'A more serious offence where the course of conduct causes another to fear, on at least two occasions, that violence will be used against them.' },
       { num:'4A', head:'Stalking Involving Fear or Distress', text:'Targets stalking that causes fear of violence or serious alarm or distress with a substantial adverse effect on daily activities.' },
-      { num:'7', head:'Interpretation', text:'Defines a “course of conduct” (conduct on at least two occasions) and provides that references to harassing a person include alarming them or causing distress.' },
+      { num:'7', head:'Interpretation', text:'Defines a "course of conduct" (conduct on at least two occasions) and provides that references to harassing a person include alarming them or causing distress.' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1997/40/contents' },
 
@@ -276,7 +276,7 @@
   // ── Criminal — statute ──
   { id:'m7', type:'curated', cat:'statute', area:'Criminal',
     title:'Sentencing Act 2020',
-    body:"Consolidated the law on sentencing procedure in England and Wales into a single ‘Sentencing Code’, bringing together the powers of the criminal courts when dealing with offenders. It restates rather than reforms the law, aiming to make sentencing more accessible and to cut the errors caused by scattered, frequently-amended provisions.",
+    body:"Consolidated the law on sentencing procedure in England and Wales into a single 'Sentencing Code', bringing together the powers of the criminal courts when dealing with offenders. It restates rather than reforms the law, aiming to make sentencing more accessible and to cut the errors caused by scattered, frequently-amended provisions.",
     sections:[
       { num:'1', head:'The Sentencing Code', text:'Introduces the Sentencing Code as the consolidated framework governing the sentencing of offenders in the criminal courts.' },
       { num:'57', head:'Purposes of Sentencing', text:'For offenders aged 18 or over, the court must have regard to the punishment of offenders, the reduction of crime (including by deterrence), reform and rehabilitation, the protection of the public, and reparation by offenders.' },
@@ -291,10 +291,10 @@
     title:'Domestic Abuse Act 2021',
     body:"Created the first statutory definition of domestic abuse in England and Wales, recognising that abuse extends well beyond physical violence. It strengthened protections for victims, treated children exposed to abuse as victims in their own right, and closed gaps in the criminal law.",
     sections:[
-      { num:'1', head:'Definition of “Domestic Abuse”', text:'Defines domestic abuse between persons aged 16 or over who are personally connected, covering physical or sexual abuse, violent or threatening behaviour, controlling or coercive behaviour, economic abuse, and psychological, emotional or other abuse.' },
-      { num:'2', head:'Definition of “Personally Connected”', text:'Sets out the relationships that count — including partners, former partners, those who are or were married or in a civil partnership, and certain relatives.' },
+      { num:'1', head:'Definition of \"Domestic Abuse\"', text:'Defines domestic abuse between persons aged 16 or over who are personally connected, covering physical or sexual abuse, violent or threatening behaviour, controlling or coercive behaviour, economic abuse, and psychological, emotional or other abuse.' },
+      { num:'2', head:'Definition of \"Personally Connected\"', text:'Sets out the relationships that count — including partners, former partners, those who are or were married or in a civil partnership, and certain relatives.' },
       { num:'3', head:'Children as Victims', text:'A child who sees, hears or experiences the effects of domestic abuse, and is related to the perpetrator or victim, is also to be regarded as a victim of domestic abuse.' },
-      { num:'71', head:'Consent to Serious Harm for Sexual Gratification', text:'Confirms that a person cannot consent to the infliction of serious harm for the purposes of sexual gratification, so such consent is not a defence to the resulting offence (the so-called “rough sex” defence).' },
+      { num:'71', head:'Consent to Serious Harm for Sexual Gratification', text:'Confirms that a person cannot consent to the infliction of serious harm for the purposes of sexual gratification, so such consent is not a defence to the resulting offence (the so-called "rough sex" defence).' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2021/17/contents' },
 
@@ -310,121 +310,62 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2021/30/contents' },
 
+  // ── Constitutional — case ──
+  { id:'n1', type:'curated', cat:'case-law', area:'Constitutional',
+    title:'R (Jackson) v Attorney General [2005] UKHL 56',
+    court:'House of Lords',
+    facts:'The Hunting Act 2004 was enacted using the Parliament Acts procedure, with the Commons alone giving assent after the Lords withheld consent. The claimants argued that the Parliament Act 1949, which had itself been passed under the 1911 Act without the Lords\' approval, was not a valid Act of Parliament, and that any legislation made under it — including the Hunting Act — was therefore invalid.',
+    judgment:'The House of Lords unanimously dismissed the challenge, holding that both the 1949 Act and the Hunting Act were valid Acts of Parliament. However, several Law Lords delivered wide-ranging obiter observations about the constitutional limits of Parliament\'s power.',
+    ratio:'Legislation enacted under the Parliament Acts procedure without the consent of the House of Lords is a valid Act of Parliament. Obiter: the principle of parliamentary sovereignty is not unconditional — Parliament cannot use the Parliament Acts to enact legislation that subverts the rule of law or removes the supervisory jurisdiction of the courts, and such an attempt might not be recognised by the judiciary.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/56.html' },
+
+  // ── Human Rights — case ──
+  { id:'n2', type:'curated', cat:'case-law', area:'Human Rights',
+    title:'A v Secretary of State for the Home Department [2004] UKHL 56',
+    court:'House of Lords',
+    facts:'In the aftermath of the September 2001 terrorist attacks, the UK derogated from Article 5 ECHR and enacted the Anti-terrorism, Crime and Security Act 2001, s.23, which authorised indefinite detention without charge of foreign nationals certified by the Home Secretary as suspected international terrorists who could not be deported. Nine foreign nationals held at Belmarsh Prison challenged the legality of their detention.',
+    judgment:'By an 8–1 majority, the House of Lords quashed the derogation order and made a declaration of incompatibility under the Human Rights Act 1998, finding s.23 incompatible with Articles 5 and 14 ECHR. The detention was discriminatory — nationals posing an equivalent threat were not detained — and the derogation could not be justified.',
+    ratio:'A derogation from Convention rights under Article 15 ECHR is only lawful where the threat is genuine and the measures taken are strictly required. Indefinite detention of foreign but not British terrorism suspects, where both groups presented a comparable risk, was unjustifiably discriminatory. Courts retain constitutional authority to scrutinise executive assessments of necessity even in a national emergency, though they should give appropriate weight to the executive\'s superior access to intelligence.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/56.html' },
+
+  // ── Criminal — case ──
+  { id:'n3', type:'curated', cat:'case-law', area:'Criminal',
+    title:'Ivey v Genting Casinos (UK) Ltd t/a Crockfords [2017] UKSC 67',
+    court:'UK Supreme Court',
+    facts:'A professional gambler used "edge-sorting" — exploiting minute manufacturing asymmetries visible on the backs of playing cards — to identify high-value cards in advance. Using this technique he won approximately £7.7 million at Punto Banco. The casino refused to pay, claiming he had cheated contrary to s.42 Gambling Act 2005. Ivey argued that edge-sorting was a legitimate skill and that he had not been dishonest.',
+    judgment:'The Supreme Court held unanimously that Ivey had cheated within the meaning of the Act. It also used the opportunity to restate the test for dishonesty, departing from the second limb of the direction given in R v Ghosh.',
+    ratio:'Dishonesty in criminal law is tested by a single objective standard: the court first ascertains the defendant\'s actual subjective knowledge and beliefs about the relevant facts, then asks whether the conduct was dishonest according to the standards of ordinary, decent people. There is no further requirement to ask whether the defendant knew their conduct would be so regarded. The Ghosh direction is disapproved and should no longer be given.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2017/67.html' },
+
+  // ── Company — case ──
+  { id:'n4', type:'curated', cat:'case-law', area:'Company',
+    title:'Regal (Hastings) Ltd v Gulliver [1942] UKHL 1',
+    court:'House of Lords',
+    facts:'Regal (Hastings) Ltd sought to acquire two further cinemas through a subsidiary, Hastings Amalgamated Cinemas Ltd. The lessor required the subsidiary to be capitalised at £5,000, but Regal could contribute only £2,000. The directors personally subscribed for the remaining shares. When Regal and the subsidiary were sold together, the directors each realised a profit of around £2.80 per share on their personal holdings.',
+    judgment:'The House of Lords held that the directors were accountable to Regal for the profits they had made, notwithstanding that they had acted in good faith and that Regal itself had suffered no financial loss.',
+    ratio:'A director who makes a profit by virtue of and in the course of their fiduciary office is liable to account to the company for that profit. The liability is strict: it is irrelevant that the company could not or would not itself have exploited the opportunity, that no loss was suffered, or that the director acted honestly. Only fully informed shareholder approval can authorise the director to retain such a profit.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1942/1.html' },
+
+  // ── Equity — case ──
+  { id:'n5', type:'curated', cat:'case-law', area:'Equity',
+    title:'Barclays Bank plc v O\'Brien [1993] UKHL 6',
+    court:'House of Lords',
+    facts:'Mrs O\'Brien signed a second charge over the matrimonial home to secure her husband\'s company overdraft. The bank\'s clerk witnessed the signature without ensuring she understood the extent of the liability, as internal bank instructions required. Mrs O\'Brien later sought to have the charge set aside, claiming she had signed in reliance on her husband\'s misrepresentation that it was a short-term guarantee for a modest sum.',
+    judgment:'The House of Lords held that the bank had constructive notice of the husband\'s misrepresentation and could not enforce the charge. It set out the steps a creditor must take to avoid being fixed with notice in such circumstances.',
+    ratio:'Where a transaction is entered into by a surety who is in a personal relationship with the principal debtor and is on its face not financially advantageous to the surety, the creditor is put on inquiry of possible undue influence or misrepresentation. To avoid being fixed with constructive notice, the creditor must take reasonable steps to ensure the surety has received independent advice and has entered the transaction freely and in full understanding of the risks — typically by insisting on independent legal advice before the security is taken.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1993/6.html' },
+
   // ── Public Law — statute ──
   { id:'m10', type:'curated', cat:'statute', area:'Public Law',
     title:'Investigatory Powers Act 2016',
-    body:"Overhauled and avowed the legal framework governing the use of interception and surveillance powers by the intelligence agencies and law enforcement, following revelations about bulk data collection. Dubbed the ‘Snoopers’ Charter’, it introduced new oversight in exchange for placing sweeping powers on a clear statutory footing.",
+    body:"Overhauled and avowed the legal framework governing the use of interception and surveillance powers by the intelligence agencies and law enforcement, following revelations about bulk data collection. Dubbed the 'Snoopers\' Charter', it introduced new oversight in exchange for placing sweeping powers on a clear statutory footing.",
     sections:[
       { num:'Pt 2', head:'Lawful Interception', text:'Sets out the warrant regime for intercepting the content of communications and makes intentional interception without lawful authority a criminal offence.' },
       { num:'Pt 4', head:'Retention of Communications Data', text:'Allows the Secretary of State to require telecommunications operators to retain communications data — including internet connection records — for up to 12 months.' },
       { num:'Pt 6', head:'Bulk Powers', text:'Authorises bulk interception, bulk acquisition of communications data, and bulk equipment interference, subject to statutory safeguards and warrants.' },
-      { num:'227', head:'The Investigatory Powers Commissioner', text:'Creates the Investigatory Powers Commissioner and Judicial Commissioners, who must approve the most intrusive warrants under a “double-lock” alongside the Secretary of State.' },
+      { num:'227', head:'The Investigatory Powers Commissioner', text:'Creates the Investigatory Powers Commissioner and Judicial Commissioners, who must approve the most intrusive warrants under a "double-lock" alongside the Secretary of State.' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
-
-  // ── Contract — case ──
-  { id:'r20260901a', type:'curated', cat:'case-law', area:'Contract',
-    title:'Patel v Mirza [2016] UKSC 42',
-    court:'UK Supreme Court',
-    facts:'Patel transferred £620,000 to Mirza for the purpose of betting on the price of RBS shares using insider information Mirza expected to obtain from RBS contacts about a forthcoming government announcement. The anticipated announcement never materialised and the planned betting did not take place, but Mirza refused to repay the money. The agreement amounted to a conspiracy to commit insider dealing under the Criminal Justice Act 1993.',
-    judgment:'The Supreme Court held that Patel was entitled to recover his money. By a majority it overruled the "reliance test" from Tinsley v Milligan and replaced it with a flexible, policy-based approach.',
-    ratio:'Where a person seeks to recover money paid under an illegal contract, the court must consider whether allowing recovery would be consistent with or would undermine the policies underlying the illegality. The old reliance rule from Tinsley v Milligan is replaced by a range-of-factors approach weighing the purpose of the prohibition breached, the need for deterrence, the gravity of the illegality, and whether refusing recovery would be a proportionate response having regard to those interests. In most cases a party may recover money paid under a contract that was not performed because the illegal purpose was not carried out.',
-    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/42.html' },
-
-  // ── Human Rights — case ──
-  { id:'r20260901b', type:'curated', cat:'case-law', area:'Human Rights',
-    title:'Ghaidan v Godin-Mendoza [2004] UKHL 30',
-    court:'House of Lords',
-    facts:'Following the death of the original tenant of a protected tenancy, the deceased\'s surviving same-sex partner of eighteen years, Godin-Mendoza, claimed a right to succeed to the statutory tenancy. The Rent Act 1977 permitted only a "spouse" living with the tenant "as his or her wife or husband" to succeed as a statutory tenant; the earlier Fitzpatrick decision had held that a same-sex partner could not succeed in that capacity.',
-    judgment:'The House of Lords upheld the Court of Appeal\'s ruling that s.3 of the Human Rights Act 1998 required the relevant Rent Act provisions to be read so as to include same-sex partners who lived together as husband and wife, giving the survivor full statutory tenancy rights.',
-    ratio:'Section 3(1) of the Human Rights Act 1998 imposes a strong obligation to read and give effect to legislation in a way compatible with Convention rights "so far as it is possible to do so". This can require a court to depart from the natural and ordinary meaning of a provision, reading words in or out — the only limit being that the interpretation must not cross from interpretation into legislation by contradicting a fundamental feature of the enactment. Where a discriminatory reading of a statute would violate Art.14 read with Art.8 ECHR, the court must strain to read the provision compatibly even if this gives it a meaning Parliament did not intend.',
-    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/30.html' },
-
-  // ── Tort — case ──
-  { id:'r20260901c', type:'curated', cat:'case-law', area:'Tort',
-    title:'Chester v Afshar [2004] UKHL 41',
-    court:'House of Lords',
-    facts:'Miss Chester consulted Mr Afshar, a neurosurgeon, about persistent back trouble. He recommended disc surgery but failed to warn her of a small (1–2%) risk of cauda equina damage, a risk that materialised. Evidence showed she would not have consented to surgery at that time had she been warned; however, since she might subsequently have undergone the operation (carrying the same statistical risk), she could not prove on a strict "but for" basis that the failure to warn had caused the injury.',
-    judgment:'The House of Lords (3:2) allowed the appeal and held that causation was made out as a matter of law, modifying the ordinary but-for test to vindicate the patient\'s right to informed consent.',
-    ratio:'A doctor\'s duty to warn a patient of material risks exists to enable the patient to exercise autonomous and informed choice over treatment of her body. Where a failure to warn causes the very risk materialise in the very operation the patient would not have consented to at that time, it would be unjust and contrary to the policy of the duty to deny recovery by strict application of the but-for test. The law therefore treats the breach as having caused the harm. This is a narrow and principled modification of causation rules tied to the specific scope and purpose of the duty to inform.',
-    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/41.html' },
-
-  // ── Tort — case ──
-  { id:'r20260901d', type:'curated', cat:'case-law', area:'Tort',
-    title:'Lister & Ors v Hesley Hall Ltd [2001] UKHL 22',
-    court:'House of Lords',
-    facts:'Boys who had been resident at a boarding school\'s annex brought claims against the employers of the school warden, who had systematically sexually abused them while performing his duty of looking after the boys and living alongside them. The question was whether the employers were vicariously liable for deliberate wrongs committed by the warden in the course of his employment.',
-    judgment:'The House of Lords held the employers vicariously liable for the warden\'s assaults, departing from the traditional Salmond test and reformulating the close-connection approach.',
-    ratio:'The test for an employer\'s vicarious liability for an employee\'s deliberate wrongdoing is whether the tortious acts were so closely connected with the employment as to make it fair and just to hold the employer liable. The traditional "improper mode of a proper act" formulation is inadequate for deliberate wrongs; the court must consider the field of activities entrusted to the employee as a whole. Where the employer has delegated a duty of care to the employee and the wrong was committed in performance of that very function — not merely incidentally — the connection is sufficiently close to engage vicarious liability.',
-    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2001/22.html' },
-
-  // ── Human Rights — case ──
-  { id:'r20260901e', type:'curated', cat:'case-law', area:'Human Rights',
-    title:'A & Ors v Secretary of State for the Home Department [2004] UKHL 56',
-    court:'House of Lords',
-    facts:'Fourteen foreign nationals were detained indefinitely without trial under s.23 Anti-terrorism, Crime and Security Act 2001. The UK had purported to derogate from Art.5 ECHR on the ground that there was a "public emergency threatening the life of the nation". The detainees challenged both the validity of the derogation order and the compatibility of the detention scheme with Arts 5 and 14 ECHR, arguing that it discriminated between nationals and non-nationals in a way that could not be justified.',
-    judgment:'The House of Lords (8:1) held the derogation order flawed and issued a declaration that s.23 ATCSA was incompatible with Arts 5 and 14 ECHR.',
-    ratio:'Even in a national emergency, a measure derogating from Convention rights must be strictly required by the exigencies of the situation. Where the legislative scheme permitted indefinite detention of foreign nationals on terrorism suspicion while leaving nationals in an identical position at liberty, the discrimination between the two groups revealed that the threat did not make such a drastic measure strictly necessary. Courts must scrutinise executive claims about the existence and scope of a national emergency, applying appropriate but not absolute deference to security judgments; they retain responsibility for ensuring the substance of rights is not hollowed out.',
-    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/56.html' },
-
-  // ── Constitutional — case ──
-  { id:'r20260901f', type:'curated', cat:'case-law', area:'Constitutional',
-    title:'R (Jackson & Ors) v Her Majesty\'s Attorney General [2005] UKHL 56',
-    court:'House of Lords',
-    facts:'Appellants with an interest in fox-hunting challenged the legal validity of the Hunting Act 2004, which had been passed under the Parliament Acts 1911 and 1949 procedure without the consent of the House of Lords. They argued that the Parliament Act 1949 was itself invalid because the 1911 Act procedure could not be used to amend the 1911 Act itself, and that the Parliament Acts could not lawfully be used to enact fundamental constitutional changes.',
-    judgment:'The House of Lords unanimously upheld the validity of both the Parliament Act 1949 and the Hunting Act 2004.',
-    ratio:'The Parliament Acts 1911 and 1949 together create a valid alternative route to legislation that does not require the consent of the House of Lords, and the 1949 Act was validly enacted under the 1911 procedure. However, several Law Lords stated obiter that parliamentary sovereignty may not be absolute: there are constitutional fundamentals that the courts might decline to enforce if legislation purported to override them, and that the rule of law itself may constrain what Parliament can validly enact. These remarks, though not binding, are the most prominent modern judicial endorsement of common-law constitutional limits on Parliament.',
-    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2005/56.html' },
-
-  // ── Tort — case ──
-  { id:'r20260901g', type:'curated', cat:'case-law', area:'Tort',
-    title:'Various Claimants v The Catholic Child Welfare Society & Ors [2012] UKSC 56',
-    court:'UK Supreme Court',
-    facts:'Former residents of a residential school for troubled boys brought claims against several defendants for systematic abuse by Brothers of the De La Salle Institute who had taught and supervised them. The Brothers were members of a religious order, unpaid and not employees in any conventional sense. The issue was whether the Institute could be vicariously liable for their torts.',
-    judgment:'The Supreme Court held that the Institute was vicariously liable for the brothers\' abuse, extending vicarious liability beyond orthodox employment relationships.',
-    ratio:'Vicarious liability is not confined to relationships of employment; it can arise where the relationship between wrongdoer and defendant is "akin to employment" — sufficiently close and integrated to make it fair and just to impose liability. Relevant factors include whether the wrongdoer carries on activities for the benefit of the defendant enterprise, whether the defendant selects, trains and controls the wrongdoer, and how closely integrated into the enterprise the wrongdoing was. The religious brothers here, though unpaid, satisfied these criteria because they served the Institute\'s mission, were subject to its control, and their abuse was closely connected with their assigned pastoral function.',
-    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2012/56.html' },
-
-  // ── Employment — statute ──
-  { id:'r20260901h', type:'curated', cat:'statute', area:'Employment',
-    title:'Equality Act 2010',
-    body:"Consolidated nine earlier discrimination statutes into a single harmonised framework protecting nine protected characteristics across employment, education, the provision of goods and services, and the exercise of public functions. It also introduced the public sector equality duty and extended the reach of discrimination law in significant respects.",
-    sections:[
-      { num:'4', head:'The Protected Characteristics', text:'Lists the nine protected characteristics: age, disability, gender reassignment, marriage and civil partnership, pregnancy and maternity, race, religion or belief, sex, and sexual orientation.' },
-      { num:'13', head:'Direct Discrimination', text:'A person discriminates against another if, because of a protected characteristic, they treat them less favourably than they treat or would treat others who do not share that characteristic.' },
-      { num:'15', head:'Discrimination Arising from Disability', text:'A person discriminates against a disabled person if they treat them unfavourably because of something arising in consequence of their disability, and cannot show the treatment is a proportionate means of achieving a legitimate aim.' },
-      { num:'19', head:'Indirect Discrimination', text:'Applying a provision, criterion or practice equally to all is indirect discrimination if it puts people sharing a protected characteristic at a particular disadvantage, unless it is a proportionate means of achieving a legitimate aim.' },
-      { num:'26', head:'Harassment', text:'Unwanted conduct related to a protected characteristic which has the purpose or effect of violating a person\'s dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment constitutes harassment.' },
-      { num:'149', head:'Public Sector Equality Duty', text:'Public authorities must have due regard to the need to eliminate discrimination, advance equality of opportunity, and foster good relations between persons sharing and not sharing a protected characteristic.' },
-    ],
-    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2010/15/contents' },
-
-  // ── Human Rights — statute ──
-  { id:'r20260901i', type:'curated', cat:'statute', area:'Human Rights',
-    title:'Human Rights Act 1998',
-    body:"Gave direct domestic effect to most rights and freedoms guaranteed under the European Convention on Human Rights, enabling individuals to invoke them before UK courts without first going to Strasbourg. It is the constitutional centrepiece of the modern rights framework in England and Wales, and radically changed the relationship between courts, Parliament, and the executive.",
-    sections:[
-      { num:'2', head:'Interpretation of Convention Rights', text:'Courts and tribunals determining a question involving a Convention right must take into account judgments, decisions and opinions of the European Court of Human Rights.' },
-      { num:'3', head:'Interpretation of Legislation', text:'So far as it is possible to do so, primary legislation and subordinate legislation must be read and given effect in a way which is compatible with the Convention rights.' },
-      { num:'4', head:'Declaration of Incompatibility', text:'Where a higher court is satisfied that a provision of primary legislation is incompatible with a Convention right, it may make a declaration of incompatibility; this does not affect the continuing validity of the legislation.' },
-      { num:'6', head:'Acts of Public Authorities', text:'It is unlawful for a public authority to act in a way which is incompatible with a Convention right, unless primary legislation requires the authority so to act.' },
-      { num:'7', head:'Proceedings', text:'A person who claims that a public authority has acted — or proposes to act — unlawfully under s.6 may bring proceedings in the appropriate court or tribunal.' },
-      { num:'10', head:'Power to Take Remedial Action', text:'Where a declaration of incompatibility has been made, or following an adverse Strasbourg judgment, a minister may by remedial order make such amendments to the legislation as they consider necessary.' },
-    ],
-    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1998/42/contents' },
-
-  // ── Property — statute ──
-  { id:'r20260901j', type:'curated', cat:'statute', area:'Property',
-    title:'Land Registration Act 2002',
-    body:"Replaced the Land Registration Act 1925 and fundamentally modernised the framework for registered land in England and Wales. It streamlined overriding interests, introduced a new scheme for adverse possession, paved the way for electronic conveyancing, and made the register the definitive record of title.",
-    sections:[
-      { num:'4', head:'When First Registration is Required', text:'Lists the events triggering compulsory first registration, including the transfer of a qualifying estate in land and the grant of a lease for a term of more than seven years.' },
-      { num:'27', head:'Dispositions Required to be Registered', text:'A legal estate or charge does not operate at law until the relevant disposition is completed by registration; until then it takes effect in equity only.' },
-      { num:'Sch 1 & 3', head:'Overriding Interests', text:'Schedule 1 sets out interests that override first registration; Schedule 3 sets out interests that override subsequent registered dispositions. Both schedules significantly narrow the categories of overriding interest compared with the 1925 Act, closing gaps that had previously allowed unregistered interests to take priority over registered proprietors.' },
-      { num:'60', head:'Boundary', text:'The boundary of a registered estate as shown for the purposes of the register is a general boundary only and does not fix the precise legal boundary.' },
-      { num:'96–98', head:'Adverse Possession', text:'Replaces the old limitation-period approach with a notification scheme: a squatter may apply for registration after ten years of adverse possession, but the registered proprietor must be notified and given the opportunity to object before any registration takes effect.' },
-    ],
-    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/9/contents' },
 
   ];
 });
