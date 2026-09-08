@@ -104,6 +104,42 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  // ── 2026-09-08 weekly refill ──
+  { id:'xa20260908a', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Howarth — 'Many Duties of Care — Or a Duty of Care? Notes from the Underground' (2006) 26 OJLS 449",
+    body:"David Howarth attacks the dominant approach to the duty of care in English negligence law, which has moved from a general principle (Donoghue, Anns) toward a multitude of ad hoc rules for different factual situations. He argues that this fragmentation is both intellectually unsatisfying and practically inconvenient, and proposes instead a return to a single, generalisable duty concept modulated at the breach stage. The article is a spirited defence of principled tort theory against incrementalism.",
+    src:'Oxford Journal of Legal Studies', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1096826' },
+
+  { id:'xa20260908b', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Etherton — 'Constructive Trusts: A New Model for Equity and Unjust Enrichment' (2008) 67 CLJ 265",
+    body:"Sir Terence Etherton (later Master of the Rolls) argues for a re-alignment of constructive trust doctrine in English law around the principle against unjust enrichment, drawing on restitutionary thinking and comparative work from Australia and Canada. He contends that this model would produce greater coherence across the cases dealing with bribes, mistaken payments and unauthorised fiduciary gains than the existing patchwork of remedies. The article fed directly into academic and judicial debate preceding FHR European Ventures.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/constructive-trusts-a-new-model-for-equity-and-unjust-enrichment/71DEA48C91BF1990C21B3CD530D3B204' },
+
+  { id:'xa20260908c', type:'curated', cat:'journal-article', area:'Criminal',
+    title:"Quick — 'Medicine, Mistakes and Manslaughter: A Criminal Combination?' (2010) 69 CLJ 186",
+    body:"Oliver Quick examines the circumstances in which clinicians who make fatal errors in treatment face prosecution for gross negligence manslaughter, focussing on the tension between the deterrent and expressive functions of the criminal law on one hand and the systemic failures of healthcare institutions on the other. He argues that the current law focuses blame on individual practitioners while obscuring organisational responsibility, and proposes reforms that would better reflect how medical errors actually occur.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/medicine-mistakes-and-manslaughter-a-criminal-combination/CEDFBEF6992F7E7779EE9A6CA1FCD77D' },
+
+  { id:'xa20260908d', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Steel & Ibbetson — 'More Grief on Uncertain Causation in Tort' (2011) 70 CLJ 451",
+    body:"Sandy Steel and David Ibbetson survey the doctrines of material contribution and material increase in risk in negligence causation, scrutinising the trajectory from Fairchild v Glenhaven through Barker v Corus to Sienkiewicz v Greif. They argue that the courts have created an incoherent patchwork by oscillating between probability-based causation and risk-based liability without a principled justification for which regime applies when. The article is an important reference for understanding the mesothelioma/asbestos causation cases.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/more-grief-on-uncertain-causation-in-tort/F965E442BDCDB9451CBB79CDAF704BF8' },
+
+  { id:'xa20260908e', type:'curated', cat:'journal-article', area:'Property',
+    title:"Gardner — 'The Land Registration Act 2002 — the Show on the Road' (2014) 77 MLR 763",
+    body:"Simon Gardner reviews the Land Registration Act 2002 a decade after its implementation, assessing whether the reforms — particularly the move toward electronic conveyancing and the new regime for adverse possession — have achieved their aims. He identifies continuing tensions between the mirror principle and overriding interests, argues that e-conveyancing has proceeded more slowly than Parliament envisaged, and questions whether the 2002 Act has yet delivered the simplification and certainty it promised. Essential reading for any student of land registration.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/1468-2230.12089' },
+
+  { id:'xa20260908f', type:'curated', cat:'journal-article', area:'Constitutional',
+    title:"Sales — 'Rights and Fundamental Rights in English Law' (2016) 75 CLJ 86",
+    body:"Philip Sales (now Lord Sales of the UK Supreme Court) examines the constitutional status of fundamental rights in English law both before and after the Human Rights Act 1998. He analyses the common-law principle of legality — which requires clear Parliamentary language to abrogate fundamental rights — alongside the HRA's s.3 interpretive obligation, arguing that the two techniques work in a complementary fashion and that English law has a robust framework for rights protection that is not wholly dependent on Strasbourg.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/rights-and-fundamental-rights-in-english-law/361FB46D46808701B7AC60609B81263C' },
+
+  { id:'xa20260908g', type:'curated', cat:'journal-article', area:'Employment',
+    title:"Freedland & Kountouris — 'Towards a Comparative Theory of the Contractual Construction of Personal Work Relations in Europe' (2008) 37 ILJ 49",
+    body:"Mark Freedland and Nicola Kountouris advance a comparative framework for understanding how employment and quasi-employment relationships are legally constructed across European legal systems. They introduce the concept of the 'personal work nexus' and argue that binary distinctions between employed and self-employed status are inadequate to capture the full spectrum of modern working arrangements. The article anticipated many of the gig-economy debates that came to dominate employment law in the 2010s and 2020s.",
+    src:'Industrial Law Journal', link:'https://academic.oup.com/ilj/article/37/1/49/710162' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +230,49 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  // ── 2026-09-08 weekly refill ──
+  { id:'xt20260908a', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Contributory Negligence',
+    body:"Contributory negligence is a partial defence in tort that reduces, but does not extinguish, the claimant's damages where the claimant's own failure to take reasonable care for their safety contributed to the harm they suffered. Under the Law Reform (Contributory Negligence) Act 1945 the court apportions responsibility between the parties, reducing the claimant's award by the proportion representing their share of the fault. Before 1945 any contributory negligence barred the claim entirely.",
+    example:"A pedestrian crosses a road outside a designated crossing and is struck by a driver who was exceeding the speed limit. The court finds the driver 70% responsible and the pedestrian 30% contributorily negligent; the pedestrian's damages are reduced by 30%.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/contributory-negligence' },
+
+  { id:'xt20260908b', type:'curated', cat:'legal-term', area:'Property',
+    title:'Proprietary Estoppel',
+    body:"Proprietary estoppel is an equitable doctrine that may arise where one person (A) makes or encourages a belief in another (B) that B has or will acquire a right in A's land, B relies on that assurance to their detriment, and it would be unconscionable for A to resile from the assurance. When established, the court has a flexible jurisdiction to 'satisfy the equity' — meaning it may order the transfer of the land, grant a licence, order compensation, or make such other order as is proportionate to the detriment suffered.",
+    example:"A farmer promises his nephew that the nephew will inherit the farm if he gives up his own career and works on it. The nephew does so for many years. On the farmer's death the will leaves the farm elsewhere; the nephew can invoke proprietary estoppel and the court will make an order to satisfy the equity, which may include transferring the farm to him.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/proprietary-estoppel' },
+
+  { id:'xt20260908c', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Passing Off',
+    body:"Passing off is a common-law tort that protects the goodwill of a trader by preventing another from making a misrepresentation that damages that goodwill. The classic three-part test (the 'classic trinity', from Lord Oliver in Reckitt & Colman v Borden) requires: (1) goodwill or reputation attached to the claimant's goods or services; (2) a misrepresentation by the defendant (whether deliberate or not) that is likely to deceive the public; and (3) actual or probable damage to the claimant as a result.",
+    example:"A drinks company releases a product in get-up closely resembling the distinctive yellow and red packaging of a well-known lemon-juice brand. Consumers are likely to assume they are buying the established brand. The brand owner can sue for passing off even though it has no registered trade mark in the colour scheme.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/passing-off' },
+
+  { id:'xt20260908d', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Mitigation',
+    body:"Mitigation is the duty in contract and tort for a party who has suffered a breach or wrong to take reasonable steps to minimise their loss. A claimant cannot recover for losses that they could have avoided by taking such steps, nor for losses arising from their own unreasonable failure to act. The burden of proving that the claimant failed to mitigate lies on the defendant. The duty does not require the claimant to act at serious risk to themselves or to sacrifice their own commercial interests.",
+    example:"An employee who is wrongfully dismissed must seek comparable alternative employment rather than remaining idle and accumulating lost wages. Damages for wrongful dismissal can be reduced to the extent of earnings the employee would reasonably have obtained had they taken available comparable work.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/mitigation' },
+
+  { id:'xt20260908e', type:'curated', cat:'legal-term', area:'Criminal',
+    title:'Joint Enterprise',
+    body:"Joint enterprise (also called parasitic accessorial liability or common purpose liability) is a doctrine under which a secondary party — one who assists or encourages a principal offender — may be criminally liable for acts committed by the principal in furtherance of the common purpose, including acts that go beyond the original plan, provided the secondary party foresaw that such acts might be committed. The Supreme Court in R v Jogee [2016] UKSC 8 corrected a wrong turn taken in Chan Wing-Siu, holding that foresight is evidence of intent, not a substitute for it: to be liable, the secondary party must have intended to assist or encourage the commission of the crime.",
+    example:"Two defendants plan a burglary. One brings a knife without the other's knowledge. If the knife-carrier stabs the householder, the other defendant may be guilty of murder as a joint enterprise participant only if they intended to assist or encourage the principal to commit the relevant offence — mere foresight that violence might occur is not enough after Jogee.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/joint-enterprise' },
+
+  { id:'xt20260908f', type:'curated', cat:'legal-term', area:'Tort',
+    title:"Occupiers' Liability",
+    body:"Occupiers' liability is the branch of negligence governing the duty owed by those in control of premises to persons who enter them. In England and Wales it is governed by two statutes: the Occupiers' Liability Act 1957 (which imposes a 'common duty of care' to lawful visitors to take reasonable care to make the premises reasonably safe for the purpose of the visit) and the Occupiers' Liability Act 1984 (which imposes a more limited duty to trespassers and other non-visitors where the occupier knows of a danger and a risk of entry).",
+    example:"A supermarket's floor is left wet and unguarded after a spillage. A customer slips and is injured. Because she is a lawful visitor, the supermarket owes her the common duty of care under the 1957 Act; liability will depend on whether it took reasonable care to make the premises reasonably safe.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/occupiers-liability' },
+
+  { id:'xt20260908g', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Assignment',
+    body:"Assignment is the transfer of the benefit of a contractual right or a chose in action from one party (the assignor) to another (the assignee). In English law only the benefit of a contract can be assigned; the burden cannot be transferred without the other party's consent (novation). An equitable assignment requires no formality; a legal assignment under the Law of Property Act 1925 s.136 must be absolute, in writing, and notified in writing to the debtor or obligor. Once assigned, the assignee can sue the debtor directly.",
+    example:"A building contractor assigns the right to receive payment from a client to a bank as security for a loan. After notification in writing to the client, the bank can sue the client directly for the debt. The contractor cannot assign the obligation to perform the works — that would require the client's agreement to a novation.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/assignment' },
 
   ],
 

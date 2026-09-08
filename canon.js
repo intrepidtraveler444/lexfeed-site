@@ -322,5 +322,97 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── 2026-09-08 weekly refill ──
+
+  // ── Criminal — case ──
+  { id:'r20260908a', type:'curated', cat:'case-law', area:'Criminal',
+    title:'Ivey v Genting Casinos (UK) Ltd t/a Crockfords [2017] UKSC 67',
+    court:'UK Supreme Court',
+    facts:'A professional gambler sued a casino for his winnings after it refused to pay on the ground that he had cheated at Punto Banco by using a technique called "edge-sorting". The case raised whether his conduct was dishonest.',
+    judgment:'The Supreme Court held that Ivey had cheated and was not entitled to his winnings. In reaching that conclusion it reformulated the legal test for dishonesty.',
+    ratio:'The two-stage test from R v Ghosh (requiring the defendant to have realised his conduct was dishonest by ordinary standards) is wrong and should no longer be followed. The correct test asks: (1) what was the defendant\'s actual state of knowledge or belief as to the facts? (2) was his conduct dishonest by the standards of ordinary decent people? There is no subjective element in stage two.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2017/67.html' },
+
+  // ── Contract — case ──
+  { id:'r20260908b', type:'curated', cat:'case-law', area:'Contract',
+    title:'Patel v Mirza [2016] UKSC 42',
+    court:'UK Supreme Court',
+    facts:'Patel paid money to Mirza under an agreement to bet on the movement of a bank\'s share price using inside information. The scheme was never implemented. Patel sought recovery of his payment; Mirza resisted on the ground that the agreement was an illegal contract.',
+    judgment:'The Supreme Court allowed Patel to recover his money.',
+    ratio:'The enforceability of an illegal contract is to be assessed by a trio of considerations: the purpose of the rule that was broken, any other relevant public policy on which allowing or refusing the claim may have an impact, and the proportionality of denying the remedy. Courts must use a range of factors rather than applying rigid rules; a claimant is not inevitably barred from recovering money paid under an illegal agreement where the illegal purpose was never carried out.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/42.html' },
+
+  // ── Equity — case ──
+  { id:'r20260908c', type:'curated', cat:'case-law', area:'Equity',
+    title:'FHR European Ventures LLP & Ors v Cedar Capital Partners LLC [2014] UKSC 45',
+    court:'UK Supreme Court',
+    facts:'Cedar Capital, acting as agent for buyers in a hotel acquisition, secretly received a commission of €10m from the vendor without disclosing it to its principals. The principals claimed the bribe was held on constructive trust; Cedar argued it gave rise to a personal liability only.',
+    judgment:'The Supreme Court held unanimously that a bribe or secret commission received by an agent is held on constructive trust for the principal.',
+    ratio:'Any benefit obtained by an agent in breach of fiduciary duty, including a bribe or secret commission, is held on constructive trust for the principal, not merely subject to a personal liability to account. This aligns English law with earlier cases, the position in other common law jurisdictions, and the fundamental principle that a fiduciary must not profit from a breach of duty.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/45.html' },
+
+  // ── Contract — case ──
+  { id:'r20260908d', type:'curated', cat:'case-law', area:'Contract',
+    title:'Arnold v Britton & Ors [2015] UKSC 36',
+    court:'UK Supreme Court',
+    facts:'Leases of holiday chalets provided for a service charge that increased by a compound 10% each year. As inflation stayed low over decades the charge became disproportionate. Tenants argued that business efficacy or absurdity required the court to read the clause differently.',
+    judgment:'The Supreme Court upheld the literal meaning of the escalation clause.',
+    ratio:'In construing a contract the court must identify the intention of the parties by reference to what a reasonable person having all the background knowledge available to the parties at the time of the contract would have understood the words to mean. Commercial common sense and the court\'s view of fairness do not justify departing from the natural meaning of the agreed words. The more clear the natural language, the less weight can be given to the surrounding circumstances.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2015/36.html' },
+
+  // ── Tort — case ──
+  { id:'r20260908e', type:'curated', cat:'case-law', area:'Tort',
+    title:'Lloyd v Google LLC [2021] UKSC 50',
+    court:'UK Supreme Court',
+    facts:'Richard Lloyd brought a representative action on behalf of millions of iPhone users, alleging that Google had tracked their Safari browsers without consent in 2011–12 in breach of the Data Protection Act 1998, and claiming a uniform per-person award of damages without proof of individual loss.',
+    judgment:'The Supreme Court held that the claim could not proceed as a representative action in the form proposed.',
+    ratio:'For a representative action under CPR 19.6, all represented persons must have the same interest in the claim. Where the alleged loss varies between individuals or requires individual assessment — including whether each person suffered any "damage" under the DPA — the claim cannot be managed on a uniform, class-wide basis. Proof of some breach is not enough; damage must be established for each represented claimant.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2021/50.html' },
+
+  // ── Equity — case ──
+  { id:'r20260908f', type:'curated', cat:'case-law', area:'Equity',
+    title:'Royal Bank of Scotland plc v Etridge (No 2) [2001] UKHL 44',
+    court:'House of Lords',
+    facts:'Eight conjoined appeals concerned wives who had charged their matrimonial homes as security for their husbands\' business borrowings and later alleged that their consent had been procured by undue influence. The central question was what steps a creditor must take to be fixed with constructive notice of the debtor\'s undue influence over the surety.',
+    judgment:'The House of Lords set out definitive guidance on the steps required of a lender to avoid being fixed with constructive notice of undue influence.',
+    ratio:'Undue influence is presumed in relationships of trust and confidence once a transaction calling for explanation is established. A lender is put on inquiry whenever a wife (or other party in a non-commercial relationship) offers security for another\'s debt. To avoid constructive notice the lender must insist that the surety receive independent legal advice from a solicitor who has been given sufficient information to advise properly, and must receive confirmation that such advice was given before completion.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2001/44.html' },
+
+  // ── Public Law — statute ──
+  { id:'r20260908g', type:'curated', cat:'statute', area:'Public Law',
+    title:'Online Safety Act 2023',
+    body:"A landmark framework establishing new duties on online platforms to keep users safe, with particular focus on protecting children and tackling illegal content. It created a new regulatory regime administered by Ofcom, with substantial fines for non-compliance, and sparked significant public debate about the balance between safety and free expression.",
+    sections:[
+      { num:'Pt 2', head:'Duties of Service Providers', text:'Imposes safety duties on providers of user-to-user services and search services, including risk assessment obligations and duties to take proportionate steps to address identified risks of illegal and harmful content.' },
+      { num:'12', head:'Children\'s Risk Assessment', text:'Requires providers of services likely to be accessed by children to carry out a children\'s risk assessment, identifying the risks of harm to children from regulated user-generated content and search content.' },
+      { num:'179', head:'Ofcom\'s Powers', text:'Confers on Ofcom powers to issue notices and take enforcement action against providers who fail to comply with their duties, including imposing financial penalties.' },
+      { num:'232', head:'Offences by Senior Managers', text:'Creates personal criminal liability for senior managers of a provider who fail to comply with information and interview notices issued by Ofcom.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2023/50/contents' },
+
+  // ── Criminal — statute ──
+  { id:'r20260908h', type:'curated', cat:'statute', area:'Criminal',
+    title:'Proceeds of Crime Act 2002',
+    body:"The principal statute governing the recovery of the proceeds of crime in the UK. It introduced a sweeping civil and criminal confiscation regime, created money laundering offences applicable to all crimes (not just drug trafficking), established the Assets Recovery Agency (later folded into SOCA/NCA), and built the suspicious activity reporting (SAR) framework.",
+    sections:[
+      { num:'Pt 2', head:'Confiscation (England & Wales)', text:'Empowers the Crown Court to make a confiscation order against a convicted defendant, based on the benefit obtained from criminal conduct, with a criminal lifestyle assumption where the defendant has a pattern of offending.' },
+      { num:'327', head:'Concealing Criminal Property', text:'Makes it an offence to conceal, disguise, convert or transfer criminal property, or to remove it from England and Wales, knowing or suspecting that it is such.' },
+      { num:'330', head:'Failure to Disclose', text:'Imposes a duty on persons in the regulated sector to disclose knowledge or suspicion of money laundering to the National Crime Agency; failure to do so is a criminal offence.' },
+      { num:'340', head:'Interpretation: Criminal Property', text:'Defines criminal property as a person\'s benefit from criminal conduct where the alleged offender knows or suspects that it constitutes or represents such a benefit.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/29/contents' },
+
+  // ── Employment — statute ──
+  { id:'r20260908i', type:'curated', cat:'statute', area:'Employment',
+    title:'Health and Safety at Work etc Act 1974',
+    body:"The foundational statute for workplace health and safety in Great Britain. It imposes general duties on employers, employees, designers, manufacturers, and suppliers, creates the Health and Safety Executive, and provides the framework under which the detailed regulatory regime — including thousands of specific regulations — operates.",
+    sections:[
+      { num:'2', head:'General Duties of Employers to Employees', text:'Places on every employer a duty to ensure, so far as is reasonably practicable, the health, safety and welfare at work of all his employees, covering plant, systems of work, information, training, and the workplace itself.' },
+      { num:'3', head:'Duties to Non-Employees', text:'Requires employers and self-employed persons to conduct their undertakings in such a way that persons not in their employment — contractors, visitors, members of the public — are not exposed to risks to their health or safety.' },
+      { num:'7', head:'Duties of Employees', text:'Requires every employee while at work to take reasonable care for his own and others\' health and safety and to co-operate with the employer so far as is necessary to enable the employer to comply with its statutory duties.' },
+      { num:'33', head:'Offences', text:'Creates the principal criminal offences for breach of the Act\'s general duties and of health and safety regulations made under it, enforceable by the Health and Safety Executive and local authorities.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1974/37/contents' },
+
   ];
 });
