@@ -322,5 +322,50 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Trusts — case ──
+  { id:'k20', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Re Baden (No 1); McPhail v Doulton [1970] UKHL 1',
+    court:'House of Lords',
+    facts:'Bertram Baden settled a discretionary trust for employees of Matthew Hall & Co and their relatives and dependants, with trustees having absolute discretion as to how to apply the fund. The question was which legal test governed whether the class of beneficiaries was sufficiently certain for the trust to be valid.',
+    judgment:'The House of Lords, overruling the Court of Appeal, held that the test applicable to powers of appointment should equally govern discretionary trusts, and remitted the case to determine whether the Baden class satisfied that test.',
+    ratio:'A discretionary trust is valid if it can be said with certainty whether any given individual is or is not within the class of beneficiaries. The earlier rule — that a discretionary trust required it to be possible to compile a complete list of all potential beneficiaries — was wrong and is overruled. Certainty of objects is satisfied so long as the concept defining the class is clear, even if evidential difficulties make it hard to establish membership in individual cases.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1970/1.html' },
+
+  // ── Trusts — case ──
+  { id:'k21', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Re Baden\'s Deed Trusts (No 2) [1972] EWCA Civ 10',
+    court:'Court of Appeal',
+    facts:'On remission from the House of Lords following McPhail v Doulton, the Court of Appeal had to apply the "is or is not" certainty test to the Baden trust itself and determine whether the words "relatives" and "dependants" were sufficiently defined to constitute a certain class.',
+    judgment:'All three members of the Court of Appeal held the trust was valid, but each reached that conclusion by a different route — differing on how to handle cases where it is genuinely uncertain whether a person falls within the class.',
+    ratio:'A class satisfies the McPhail v Doulton certainty test if it is conceptually clear what the defining word means, even if it is evidentially uncertain whether a specific person qualifies. The case reveals three competing approaches to the "don\'t know" category: that such cases can simply be excluded, that the test requires only that many persons plainly qualify, or that conceptual certainty plus ascertainability of at least some members suffices. All three approaches affirm that the trust does not fail merely because the class is large or its periphery imprecise.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1972/10.html' },
+
+  // ── Equity — case ──
+  { id:'k22', type:'curated', cat:'case-law', area:'Equity',
+    title:'Royal Brunei Airlines Sdn Bhd v Tan [1995] UKPC 4',
+    court:'Privy Council',
+    facts:'A travel company held ticket-sale proceeds on trust for Royal Brunei Airlines under a ticketing agreement. Tan, the company\'s managing director and principal shareholder, caused the company to misapply those proceeds in breach of trust. The airline sued Tan personally on the ground that he had dishonestly assisted in the breach.',
+    judgment:'The Privy Council allowed the appeal and held Tan personally liable. Lord Nicholls delivered the leading opinion, restating the basis of accessory liability in equity.',
+    ratio:'A stranger to a trust who dishonestly assists a trustee\'s breach of trust is personally liable to account to the beneficiary. Liability turns on the defendant\'s own dishonesty, not on whether the trustee acted dishonestly. Dishonesty is an objective standard: it is not acting as an honest person would act in the circumstances, assessed by reference to what the defendant knew and the standards of ordinary honest conduct. A defendant cannot escape liability by claiming a personal belief that their conduct was permissible if that belief would not be held by an honest person in their position.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKPC/1995/4.html' },
+
+  // ── Contract — case ──
+  { id:'k23', type:'curated', cat:'case-law', area:'Contract',
+    title:'Ruxley Electronics & Construction Ltd v Forsyth [1995] UKHL 8',
+    court:'House of Lords',
+    facts:'Forsyth contracted for a swimming pool to be built with a maximum depth of 7 feet 6 inches. The pool was constructed to only 6 feet deep. This defect made no difference to the market value of the property. Forsyth claimed the full cost of demolition and rebuilding — approximately £21,500 — as damages for breach of contract.',
+    judgment:'The House of Lords held Forsyth was not entitled to the cost of cure but was awarded modest damages of £2,500 for loss of amenity.',
+    ratio:'Where the cost of curing a defect in performance would be wholly disproportionate to any benefit gained and it would be unreasonable for the claimant to incur that cost, the court will not award cost of cure as damages. The appropriate measure in such cases may be the diminution in market value (here nil) plus a modest sum for loss of amenity — the personal value the promisee placed on obtaining precise performance. The consumer surplus enjoyed by a contracting party is a legitimate interest that the law recognises and, within reason, protects.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1995/8.html' },
+
+  // ── Contract — case ──
+  { id:'k24', type:'curated', cat:'case-law', area:'Contract',
+    title:'Davis Contractors Ltd v Fareham Urban District Council [1956] UKHL 3',
+    court:'House of Lords',
+    facts:'Davis Contractors agreed to build 78 houses within 8 months for a fixed price of approximately £85,800. Because of an acute shortage of skilled labour — unforeseen by both parties — the work took 22 months and cost the contractors over £115,000. Davis claimed the contract had been frustrated and sought payment on a quantum meruit basis at a higher rate.',
+    judgment:'The House of Lords held the contract was not frustrated. Davis Contractors were entitled only to the contract price and not to quantum meruit.',
+    ratio:'Frustration occurs when, without default by either party, a supervening event renders performance of the contractual obligation a thing radically different from that which was undertaken. The test is not what the parties would have agreed had they foreseen the event; it is whether the literal words of the contract, read in the new situation, are so different from what the parties contemplated as to make enforcement unjust. Mere difficulty, expense, or delay is not enough; there must be a change so fundamental that it would be unjust to hold the parties to their original bargain.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1956/3.html' },
+
   ];
 });
