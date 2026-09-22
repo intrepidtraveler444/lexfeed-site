@@ -322,6 +322,108 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Employment — statute ──
+  { id:'r20260922a', type:'curated', cat:'statute', area:'Employment',
+    title:'Equality Act 2010',
+    body:"Consolidated and replaced earlier discrimination legislation — including the Race Relations Act 1976, Sex Discrimination Act 1975 and Disability Discrimination Act 1995 — into a single framework. It identifies nine protected characteristics and provides consistent protection across employment, the provision of services, education and public functions.",
+    sections:[
+      { num:'4', head:'Protected Characteristics', text:'Lists the nine protected characteristics: age, disability, gender reassignment, marriage and civil partnership, pregnancy and maternity, race, religion or belief, sex, and sexual orientation.' },
+      { num:'13', head:'Direct Discrimination', text:'A person (A) discriminates against another (B) if, because of a protected characteristic, A treats B less favourably than A treats or would treat others.' },
+      { num:'19', head:'Indirect Discrimination', text:'A applies indirect discrimination where A applies a provision, criterion or practice that puts persons sharing B\'s protected characteristic at a particular disadvantage, unless A can show it is a proportionate means of achieving a legitimate aim.' },
+      { num:'26', head:'Harassment', text:'Defines harassment as unwanted conduct related to a protected characteristic that has the purpose or effect of violating another\'s dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment.' },
+      { num:'136', head:'Burden of Proof', text:'Where a claimant establishes facts from which the tribunal could decide that a contravention occurred, the burden shifts to the respondent to show that the treatment was not in contravention of the Act.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2010/15/contents' },
+
+  // ── Criminal — statute ──
+  { id:'r20260922b', type:'curated', cat:'statute', area:'Criminal',
+    title:'Fraud Act 2006',
+    body:"Repealed the old deception offences in the Theft Acts and replaced them with a single, broadly-defined fraud offence and two supplementary offences. The core offence can be committed by false representation, failure to disclose information, and abuse of position — covering a wide range of dishonest conduct without requiring that a victim actually be deceived or suffer loss.",
+    sections:[
+      { num:'1', head:'Fraud', text:'A person is guilty of fraud if he is in breach of any of ss.2, 3 or 4, and is liable on conviction on indictment to imprisonment for a term not exceeding 10 years.' },
+      { num:'2', head:'Fraud by False Representation', text:'A person commits fraud by making a false representation, dishonestly, intending thereby to make a gain for himself or another, or to cause loss to another, or to expose another to a risk of loss.' },
+      { num:'3', head:'Fraud by Failing to Disclose Information', text:'A person commits fraud by failing to disclose information to another where he is under a legal duty to do so, dishonestly intending to make a gain or cause a loss.' },
+      { num:'4', head:'Fraud by Abuse of Position', text:'A person commits fraud by dishonestly abusing a position in which he is expected to safeguard, or not to act against, the financial interests of another, intending to make a gain or cause a loss.' },
+      { num:'11', head:'Obtaining Services Dishonestly', text:'An offence of obtaining services that are available only on payment, without payment, knowing they are to be paid for, dishonestly.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2006/35/contents' },
+
+  // ── Contract — statute ──
+  { id:'r20260922c', type:'curated', cat:'statute', area:'Contract',
+    title:'Consumer Rights Act 2015',
+    body:"Modernised and consolidated consumer contract law, replacing much of the Sale of Goods Act 1979, Supply of Goods and Services Act 1982 and Unfair Contract Terms Act 1977 as they apply to consumer contracts. It also provided a statutory framework for digital content and introduced clearer remedies.",
+    sections:[
+      { num:'9', head:'Goods to be of Satisfactory Quality', text:'Every contract to supply goods has an implied term that the quality of the goods is satisfactory, assessed by what a reasonable person would consider satisfactory, including appearance and finish, freedom from minor defects, safety and durability.' },
+      { num:'11', head:'Goods to Match Description', text:'Where the trader supplies goods by description there is an implied term that the goods will match the description.' },
+      { num:'34', head:'Right to Repair or Replacement', text:'The short-term right to reject having been lost, the consumer may require the trader to repair or replace goods that do not conform to the contract, at no cost to the consumer.' },
+      { num:'49', head:'Service to be Performed with Reasonable Care and Skill', text:'Every contract to supply a service has an implied term that the trader must perform the service with reasonable care and skill.' },
+      { num:'62', head:'Requirement for Contract Terms to be Fair', text:'An unfair term of a consumer contract is not binding on the consumer. A term is unfair if, contrary to the requirement of good faith, it causes a significant imbalance in the parties\' rights and obligations to the detriment of the consumer.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2015/15/contents' },
+
+  // ── Tort — case-law ──
+  { id:'r20260922d', type:'curated', cat:'case-law', area:'Tort',
+    title:'Armes v Nottinghamshire County Council [2017] UKSC 60',
+    court:'UK Supreme Court',
+    facts:'The claimant had been placed by the defendant local authority in the care of foster parents as a child in the 1980s and suffered serious abuse at the hands of both sets of foster carers. The council accepted the abuse occurred but denied vicarious liability on the ground that foster parents are independent carers, not employees.',
+    judgment:'The Supreme Court held the council vicariously liable for the abuse inflicted by the foster parents. Foster parents were not independent contractors in any ordinary commercial sense: they were recruited, vetted, trained and supervised by the council and acted on its behalf in carrying out a statutory duty to provide care for looked-after children. The relationship was akin to employment for the purpose of vicarious liability.',
+    ratio:'Vicarious liability can extend beyond formal employment to situations where one party creates and controls an enterprise carrying an inherent risk of harm and the tortfeasor is sufficiently integrated into that enterprise. A local authority exercising statutory fostering functions is liable for harm caused by foster carers it recruits and controls.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2017/60.html' },
+
+  // ── Tort — case-law ──
+  { id:'r20260922e', type:'curated', cat:'case-law', area:'Tort',
+    title:'OBG Ltd v Allan [2007] UKHL 21',
+    court:'House of Lords',
+    facts:'Three appeals were heard together. OBG Ltd concerned receivers who had wrongly interfered with a company\'s contracts. Douglas concerned the unauthorised publication of celebrity wedding photographs. Mainstream Properties concerned the intentional procurement of a breach of a commercial agreement. The appeals raised questions about the scope of the economic torts.',
+    judgment:'The House of Lords restated the economic torts. Lord Hoffmann held that inducing breach of contract and the tort of causing loss by unlawful means interference are distinct torts with different elements. Causing loss by unlawful means requires an act directed against the claimant that would be independently actionable if committed against a third party. The tort of conversion does not extend to pure contractual rights.',
+    ratio:'The economic torts of inducing breach of contract and causing loss by unlawful means are legally distinct. Liability for causing loss by unlawful means requires (i) an unlawful act directed against a third party, (ii) done with the intention of injuring the claimant, and (iii) causing loss. The tort cannot be committed by an act that does not affect a third party\'s freedom to deal with the claimant.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2007/21.html' },
+
+  // ── Trusts — case-law ──
+  { id:'r20260922f', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Armitage v Nurse [1997] EWCA Civ 1279',
+    court:'Court of Appeal',
+    facts:'A farm had been settled in trust for the benefit of Paula Armitage. The trustees, including her family solicitor, neglected the management of the estate and failed to supervise the farm properly, resulting in substantial losses. The trust deed contained an exemption clause purporting to exclude trustee liability for loss unless caused by actual fraud. Paula argued the clause was contrary to public policy and could not exclude liability for gross negligence.',
+    judgment:'Millett LJ held that the exemption clause was valid and could exclude liability for negligence, even gross negligence. While dishonesty could not be excluded, there was no rule of public policy preventing a settlor from including a clause exempting trustees from liability for everything short of actual fraud. The clause was effective to protect the trustees.',
+    ratio:'A trustee exemption clause may validly exclude liability for breach of trust including gross negligence, provided it does not purport to exclude liability for actual fraud. There is no public-policy rule invalidating such clauses. The irreducible core of a trust — the duty to account honestly — cannot be excluded, but the duty of care and other obligations may be.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1997/1279.html' },
+
+  // ── Trusts — case-law ──
+  { id:'r20260922g', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Target Holdings Ltd v Redferns [1995] UKHL 10',
+    court:'House of Lords',
+    facts:'A solicitor firm held mortgage advance funds on trust for the mortgagee lender and was to release them only on completion of the purchase and registration of the mortgage. The solicitors paid away the funds prematurely before completion. Completion eventually happened but the property was overvalued due to fraud and Target suffered a loss on the mortgage. Target sued the solicitors for equitable compensation for breach of trust.',
+    judgment:'The House of Lords held that, while the solicitors had committed a breach of trust by paying away funds early, the correct measure of equitable compensation required that the loss be assessed at trial, not at the date of breach. The claimant had to show that the breach actually caused the loss. Since Target would have suffered the same loss regardless of the premature payment, the solicitors were not liable for the full amount.',
+    ratio:'Equitable compensation for breach of trust must be assessed at the date of judgment, with the benefit of hindsight. The claimant must establish a causal link between the breach and the loss claimed. In a commercial trust, if the breach caused no practical difference to the ultimate loss, full compensation is not recoverable.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1995/10.html' },
+
+  // ── Tort — case-law ──
+  { id:'r20260922h', type:'curated', cat:'case-law', area:'Tort',
+    title:'Woodland v Essex County Council [2013] UKSC 66',
+    court:'UK Supreme Court',
+    facts:'A ten-year-old pupil was seriously injured during a school swimming lesson run by an independent contractor hired by the local authority. The contracted swimming teacher negligently failed to notice the pupil was in difficulty. The question was whether the local authority owed a non-delegable duty to ensure the activity was performed with care.',
+    judgment:'The Supreme Court held that the local authority owed a non-delegable duty of care to the pupil. Lord Sumption identified the features giving rise to such duties: the claimant is especially vulnerable, the defendant has undertaken responsibility for the claimant\'s safety in circumstances it controls, the claimant has no control over how care is provided, and the defendant has delegated to a third party a function integral to that duty.',
+    ratio:'A non-delegable duty of care arises where a defendant has assumed responsibility for a particularly vulnerable claimant, the defendant is in a position of control over the relevant activity, and the duty cannot be discharged by delegation to an independent contractor. A local authority owes such a duty for activities forming part of its educational function for pupils.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2013/66.html' },
+
+  // ── Tort — case-law ──
+  { id:'r20260922i', type:'curated', cat:'case-law', area:'Tort',
+    title:'Barclays Bank plc v Various Claimants [2020] UKSC 13',
+    court:'UK Supreme Court',
+    facts:'The claimants alleged they had been sexually assaulted by a medical doctor who conducted pre-employment medical examinations on behalf of Barclays Bank. The doctor ran his own independent medical practice and was engaged by the bank only to perform these discrete examinations. The question was whether the bank was vicariously liable for the doctor\'s wrongdoing.',
+    judgment:'The Supreme Court held that Barclays was not vicariously liable. Lady Hale restated the test for relationships akin to employment: the court must ask whether the tortfeasor was carrying on activities as an integral part of the business activities of the defendant and for the defendant\'s benefit. The doctor was a genuinely independent practitioner running his own business; the relationship lacked that character.',
+    ratio:'Vicarious liability in relationships akin to employment requires that the tortfeasor was integrated into the defendant\'s business and acting for its benefit, not merely engaged as an independent contractor running their own enterprise. The akin-to-employment concept cannot be stretched to cover every contractor engaged for a specific purpose.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2020/13.html' },
+
+  // ── Tort — case-law ──
+  { id:'r20260922j', type:'curated', cat:'case-law', area:'Tort',
+    title:'Coventry v Lawrence [2014] UKSC 13',
+    court:'UK Supreme Court',
+    facts:'The defendants operated a speedway and motocross stadium under planning permission granted in the 1970s. The claimants, who had moved into a cottage near the stadium, sued in private nuisance for noise. The defendants argued that their operations were protected by prescriptive rights acquired through long use and by the grant of planning permission.',
+    judgment:'The Supreme Court held the defendants liable in nuisance. The grant of planning permission does not authorise a nuisance; it may affect the character of the neighbourhood for purposes of assessing the standard of comfort, but does not change the legal test. Prescriptive rights to commit a nuisance could only be acquired where the precise activity constituting the nuisance had been carried on for 20 years without interruption.',
+    ratio:'Planning permission does not authorise a nuisance, though it may alter the character of the neighbourhood relevant to what level of interference is reasonable. Statutory authority as a defence to nuisance requires the clearest statutory language. A prescriptive right to commit a nuisance requires that the exact activity causing the nuisance has been carried on openly and without interruption for twenty years.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/13.html' },
+
   // ── Trusts — case ──
   { id:'k20', type:'curated', cat:'case-law', area:'Trusts',
     title:'Re Baden (No 1); McPhail v Doulton [1970] UKHL 1',
