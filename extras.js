@@ -104,6 +104,41 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  { id:'xa20260922a', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Howarth — 'Many Duties of Care — Or A Duty of Care? Notes from the Underground' (2006) 26 OJLS 449",
+    body:"This article critically examines the architecture of the duty of care in English negligence law. Howarth challenges the conventional understanding that duty of care operates as a single, unitary concept, arguing instead that English courts in practice apply a multiplicity of different duty-rules, each tailored to a particular type of situation. Drawing on overlooked academic and judicial material, the article shows that the broad Caparo framework masks a more fragmented and situation-specific reality. The argument has implications for how coherently negligence law can be presented, taught and applied, and questions whether the search for a unified principle is either achievable or desirable.",
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article/26/3/449/1451997' },
+
+  { id:'xa20260922b', type:'curated', cat:'journal-article', area:'Contract',
+    title:"Saprai — 'Balfour v Balfour and the Separation of Contract and Promise' (2017) 37 Legal Studies 468",
+    body:"Saprai revisits the landmark domestic agreement case of Balfour v Balfour [1919] and offers a new interpretation of its doctrinal significance. Against the standard reading that the case is about an intention to create legal relations, Saprai argues that the real issue is the relationship between contractual obligation and moral promise. The article advances a theoretical account under which a valid contract does not necessarily correspond to or derive its force from a moral promise — the legal and moral categories are separable. This reframing has broader implications for how we understand consideration, enforceability, and the normative foundations of contract law.",
+    src:'Legal Studies', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/lest.12162' },
+
+  { id:'xa20260922c', type:'curated', cat:'journal-article', area:'Company',
+    title:"Kershaw — 'The Illusion of Importance: Reconsidering the UK's Takeover Defence Prohibition' (2007) 56 ICLQ 267",
+    body:"Kershaw subjects the UK rule against defensive measures by target boards in public takeovers to rigorous doctrinal and economic scrutiny. The rule prevents directors from taking action that might frustrate a bid without shareholder approval and is widely regarded as a cornerstone of UK corporate governance. Kershaw argues that the rule is more of an illusion: its practical impact is overstated because the range of permissible responses available to target boards is broader than commonly assumed, and because other structural features of the UK market already constrain opportunistic defences. The article recalibrates expectations about what the prohibition actually achieves.",
+    src:'International and Comparative Law Quarterly', link:'https://www.cambridge.org/core/journals/international-and-comparative-law-quarterly/article/abs/illusion-of-importance-reconsidering-the-uks-takeover-defence-prohibition/C81C6028B2B18AE389FB42A146F2578E' },
+
+  { id:'xa20260922d', type:'curated', cat:'journal-article', area:'Employment',
+    title:"Prassl & Risak — 'Uber, Taskrabbit, & Co: Platforms as Employers? Rethinking the Legal Analysis of Crowdwork' (2016) 37 Comp Lab L & Pol'y J 619",
+    body:"This influential article intervenes in debates about the employment status of workers engaged through digital platforms such as Uber and TaskRabbit. Prassl and Risak argue that the difficulties courts face in classifying platform workers arise not from new technology but from reliance on an outdated, unitary concept of the employer. Drawing on a comparative-law functional approach, the article proposes reconceiving the employer as an aggregate of functions — hiring, directing, paying, dismissing — which may be distributed across multiple entities. Applied to platforms, the framework reveals that economic and disciplinary employer functions are often exercised by the platform even when formal legal relationships suggest otherwise, justifying the extension of employment protection.",
+    src:'Comparative Labor Law and Policy Journal', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2733003' },
+
+  { id:'xa20260922e', type:'curated', cat:'journal-article', area:'Human Rights',
+    title:"Young — 'In Defence of Due Deference' (2009) 72 MLR 554",
+    body:"Young defends the practice of judicial deference to the executive and legislature in human rights adjudication. Critics have argued that deference, particularly in cases involving national security or social policy, effectively licenses a lowering of the human rights standard and leaves individuals unprotected. Young responds that a properly calibrated due deference — sensitive to the relative institutional competencies of courts, executives and parliaments — is not merely permissible but is required by a correct understanding of the separation of powers and the nature of rights review. The article draws on UK constitutional theory and the Strasbourg case law to show that the choice is not between full review and abdication, but between different models of appropriate deference.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-2230.2009.00757.x' },
+
+  { id:'xa20260922f', type:'curated', cat:'journal-article', area:'Equity',
+    title:"McFarlane — 'Understanding Equitable Estoppel: From Metaphors to Better Laws' (2013) 66 CLP 267",
+    body:"McFarlane offers a structural critique of equitable estoppel and the reasoning through which courts justify its operation. The article identifies a persistent reliance on spatial and other metaphors — the claimant standing on a representation, the defendant being estopped — as a substitute for substantive analysis. McFarlane argues that these metaphors obscure rather than illuminate the conditions under which proprietary or promissory estoppel ought to arise and the principles governing the remedy. Drawing on a rights-based analysis, the article proposes a clearer framework that distinguishes estoppel's function as a rule about the content of rights from its function as a remedy for detrimental reliance.",
+    src:'Current Legal Problems', link:'https://academic.oup.com/clp/article-abstract/66/1/267/311231' },
+
+  { id:'xa20260922g', type:'curated', cat:'journal-article', area:'Criminal',
+    title:"Chan & Simester — 'Four Functions of Mens Rea' (2011) 70 CLJ 381",
+    body:"Chan and Simester identify and analyse four distinct functions that mens rea serves within criminal law theory. Beyond its familiar role as a condition of criminal liability — requiring that the defendant had the relevant mental state at the time of the act — the article demonstrates that mens rea concepts also structure the definition of offences, calibrate the degree of culpability for sentencing purposes, and mediate between inchoate and complete liability. By disaggregating these four functions, the article reveals tensions and inconsistencies in the way courts and legislatures deploy mental-state requirements, and offers a more theoretically coherent account of how and why mens rea matters across different areas of criminal doctrine.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/four-functions-of-mens-rea/659D256E2DC5419A4567D98770F941E2' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +229,48 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  { id:'xt20260922a', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Quantum Meruit',
+    body:"Quantum meruit (Latin: 'as much as has been earned') is a restitutionary claim by which a party who has provided work, services or goods under a contract that has subsequently failed, been discharged or never came into existence may recover the reasonable value of the benefit conferred. It prevents unjust enrichment where a contract price cannot be claimed. The measure of recovery is the market value of the services or goods at the time of supply, assessed objectively, and is not capped by any contract rate agreed between the parties.",
+    example:"A solicitor is engaged to draft a series of documents under a fixed-fee retainer, but the client terminates the engagement without justification halfway through the work. Having completed a significant portion, the solicitor can bring a quantum meruit claim to recover the reasonable value of the work done, rather than being left with nothing because the full contractual fee was not yet earned.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/quantum-meruit' },
+
+  { id:'xt20260922b', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Subrogation',
+    body:"Subrogation is the right by which one party who has discharged another's liability or suffered their loss is substituted in law for that other person and acquires their rights and remedies. In insurance law, where an insurer pays out on a claim it is subrogated to the insured's right of action against any third party responsible for the loss, preventing the insured from recovering twice. In suretyship, a surety who pays a creditor is subrogated to the creditor's rights against the principal debtor. The right arises by operation of law or expressly under contract.",
+    example:"A homeowner's property is damaged by a negligent builder contracted by a neighbour. The homeowner's insurer pays the repair costs under the policy, then exercises the right of subrogation to sue the builder in the homeowner's name, recovering the payout from the party at fault and ensuring the loss ultimately falls on the tortfeasor.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/subrogation' },
+
+  { id:'xt20260922c', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Rescission',
+    body:"Rescission is an equitable remedy that sets aside a contract ab initio (from the beginning), restoring the parties as nearly as possible to their pre-contract position. It is available where the contract was entered into as a result of misrepresentation, mistake, duress, undue influence or fraud. Rescission is a self-help remedy: the innocent party may rescind by giving notice, subject to four bars — affirmation, lapse of time, the intervention of third-party rights, or the impossibility of restitutio in integrum (restoring parties to the original position).",
+    example:"A buyer of a business is induced to enter the contract by the seller's fraudulent misrepresentation about profits. On discovering the fraud, the buyer promptly notifies the seller that the contract is rescinded, returns the business, and claims back the purchase price. If the buyer had instead continued operating the business for a year after discovering the fraud, rescission would be barred by affirmation.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/rescission' },
+
+  { id:'xt20260922d', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Novation',
+    body:"Novation is the substitution of a new obligation or party for an old one, by the agreement of all the parties concerned, so that the original contractual obligation is extinguished and replaced by a fresh one. Unlike assignment, which transfers rights while leaving the original liability in place, novation requires the consent of all contracting parties and results in the complete discharge of the original obligation. It is common in commercial contexts where a business is acquired and the purchaser wishes to step into the shoes of the seller with respect to existing contracts.",
+    example:"A software developer has a contract to maintain a client's systems. The developer is acquired by a larger company, and all three parties — the developer, the acquirer and the client — agree that the acquirer will take over the maintenance contract on the same terms. This is a novation: the old contract is extinguished, a new contract is formed between the client and the acquirer, and the original developer is released from all future obligations.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/novation' },
+
+  { id:'xt20260922e', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Vicarious Liability',
+    body:"Vicarious liability is the imposition of tortious liability on one person for the acts of another, without any fault on the first person's part, by reason of the legal relationship between them. The classic example is an employer's liability for torts committed by an employee in the course of employment. Two questions arise: first, is the relationship one that can attract vicarious liability (traditionally employment, now extended to relationships akin to employment); second, was there a sufficient connection between the relationship and the wrong (the close connection test). The doctrine allocates risk to those who benefit from and control the activities creating the risk.",
+    example:"A delivery driver employed by a courier company negligently runs a red light while making deliveries and injures a cyclist. The courier company is vicariously liable for the driver's negligence because the tort was committed by an employee in the course of employment — even though the employer was not personally negligent in any way.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/vicarious-liability' },
+
+  { id:'xt20260922f', type:'curated', cat:'legal-term', area:'Criminal',
+    title:'Actus Reus',
+    body:"Actus reus (Latin: 'guilty act') is the external, physical element of a criminal offence — the conduct, circumstances or consequence prohibited by the criminal law. Every crime requires proof of an actus reus combined with the corresponding mens rea (mental element), unless the offence is one of strict liability. The actus reus may consist of a positive act, an omission where there is a legal duty to act, or simply being in a certain state or circumstance. It must normally be voluntary: reflex actions, automatism and physical compulsion may negate it.",
+    example:"The actus reus of theft under the Theft Act 1968 is the appropriation of property belonging to another. A defendant who picks up and pockets another person's wallet has performed the actus reus; whether he is guilty of theft also depends on whether he had the required mens rea — dishonesty and an intention to permanently deprive the owner of the property.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/actus-reus' },
+
+  { id:'xt20260922g', type:'curated', cat:'legal-term', area:'Trusts',
+    title:'Resulting Trust',
+    body:"A resulting trust is a trust that arises by operation of law to return the equitable interest in property to the person who provided the purchase money or made the transfer, where an express trust fails or is silent as to the beneficial ownership. Two main categories exist: automatic resulting trusts, which arise when a transferor fails to dispose of the whole beneficial interest under an express trust; and presumed resulting trusts, which arise when property is transferred to another for no consideration, from a rebuttable presumption that the transferee holds on trust for the transferor. The presumption is rebutted by evidence of a gift or the presumption of advancement.",
+    example:"Three friends contribute equal sums to buy a house that is conveyed into only one friend's name, with no express declaration of trust. Equity presumes a resulting trust: the legal owner holds the property on trust for all three, proportionate to their contributions. The person in whose name the property stands cannot claim the whole beneficial interest simply by virtue of being the legal owner.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/resulting-trust' },
 
   ],
 
