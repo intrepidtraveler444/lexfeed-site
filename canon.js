@@ -322,5 +322,50 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Constitutional — case ──
+  { id:'m11', type:'curated', cat:'case-law', area:'Constitutional',
+    title:'R (Miller) v Secretary of State for Exiting the European Union [2017] UKSC 5',
+    court:'UK Supreme Court',
+    facts:'Following the 2016 referendum vote to leave the EU, the government argued it could give notice of withdrawal under Article 50 TEU by exercise of the royal prerogative without further parliamentary authority. Gina Miller and other claimants brought judicial review proceedings contending that an Act of Parliament was constitutionally required before notification could lawfully be given.',
+    judgment:'The Supreme Court held, by 8 to 3, that parliamentary authorisation was necessary before Article 50 could be triggered. Accordingly, the Government could not serve the notice without first obtaining the approval of Parliament through legislation.',
+    ratio:'The royal prerogative cannot be used where its exercise would inevitably remove or curtail rights conferred on individuals by Parliament through statute. The European Communities Act 1972 had made EU law a source of domestic legal rights, and those rights could not be removed by prerogative action alone — only Parliament could authorise a step having that constitutional consequence.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2017/5.html' },
+
+  // ── Human Rights — case ──
+  { id:'m12', type:'curated', cat:'case-law', area:'Human Rights',
+    title:'A & Ors v Secretary of State for the Home Department [2004] UKHL 56',
+    court:'House of Lords',
+    facts:'Following the September 2001 attacks, Parliament enacted s.23 of the Anti-terrorism, Crime and Security Act 2001, enabling indefinite detention without charge or trial of foreign nationals certified by the Home Secretary as suspected international terrorists. The government had also issued a formal derogation from Article 5 ECHR. Nine detainees held at Belmarsh high-security prison challenged the lawfulness of their detention.',
+    judgment:'The House of Lords, 8 to 1, declared s.23 incompatible with Articles 5 and 14 ECHR and quashed the derogation order. The powers could not be justified because they were both disproportionate to the emergency and discriminatory, applying only to foreign nationals when British nationals posed an equivalent threat.',
+    ratio:'A derogation from the ECHR is valid only if it is strictly required by the exigencies of the declared emergency. Legislation that subjects foreign nationals to indefinite detention while leaving comparably dangerous British nationals at liberty cannot be rationally justified under Article 14; an emergency invoked to justify derogation cannot legitimise measures of whose necessity the state cannot give a coherent account.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/56.html' },
+
+  // ── Contract — case ──
+  { id:'m13', type:'curated', cat:'case-law', area:'Contract',
+    title:'Williams v Roffey Bros & Nicholls (Contractors) Ltd [1989] EWCA Civ 5',
+    court:'Court of Appeal',
+    facts:'Roffey Bros held a refurbishment contract and subcontracted the carpentry to Williams at a price that left him financially unable to continue. Faced with penalty clauses if the main contract fell behind, Roffey Bros orally agreed to pay Williams an extra sum per flat completed to secure timely completion. After Williams finished several more flats, Roffey Bros refused to pay the agreed extras, arguing there was no fresh consideration.',
+    judgment:'The Court of Appeal held the additional promise enforceable. By securing timely completion and avoiding penalty liability, Roffey Bros had obtained a practical benefit sufficient to support the new promise.',
+    ratio:'A promise to perform an existing contractual duty to the same promisee can constitute good consideration for a further promise if the promisor in fact obtains a real practical benefit — such as avoiding a penalty clause or securing completion — as a result. A legal detriment to the promisee is not essential; a factual, practical benefit to the party giving the new promise is sufficient.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1989/5.html' },
+
+  // ── Equity — case ──
+  { id:'m14', type:'curated', cat:'case-law', area:'Equity',
+    title:'Westdeutsche Landesbank Girozentrale v Islington LBC [1996] UKHL 12',
+    court:'House of Lords',
+    facts:'A German bank entered interest-rate swap agreements with the London Borough of Islington. When such contracts were subsequently held to be void ab initio — local authorities having no capacity to enter them — the bank sought recovery of net sums paid together with compound interest, on the basis that the council held the money on a resulting or constructive trust.',
+    judgment:'The House of Lords held no trust had arisen on the facts. The bank was entitled to restitution at common law but could not claim compound interest because equity did not intervene: the council had received the money innocently, without knowledge of any factor that affected its conscience.',
+    ratio:'A resulting trust does not arise simply because a payment was made under a void transaction or under a mistake of law. Equity acts on the conscience of the holder of property: a trust requires that the holder have knowledge of facts that make it unconscionable for them to retain the property beneficially. Good faith receipt of money, without awareness of the vitiating factor, does not impose a trust.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1996/12.html' },
+
+  // ── Contract — case ──
+  { id:'m15', type:'curated', cat:'case-law', area:'Contract',
+    title:'Ruxley Electronics & Construction Ltd v Forsyth [1995] UKHL 8',
+    court:'House of Lords',
+    facts:'A contractor built a swimming pool shallower than specified — 6 feet at the diving end instead of the contracted 7 feet 6 inches. The pool was safe to use and dive into, and the shortfall caused no measurable diminution in the market value of the property. The homeowner claimed the cost of demolishing and rebuilding the pool to the specified depth, amounting to £21,560.',
+    judgment:'The House of Lords held that the cost-of-cure measure was not recoverable; it would be wholly unreasonable and disproportionate to any benefit obtained. An award of £2,500 for loss of amenity was affirmed in its place.',
+    ratio:'Where the cost of curing a breach of contract is out of all proportion to the benefit it would confer, the court is not bound to award cost-of-cure damages. It may instead award diminution in value (here nil) together with a modest sum for loss of amenity. The fundamental purpose of contractual damages is to compensate the claimant for genuine loss, not to impose a financial penalty on the defendant, and reasonableness governs which measure is appropriate.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1995/8.html' },
+
   ];
 });
