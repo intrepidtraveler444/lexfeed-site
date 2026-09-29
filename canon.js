@@ -62,7 +62,7 @@
       { num:'1', head:'Bribing Another Person', text:'Offering, promising or giving a financial or other advantage to induce or reward improper performance of a relevant function.' },
       { num:'2', head:'Being Bribed', text:'Requesting, agreeing to receive or accepting an advantage in connection with the improper performance of a function or activity.' },
       { num:'6', head:'Bribery of Foreign Public Officials', text:'A separate offence of bribing a foreign public official to obtain or retain business or a business advantage.' },
-      { num:'7', head:'Failure of Commercial Organisations to Prevent Bribery', text:'A strict-liability corporate offence committed where a person associated with an organisation bribes another to benefit it — subject to the “adequate procedures” defence.' },
+      { num:'7', head:'Failure of Commercial Organisations to Prevent Bribery', text:'A strict-liability corporate offence committed where a person associated with an organisation bribes another to benefit it — subject to the "adequate procedures" defence.' },
       { num:'9', head:'Guidance', text:'Requires the Secretary of State to publish guidance on procedures organisations can put in place to prevent bribery.' },
       { num:'12', head:'Territorial Application', text:'Offences may be prosecuted even where the conduct occurs wholly abroad, provided the person has a close connection with the UK.' },
     ],
@@ -108,7 +108,7 @@
   // ── 8. Public Law — statute ──
   { id:'k8', type:'curated', cat:'statute', area:'Public Law',
     title:'Mental Health Act 1983',
-    body:"Governs the compulsory admission (“sectioning”), detention, treatment and after-care of people with mental disorder in England and Wales. A core statute for medical and public law, much amended by the Mental Health Act 2007.",
+    body:"Governs the compulsory admission (\"sectioning\"), detention, treatment and after-care of people with mental disorder in England and Wales. A core statute for medical and public law, much amended by the Mental Health Act 2007.",
     sections:[
       { num:'2', head:'Admission for Assessment', text:'Allows detention for assessment for up to 28 days on the application of an approved mental health professional and two medical recommendations.' },
       { num:'3', head:'Admission for Treatment', text:'Allows detention for treatment for up to 6 months, renewable, where appropriate medical treatment is available.' },
@@ -129,14 +129,14 @@
       { num:'3', head:'Civil Remedy', text:'An actual or apprehended breach may found a civil claim, allowing damages (including for anxiety) and an injunction.' },
       { num:'4', head:'Fear of Violence', text:'A more serious offence where the course of conduct causes another to fear, on at least two occasions, that violence will be used against them.' },
       { num:'4A', head:'Stalking Involving Fear or Distress', text:'Targets stalking that causes fear of violence or serious alarm or distress with a substantial adverse effect on daily activities.' },
-      { num:'7', head:'Interpretation', text:'Defines a “course of conduct” (conduct on at least two occasions) and provides that references to harassing a person include alarming them or causing distress.' },
+      { num:'7', head:'Interpretation', text:'Defines a "course of conduct" (conduct on at least two occasions) and provides that references to harassing a person include alarming them or causing distress.' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1997/40/contents' },
 
   // ── 10. Constitutional / EU — statute ──
   { id:'k10', type:'curated', cat:'statute', area:'Constitutional',
     title:'European Union (Withdrawal) Act 2018',
-    body:"The principal statute giving domestic legal effect to Brexit. It repealed the European Communities Act 1972 and converted the body of EU law applying in the UK into a new category of “retained EU law”.",
+    body:"The principal statute giving domestic legal effect to Brexit. It repealed the European Communities Act 1972 and converted the body of EU law applying in the UK into a new category of \"retained EU law\".",
     sections:[
       { num:'1', head:'Repeal of the ECA 1972', text:'Repealed the European Communities Act 1972 on exit day, ending the constitutional conduit for EU law in the UK.' },
       { num:'2', head:'Saving for EU-derived Domestic Legislation', text:'Preserves domestic legislation that had been made to implement EU obligations.' },
@@ -291,10 +291,10 @@
     title:'Domestic Abuse Act 2021',
     body:"Created the first statutory definition of domestic abuse in England and Wales, recognising that abuse extends well beyond physical violence. It strengthened protections for victims, treated children exposed to abuse as victims in their own right, and closed gaps in the criminal law.",
     sections:[
-      { num:'1', head:'Definition of “Domestic Abuse”', text:'Defines domestic abuse between persons aged 16 or over who are personally connected, covering physical or sexual abuse, violent or threatening behaviour, controlling or coercive behaviour, economic abuse, and psychological, emotional or other abuse.' },
-      { num:'2', head:'Definition of “Personally Connected”', text:'Sets out the relationships that count — including partners, former partners, those who are or were married or in a civil partnership, and certain relatives.' },
+      { num:'1', head:'Definition of "Domestic Abuse"', text:'Defines domestic abuse between persons aged 16 or over who are personally connected, covering physical or sexual abuse, violent or threatening behaviour, controlling or coercive behaviour, economic abuse, and psychological, emotional or other abuse.' },
+      { num:'2', head:'Definition of "Personally Connected"', text:'Sets out the relationships that count — including partners, former partners, those who are or were married or in a civil partnership, and certain relatives.' },
       { num:'3', head:'Children as Victims', text:'A child who sees, hears or experiences the effects of domestic abuse, and is related to the perpetrator or victim, is also to be regarded as a victim of domestic abuse.' },
-      { num:'71', head:'Consent to Serious Harm for Sexual Gratification', text:'Confirms that a person cannot consent to the infliction of serious harm for the purposes of sexual gratification, so such consent is not a defence to the resulting offence (the so-called “rough sex” defence).' },
+      { num:'71', head:'Consent to Serious Harm for Sexual Gratification', text:'Confirms that a person cannot consent to the infliction of serious harm for the purposes of sexual gratification, so such consent is not a defence to the resulting offence (the so-called "rough sex" defence).' },
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2021/17/contents' },
 
@@ -366,6 +366,99 @@
     judgment:'The House of Lords held that the cost-of-cure measure was not recoverable; it would be wholly unreasonable and disproportionate to any benefit obtained. An award of £2,500 for loss of amenity was affirmed in its place.',
     ratio:'Where the cost of curing a breach of contract is out of all proportion to the benefit it would confer, the court is not bound to award cost-of-cure damages. It may instead award diminution in value (here nil) together with a modest sum for loss of amenity. The fundamental purpose of contractual damages is to compensate the claimant for genuine loss, not to impose a financial penalty on the defendant, and reasonableness governs which measure is appropriate.',
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1995/8.html' },
+
+  // ── Tort — Vicarious Liability (close connection test) ──
+  { id:'r20260929a', type:'curated', cat:'case-law', area:'Tort',
+    title:'Lister & Ors v Hesley Hall Ltd [2001] UKHL 22',
+    court:'House of Lords',
+    facts:'The appellants were former pupils at Wilsic Hall School, a residential school for children with behavioural difficulties run by Hesley Hall Ltd. While resident in the school\'s boarding annex between 1979 and 1982, they were systematically sexually abused by the warden of the annex, Grain, whom the company employed to look after them. They sued the employer for vicarious liability.',
+    judgment:'The House of Lords unanimously held Hesley Hall Ltd vicariously liable for Grain\'s assaults, overruling Trotman v North Yorkshire CC and restoring a purposive approach to vicarious liability for intentional wrongdoing.',
+    ratio:'An employer is vicariously liable for an employee\'s intentional tort where there is a sufficiently close connection between the tortious acts and the employment. The older Salmond test — asking whether the act was an improper mode of performing an authorised task — is inadequate for deliberate wrongs. The correct question is whether the wrongful acts were so closely connected with what the employee was employed to do that it would be fair and just to hold the employer liable.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2001/22.html' },
+
+  // ── Tort / Medical Law — Causation and Informed Consent ──
+  { id:'r20260929b', type:'curated', cat:'case-law', area:'Tort',
+    title:'Chester v Afshar [2004] UKHL 41',
+    court:'House of Lords',
+    facts:'Miss Chester was referred to a neurosurgeon, Mr Afshar, for treatment of serious back pain. He advised and performed spinal surgery without warning her of a small (1–2%) risk of cauda equina syndrome. She suffered that complication. The trial judge found that, had she been warned, she would not have refused surgery altogether, but might have sought further advice and had the operation on a different date; there was no finding that surgery on a different date would have avoided the injury.',
+    judgment:'The House of Lords (3:2) held Mr Afshar liable, modifying the orthodox "but for" test of causation to vindicate the patient\'s right to make an informed decision about her own treatment.',
+    ratio:'Where a doctor\'s negligence consists in failing to warn a patient of a risk that then materialises, the patient may establish causation even if they cannot show they would have refused surgery altogether. It suffices to show that, but for the failure to warn, they would not have consented to surgery on that particular occasion. The modification is justified to give content to the patient\'s right to autonomy — the right to decide whether, when and by whom to be treated — which the duty to warn is designed to protect.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2004/41.html' },
+
+  // ── Tort — Negligent Survey and UCTA Disclaimer ──
+  { id:'r20260929c', type:'curated', cat:'case-law', area:'Tort',
+    title:'Smith v Eric S Bush (A Firm) [1990] UKHL 1',
+    court:'House of Lords',
+    facts:'Mrs Smith applied for a mortgage to buy a modest terraced house. The building society instructed Eric S Bush to value it; the report was made available to Mrs Smith and included a disclaimer of the surveyors\' liability to anyone other than the Society. Relying on the report without commissioning her own survey, she purchased the property. The surveyor had negligently failed to spot that two chimney breasts had been removed, leaving chimneys unsupported; after purchase the chimneys collapsed, causing serious damage.',
+    judgment:'The House of Lords held the surveyors owed a duty of care to Mrs Smith and that the disclaimer was unenforceable under s.2(2) of the Unfair Contract Terms Act 1977 as failing the statutory reasonableness test.',
+    ratio:'A professional valuer acting for a mortgagee, who knows the report will be passed to and relied upon by the purchaser, assumes a responsibility to that purchaser sufficient to found a Hedley Byrne duty of care. A disclaimer seeking to exclude that liability in a standard domestic property transaction will generally fail the UCTA 1977 reasonableness test, given the practical inequality between the parties, the foreseeability that a modest purchaser will rely on the survey rather than pay for their own, and the professional\'s ability to insure against the risk.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1990/1.html' },
+
+  // ── Tort — Solicitors\' Negligence and Third-Party Beneficiaries ──
+  { id:'r20260929d', type:'curated', cat:'case-law', area:'Tort',
+    title:'White v Jones [1995] UKHL 5',
+    court:'House of Lords',
+    facts:'A testator had quarrelled with his daughters but later reconciled and instructed his solicitors to draw up a new will giving each daughter £9,000. The solicitors negligently delayed acting on the instructions and the testator died before the new will was executed. Under the existing will the daughters received nothing. They sued the solicitors in negligence for the loss of their intended legacies.',
+    judgment:'The House of Lords (3:2) held the solicitors liable to the daughters as intended beneficiaries, extending the Hedley Byrne principle by close analogy to fill a gap in the law that would otherwise leave a wrong without a remedy.',
+    ratio:'A solicitor who accepts instructions to alter a testator\'s will owes a duty of care to the intended beneficiaries even though there is no contract between them. The Hedley Byrne principle of assumption of responsibility is applied by incremental analogy: in the absence of such liability the only parties with a cause of action — the testator\'s estate — would suffer no loss, while those who suffer the loss — the intended beneficiaries — would have no remedy. The law will not tolerate that outcome.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1995/5.html' },
+
+  // ── Equity — Fiduciary Duty / Constructive Trust of Secret Commission ──
+  { id:'r20260929e', type:'curated', cat:'case-law', area:'Equity',
+    title:'FHR European Ventures LLP & Ors v Cedar Capital Partners LLC [2014] UKSC 45',
+    court:'UK Supreme Court',
+    facts:'Cedar Capital Partners acted as agent for FHR in negotiating the purchase of the Monte Carlo Grand Hotel complex for €211.5 million. Without disclosing the fact to FHR, Cedar had separately agreed to receive a €10 million commission from the vendor on completion. FHR claimed Cedar must hold that secret commission on constructive trust for FHR rather than merely being personally liable to account for it.',
+    judgment:'The Supreme Court unanimously held that a bribe or secret commission received by an agent in breach of their fiduciary duty is held on constructive trust for the principal, overruling Lister v Stubbs and the line of authority limiting the principal to a personal remedy.',
+    ratio:'Where an agent receives a bribe or secret commission as a result of their position, that money is held on constructive trust for the principal. The former distinction between misapplied trust property (proprietary remedy available) and bribes (personal remedy only) cannot be justified in principle and is overruled. The rule serves the policy of deterrence: an agent cannot profit from their own breach of duty while the principal bears the commercial risk of the transaction.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/45.html' },
+
+  // ── Contract — Illegality (range-of-factors approach) ──
+  { id:'r20260929f', type:'curated', cat:'case-law', area:'Contract',
+    title:'Patel v Mirza [2016] UKSC 42',
+    court:'UK Supreme Court',
+    facts:'Mr Patel transferred £620,000 to Mr Mirza to be used in betting on RBS share prices, using insider information that Mr Mirza expected to receive from contacts at RBS ahead of a government announcement. The expected information never materialised and no bet was placed. Mr Patel sought to recover his money; Mr Mirza resisted on the basis that the agreement to use insider information was an illegal conspiracy to commit the offence of insider dealing.',
+    judgment:'The Supreme Court (6:3) allowed Mr Patel to recover his money, abandoning the reliance-based rule in Tinsley v Milligan [1994] 1 AC 340 in favour of a more flexible, policy-driven approach.',
+    ratio:'Whether a claim tainted by illegality should succeed depends on balancing the policies underlying the illegality principle: whether allowing the claim would damage the integrity of the legal system by furthering the purpose of the rule broken; the seriousness and nature of the illegality; and whether refusing relief would be disproportionate. Courts must weigh these considerations rather than apply a rigid rule tied to the claimant\'s need to rely on the illegal act. Where money has been transferred for an illegal purpose that was never carried out, restitutionary recovery will ordinarily be allowed.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/42.html' },
+
+  // ── Human Rights — statute ──
+  { id:'r20260929g', type:'curated', cat:'statute', area:'Human Rights',
+    title:'Human Rights Act 1998',
+    body:"Gave further effect in domestic law to rights and freedoms guaranteed under the European Convention on Human Rights. It requires courts to read legislation compatibly with Convention rights so far as possible, obliges public authorities to act compatibly with those rights, and enables higher courts to make declarations of incompatibility. The Act transformed the constitutional landscape of public and private law in the United Kingdom.",
+    sections:[
+      { num:'2', head:'Interpretation of Convention Rights', text:'Courts and tribunals determining a question connected with a Convention right must take into account any judgment, decision, declaration or opinion of the European Court of Human Rights, so far as relevant.' },
+      { num:'3', head:'Interpretation of Legislation', text:'Primary and subordinate legislation must be read and given effect in a way which is compatible with Convention rights, so far as it is possible to do so — even if a different interpretation would otherwise be required.' },
+      { num:'4', head:'Declaration of Incompatibility', text:'Where a court is satisfied that a provision of primary legislation is incompatible with a Convention right and cannot be read compatibly under s.3, it may make a declaration of incompatibility, which does not affect the validity or operation of the provision but triggers a fast-track Parliamentary remedial procedure.' },
+      { num:'6', head:'Acts of Public Authorities', text:'It is unlawful for a public authority to act in a way which is incompatible with a Convention right, unless required to do so by primary legislation which cannot be read compatibly.' },
+      { num:'7', head:'Proceedings', text:'A person who claims a public authority has acted or proposes to act unlawfully under s.6 may bring proceedings or rely on the Convention right in legal proceedings, but only if they are (or would be) a victim within the meaning of Art 34 ECHR.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1998/42/contents' },
+
+  // ── Company — statute ──
+  { id:'r20260929h', type:'curated', cat:'statute', area:'Company',
+    title:'Companies Act 2006',
+    body:"A comprehensive reform of UK company law that, for the first time, codified directors\' general duties in statutory form, restating the pre-existing equitable and common law rules. It also modernised share capital, accounts and audit, shareholder rights, company formation, and corporate governance. The Act remains the dominant statute governing companies in Great Britain and is notable for the \'enlightened shareholder value\' model embedded in the s.172 duty.",
+    sections:[
+      { num:'170', head:'Scope and Nature of General Duties', text:'The general duties are owed by a director to the company. They are based on and must be interpreted and applied in the same way as the common law rules and equitable principles they replace. More than one of the duties may apply in any given case.' },
+      { num:'172', head:'Duty to Promote the Success of the Company', text:'A director must act in the way they consider, in good faith, would be most likely to promote the success of the company for the benefit of its members as a whole, having regard (among other matters) to long-term consequences, employee interests, business relationships, community and environmental impact, and the desirability of maintaining a reputation for high standards of business conduct.' },
+      { num:'173', head:'Duty to Exercise Independent Judgment', text:'A director must exercise independent judgment and may not agree to fetter their discretion, except where permitted by the company\'s constitution or where acting in accordance with an agreement duly entered into.' },
+      { num:'174', head:'Duty to Exercise Reasonable Care, Skill and Diligence', text:'A director must exercise the care, skill and diligence that would be exercised by a reasonably diligent person with the general knowledge and experience reasonably expected of a director in the same position and any additional actual knowledge or skill the individual director has.' },
+      { num:'175', head:'Duty to Avoid Conflicts of Interest', text:'A director must avoid a situation in which they have, or can have, a direct or indirect interest that conflicts, or possibly may conflict, with the interests of the company, in particular regarding the exploitation of any property, information or opportunity.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2006/46/contents' },
+
+  // ── Employment — statute ──
+  { id:'r20260929i', type:'curated', cat:'statute', area:'Employment',
+    title:'Equality Act 2010',
+    body:"Consolidated and harmonised the law against discrimination across the United Kingdom, replacing a patchwork of earlier Acts covering race, sex, disability and other grounds. It introduced the single concept of \'protected characteristics\', unified the prohibited conduct categories, extended the public sector equality duty, and became the principal statute governing anti-discrimination law for employment, services, housing and education.",
+    sections:[
+      { num:'4', head:'Protected Characteristics', text:'The protected characteristics are age, disability, gender reassignment, marriage and civil partnership, pregnancy and maternity, race, religion or belief, sex, and sexual orientation.' },
+      { num:'13', head:'Direct Discrimination', text:'A person directly discriminates against another if, because of a protected characteristic, they treat that person less favourably than they treat or would treat others not sharing that characteristic.' },
+      { num:'19', head:'Indirect Discrimination', text:'A person indirectly discriminates if they apply a provision, criterion or practice equally to all, but which puts persons sharing a protected characteristic at a particular disadvantage compared with others and which cannot be justified as a proportionate means of achieving a legitimate aim.' },
+      { num:'26', head:'Harassment', text:'A person harasses another if they engage in unwanted conduct related to a relevant protected characteristic which has the purpose or effect of violating the person\'s dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment for them.' },
+      { num:'149', head:'Public Sector Equality Duty', text:'A public authority must, in exercising its functions, have due regard to the need to eliminate discrimination, advance equality of opportunity, and foster good relations between persons who share a relevant protected characteristic and those who do not.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2010/15/contents' },
 
   ];
 });
