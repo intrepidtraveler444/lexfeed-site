@@ -322,5 +322,59 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Tort — case ──
+  { id:'m11', type:'curated', cat:'case-law', area:'Tort',
+    title:'Henderson v Merrett Syndicates Ltd [1994] UKHL 5',
+    court:'House of Lords',
+    facts:'Lloyd\'s of London syndicates were managed by agents who could delegate underwriting to sub-agents. Following catastrophic losses in the late 1980s, many Names (individual investors with unlimited personal liability) faced ruin. They sued both their managing agents and the sub-agents directly in tort, claiming the agents had negligently mismanaged the syndicates. Some Names had no direct contract with the sub-agents and argued for a tortious duty of care on the Hedley Byrne principle.',
+    judgment:'The House of Lords held unanimously that both categories of agent owed the Names a duty of care in tort founded on voluntary assumption of responsibility. The existence of a contractual framework governing the relationships did not extinguish the parallel tortious duty.',
+    ratio:'Where a person voluntarily assumes responsibility for the management of another\'s affairs and the other reasonably relies on that assumption, a duty of care in tort arises under the Hedley Byrne principle. That tortious duty coexists with any concurrent contractual duty and is not displaced by a network of contracts between the parties, unless the contract expressly excludes tortious liability.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1994/5.html' },
+
+  // ── Contract — case ──
+  { id:'m12', type:'curated', cat:'case-law', area:'Contract',
+    title:'Rock Advertising Ltd v MWB Business Exchange Centres Ltd [2018] UKSC 24',
+    court:'UK Supreme Court',
+    facts:'MWB licensed serviced office space to Rock Advertising under a written agreement that contained a "no oral modification" (NOM) clause requiring all variations to be agreed in writing and signed by both parties. Rock fell into arrears. Its director orally proposed a revised payment schedule to a MWB credit controller, who appeared to agree. MWB later rejected the oral arrangement, locked Rock out, and sued for the arrears in full.',
+    judgment:'The Supreme Court unanimously held that the NOM clause was legally effective and the oral agreement was not a binding variation. A claim in estoppel to circumvent the clause also failed on the facts.',
+    ratio:'A contractual "no oral modification" clause is legally effective and will be enforced. Contracting parties have sound commercial reasons — principally certainty and the avoidance of disputes about informally agreed changes — to require that variations take a prescribed form, and the courts will give effect to that choice. A subsequent oral agreement that disregards the clause does not bind the parties; only clear and unequivocal conduct amounting to an estoppel could override it, and informal words alone do not suffice.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2018/24.html' },
+
+  // ── Criminal — case ──
+  { id:'m13', type:'curated', cat:'case-law', area:'Criminal',
+    title:'R v Kingston [1994] UKHL 9',
+    court:'House of Lords',
+    facts:'Kingston had suppressed paedophilic tendencies. A third party, seeking material to blackmail him, invited him to a flat, secretly drugged a 15-year-old boy and a drink intended for Kingston. Kingston, with his inhibitions lowered by the drug, committed an indecent assault on the boy. At trial he admitted performing the act and having the requisite intent at the time, but argued that his involuntarily intoxicated state meant his intent was not truly his own and should not attract criminal liability.',
+    judgment:'The House of Lords reversed the Court of Appeal and restored the conviction. An intent formed under the influence of surreptitiously administered drugs remains a criminal intent.',
+    ratio:'Involuntary intoxication does not provide a general defence to a criminal charge. The criminal law asks solely whether the defendant had the necessary intent when the act was done: if intent was present, guilt follows even if the intent would not have arisen but for an intoxicant administered without the defendant\'s knowledge. Only where the drug wholly obliterates consciousness — so that no intent is formed at all — could the point arise. The law does not excuse wrongdoing simply because inhibitions were chemically lowered.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1994/9.html' },
+
+  // ── Trusts — case ──
+  { id:'m14', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Westdeutsche Landesbank Girozentrale v Islington LBC [1996] UKHL 12',
+    court:'House of Lords',
+    facts:'Westdeutsche entered an interest rate swap contract with Islington Council in 1987 under which the bank made an upfront payment. The swap was later held to be ultra vires the Council and therefore void ab initio. The bank recovered the net sum paid but sought compound interest, which English courts at the time awarded only in equity — arguing that the void payment had created a resulting trust or constructive trust over the money, giving it an equitable proprietary interest from the outset.',
+    judgment:'The House of Lords declined to award compound interest. No resulting or constructive trust arose on the facts, so equity had no basis on which to grant more than simple interest at common law.',
+    ratio:'A resulting trust does not arise automatically whenever a transaction fails: it requires either an express intention not to pass the beneficial interest, or circumstances from which such an intention can be presumed. A constructive trust arises where the conscience of the recipient is affected by knowledge of circumstances making it unconscionable to retain the benefit. Lord Browne-Wilkinson\'s analysis established that equitable proprietary interests attach to the conscience of the individual, not to an abstract transfer of value — and so cannot arise retroactively to cover payments made in complete ignorance of any defect.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1996/12.html' },
+
+  // ── Equity — case ──
+  { id:'m15', type:'curated', cat:'case-law', area:'Equity',
+    title:'National Westminster Bank plc v Morgan [1985] UKHL 2',
+    court:'House of Lords',
+    facts:'Mrs Morgan and her husband were in mortgage arrears. The bank proposed a refinancing secured by a charge over the family home. The bank manager visited the home, presented the documents, and Mrs Morgan signed without independent legal advice. After her husband died she continued to resist possession proceedings, arguing that the charge had been obtained through the undue influence of the bank manager, whose advice she had trusted, and should be set aside.',
+    judgment:'The House of Lords held in favour of the bank. No undue influence had been established: the manager had not exercised an overpowering domination of her will, and in any event the transaction was not manifestly disadvantageous to her.',
+    ratio:'To set aside a transaction for undue influence, the party seeking relief must establish both that the other exercised an improper, overmastering influence and that the transaction resulted in manifest disadvantage to the complainant. A relationship of confidence or reliance alone is insufficient unless it crosses into domination. Lord Scarman\'s manifest disadvantage requirement was later refined in Royal Bank of Scotland v Etridge (No 2) [2001], but NatWest v Morgan remains the foundational analysis of what influence must become before equity will intervene.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1985/2.html' },
+
+  // ── Criminal — case ──
+  { id:'m16', type:'curated', cat:'case-law', area:'Criminal',
+    title:'DPP v Camplin [1978] UKHL 2',
+    court:'House of Lords',
+    facts:'Paul Camplin, a 15-year-old boy, was sodomised by Khan, an older man, who then laughed at him. Camplin struck Khan with a heavy pan, killing him. At his murder trial he raised the defence of provocation under the Homicide Act 1957. The trial judge directed the jury to apply the standard of the reasonable adult man. The Court of Appeal allowed the appeal, holding that the jury should have been directed to consider a reasonable boy of Camplin\'s age.',
+    judgment:'The House of Lords unanimously upheld the Court of Appeal and confirmed that the reasonable person in provocation cases must be given the defendant\'s relevant personal characteristics.',
+    ratio:'For the defence of provocation under s.3 Homicide Act 1957, the objective test of the reasonable person is not of a purely notional average adult. The jury must consider whether a reasonable person sharing the defendant\'s relevant characteristics — including age — would have been provoked into losing self-control and acting as the defendant did. Age is especially significant because it affects both the gravity of the provocation and the expected degree of self-control. (The provocation defence was replaced by the "loss of control" defence in the Coroners and Justice Act 2009.)',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1978/2.html' },
+
   ];
 });
