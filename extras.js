@@ -104,6 +104,41 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  { id:'xa20261006a', type:'curated', cat:'journal-article', area:'Employment',
+    title:"Ewing & Hendy — 'The Dramatic Implications of Demir and Baykara' (2010) 39 ILJ 2",
+    body:"Keith Ewing and John Hendy analyse the European Court of Human Rights Grand Chamber judgment in Demir and Baykara v Turkey, which held for the first time that Article 11 ECHR protects the right to collective bargaining as a core element of freedom of association. The article argues the decision has profound implications for UK labour law, where legislative inroads on collective bargaining rights — in particular restrictions on statutory recognition and on the right to take industrial action — are now potentially incompatible with Convention obligations. A leading piece at the intersection of labour law and human rights.",
+    src:'Industrial Law Journal', link:'https://academic.oup.com/ilj/article-abstract/39/1/2/756309' },
+
+  { id:'xa20261006b', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Millett — 'Bribes and Secret Commissions Again' (2012) 71 CLJ 583",
+    body:"Lord Millett re-examines the proper legal treatment of bribes and secret commissions received by agents, re-engaging with the debate that would reach the Supreme Court in FHR European Ventures two years later. Arguing against the majority position in Lister v Stubbs and in favour of a constructive trust, he reasons that an agent\'s fiduciary obligations require that any benefit wrongly gained from the agency be held in trust for the principal rather than merely give rise to a personal remedy. A significant intervention by a former Law Lord in the lead-up to the Supreme Court\'s landmark ruling.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/bribes-and-secret-commissions-again/3973A9DB892761A3AA28D46FA9089CE7' },
+
+  { id:'xa20261006c', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Nolan — 'New Forms of Damage in Negligence' (2007) 70 MLR 59",
+    body:"Donal Nolan examines how the category of actionable damage in negligence has expanded far beyond its traditional core of physical injury and property damage to encompass pure economic loss, psychiatric injury, loss of a chance, and wrongful birth. He argues that the expansion has been largely unprincipled and that courts have imported reasoning from one category into others without adequate justification. The article provides a systematic account of the different damage types and proposes criteria for determining when a novel form of harm should be recognised, making it an essential reference on the threshold questions of negligence.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-2230.2006.00626.x' },
+
+  { id:'xa20261006d', type:'curated', cat:'journal-article', area:'Contract',
+    title:"Morgan — 'The Penalty Clause Doctrine: Unlovable but Untouchable' (2016) 75 CLJ 11",
+    body:"Jonathan Morgan examines the penalty clause doctrine in the immediate aftermath of Cavendish Square Holdings v El Makdessi [2015] UKSC 67, in which the Supreme Court substantially reformulated but preserved the rule against penalties. He argues the doctrine is analytically incoherent — hard to justify on any principled basis, producing arbitrary results, and misaligned with the general law of contract — but that Cavendish, rather than abolishing it, simply makes it more uncertain and more difficult to apply. The article offers a candid critique of the new Cavendish test and its practical implications.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/penalty-clause-doctrine-unlovable-but-untouchable/B11BAB1968395404A48488D1C78F4F53' },
+
+  { id:'xa20261006e', type:'curated', cat:'journal-article', area:'Company',
+    title:"Worthington — 'Good Faith, Flawed Assets and the Emasculation of the UK Anti-Deprivation Rule' (2012) 75 MLR 112",
+    body:"Sarah Worthington analyses the Supreme Court\'s decision in Belmont Park Investments v BNY Corporate Trustee Services [2011] UKSC 38, which reformulated the anti-deprivation rule in insolvency — the rule that contractual provisions purporting to deprive the insolvent\'s estate of assets on bankruptcy are void as contrary to public policy. She argues that the Court\'s good faith qualification and its acceptance of commercially sophisticated transactions as a basis for upholding such provisions effectively emasculates the rule, creating significant uncertainty about the scope of insolvency protections and the primacy of insolvency law over freedom of contract.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-2230.2012.00892.x' },
+
+  { id:'xa20261006f', type:'curated', cat:'journal-article', area:'Constitutional',
+    title:"Bingham — 'The Rule of Law' (2007) 66 CLJ 67",
+    body:"Lord Bingham distils the meaning of the rule of law into eight component principles: that the law should be accessible, clear and predictable; that legal questions should be resolved by law and not by discretion; that the law should apply equally to all; that power should be exercised lawfully and fairly; that human rights should be protected; that disputes should be resolved without prohibitive cost or delay; that adjudicative processes should be fair; and that the state should comply with international law obligations. The lecture — expanded into a celebrated short book — is the most authoritative modern statement of what the rule of law requires in a constitutional democracy, and is read in virtually every UK public law and legal theory course.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/rule-of-law/0E971B5BB930C2E363D351C5CBC3B855' },
+
+  { id:'xa20261006g', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Swadling — 'The Fiction of the Constructive Trust' (2011) 64 CLP 399",
+    body:"William Swadling mounts a fundamental challenge to the widespread use of the constructive trust in English law to respond to unjust enrichment and other obligations. He argues that calling something a \'constructive trust\' does no analytical work: it labels the remedy without identifying the cause of action or the conditions that generate it, and has led to confused reasoning in cases from bribes to mistaken payments. By examining the constructive trust\'s supposed function across a range of contexts, he contends it is a \'legal fiction\' that obscures more than it reveals, and urges the courts to identify the specific basis of each proprietary claim rather than reaching for the constructive trust as a catch-all response.",
+    src:'Current Legal Problems', link:'https://academic.oup.com/clp/article-abstract/64/1/399/761026' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +229,48 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  { id:'xt20261006a', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Rectification',
+    body:"Rectification is an equitable remedy that corrects a written document that fails to reflect the parties' prior agreement or common intention. It does not rewrite the contract but restores it to what was actually agreed: the court reads extrinsic evidence of the parties' true intention and rewrites the document to record it accurately. Mutual rectification requires proof of a common mistake in the recording; unilateral rectification additionally requires that one party knew of the other's mistake and unconscionably failed to correct it.",
+    example:"Two parties negotiate a lease at £20,000 per year but through a typographical error the engrossed lease states £2,000. The tenant insists on the written figure. A court will rectify the document to read £20,000 because it accurately reflects what was actually agreed, restoring the true bargain rather than allowing the written error to stand.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/rectification' },
+
+  { id:'xt20261006b', type:'curated', cat:'legal-term', area:'Property',
+    title:'Lien',
+    body:"A lien is a right to retain possession of another's property until a debt or obligation owed by that person is discharged. At common law, a lien is possessory only: it confers the right to hold the property but does not entitle the holder to sell it. Equitable liens and statutory liens go further and can in some circumstances be enforced by sale. Liens arise by operation of law (general or particular liens) or by express agreement, and their scope varies by trade or profession — solicitors, innkeepers, carriers and repairers all have recognised particular liens.",
+    example:"A garage carries out agreed repairs to a car but the owner refuses to pay. The garage has a particular common-law lien entitling it to retain the car until the repair bill is paid; it need not return the vehicle until the debt is satisfied, though it cannot sell the car without additional statutory or equitable authority.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/lien' },
+
+  { id:'xt20261006c', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Passing Off',
+    body:"Passing off is a common-law tort protecting the goodwill associated with a business, name, mark or get-up against misrepresentation. It requires: goodwill or reputation attached to the claimant's goods or services; a misrepresentation by the defendant likely to lead the public to believe the defendant's goods or services are the claimant's; and actual or likely damage to that goodwill. Unlike trade mark infringement, passing off requires no registered right — it protects the claimant's acquired reputation from unfair exploitation.",
+    example:"A new drinks manufacturer markets its product in packaging very similar to a well-known brand's distinctive bottles. Even without a registered trade mark, the established brand can sue in passing off: consumers are likely to be confused into thinking they are buying the original product, damaging the original brand's goodwill and sales.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/passing-off' },
+
+  { id:'xt20261006d', type:'curated', cat:'legal-term', area:'Company',
+    title:'Floating Charge',
+    body:"A floating charge is a form of security over a class of assets of a company that fluctuates from time to time in the ordinary course of business — such as stock-in-trade, book debts, or the undertaking generally. Unlike a fixed charge, it does not attach to specific assets until crystallisation: until that point the company can deal with the charged assets freely. Crystallisation occurs on the occurrence of a specified event (such as appointment of a receiver or administrator, or cessation of business), after which the charge fixes on the assets then forming part of the class, like a fixed charge.",
+    example:"A bank takes a floating charge over all the book debts of a trading company. The company can collect and deal with those debts in the ordinary course without the bank's consent. When the company later goes into administration, the floating charge crystallises, fixing on all outstanding book debts at that moment, which the bank can then enforce in priority to unsecured creditors (subject to the prescribed part and preferential creditors).",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/floating-charge' },
+
+  { id:'xt20261006e', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Joint and Several Liability',
+    body:"Where two or more persons are jointly and severally liable for the same obligation, the creditor or claimant may sue any one of them for the full amount, or all of them together, or any combination. Each debtor is liable for the entirety of the obligation, not merely a proportionate share. The defendant who pays the full amount may then seek a contribution from the others under the Civil Liability (Contribution) Act 1978. Joint and several liability is common in tort where multiple defendants contribute to a single harm, and in commercial contracts where co-borrowers or guarantors give a joint and several undertaking.",
+    example:"Three directors guarantee a company's bank loan jointly and severally. When the company defaults, the bank may sue any one director for the full outstanding balance rather than pursuing each for a third. The director who pays may then claim contribution from the other two under the 1978 Act.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/joint-several-liability' },
+
+  { id:'xt20261006f', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Non Est Factum',
+    body:"Non est factum ('it is not my deed') is a narrow plea in the law of contract by which a person seeks to avoid a document they have signed on the ground that it was fundamentally different in character from what they believed they were signing. It operates as a complete defence, rendering the document void rather than merely voidable. The courts have confined it strictly: it is available only where the signer was not careless and was mistaken about the fundamental nature — not merely the contents — of the document, and cannot generally be relied on where ordinary care was not taken to read what was signed.",
+    example:"An elderly person with poor eyesight is asked to sign what they are told is a guarantee for a relative's loan but is actually a mortgage over their own home. If they were not negligent and the document was fundamentally different in character from what they understood, they may plead non est factum to avoid the mortgage as void.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/non-est-factum' },
+
+  { id:'xt20261006g', type:'curated', cat:'legal-term', area:'Company',
+    title:'Piercing the Corporate Veil',
+    body:"Piercing the corporate veil is the exceptional judicial step of disregarding a company's separate legal personality to hold its controllers — usually shareholders or directors — personally liable for its obligations, or to attribute their acts to the company. The separate personality principle established in Salomon v Salomon [1897] AC 22 is the norm; the circumstances in which the veil may be pierced are narrow. Following Prest v Petrodel Resources Ltd [2013] UKSC 34, it is now clear the true veil-piercing doctrine applies only where a person under an existing legal obligation or liability deliberately interposes a company to evade it; other outcomes previously attributed to veil-piercing are better explained by statutory provisions or other principles of law.",
+    example:"A director, bound by a court order not to act in a certain way, sets up a new company and causes it to act in exactly that way, intending the company's separate identity to shield him from the order. A court may pierce the corporate veil and treat his actions as direct contraventions of the injunction, because the company was interposed solely to evade an existing personal liability.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/piercing-the-corporate-veil' },
 
   ],
 
