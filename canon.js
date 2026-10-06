@@ -322,5 +322,104 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Contract — case (2026-10-06 refill) ──
+  { id:'r20261006a', type:'curated', cat:'case-law', area:'Contract',
+    title:'Patel v Mirza [2016] UKSC 42',
+    court:'Supreme Court',
+    facts:'Patel transferred £620,000 to Mirza to bet on the likely movement of bank shares using inside information Mirza expected to receive about government policy. The insider information never materialised. Patel sued to recover the money. The contract was illegal as a conspiracy to commit insider dealing.',
+    judgment:'By a majority the Supreme Court allowed the claim and awarded restitution of the money. Overruling Tinsley v Milligan, the Court held that a flexible range of factors — the purpose of the rule infringed, policy considerations on both sides, and the proportionality of denying relief — should determine whether the illegality defence bars a civil claim.',
+    ratio:'The proper approach to illegality in civil claims is a balancing exercise: courts should consider the underlying purpose of the rule that was transgressed, public policy considerations in allowing or refusing the claim, and the need to avoid disproportionate consequences. The old "reliance principle" from Tinsley is replaced by this structured, policy-led discretion.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/42.html' },
+
+  // ── Equity/Trusts — case (2026-10-06 refill) ──
+  { id:'r20261006b', type:'curated', cat:'case-law', area:'Equity',
+    title:'FHR European Ventures LLP v Cedar Capital Partners LLC [2014] UKSC 45',
+    court:'Supreme Court',
+    facts:'Cedar Capital, acting as agent for FHR in negotiating the purchase of a Monte Carlo hotel, secretly received a €10 million commission from the vendor. FHR discovered this and sought to recover the bribe by asserting a proprietary constructive trust over the sum rather than a mere personal remedy.',
+    judgment:'The Supreme Court unanimously held that a bribe or secret commission received by an agent is held on constructive trust for the principal. This resolved a long-running split of authority and overruled Lister v Stubbs, which had confined the principal to a personal remedy.',
+    ratio:'An agent who receives a bribe or secret commission in breach of fiduciary duty holds that sum on constructive trust for the principal. The proprietary remedy is available as of right, not merely at the court\'s discretion, meaning the principal can claim the asset — and any traceable proceeds — in priority to the agent\'s general creditors.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/45.html' },
+
+  // ── Constitutional — case (2026-10-06 refill) ──
+  { id:'r20261006c', type:'curated', cat:'case-law', area:'Constitutional',
+    title:'R (Evans) v Attorney General [2015] UKSC 21',
+    court:'Supreme Court',
+    facts:'A journalist obtained a tribunal order under the Freedom of Information Act requiring disclosure of letters written by Prince Charles (the "black spider memos") to government ministers. The Attorney General issued a certificate under s.53 FOIA to override the tribunal decision without any new information.',
+    judgment:'The Supreme Court held the Attorney General\'s veto unlawful. The majority held that the constitutional principle that decisions of courts and tribunals cannot simply be set aside by executive action meant s.53 could only be used where there was cogent new material or a clear error — not simply because the executive disagreed with the tribunal.',
+    ratio:'Parliament must be taken to have legislated in conformity with the rule of law. A statutory executive override of a judicial or quasi-judicial order is constitutionally exceptional and should be read narrowly: the Attorney General cannot simply substitute the government\'s view for that of the court or tribunal.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2015/21.html' },
+
+  // ── Tort — case (2026-10-06 refill) ──
+  { id:'r20261006d', type:'curated', cat:'case-law', area:'Tort',
+    title:'Coventry v Lawrence [2014] UKSC 13',
+    court:'Supreme Court',
+    facts:'Lawrence and another purchased a house near a speedway and motocross stadium that had operated for decades. They brought a private nuisance claim against the stadium operators. The defendants argued that planning permission and twenty years\' use had made their activities lawful.',
+    judgment:'The Supreme Court allowed the nuisance claim but substantially reformulated the law on the relevance of planning permission and prescription to private nuisance. The case is the leading modern authority on both.',
+    ratio:'Planning permission does not of itself authorise a nuisance; it is relevant only if it changes the character of the neighbourhood. Prescription in nuisance requires actual use that has in fact interfered with another\'s enjoyment for 20 years, not merely a potential to do so. The locality must be assessed taking account of all lawful uses, including the defendant\'s established use.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/13.html' },
+
+  // ── Family — case (2026-10-06 refill) ──
+  { id:'r20261006e', type:'curated', cat:'case-law', area:'Family',
+    title:'Radmacher v Granatino [2010] UKSC 42',
+    court:'Supreme Court',
+    facts:'A wealthy German heiress and a French banker signed a pre-nuptial agreement in Germany, in which each waived all claims on the other\'s property on divorce. On divorce in England, the husband sought financial provision contrary to the agreement.',
+    judgment:'The Supreme Court (by 8-1) held the pre-nuptial agreement should be given decisive weight. Although such agreements are not strictly binding as contracts in English law, they represent the free and informed choice of parties who understood what they were signing and there was no unfairness in holding them to it.',
+    ratio:'A pre-nuptial agreement made freely by parties who understood its implications should generally be given effect by the court exercising its discretion under the Matrimonial Causes Act 1973, save where it would be unfair to hold the parties to it, having regard to the circumstances including whether it leaves either party in a predicament of real need.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2010/42.html' },
+
+  // ── Contract — case (2026-10-06 refill) ──
+  { id:'r20261006f', type:'curated', cat:'case-law', area:'Contract',
+    title:'Arnold v Britton [2015] UKSC 36',
+    court:'Supreme Court',
+    facts:'Leases on chalets in a leisure park provided for a service charge of £90 pa increasing by 10% compound each year. Lessees argued the clause should be construed to mean a reasonable amount because the literal reading would produce absurd results (charges growing to tens of thousands of pounds per year).',
+    judgment:'The Supreme Court held that the literal wording should be given effect. There was no ambiguity and the court should not rewrite a clear contractual term to rescue a party from a bad bargain, even one with very unfortunate consequences.',
+    ratio:'Contractual interpretation requires courts to identify the meaning a reasonable person would give the language, reading it in its context and against the admissible factual background. However, commercial common sense cannot be used to override clear wording: the court does not correct a bad bargain or substitute a different term for one that was clearly agreed.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2015/36.html' },
+
+  // ── Contract — case (2026-10-06 refill) ──
+  { id:'r20261006g', type:'curated', cat:'case-law', area:'Contract',
+    title:'Marks & Spencer plc v BNP Paribas Securities Services Trust Co (Jersey) Ltd [2015] UKSC 72',
+    court:'Supreme Court',
+    facts:'Marks & Spencer exercised a break clause in a lease, terminating early. The question was whether an implied term entitled it to a refund of rent paid in advance for the period after the break date.',
+    judgment:'The Supreme Court refused to imply such a term. The lease made express provision dealing with the consequences of early termination and there was no gap to fill; an implied term was not necessary to give the contract business efficacy.',
+    ratio:'A term is implied into a contract only if it is necessary to give it business efficacy or is so obvious that it goes without saying — and these are one test, not two. Implied terms must be both reasonable and equitable, capable of clear expression, and consistent with the express terms; they are not implied merely because it would be reasonable or fair to do so.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2015/72.html' },
+
+  // ── Company — statute (2026-10-06 refill) ──
+  { id:'r20261006h', type:'curated', cat:'statute', area:'Company',
+    title:'Insolvency Act 1986',
+    body:"The principal statute governing corporate and personal insolvency in England and Wales. It introduced the rescue-oriented administration procedure, codified liquidation and receivership, and set the framework for individual bankruptcy, voluntary arrangements and debt relief orders.",
+    sections:[
+      { num:'Pt A1', head:'Moratorium', text:'Provides eligible small companies with a standalone moratorium giving breathing space from creditors while the company seeks a rescue or restructuring plan.' },
+      { num:'Pt II', head:'Administration', text:'Allows an administrator to be appointed to manage a company\'s affairs with the aim of rescue as a going concern, achieving a better result than liquidation, or realising assets to pay secured or preferential creditors — in that order of priority.' },
+      { num:'Pt IV', head:'Winding Up', text:'Sets out the two principal modes of winding up — compulsory liquidation by court order and creditors\' voluntary liquidation — and governs the collection and distribution of the company\'s assets.' },
+      { num:'214', head:'Wrongful Trading', text:'Makes directors personally liable to contribute to the company\'s assets if, before the onset of insolvency, they knew or ought to have concluded there was no reasonable prospect of avoiding insolvent liquidation and failed to take every step to minimise potential loss to creditors.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1986/45/contents' },
+
+  // ── Employment — statute (2026-10-06 refill) ──
+  { id:'r20261006i', type:'curated', cat:'statute', area:'Employment',
+    title:'Health and Safety at Work etc. Act 1974',
+    body:"The foundational statute for health and safety regulation in Great Britain. It imposes general duties on employers, employees, manufacturers and others, and established the Health and Safety Executive and the system of regulations, approved codes of practice, and enforcement by inspectors.",
+    sections:[
+      { num:'2', head:'General Duties of Employers', text:'Requires every employer to ensure, so far as is reasonably practicable, the health, safety and welfare at work of all their employees, covering in particular safe systems of work, safe equipment, and information, instruction, training and supervision.' },
+      { num:'3', head:'Duties to Non-employees', text:'Extends the employer\'s duty, so far as reasonably practicable, to persons not in employment who may be affected by the conduct of the undertaking.' },
+      { num:'7', head:'Duties of Employees', text:'Places a duty on every employee to take reasonable care for their own health and safety and that of others who may be affected by their acts or omissions at work, and to co-operate with their employer so far as necessary.' },
+      { num:'47', head:'Civil Liability', text:'Breach of a duty imposed by health and safety regulations (as opposed to the Act itself) may, if the regulations so provide, give rise to civil liability in damages.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1974/37/contents' },
+
+  // ── Property — statute (2026-10-06 refill) ──
+  { id:'r20261006j', type:'curated', cat:'statute', area:'Property',
+    title:'Housing Act 1988',
+    body:"Transformed the private rented sector in England and Wales by introducing the assured tenancy and the assured shorthold tenancy. It removed rent control for new private lettings and created the modern framework under which the great majority of private residential tenancies now operate.",
+    sections:[
+      { num:'1', head:'Assured Tenancies', text:'Defines an assured tenancy as one where a dwelling-house is let as a separate dwelling, the tenant is an individual and occupies the dwelling as their only or principal home, and the tenancy is not within one of the excluded categories.' },
+      { num:'5', head:'Security of Tenure', text:'Provides that an assured tenancy cannot be brought to an end except by a court order for possession, and sets out the mandatory and discretionary grounds on which such an order may be made.' },
+      { num:'19A', head:'Assured Shorthold Tenancies', text:'Provides that any assured tenancy entered into on or after 28 February 1997 is automatically an assured shorthold tenancy, unless the parties expressly agree otherwise, giving landlords an absolute right to recover possession after six months on two months\' notice.' },
+      { num:'21', head:'Recovery of Possession on Expiry', text:'Entitles a landlord under an assured shorthold tenancy to a possession order without proving fault if the required notice is given and the tenancy period has expired — the so-called no-fault eviction route.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/1988/50/contents' },
+
   ];
 });
