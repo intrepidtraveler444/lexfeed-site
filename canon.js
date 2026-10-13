@@ -322,5 +322,59 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Company — case ──
+  { id:'m11', type:'curated', cat:'case-law', area:'Company',
+    title:'Regal (Hastings) Ltd v Gulliver [1942] UKHL 1',
+    court:'House of Lords',
+    facts:'Regal (Hastings) Ltd owned one cinema and sought to acquire leases on two further local cinemas through a subsidiary. The lessor required the subsidiary to have £5,000 paid-up capital but Regal could only contribute £2,000. Four directors and the company\'s solicitor subscribed personally for shares in the subsidiary to bridge the gap. When the group was later sold as a whole, those shareholders made a profit on their personal shareholdings.',
+    judgment:'The House of Lords held unanimously that the directors were bound to account to Regal for the profits they had made on their shares in the subsidiary, even though they had acted honestly, the company lacked the funds to take the opportunity itself, and no shareholder had suffered any loss.',
+    ratio:'A director who acquires a profit by reason and in the course of their fiduciary office must account for that profit to the company. The no-profit rule is strict: good faith, absence of loss to the company, and the company\'s own inability to have exploited the opportunity are all irrelevant.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1942/1.html' },
+
+  // ── Company — case ──
+  { id:'m12', type:'curated', cat:'case-law', area:'Company',
+    title:'Tesco Supermarkets Ltd v Nattrass [1971] UKHL 1',
+    court:'House of Lords',
+    facts:'A Tesco store displayed a promotional poster advertising washing powder at a reduced price. When the reduced-price stock ran out, normal-priced stock was put out but the promotional signage was not removed. The store manager failed to notice the discrepancy. A customer was charged the higher price and Tesco was prosecuted under the Trade Descriptions Act 1968. Tesco relied on the statutory defence that the offence was "the act or default of another person" and that it had taken all reasonable precautions.',
+    judgment:'The House of Lords held that the store manager was "another person" for the purposes of the defence — he was not part of Tesco\'s directing mind and will. The defence therefore succeeded and Tesco was acquitted.',
+    ratio:'A company\'s acts are attributed to it only when carried out by those constituting its directing mind and will — typically the board or senior officers to whom the board has delegated governing authority. Managers further down the hierarchy are "another person"; their acts or defaults are not the company\'s own conduct for purposes of criminal or quasi-criminal liability.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1971/1.html' },
+
+  // ── Contract — case ──
+  { id:'m13', type:'curated', cat:'case-law', area:'Contract',
+    title:'Great Peace Shipping Ltd v Tsavliris Salvage (International) Ltd [2002] EWCA Civ 1407',
+    court:'Court of Appeal',
+    facts:'A vessel in the South Indian Ocean suffered structural damage. The salvors\' brokers located the Great Peace and contracted for it to stand by, believing it was roughly 35 miles away. The vessel turned out to be about 410 miles distant. Once the salvors discovered this they sought to cancel the contract, arguing it was void for common mistake or, alternatively, voidable in equity under the principle in Solle v Butcher.',
+    judgment:'The Court of Appeal upheld the contract. The common mistake was not of sufficient gravity to render performance radically different from what was undertaken; the vessel could still perform the chartered service, albeit from a greater distance. The Court also overruled Solle v Butcher, holding that there is no freestanding equitable jurisdiction to rescind a contract valid at common law for common mistake.',
+    ratio:'Common mistake voids a contract only where it makes performance of the agreed obligation impossible or radically different from what the parties intended. No separate equitable doctrine of rescission for common mistake can survive alongside Bell v Lever Brothers; equity cannot give greater relief than the common law refuses.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/2002/1407.html' },
+
+  // ── Trusts — case ──
+  { id:'m14', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Target Holdings Ltd v Redferns [1995] UKHL 10',
+    court:'House of Lords',
+    facts:'A mortgage lender advanced funds to a borrower through solicitors Redferns, who held the money on trust pending execution of the mortgage. The solicitors paid the money to the borrower\'s company before the mortgage was properly completed, in breach of trust. The property was ultimately sold at a loss and the borrower was insolvent. The lender claimed from the solicitors equitable compensation equal to the entire sum advanced.',
+    judgment:'The House of Lords, per Lord Browne-Wilkinson, held the solicitors liable in principle but denied compensation. Equitable compensation for breach of trust must be assessed on the basis of loss actually caused by the breach. Since the transaction would have been completed in any event and the same loss would have occurred had the trust been properly performed, no recoverable loss resulted from the breach itself.',
+    ratio:'Equitable compensation for breach of trust is limited to loss caused by the breach — the court must ask whether the loss would have occurred even if the trustee had acted properly. At the point of quantifying loss, common law principles of causation and remoteness apply, modified only as necessary by the nature of the equitable obligation.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1995/10.html' },
+
+  // ── Trusts — case ──
+  { id:'m15', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Attorney General for Hong Kong v Reid [1993] UKPC 2',
+    court:'Privy Council',
+    facts:'Reid was a senior Crown Prosecutor in Hong Kong who accepted bribes to obstruct certain prosecutions. He invested the bribe money in three properties in New Zealand, which were registered in his name and in the names of his wife and solicitor. The properties increased in value. When Reid\'s corruption was discovered, the Hong Kong government sought to establish a proprietary claim over the properties and their appreciated value.',
+    judgment:'The Privy Council held that bribe money received by a person in a fiduciary position is held on constructive trust for the principal from the moment of receipt. The trust extended to the New Zealand properties purchased with the bribes and to any increase in their value, so the full appreciated value was recoverable.',
+    ratio:'A fiduciary who receives a bribe holds both the bribe and any property acquired with it on constructive trust for the principal. The trust arises immediately on receipt, so appreciation in the value of property bought with bribe money also belongs to the principal. Equity treats as done what ought to be done: the fiduciary cannot profit from a wrong.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKPC/1993/2.html' },
+
+  // ── Contract — case ──
+  { id:'m16', type:'curated', cat:'case-law', area:'Contract',
+    title:'Thornton v Shoe Lane Parking Ltd [1970] EWCA Civ 2',
+    court:'Court of Appeal',
+    facts:'The claimant drove into an automatic car park operated by the defendant. A machine at the entrance issued a ticket after payment, stating on its face that it was subject to conditions displayed on a pillar inside the premises. Those conditions purported to exclude the defendant\'s liability for personal injury. The claimant was injured while retrieving his car in circumstances where the defendant was partly at fault.',
+    judgment:'The Court of Appeal held that the contract was formed when the claimant inserted coins in response to the machine\'s standing offer — the ticket was issued after contract formation and came too late to incorporate the exclusion clause. Even had the clause been incorporated, the very unusual degree of notice required for a term purporting to exclude liability for personal injury had not been given.',
+    ratio:'An automatic machine makes a standing offer that is accepted when the customer performs the required act (such as inserting payment). A term on a ticket issued after that moment is not incorporated into the contract. Terms excluding particularly onerous or unusual liability require especially prominent and timely notice before or at the moment of contracting.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1970/2.html' },
+
   ];
 });
