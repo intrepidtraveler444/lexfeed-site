@@ -322,5 +322,84 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Contract — case ──
+  { id:'r20261013a', type:'curated', cat:'case-law', area:'Contract',
+    title:'Shogun Finance Ltd v Hudson [2003] UKHL 62',
+    court:'House of Lords',
+    facts:'A rogue applied for hire-purchase finance on a car by producing a driving licence belonging to Durlabh Patel. Shogun Finance ran a credit check on Patel, approved the credit and the rogue drove away the car, then sold it to Hudson, an innocent private purchaser. Hudson claimed good title under s.27 of the Hire Purchase Act 1964, which passes title to a bona fide private purchaser from a person who has agreed to buy a vehicle on hire-purchase.',
+    judgment:'The House of Lords held (3:2) that the rogue was not the debtor under the hire-purchase agreement and Hudson acquired no title. Shogun had contracted with Patel, not the rogue.',
+    ratio:'Where a written contract names a specific party, the offeror intends to deal with that named person and no one else; a rogue who fraudulently assumes that person\'s identity cannot be a party to the contract. The contract is therefore void for mistake as to identity — not merely voidable for fraud — so no property passes to the rogue and a subsequent innocent purchaser obtains nothing.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2003/62.html' },
+
+  // ── Tort — case (vicarious liability) ──
+  { id:'r20261013b', type:'curated', cat:'case-law', area:'Tort',
+    title:'Various Claimants v Catholic Child Welfare Society [2012] UKSC 56',
+    court:'UK Supreme Court',
+    facts:'Brothers of the De La Salle Institute had been seconded to teach at a residential school run by a Catholic diocese. Some brothers sexually abused pupils. The victims brought vicarious liability claims against both the Institute and the Diocese, neither of which was the employer in any contractual sense.',
+    judgment:'The Supreme Court held both the Institute and the Diocese were vicariously liable for the brothers\' torts.',
+    ratio:'Vicarious liability can arise outside a formal contract of employment where the relationship is "akin to employment". Whether it is will depend on five features: whether the tortfeasor undertook to act on the defendant\'s behalf; whether the defendant had some power to control the activity; whether the tortfeasor was an integral part of the defendant\'s enterprise; whether the activity was carried out for the defendant\'s benefit; and whether the enterprise created the risk of the tort. This is the leading authority on the extended akin-to-employment test.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2012/56.html' },
+
+  // ── Tort — case (vicarious liability) ──
+  { id:'r20261013c', type:'curated', cat:'case-law', area:'Tort',
+    title:'Cox v Ministry of Justice [2016] UKSC 10',
+    court:'UK Supreme Court',
+    facts:'Mrs Cox was the prison catering manager at HMP Swansea. A prisoner working under her supervision in the kitchen dropped a heavy sack of rice on her back, injuring her. The prisoner worked there under prison rules and received a small payment; he was not employed by the Ministry of Justice in any contractual sense.',
+    judgment:'The Supreme Court held the Ministry of Justice was vicariously liable for the prisoner\'s negligence.',
+    ratio:'Vicarious liability does not require a contract of employment. It extends to any relationship akin to employment — where the defendant carries on an activity as an integral part of which the tortfeasor acts on the defendant\'s behalf and under the defendant\'s control. The case confirmed and applied the five-factor test from Various Claimants v Catholic Child Welfare Society and is its companion authority on the modern scope of vicarious liability.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/10.html' },
+
+  // ── Equity — case ──
+  { id:'r20261013d', type:'curated', cat:'case-law', area:'Equity',
+    title:'Bristol and West Building Society v Mothew [1996] EWCA Civ 533',
+    court:'Court of Appeal',
+    facts:'A solicitor, Mothew, was retained by both the purchasers and the Bristol and West Building Society in a mortgage transaction. He negligently failed to inform the Society that the purchasers were simultaneously borrowing part of the purchase price from a third party — a fact the Society had specifically required to be disclosed. The Society advanced the mortgage and suffered loss.',
+    judgment:'The Court of Appeal held that Mothew had breached his duty of care but had not acted in breach of fiduciary duty, since he had made an honest mistake rather than acting disloyally.',
+    ratio:'A fiduciary who acts honestly but negligently commits a breach of duty in contract or tort — but not a breach of fiduciary duty. The core of a fiduciary\'s obligation is loyalty: the duty not to allow a conflict of interest and not to make an unauthorised profit from the position. A duty (such as reasonable care) that a fiduciary is also under is not elevated into a fiduciary duty merely because the person owing it is a fiduciary. This judgment by Millett LJ is the leading modern statement of the nature and limits of fiduciary obligations.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1996/533.html' },
+
+  // ── Equity — case ──
+  { id:'r20261013e', type:'curated', cat:'case-law', area:'Equity',
+    title:'FHR European Ventures LLP v Cedar Capital Partners LLC [2014] UKSC 45',
+    court:'UK Supreme Court',
+    facts:'Cedar Capital Partners were instructed as agents to negotiate the purchase of a Monte Carlo hotel on behalf of FHR European Ventures. Without disclosing it to FHR, Cedar also received a commission of €10 million from the vendor. FHR sought to recover the commission as property held on constructive trust, giving it a proprietary claim against Cedar\'s assets.',
+    judgment:'The Supreme Court held that a secret commission or bribe received by an agent in breach of fiduciary duty is held on constructive trust for the principal, overruling Lister v Stubbs.',
+    ratio:'Where an agent acquires a benefit in breach of fiduciary duty, the agent holds it on constructive trust for the principal. This is not limited to benefits derived from the principal\'s own assets; it applies equally to bribes and secret commissions received from third parties. The principal therefore has a proprietary claim — not merely a personal one — entitling it to trace the asset and to take priority over the agent\'s general creditors.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/45.html' },
+
+  // ── Employment — case ──
+  { id:'r20261013f', type:'curated', cat:'case-law', area:'Employment',
+    title:'Essop v Home Office (UK Border Agency) and Naeem v Secretary of State for Justice [2017] UKSC 27',
+    court:'UK Supreme Court',
+    facts:'Two joined appeals on indirect discrimination. In Essop, a civil service promotion exam showed that a lower proportion of BAME and older candidates passed. In Naeem, a Muslim prison chaplain had to wait longer for pay increments than Church of England chaplains due to a seniority-based pay scale that reflected the longer established service of CoE staff.',
+    judgment:'The Supreme Court allowed both appeals. Lady Hale delivered the leading judgment setting out authoritatively the elements of indirect discrimination under the Equality Act 2010.',
+    ratio:'To establish indirect discrimination, a claimant need not prove why a provision, criterion or practice (PCP) puts their group at a particular disadvantage — only that it does. There is no need to establish a causal link between the PCP and the disadvantage. The PCP may be justified as a proportionate means of achieving a legitimate aim, but without justification the employer is liable regardless of its intentions. This is the leading modern authority on the proof requirements for indirect discrimination.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2017/27.html' },
+
+  // ── Criminal — statute ──
+  { id:'r20261013g', type:'curated', cat:'statute', area:'Criminal',
+    title:'Proceeds of Crime Act 2002',
+    body:"The Proceeds of Crime Act 2002 is the principal UK statute establishing the regime for recovering the proceeds of crime and prosecuting money-laundering offences. It consolidated and substantially strengthened earlier legislation and remains the cornerstone of the anti-money-laundering framework.",
+    sections:[
+      { num:'Pt 2', head:'Confiscation Orders — England and Wales', text:'Empowers the Crown Court to make a confiscation order after conviction. If the prosecutor applies, the court must determine whether the defendant has a criminal lifestyle (defined by reference to the offence or a pattern of offending), assess the benefit from criminal conduct, and order payment of that amount from available assets.' },
+      { num:'s.327', head:'Concealing Criminal Property', text:'Makes it an offence to conceal, disguise, convert, transfer or remove from the jurisdiction criminal property — any property constituting or representing a benefit from criminal conduct — unless the person has an authorised disclosure defence.' },
+      { num:'s.328', head:'Arrangements', text:'Creates the offence of knowingly entering into or becoming concerned in an arrangement which facilitates the acquisition, retention, use or control of criminal property by or on behalf of another person.' },
+      { num:'s.329', head:'Acquisition, Use and Possession', text:'Makes it an offence to acquire, use or have possession of criminal property, subject to the same disclosure and other defences.' },
+      { num:'Pt 8', head:'Investigations', text:'Confers wide investigatory powers, including production orders, search and seizure warrants and disclosure orders, to support investigations into money laundering and the tracing of criminal assets.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/29/contents' },
+
+  // ── Public Law — statute ──
+  { id:'r20261013h', type:'curated', cat:'statute', area:'Public Law',
+    title:'Climate Change Act 2008',
+    body:"The Climate Change Act 2008 created the world's first legally binding long-term framework for reducing greenhouse gas emissions. It placed the government under a justiciable duty to reduce UK emissions and established a system of five-year carbon budgets overseen by an independent advisory body.",
+    sections:[
+      { num:'1', head:'The 2050 Target', text:'Requires the Secretary of State to ensure the net UK carbon account for 2050 is at least 80% lower than the 1990 baseline (amended to 100% net zero by the Climate Change Act 2008 (2050 Target Amendment) Order 2019).' },
+      { num:'4', head:'Carbon Budgets', text:'Requires the Secretary of State to set a carbon budget for each successive five-year budgetary period, capping the total amount of net UK greenhouse gas emissions during that period.' },
+      { num:'7', head:'Committee on Climate Change', text:'Establishes the independent Committee on Climate Change, which must advise on the level of carbon budgets, review progress against them, and report annually to Parliament.' },
+      { num:'13', head:'Duty to Report', text:'Requires ministers to lay before Parliament proposals and policies for meeting each carbon budget, creating an ongoing framework of public accountability for climate targets.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2008/27/contents' },
+
   ];
 });
