@@ -104,6 +104,41 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  { id:'xa20261013a', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Tofaris & Steel — 'Negligence Liability for Omissions and the Police' (2016) 75 CLJ 128",
+    body:"Stavros Tofaris and Sandy Steel re-examine the long-established no-duty rule for pure omissions and the related rule shielding public bodies such as the police from liability for failing to prevent harm. They argue these rules are best understood not as absolute prohibitions but as rebuttable defaults grounded in a distinction between causing harm and merely failing to prevent it. Deploying a comparative and normative analysis, they show how the rules reflect justifiable choices about responsibility and corrective justice, and map their proper limits — resisting both the courts' ad hoc carve-outs and calls for wholesale abandonment of the omissions principle.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/negligence-liability-for-omissions-and-the-police/AC83F61745C4326FEE217D993868C08D' },
+
+  { id:'xa20261013b', type:'curated', cat:'journal-article', area:'Human Rights',
+    title:"Fredman — 'Substantive Equality Revisited' (2016) 14 ICON 712",
+    body:"Sandra Fredman offers an authoritative reworking of the concept of substantive equality — the idea that genuine equality law must go beyond formal like-for-like treatment to address underlying disadvantage. She argues for a four-dimensional model that encompasses: (1) redressing disadvantage; (2) addressing stigma, prejudice and violence; (3) enhancing participation and voice; and (4) facilitating structural change. Critically examining how far modern equality legislation, including the UK Equality Act 2010, embodies each dimension, the article provides a framework that continues to shape both academic debate and legal reform discussions on the purposes of discrimination law.",
+    src:'International Journal of Constitutional Law', link:'https://academic.oup.com/icon/article/14/3/712/2404476' },
+
+  { id:'xa20261013c', type:'curated', cat:'journal-article', area:'Equity',
+    title:"Häcker — 'In Defence of Unjust Enrichment' (2016) 75 CLJ 521",
+    body:"Birke Häcker mounts a sustained defence of unjust enrichment as a coherent and distinct category of private law obligation. Against critics who would dissolve it into corrective justice theory or subsume it under contract and tort, she argues that the law of unjust enrichment has its own normative structure: the recognition that certain transfers are defective because the transferor's consent was impaired (by mistake, duress, failure of basis and the like) generates a principled obligation to reverse the transfer. Engaging with the major theoretical objections — especially those of the so-called anti-unjust-enrichment school — the article is a leading contemporary restatement of the principled case for the Birksian project.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/in-defence-of-unjust-enrichment/C970C0D3C39D330894A0258C2B91DD3D' },
+
+  { id:'xa20261013d', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Steel — 'Justifying Exceptions to Proof of Causation in Tort Law' (2015) 78 MLR 729",
+    body:"Sandy Steel examines the doctrines by which courts hold defendants liable in negligence even though the claimant cannot prove that the defendant's breach was, on the balance of probabilities, a cause of the loss — most notably material contribution to risk (Fairchild v Glenhaven), loss of a chance, and proportionate liability. Rather than treating these as concessions to pragmatism or policy, he argues each rests on a distinctive and defensible account of causation responsibility. Carefully distinguishing the factual, normative and remedial questions at stake, the article provides a systematic justificatory framework for a body of doctrine that has generated intense controversy, and won the Modern Law Review's Wedderburn Prize.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/1468-2230.12142' },
+
+  { id:'xa20261013e', type:'curated', cat:'journal-article', area:'Constitutional',
+    title:"Allan — 'Constitutionalism at Common Law: The Rule of Law and Judicial Review' [2023] 82 CLJ 236",
+    body:"T. R. S. Allan extends his influential common-law constitutionalist thesis into the contemporary debate over the proper scope of judicial review. He argues that the rule of law, properly understood, imposes substantive as well as procedural constraints on government: statutes must be interpreted and applied by courts in the light of fundamental rights and principles of justice rooted in the common law, and a court that defers too readily to executive discretion or ministerial interpretation fails its constitutional duty. Writing against the backdrop of the Judicial Review and Courts Act 2022 and the debate over ouster clauses, the article is a sharp intervention in current arguments over the limits of parliamentary sovereignty and the judicial function.",
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/constitutionalism-at-common-law-the-rule-of-law-and-judicial-review/ECE3D6C40248012BB9EAD73F3890B871' },
+
+  { id:'xa20261013f', type:'curated', cat:'journal-article', area:'Constitutional',
+    title:"Kavanagh — 'Proportionality and Parliamentary Debates: Exploring Some Forbidden Territory' (2014) 34 OJLS 443",
+    body:"Aileen Kavanagh explores whether courts conducting proportionality review under the Human Rights Act should pay attention to parliamentary debates about the justification for a rights-restricting measure. This was, until recently, treated as genuinely forbidden territory: courts were thought unable, for both practical and constitutional reasons, to scrutinise what MPs said in Parliament. Kavanagh argues, however, that selective and appropriately deferential use of parliamentary materials can enrich the proportionality inquiry and improve the quality of dialogue between courts and legislature. The article occupies a central position in the rich debate about the nature and proper intensity of proportionality review under the Human Rights Act.",
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article-abstract/34/3/443/1460216' },
+
+  { id:'xa20261013g', type:'curated', cat:'journal-article', area:'Employment',
+    title:"Collins & Mantouvalou — 'Redfearn v UK: Political Association and Dismissal' (2013) 76 MLR 909",
+    body:"Hugh Collins and Virginia Mantouvalou analyse the European Court of Human Rights judgment in Redfearn v United Kingdom, in which the ECtHR found that English unfair dismissal law failed to protect a bus driver dismissed for membership of the BNP, contrary to Article 11 ECHR (freedom of association). The authors examine the implications of the judgment for UK employment law, particularly the proposition that dismissal for trade union membership or political affiliation can, in the right circumstances, engage Convention rights, and that purely economic justifications for dismissal may not always override them. The article is a leading contribution on the intersection of human rights law and the contract of employment.",
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/1468-2230.12040' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +229,48 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  { id:'xt20261013a', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Contributory Negligence',
+    body:"Contributory negligence is a partial defence in tort by which the defendant shows that the claimant's own failure to take reasonable care for their own safety or property contributed to the damage they suffered. Under the Law Reform (Contributory Negligence) Act 1945, it does not defeat the claim outright but reduces the damages by such proportion as the court thinks just and equitable having regard to the claimant's share of responsibility for the damage. The focus is on whether the claimant failed to take care for their own safety, not on whether they contributed to the accident itself.",
+    example:"A motorcyclist injured when another driver pulls out negligently was not wearing a helmet. The court finds the motorcyclist 25% to blame for the severity of his head injuries. His damages are reduced by that proportion under the 1945 Act, even though the accident was entirely the other driver's fault.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/contributory-negligence' },
+
+  { id:'xt20261013b', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Non Est Factum',
+    body:"Non est factum ('it is not my deed') is a plea that a person who has signed a document did not in fact consent to it because its true character was radically different from what they believed it to be. If successfully established, the document is void rather than voidable — no contract exists — because the signer's apparent assent was entirely vitiated by the fundamental nature of the mistake. The plea is strictly confined: it is not available to someone who was merely careless in failing to read the document before signing it.",
+    example:"An elderly person with poor English is asked to sign what they are told is a guarantee for a relative's tenancy but which is in fact a charge over their home. If the document is of a radically different character from what they believed and they were not careless, they may plead non est factum to have it set aside as void.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/non-est-factum' },
+
+  { id:'xt20261013c', type:'curated', cat:'legal-term', area:'Equity',
+    title:'Beneficial Interest',
+    body:"A beneficial interest (or equitable interest) is the right to enjoy the benefit of property, as distinct from the bare legal title. Where legal title is held by a trustee, the beneficiary holds the beneficial interest: the real economic stake in the property — the right to occupation, income, proceeds of sale and ultimately capital value. A beneficial interest can arise by express declaration of trust, by resulting or constructive trust, or by proprietary estoppel, and binds successors in title to the legal estate subject to the rules of notice and registration.",
+    example:"A couple buy a house in one partner's sole name but both contribute to the purchase price. Equity may recognise that the contributing partner has a beneficial interest in the property proportionate to their contribution, even though the other partner alone appears on the title register.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/beneficial-interest' },
+
+  { id:'xt20261013d', type:'curated', cat:'legal-term', area:'Property',
+    title:'Lien',
+    body:"A lien is a right to retain possession of another person's property as security for a debt or obligation owed by that person, until that debt is discharged. Common law liens are possessory only: the holder may retain the goods but cannot sell them without the owner's consent (unless the Sale of Goods Act or a special power applies). Equitable liens and maritime liens are non-possessory and arise by operation of law. A solicitor's general lien, for example, entitles the solicitor to retain papers belonging to a client until all costs owing are paid.",
+    example:"A car mechanic completes repairs on a customer's vehicle but is not paid. She has a common-law lien entitling her to refuse to hand back the car until the repair bill is settled, protecting her right to payment without the need to sue.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/lien' },
+
+  { id:'xt20261013e', type:'curated', cat:'legal-term', area:'Evidence',
+    title:'Freezing Order',
+    body:"A freezing order (formerly known as a Mareva injunction) is an interim court order restraining a party from removing assets from the jurisdiction or disposing of or dealing with assets within the jurisdiction, so as to prevent them being dissipated before judgment can be enforced. It is one of the most powerful interim remedies available in civil litigation. The applicant must show a good arguable case, real risk of dissipation, and that the balance of convenience favours the order. A worldwide freezing order may extend to assets held anywhere in the world.",
+    example:"A claimant wins a large arbitration award but fears the losing company will transfer its assets abroad before the award can be registered and enforced as a judgment. The court may grant a worldwide freezing order restraining the company from dealing with any assets up to the value of the award, protecting the claimant's ability to recover.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/freezing-order' },
+
+  { id:'xt20261013f', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Contribution',
+    body:"The right of contribution allows one person who has discharged a liability that two or more persons were under to recover a proportionate share from the others. Under the Civil Liability (Contribution) Act 1978, any person who is liable in respect of the same damage as another may recover contribution from that other, in such amount as is just and equitable having regard to the extent of each party's responsibility. It is available between joint tortfeasors, between co-contractors, and across different legal bases of liability so long as the damage is the same.",
+    example:"A solicitor and a barrister are both found liable for the same negligent advice that caused a client loss. After the solicitor pays the full judgment sum, she is entitled under the 1978 Act to claim a contribution from the barrister — assessed by the court at whatever share reflects the barrister's proportionate responsibility for the loss.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/contribution' },
+
+  { id:'xt20261013g', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Ex Turpi Causa',
+    body:"Ex turpi causa non oritur actio ('no action arises from a shameful cause') is the illegality defence in private law. Where a claimant's action is founded on, or is inextricably linked to, their own illegal or seriously immoral act, the court will refuse to assist them. The defence bars a claim if allowing it would be an affront to the public conscience, undermine the integrity of the legal system, or enable the claimant to profit from their own wrong. Its precise scope has been debated extensively; the leading modern analysis is in Patel v Mirza [2016] UKSC 42, where the Supreme Court adopted a range-of-factors approach.",
+    example:"A passenger who was knowingly travelling in a stolen car is injured through the driver's negligence. The driver may raise ex turpi causa to resist a negligence claim, arguing that the passenger's knowing participation in the illegal joint venture bars them from suing for injuries sustained in its course.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/ex-turpi-causa-non-oritur-actio' },
 
   ],
 
