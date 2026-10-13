@@ -322,5 +322,138 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Company — case ──
+  { id:'m11', type:'curated', cat:'case-law', area:'Company',
+    title:'Regal (Hastings) Ltd v Gulliver [1942] UKHL 1',
+    court:'House of Lords',
+    facts:'Regal (Hastings) Ltd owned one cinema and sought to acquire leases on two further local cinemas through a subsidiary. The lessor required the subsidiary to have £5,000 paid-up capital but Regal could only contribute £2,000. Four directors and the company\'s solicitor subscribed personally for shares in the subsidiary to bridge the gap. When the group was later sold as a whole, those shareholders made a profit on their personal shareholdings.',
+    judgment:'The House of Lords held unanimously that the directors were bound to account to Regal for the profits they had made on their shares in the subsidiary, even though they had acted honestly, the company lacked the funds to take the opportunity itself, and no shareholder had suffered any loss.',
+    ratio:'A director who acquires a profit by reason and in the course of their fiduciary office must account for that profit to the company. The no-profit rule is strict: good faith, absence of loss to the company, and the company\'s own inability to have exploited the opportunity are all irrelevant.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1942/1.html' },
+
+  // ── Company — case ──
+  { id:'m12', type:'curated', cat:'case-law', area:'Company',
+    title:'Tesco Supermarkets Ltd v Nattrass [1971] UKHL 1',
+    court:'House of Lords',
+    facts:'A Tesco store displayed a promotional poster advertising washing powder at a reduced price. When the reduced-price stock ran out, normal-priced stock was put out but the promotional signage was not removed. The store manager failed to notice the discrepancy. A customer was charged the higher price and Tesco was prosecuted under the Trade Descriptions Act 1968. Tesco relied on the statutory defence that the offence was "the act or default of another person" and that it had taken all reasonable precautions.',
+    judgment:'The House of Lords held that the store manager was "another person" for the purposes of the defence — he was not part of Tesco\'s directing mind and will. The defence therefore succeeded and Tesco was acquitted.',
+    ratio:'A company\'s acts are attributed to it only when carried out by those constituting its directing mind and will — typically the board or senior officers to whom the board has delegated governing authority. Managers further down the hierarchy are "another person"; their acts or defaults are not the company\'s own conduct for purposes of criminal or quasi-criminal liability.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1971/1.html' },
+
+  // ── Contract — case ──
+  { id:'m13', type:'curated', cat:'case-law', area:'Contract',
+    title:'Great Peace Shipping Ltd v Tsavliris Salvage (International) Ltd [2002] EWCA Civ 1407',
+    court:'Court of Appeal',
+    facts:'A vessel in the South Indian Ocean suffered structural damage. The salvors\' brokers located the Great Peace and contracted for it to stand by, believing it was roughly 35 miles away. The vessel turned out to be about 410 miles distant. Once the salvors discovered this they sought to cancel the contract, arguing it was void for common mistake or, alternatively, voidable in equity under the principle in Solle v Butcher.',
+    judgment:'The Court of Appeal upheld the contract. The common mistake was not of sufficient gravity to render performance radically different from what was undertaken; the vessel could still perform the chartered service, albeit from a greater distance. The Court also overruled Solle v Butcher, holding that there is no freestanding equitable jurisdiction to rescind a contract valid at common law for common mistake.',
+    ratio:'Common mistake voids a contract only where it makes performance of the agreed obligation impossible or radically different from what the parties intended. No separate equitable doctrine of rescission for common mistake can survive alongside Bell v Lever Brothers; equity cannot give greater relief than the common law refuses.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/2002/1407.html' },
+
+  // ── Trusts — case ──
+  { id:'m14', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Target Holdings Ltd v Redferns [1995] UKHL 10',
+    court:'House of Lords',
+    facts:'A mortgage lender advanced funds to a borrower through solicitors Redferns, who held the money on trust pending execution of the mortgage. The solicitors paid the money to the borrower\'s company before the mortgage was properly completed, in breach of trust. The property was ultimately sold at a loss and the borrower was insolvent. The lender claimed from the solicitors equitable compensation equal to the entire sum advanced.',
+    judgment:'The House of Lords, per Lord Browne-Wilkinson, held the solicitors liable in principle but denied compensation. Equitable compensation for breach of trust must be assessed on the basis of loss actually caused by the breach. Since the transaction would have been completed in any event and the same loss would have occurred had the trust been properly performed, no recoverable loss resulted from the breach itself.',
+    ratio:'Equitable compensation for breach of trust is limited to loss caused by the breach — the court must ask whether the loss would have occurred even if the trustee had acted properly. At the point of quantifying loss, common law principles of causation and remoteness apply, modified only as necessary by the nature of the equitable obligation.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1995/10.html' },
+
+  // ── Trusts — case ──
+  { id:'m15', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Attorney General for Hong Kong v Reid [1993] UKPC 2',
+    court:'Privy Council',
+    facts:'Reid was a senior Crown Prosecutor in Hong Kong who accepted bribes to obstruct certain prosecutions. He invested the bribe money in three properties in New Zealand, which were registered in his name and in the names of his wife and solicitor. The properties increased in value. When Reid\'s corruption was discovered, the Hong Kong government sought to establish a proprietary claim over the properties and their appreciated value.',
+    judgment:'The Privy Council held that bribe money received by a person in a fiduciary position is held on constructive trust for the principal from the moment of receipt. The trust extended to the New Zealand properties purchased with the bribes and to any increase in their value, so the full appreciated value was recoverable.',
+    ratio:'A fiduciary who receives a bribe holds both the bribe and any property acquired with it on constructive trust for the principal. The trust arises immediately on receipt, so appreciation in the value of property bought with bribe money also belongs to the principal. Equity treats as done what ought to be done: the fiduciary cannot profit from a wrong.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKPC/1993/2.html' },
+
+  // ── Contract — case ──
+  { id:'m16', type:'curated', cat:'case-law', area:'Contract',
+    title:'Thornton v Shoe Lane Parking Ltd [1970] EWCA Civ 2',
+    court:'Court of Appeal',
+    facts:'The claimant drove into an automatic car park operated by the defendant. A machine at the entrance issued a ticket after payment, stating on its face that it was subject to conditions displayed on a pillar inside the premises. Those conditions purported to exclude the defendant\'s liability for personal injury. The claimant was injured while retrieving his car in circumstances where the defendant was partly at fault.',
+    judgment:'The Court of Appeal held that the contract was formed when the claimant inserted coins in response to the machine\'s standing offer — the ticket was issued after contract formation and came too late to incorporate the exclusion clause. Even had the clause been incorporated, the very unusual degree of notice required for a term purporting to exclude liability for personal injury had not been given.',
+    ratio:'An automatic machine makes a standing offer that is accepted when the customer performs the required act (such as inserting payment). A term on a ticket issued after that moment is not incorporated into the contract. Terms excluding particularly onerous or unusual liability require especially prominent and timely notice before or at the moment of contracting.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1970/2.html' },
+
+  // ── Contract — case ──
+  { id:'r20261013a', type:'curated', cat:'case-law', area:'Contract',
+    title:'Shogun Finance Ltd v Hudson [2003] UKHL 62',
+    court:'House of Lords',
+    facts:'A rogue applied for hire-purchase finance on a car by producing a driving licence belonging to Durlabh Patel. Shogun Finance ran a credit check on Patel, approved the credit and the rogue drove away the car, then sold it to Hudson, an innocent private purchaser. Hudson claimed good title under s.27 of the Hire Purchase Act 1964, which passes title to a bona fide private purchaser from a person who has agreed to buy a vehicle on hire-purchase.',
+    judgment:'The House of Lords held (3:2) that the rogue was not the debtor under the hire-purchase agreement and Hudson acquired no title. Shogun had contracted with Patel, not the rogue.',
+    ratio:'Where a written contract names a specific party, the offeror intends to deal with that named person and no one else; a rogue who fraudulently assumes that person\'s identity cannot be a party to the contract. The contract is therefore void for mistake as to identity — not merely voidable for fraud — so no property passes to the rogue and a subsequent innocent purchaser obtains nothing.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/2003/62.html' },
+
+  // ── Tort — case (vicarious liability) ──
+  { id:'r20261013b', type:'curated', cat:'case-law', area:'Tort',
+    title:'Various Claimants v Catholic Child Welfare Society [2012] UKSC 56',
+    court:'UK Supreme Court',
+    facts:'Brothers of the De La Salle Institute had been seconded to teach at a residential school run by a Catholic diocese. Some brothers sexually abused pupils. The victims brought vicarious liability claims against both the Institute and the Diocese, neither of which was the employer in any contractual sense.',
+    judgment:'The Supreme Court held both the Institute and the Diocese were vicariously liable for the brothers\' torts.',
+    ratio:'Vicarious liability can arise outside a formal contract of employment where the relationship is "akin to employment". Whether it is will depend on five features: whether the tortfeasor undertook to act on the defendant\'s behalf; whether the defendant had some power to control the activity; whether the tortfeasor was an integral part of the defendant\'s enterprise; whether the activity was carried out for the defendant\'s benefit; and whether the enterprise created the risk of the tort. This is the leading authority on the extended akin-to-employment test.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2012/56.html' },
+
+  // ── Tort — case (vicarious liability) ──
+  { id:'r20261013c', type:'curated', cat:'case-law', area:'Tort',
+    title:'Cox v Ministry of Justice [2016] UKSC 10',
+    court:'UK Supreme Court',
+    facts:'Mrs Cox was the prison catering manager at HMP Swansea. A prisoner working under her supervision in the kitchen dropped a heavy sack of rice on her back, injuring her. The prisoner worked there under prison rules and received a small payment; he was not employed by the Ministry of Justice in any contractual sense.',
+    judgment:'The Supreme Court held the Ministry of Justice was vicariously liable for the prisoner\'s negligence.',
+    ratio:'Vicarious liability does not require a contract of employment. It extends to any relationship akin to employment — where the defendant carries on an activity as an integral part of which the tortfeasor acts on the defendant\'s behalf and under the defendant\'s control. The case confirmed and applied the five-factor test from Various Claimants v Catholic Child Welfare Society and is its companion authority on the modern scope of vicarious liability.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/10.html' },
+
+  // ── Equity — case ──
+  { id:'r20261013d', type:'curated', cat:'case-law', area:'Equity',
+    title:'Bristol and West Building Society v Mothew [1996] EWCA Civ 533',
+    court:'Court of Appeal',
+    facts:'A solicitor, Mothew, was retained by both the purchasers and the Bristol and West Building Society in a mortgage transaction. He negligently failed to inform the Society that the purchasers were simultaneously borrowing part of the purchase price from a third party — a fact the Society had specifically required to be disclosed. The Society advanced the mortgage and suffered loss.',
+    judgment:'The Court of Appeal held that Mothew had breached his duty of care but had not acted in breach of fiduciary duty, since he had made an honest mistake rather than acting disloyally.',
+    ratio:'A fiduciary who acts honestly but negligently commits a breach of duty in contract or tort — but not a breach of fiduciary duty. The core of a fiduciary\'s obligation is loyalty: the duty not to allow a conflict of interest and not to make an unauthorised profit from the position. A duty (such as reasonable care) that a fiduciary is also under is not elevated into a fiduciary duty merely because the person owing it is a fiduciary. This judgment by Millett LJ is the leading modern statement of the nature and limits of fiduciary obligations.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1996/533.html' },
+
+  // ── Equity — case ──
+  { id:'r20261013e', type:'curated', cat:'case-law', area:'Equity',
+    title:'FHR European Ventures LLP v Cedar Capital Partners LLC [2014] UKSC 45',
+    court:'UK Supreme Court',
+    facts:'Cedar Capital Partners were instructed as agents to negotiate the purchase of a Monte Carlo hotel on behalf of FHR European Ventures. Without disclosing it to FHR, Cedar also received a commission of €10 million from the vendor. FHR sought to recover the commission as property held on constructive trust, giving it a proprietary claim against Cedar\'s assets.',
+    judgment:'The Supreme Court held that a secret commission or bribe received by an agent in breach of fiduciary duty is held on constructive trust for the principal, overruling Lister v Stubbs.',
+    ratio:'Where an agent acquires a benefit in breach of fiduciary duty, the agent holds it on constructive trust for the principal. This is not limited to benefits derived from the principal\'s own assets; it applies equally to bribes and secret commissions received from third parties. The principal therefore has a proprietary claim — not merely a personal one — entitling it to trace the asset and to take priority over the agent\'s general creditors.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/45.html' },
+
+  // ── Employment — case ──
+  { id:'r20261013f', type:'curated', cat:'case-law', area:'Employment',
+    title:'Essop v Home Office (UK Border Agency) and Naeem v Secretary of State for Justice [2017] UKSC 27',
+    court:'UK Supreme Court',
+    facts:'Two joined appeals on indirect discrimination. In Essop, a civil service promotion exam showed that a lower proportion of BAME and older candidates passed. In Naeem, a Muslim prison chaplain had to wait longer for pay increments than Church of England chaplains due to a seniority-based pay scale that reflected the longer established service of CoE staff.',
+    judgment:'The Supreme Court allowed both appeals. Lady Hale delivered the leading judgment setting out authoritatively the elements of indirect discrimination under the Equality Act 2010.',
+    ratio:'To establish indirect discrimination, a claimant need not prove why a provision, criterion or practice (PCP) puts their group at a particular disadvantage — only that it does. There is no need to establish a causal link between the PCP and the disadvantage. The PCP may be justified as a proportionate means of achieving a legitimate aim, but without justification the employer is liable regardless of its intentions. This is the leading modern authority on the proof requirements for indirect discrimination.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2017/27.html' },
+
+  // ── Criminal — statute ──
+  { id:'r20261013g', type:'curated', cat:'statute', area:'Criminal',
+    title:'Proceeds of Crime Act 2002',
+    body:"The Proceeds of Crime Act 2002 is the principal UK statute establishing the regime for recovering the proceeds of crime and prosecuting money-laundering offences. It consolidated and substantially strengthened earlier legislation and remains the cornerstone of the anti-money-laundering framework.",
+    sections:[
+      { num:'Pt 2', head:'Confiscation Orders — England and Wales', text:'Empowers the Crown Court to make a confiscation order after conviction. If the prosecutor applies, the court must determine whether the defendant has a criminal lifestyle (defined by reference to the offence or a pattern of offending), assess the benefit from criminal conduct, and order payment of that amount from available assets.' },
+      { num:'s.327', head:'Concealing Criminal Property', text:'Makes it an offence to conceal, disguise, convert, transfer or remove from the jurisdiction criminal property — any property constituting or representing a benefit from criminal conduct — unless the person has an authorised disclosure defence.' },
+      { num:'s.328', head:'Arrangements', text:'Creates the offence of knowingly entering into or becoming concerned in an arrangement which facilitates the acquisition, retention, use or control of criminal property by or on behalf of another person.' },
+      { num:'s.329', head:'Acquisition, Use and Possession', text:'Makes it an offence to acquire, use or have possession of criminal property, subject to the same disclosure and other defences.' },
+      { num:'Pt 8', head:'Investigations', text:'Confers wide investigatory powers, including production orders, search and seizure warrants and disclosure orders, to support investigations into money laundering and the tracing of criminal assets.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2002/29/contents' },
+
+  // ── Public Law — statute ──
+  { id:'r20261013h', type:'curated', cat:'statute', area:'Public Law',
+    title:'Climate Change Act 2008',
+    body:"The Climate Change Act 2008 created the world's first legally binding long-term framework for reducing greenhouse gas emissions. It placed the government under a justiciable duty to reduce UK emissions and established a system of five-year carbon budgets overseen by an independent advisory body.",
+    sections:[
+      { num:'1', head:'The 2050 Target', text:'Requires the Secretary of State to ensure the net UK carbon account for 2050 is at least 80% lower than the 1990 baseline (amended to 100% net zero by the Climate Change Act 2008 (2050 Target Amendment) Order 2019).' },
+      { num:'4', head:'Carbon Budgets', text:'Requires the Secretary of State to set a carbon budget for each successive five-year budgetary period, capping the total amount of net UK greenhouse gas emissions during that period.' },
+      { num:'7', head:'Committee on Climate Change', text:'Establishes the independent Committee on Climate Change, which must advise on the level of carbon budgets, review progress against them, and report annually to Parliament.' },
+      { num:'13', head:'Duty to Report', text:'Requires ministers to lay before Parliament proposals and policies for meeting each carbon budget, creating an ongoing framework of public accountability for climate targets.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2008/27/contents' },
+
   ];
 });
