@@ -104,6 +104,41 @@
     body:"Ben McFarlane and Andrew Robertson examine the House of Lords' decisions in Cobbe v Yeoman's Row and Thorner v Major, which together appeared first to imperil and then to rescue the modern doctrine of proprietary estoppel. They argue that, properly read, the cases preserve a coherent estoppel based on a promise or assurance, reasonable reliance and detriment, distinct from contract and from constructive trust. The article is a leading analysis of the elements and rationale of proprietary estoppel after a turbulent period in the House of Lords.",
     src:'Law Quarterly Review', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1494965' },
 
+  { id:'xa20261020a', type:'curated', cat:'journal-article', area:'Constitutional',
+    title:"Bingham — 'The Rule of Law' (2007) 66 Cambridge Law Journal 67",
+    body:'Tom Bingham, Senior Law Lord and later the author of his landmark book of the same title, distils the rule of law into eight concrete sub-rules: the law must be accessible and clear; questions of legal right must be decided by law not discretion; the law must apply equally; fundamental human rights must be protected; access to justice must be afforded without inordinate cost or delay; ministers must act within their powers; state compliance with international obligations is required; and adjudicative processes must be fair. The article remains the most authoritative modern statement of what the rule of law actually requires in practice, widely cited by courts and scholars across common-law jurisdictions.',
+    src:'Cambridge Law Journal', link:'https://www.cambridge.org/core/journals/cambridge-law-journal/article/abs/rule-of-law/0E971B5BB930C2E363D351C5CBC3B855' },
+
+  { id:'xa20261020b', type:'curated', cat:'journal-article', area:'Criminal',
+    title:"Lamond — 'What is a Crime?' (2007) 27 Oxford Journal of Legal Studies 609",
+    body:'Grant Lamond offers a conceptual analysis of criminality, arguing that the distinctive feature of a crime is not its connection to harm, wrongdoing or public concern but the fact that it is an offence against the political community as a whole — something the state claims to censure on everyone\'s behalf. On this view, the criminal law is not simply a stricter version of the civil law: it operates through a distinctive form of public condemnation that is absent from civil liability. The article shapes debate about why certain wrongs should be criminalised and what procedural protections that classification demands.',
+    src:'Oxford Journal of Legal Studies', link:'https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1151078' },
+
+  { id:'xa20261020c', type:'curated', cat:'journal-article', area:'Constitutional',
+    title:"Bogdanor — 'Imprisoned by a Doctrine: The Modern Defence of Parliamentary Sovereignty' (2012) 32 Oxford Journal of Legal Studies 179",
+    body:'Vernon Bogdanor examines those who continue to defend absolute parliamentary sovereignty in the face of devolution, the Human Rights Act and EU membership, arguing that they are committed to a doctrine that has become practically untenable. He traces how Parliament has itself deliberately constrained its own future freedom of action and contends that sovereignty is better understood as a flexible, evolving concept adapted to the constitutional settlement in which it operates, rather than an immutable legal rule. A widely cited contribution to the foundational debate between political and legal constitutionalism.',
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article-abstract/32/1/179/1391946' },
+
+  { id:'xa20261020d', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Nolan — 'Assumption of Responsibility: Four Questions' (2019) 72 Current Legal Problems 123",
+    body:'Donal Nolan identifies four unresolved questions about the Hedley Byrne assumption of responsibility test: what counts as an assumption; what it is responsibility for; who can assume and to whom; and what the relationship is between assumption and reliance. By working through each, he defends a qualified version of assumption of responsibility as a genuine doctrinal tool rather than a mere label, arguing that its content is determined by objective standards rather than subjective intent. A leading contemporary analysis of a concept that underpins liability for pure economic loss and negligent misstatement.',
+    src:'Current Legal Problems', link:'https://academic.oup.com/clp/article/72/1/123/5532098' },
+
+  { id:'xa20261020e', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Steel — 'Justifying Exceptions to Proof of Causation in Tort Law' (2015) 78 Modern Law Review 729",
+    body:'Sandy Steel critically examines departures from the orthodox but-for test of causation — including the material increase in risk doctrine, the loss of a chance doctrine, and proportionate liability — and asks whether any principled justification unifies them. He argues that the exceptions are best understood not as relaxations of the causation requirement but as modifications of the substantive duty or of the threshold for actionable harm, driven by policy concerns about inaccessible proof rather than by a coherent causal philosophy. A significant contribution to theoretical debate on causation that has been widely cited in academic commentary and in court.',
+    src:'Modern Law Review', link:'https://onlinelibrary.wiley.com/doi/abs/10.1111/1468-2230.12142' },
+
+  { id:'xa20261020f', type:'curated', cat:'journal-article', area:'Evidence',
+    title:"Enoch, Spectre & Fisher — 'Statistical Evidence, Sensitivity, and the Legal Value of Knowledge' (2012) 40 Philosophy and Public Affairs 197",
+    body:'David Enoch, Talia Spectre and Teneille Fisher examine why courts resist acting on purely statistical evidence — for instance where there is a 95% probability the defendant was responsible based only on base-rate statistics but no individualising evidence. They connect this reluctance to the epistemological concept of sensitivity: a belief is sensitive if it would not be held if its object were false. Statistical evidence does not generate sensitive knowledge, and this explains why legal adjudication requires individualising evidence that tracks the specific case. The article has become a standard reference in the legal epistemology of proof.',
+    src:'Philosophy and Public Affairs', link:'https://onlinelibrary.wiley.com/doi/10.1111/papa.12000' },
+
+  { id:'xa20261020g', type:'curated', cat:'journal-article', area:'Tort',
+    title:"Howarth — 'Many Duties of Care—Or A Duty of Care? Notes from the Underground' (2006) 26 Oxford Journal of Legal Studies 449",
+    body:'David Howarth argues against the emerging academic thesis that negligence liability is best understood as generating a plurality of specific relational duties tailored to particular fact-types. He defends instead a unified conception of the duty of care as a single general duty not to cause reasonably foreseeable damage through the exercise of unreasonable care, with the various duty questions understood as aspects of a single inquiry rather than separate doctrines. The article is a significant contribution to the foundational debate about the structure of negligence and the proper role of the duty concept in English tort law.',
+    src:'Oxford Journal of Legal Studies', link:'https://academic.oup.com/ojls/article-abstract/26/3/449/1451997' },
+
   ],
 
   // ══════════════════════════════════════════════════════════════════════
@@ -194,6 +229,48 @@
     body:"Tracing is the process of identifying a new asset as the substitute for an original asset, so that a claimant can assert a proprietary claim against the substitute or its product. It is not itself a remedy but a technique of identification: having traced value from the original property into its replacement, the claimant may then claim it, for example where trust money has been misapplied. Equity's tracing rules are more generous than the common law's, permitting value to be followed through mixed funds using presumptions designed to protect the beneficiary.",
     example:"A trustee wrongfully withdraws £20,000 of trust money and uses it to buy shares that then double in value. Using the equitable tracing rules the beneficiaries can trace the trust money into the shares and claim them, capturing the increase in value, rather than being limited to a personal claim for the original £20,000.",
     src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/tracing' },
+
+  { id:'xt20261020a', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Contributory Negligence',
+    body:"Contributory negligence is a partial defence in tort that reduces the claimant's damages in proportion to their share of responsibility for the loss suffered. Under the Law Reform (Contributory Negligence) Act 1945, the court apportions liability and reduces the damages 'to such extent as the court thinks just and equitable having regard to the claimant's share in the responsibility for the damage'. It requires proof that the claimant failed to take reasonable care for their own safety and that this failure contributed to the damage. It is no longer a complete defence — it reduces the award only.",
+    example:"A pedestrian crosses the road at night wearing dark clothing and without looking properly; a driver who is also negligently travelling too fast hits them. The court finds the driver 70% responsible and the pedestrian 30% contributorily negligent: the pedestrian's damages are reduced by 30%.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/contributory-negligence' },
+
+  { id:'xt20261020b', type:'curated', cat:'legal-term', area:'Equity',
+    title:'Unjust Enrichment',
+    body:"Unjust enrichment is the body of law under which a defendant who has been enriched at the claimant's expense must make restitution if the enrichment was unjust. A claim requires proof that: (1) the defendant was enriched; (2) that enrichment was at the claimant's expense; and (3) it was unjust — meaning an established unjust factor such as mistake, total failure of consideration, or compulsion negatives any basis for the defendant to retain it. The cause of action is independent of contract and tort and does not require any wrongdoing.",
+    example:"A bank transfers £50,000 to the wrong account by mistake. The recipient is enriched at the bank's expense without any lawful basis for retaining the money: the bank can recover it through an unjust enrichment claim founded on the unjust factor of mistake.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/unjust-enrichment' },
+
+  { id:'xt20261020c', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Innominate or Intermediate Term',
+    body:"An innominate (or intermediate) term is a contractual term that cannot be classified in advance as either a condition or a warranty: the consequences of breach depend entirely on the nature and severity of the breach when it actually occurs. If the breach goes to the root of the contract and deprives the innocent party of substantially the whole benefit it was intended to receive, the innocent party may terminate; if the breach is minor, only damages are available. The category was established in Hong Kong Fir Shipping Co Ltd v Kawasaki Kisen Kaisha Ltd [1962].",
+    example:"A charterparty requires the ship to be 'seaworthy'. If a trivial defect makes her briefly unseaworthy the charterer cannot treat the charter as ended. If a fundamental defect prevents performance for most of the charter period they may terminate. The severity of the breach, not the label attached to the term, determines the remedy.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/innominate-or-intermediate-term' },
+
+  { id:'xt20261020d', type:'curated', cat:'legal-term', area:'Contract',
+    title:'Non Est Factum',
+    body:"Non est factum ('it is not my deed') is a narrow common-law plea enabling a party who has signed a document to avoid its effect on the ground that they were fundamentally mistaken about its character or class — not merely its contents — and that they were not careless in so signing. The plea cannot succeed where the signer had the capacity and opportunity to read the document and simply failed to do so, nor where they were mistaken only about the details or value of what they signed. The courts have confined the doctrine strictly to protect the security of contracts and protect third parties who deal in good faith.",
+    example:"An elderly person of poor literacy is induced to sign what they are told is a guarantee for a family loan but is in fact a mortgage over their home. If they signed under a fundamental and excusable mistake about the nature of the document and were not careless, they may plead non est factum and avoid it.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/non-est-factum' },
+
+  { id:'xt20261020e', type:'curated', cat:'legal-term', area:'Property',
+    title:'Bona Fide Purchaser for Value Without Notice',
+    body:"A bona fide purchaser for value without notice (BFP) is a purchaser who acquires a legal estate in good faith, gives valuable consideration, and had no actual, constructive, or imputed notice of any equitable interest or encumbrance affecting the property. Such a purchaser takes free of pre-existing equitable interests and is sometimes called 'equity's darling'. Notice must be absent in all three forms: the purchaser must not know of the interest, must not have discovered it on a reasonable inspection that a prudent purchaser would have made, and must not be imputed with the knowledge of their solicitor who would have discovered it on a proper investigation of title.",
+    example:"A buyer purchases a house without knowledge that a family member of the seller has an equitable interest arising from a common intention constructive trust. If the buyer paid full market value, acted in good faith, and made all reasonable enquiries without uncovering the trust, they take the property free of that equitable interest.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/bfp' },
+
+  { id:'xt20261020f', type:'curated', cat:'legal-term', area:'Tort',
+    title:'Absolute Privilege',
+    body:"Absolute privilege is a complete defence to a claim in defamation that applies irrespective of whether the defendant acted with malice or in bad faith. It protects statements made in certain contexts where the public interest in free, uninhibited communication is considered paramount: parliamentary proceedings, judicial proceedings (including pleadings and evidence given in court), and statements made between officers of state in the course of their official duty. Because the privilege is absolute rather than qualified, it cannot be defeated by proof of malice, and there is no residual public-interest balancing exercise.",
+    example:"A barrister during cross-examination makes a defamatory allegation against a witness that turns out to be entirely false. The allegation is covered by absolute privilege because it was made in the course of judicial proceedings: the witness cannot sue the barrister in defamation, whatever the barrister's motive.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/absolute-privilege' },
+
+  { id:'xt20261020g', type:'curated', cat:'legal-term', area:'Tort',
+    title:"Occupiers' Liability",
+    body:"Occupiers' liability is the branch of tort law governing the duty of care owed by persons in control of premises to those who come onto them. In England and Wales it is regulated by two statutes: the Occupiers' Liability Act 1957 imposes a 'common duty of care' in respect of visitors — persons who enter with express or implied permission; the Occupiers' Liability Act 1984 imposes a lower duty to non-visitors (trespassers), requiring only that the occupier take such care as is reasonable in the circumstances to protect them against risks arising from the state of the premises of which the occupier is aware or has reasonable grounds to believe exist.",
+    example:"A customer enters a supermarket (lawful visitor) and slips on a wet floor that staff failed to mop up or cordon off. The supermarket as occupier is in breach of the common duty of care under the 1957 Act. Had the same person entered after closing time as a trespasser, the lower 1984 Act duty would apply and the outcome might differ depending on whether the occupier knew of the risk.",
+    src:'LexisNexis Glossary', link:'https://www.lexisnexis.co.uk/legal/glossary/occupiers-liability' },
 
   ],
 
