@@ -332,15 +332,6 @@
     src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1997/1279.html' },
 
   // ── Tort — case ──
-  { id:'m12', type:'curated', cat:'case-law', area:'Tort',
-    title:'Catholic Child Welfare Society v Various Claimants [2012] UKSC 56',
-    court:'UK Supreme Court',
-    facts:'Approximately 170 men claimed to have suffered physical and sexual abuse by members of a religious teaching order, the Institute of the Brothers of the Christian Schools, who taught at a residential school in East Yorkshire. The Brothers were not direct employees of the school; the Institute selected, trained and placed them in teaching positions under its own disciplinary authority, while the school\'s managers paid their salaries and retained day-to-day control.',
-    judgment:'The Supreme Court held the Institute vicariously liable for the Brothers\' abusive acts, jointly with the school\'s management body.',
-    ratio:'Vicarious liability is not confined to relationships of employment. It can arise wherever a defendant is in a relationship with the wrongdoer that is "akin to employment" — assessed by asking whether the defendant (1) benefited from the wrongdoer\'s activities, (2) had authority to direct how those activities were performed, (3) created or significantly enhanced the risk of abuse, and (4) the activities were conducted as part of the defendant\'s enterprise. This two-stage test — (i) qualifying relationship and (ii) close connection — applies equally to quasi-employment relationships.',
-    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2012/56.html' },
-
-  // ── Tort — case ──
   { id:'m13', type:'curated', cat:'case-law', area:'Tort',
     title:'Stovin v Wise [1996] UKHL 15',
     court:'House of Lords',
@@ -366,6 +357,84 @@
     judgment:'The House of Lords allowed the health authority\'s appeal and held the claimant was entitled to no damages for this aspect of his claim.',
     ratio:'Causation in tort is determined on the balance of probabilities. If a claimant proves on that balance that the defendant\'s breach caused the injury, full damages are recoverable; if the claimant cannot prove causation on that standard, nothing is recoverable. There is no general principle in English law that damages may be reduced proportionately to reflect the statistical probability that the breach caused the loss — loss of a chance is not a head of damage in physical injury claims where causation is the issue.',
     src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1988/1.html' },
+
+  // ── Human Rights — case ──
+  { id:'r20261020a', type:'curated', cat:'case-law', area:'Human Rights',
+    title:'Manchester City Council v Pinnock [2010] UKSC 45',
+    court:'UK Supreme Court',
+    facts:'The council sought a possession order in respect of a demoted tenancy. The tenant resisted, arguing that Article 8 ECHR required the court to examine whether making the order would be a proportionate interference with his right to respect for his home, even though domestic law gave him no defence against a possession claim.',
+    judgment:'The Supreme Court held that domestic courts are required by the Human Rights Act 1998 to be capable of assessing whether a possession order against an occupier of a local authority dwelling is proportionate under Article 8. The court declined to follow earlier House of Lords authority and brought domestic law into conformity with the European Court of Human Rights.',
+    ratio:'When a public authority seeks possession of a person\'s home, the court must be able to examine the proportionality of the order under Article 8 ECHR if the occupier raises that issue; a domestic legal rule that automatically grants possession without that examination is incompatible with Convention rights.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2010/45.html' },
+
+  // ── Tort — case (vicarious liability) ──
+  { id:'r20261020b', type:'curated', cat:'case-law', area:'Tort',
+    title:'Cox v Ministry of Justice [2016] UKSC 10',
+    court:'UK Supreme Court',
+    facts:'A catering manager at a prison was injured when a prisoner employed in the prison kitchen negligently dropped a bag of rice on her. She sued the Ministry of Justice, arguing it was vicariously liable for the prisoner\'s negligence, even though he was not an employee.',
+    judgment:'The Supreme Court held the Ministry of Justice vicariously liable. Lord Reed identified two conditions: first, the relationship between the defendant and the wrongdoer must be akin to employment; and second, the tort must be so closely connected with that relationship that it is fair and just to hold the defendant liable.',
+    ratio:'Vicarious liability extends beyond employment contracts to any relationship where the defendant has integrated the tortfeasor into its enterprise for its own purposes, and the risk of the tort is one that the defendant created by assigning the activity to the tortfeasor.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2016/10.html' },
+
+  // ── Tort — case (non-delegable duty) ──
+  { id:'r20261020c', type:'curated', cat:'case-law', area:'Tort',
+    title:'Woodland v Swimming Teachers Association [2013] UKSC 66',
+    court:'UK Supreme Court',
+    facts:'A ten-year-old girl suffered a severe hypoxic brain injury during a swimming lesson. Her school had contracted out the swimming tuition to an independent swimming teacher; the teacher negligently failed to supervise her adequately. The question was whether the school owed a non-delegable duty of care.',
+    judgment:'The Supreme Court held that schools owe a non-delegable duty to take reasonable care of pupils during activities that form part of their educational function. By contracting out the swimming lesson, the school did not discharge its duty; the negligence of the independent contractor was attributed to the school.',
+    ratio:'A non-delegable duty arises where an institution has assumed responsibility for the safety of a vulnerable person in circumstances where the claimant has no control over the contractor and relies on the institution to safeguard them; such a duty cannot be discharged by delegation to an independent contractor.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2013/66.html' },
+
+  // ── Tort — case (vicarious liability / non-employment) ──
+  { id:'r20261020d', type:'curated', cat:'case-law', area:'Tort',
+    title:'Various Claimants v Catholic Child Welfare Society [2012] UKSC 56',
+    court:'UK Supreme Court',
+    facts:'Former pupils of a residential school brought claims arising from historic sexual abuse by Christian Brothers who taught there. Neither the diocese nor the Brothers were in an employment relationship; the question was whether either body could be held vicariously liable.',
+    judgment:'The Supreme Court held that the Institute was vicariously liable because the relationship between it and the Brothers was sufficiently akin to employment: the Brothers were integrated into the Institute\'s enterprise, furthered its purposes, and the Institute had created the risk by placing them in contact with vulnerable children.',
+    ratio:'Vicarious liability is not restricted to relationships of employment but extends to any relationship that shares its essential features — in particular the defendant\'s integration of the tortfeasor into its enterprise and the creation of the risk by the defendant.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2012/56.html' },
+
+  // ── Tort — case (nuisance) ──
+  { id:'r20261020e', type:'curated', cat:'case-law', area:'Tort',
+    title:'Coventry (t/a RDC Promotions) v Lawrence [2014] UKSC 13',
+    court:'UK Supreme Court',
+    facts:'The claimants bought a house near a motor sports stadium and complained that noise from racing events constituted a nuisance. The defendants argued that many years of use of the stadium and the grant of planning permission had effectively legitimised the noise and altered the character of the neighbourhood.',
+    judgment:'The Supreme Court held that planning permission does not authorise a nuisance — it can change the character of a locality and thus affect what counts as unreasonable interference, but it does not provide a defence to liability in nuisance.',
+    ratio:'A grant of planning permission cannot itself authorise what would otherwise constitute a private nuisance; it may alter the character of the locality and thus affect the standard of reasonable user, but whether the interference is actionable depends on all the circumstances, not on whether it was licensed.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2014/13.html' },
+
+  // ── Contract — case (interpretation) ──
+  { id:'r20261020f', type:'curated', cat:'case-law', area:'Contract',
+    title:'Arnold v Britton [2015] UKSC 36',
+    court:'UK Supreme Court',
+    facts:'Long leases of holiday chalets required lessees to contribute to a service charge that increased at 10% compound per year. In time this produced charges vastly exceeding the actual cost of services. Lessees argued the formula should be departed from because, taken literally, it produced a commercially absurd result.',
+    judgment:'The Supreme Court declined to deviate from the plain words of the leases. Lord Neuberger emphasised that contractual interpretation must be grounded in the natural and ordinary meaning of the words; commercial common sense is not a licence to rewrite a clear contractual term, particularly in carefully drafted long-form documents.',
+    ratio:'The primary task in construing a written contract is to identify the meaning of the language used in its documentary and factual context; commercial common sense cannot be invoked to override a meaning that the language clearly conveys, especially where the document was professionally prepared.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2015/36.html' },
+
+  // ── Constitutional — statute ──
+  { id:'r20261020g', type:'curated', cat:'statute', area:'Constitutional',
+    title:'Freedom of Information Act 2000',
+    body:'Established a general statutory right of access to recorded information held by public authorities in the United Kingdom. Any person may submit a written request; the authority must confirm or deny whether it holds the information and, if it does, must communicate it within 20 working days. Some exemptions are absolute; others are qualified and subject to a public-interest balancing test. The Act created the Information Commissioner as independent regulator and established an appeals route to the Information Tribunal. It transformed governmental transparency and has generated extensive litigation on the scope of exemptions and the boundaries of the public-interest test.',
+    sections:[
+      { num:'1', head:'General right of access', text:'Any person who makes a request to a public authority for information held by it is entitled to be informed in writing whether it holds the information and, if so, to have it communicated — subject to the exemptions elsewhere in the Act.' },
+      { num:'2', head:'Effect of the exemptions', text:'Where information falls within a qualified exemption, the duty to disclose applies unless the public interest in maintaining the exemption outweighs the public interest in disclosure; absolute exemptions remove the duty entirely without any balancing exercise.' },
+      { num:'23', head:'Security bodies', text:'Information directly or indirectly supplied by, or relating to, a body listed (including the Security Service, Secret Intelligence Service and GCHQ) is absolutely exempt from disclosure.' },
+      { num:'35', head:'Formulation of government policy', text:'Information held by a government department and relating to the formulation or development of government policy, ministerial communications, or the provision of advice by law officers is a qualified exempt class subject to the public-interest test.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2000/36/contents' },
+
+  // ── Public Law — statute ──
+  { id:'r20261020h', type:'curated', cat:'statute', area:'Public Law',
+    title:'Counter-Terrorism and Security Act 2015',
+    body:'Enacted in response to the flow of British nationals travelling to join extremist groups abroad and subsequent high-profile attacks, this Act introduced a package of measures to disrupt and prevent terrorism. It allowed temporary seizure of passports at the border, created a new Temporary Exclusion Order regime to manage the return of overseas fighters, and placed the Government\'s PREVENT strategy on a statutory footing by imposing a due-regard duty on specified public authorities — including schools, universities, prisons and local councils — to prevent people from being drawn into terrorism.',
+    sections:[
+      { num:'1', head:'Seizure of travel documents', text:'Allows an examining officer at the border to retain a person\'s passport or travel document for up to 14 days where there are reasonable grounds to suspect the person intends to travel in connection with terrorism-related activity.' },
+      { num:'2', head:'Temporary Exclusion Orders', text:'Permits the Secretary of State to impose a TEO on a British national abroad for up to two years, preventing their return to the UK except on controlled terms, where satisfied they have been, or are likely to be, involved in terrorism-related activity.' },
+      { num:'26', head:'The PREVENT duty', text:'Requires specified authorities — including local authorities, schools, universities, prisons and police — to have due regard to the need to prevent people from being drawn into terrorism when exercising their functions.' },
+      { num:'Sch 6', head:'TEO procedural framework', text:'Provides the detailed procedure for Temporary Exclusion Orders, including the requirement that the Secretary of State apply to a court for prior permission before imposing an order, or report to the court as soon as practicable in urgent cases.' },
+    ],
+    src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2015/6/contents' },
 
   ];
 });
