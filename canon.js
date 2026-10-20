@@ -322,5 +322,50 @@
     ],
     src:'legislation.gov.uk', link:'https://www.legislation.gov.uk/ukpga/2016/25/contents' },
 
+  // ── Trusts — case ──
+  { id:'m11', type:'curated', cat:'case-law', area:'Trusts',
+    title:'Armitage v Nurse [1997] EWCA Civ 1279',
+    court:'Court of Appeal',
+    facts:'A trust deed managing property on behalf of a beneficiary who had been a minor contained a wide exemption clause purporting to relieve the trustee from liability for any loss or damage to the trust fund unless caused by the trustee\'s own actual fraud. The trustee, a solicitor, negligently invested trust assets in unsuitable land and the fund suffered significant losses. The beneficiary sued, arguing that such a sweeping exemption clause was void as contrary to public policy.',
+    judgment:'The Court of Appeal upheld the exemption clause. Millett LJ held that while there is an irreducible core of fiduciary obligations that cannot be excluded, liability for negligence and even gross negligence can be validly exempted by appropriately drafted trust terms.',
+    ratio:'A trustee exemption clause may validly exclude liability for breach of trust, including breaches amounting to gross negligence or recklessness, provided it does not purport to exclude liability for the trustee\'s own fraud (dishonesty). There is however an irreducible core of trusteeship — obligations of good faith and provision of accounts and information — without which the arrangement is not a trust; these cannot be excluded. The distinction is between carelessness and deliberate wrongdoing.',
+    src:'BAILII', link:'https://www.bailii.org/ew/cases/EWCA/Civ/1997/1279.html' },
+
+  // ── Tort — case ──
+  { id:'m12', type:'curated', cat:'case-law', area:'Tort',
+    title:'Catholic Child Welfare Society v Various Claimants [2012] UKSC 56',
+    court:'UK Supreme Court',
+    facts:'Approximately 170 men claimed to have suffered physical and sexual abuse by members of a religious teaching order, the Institute of the Brothers of the Christian Schools, who taught at a residential school in East Yorkshire. The Brothers were not direct employees of the school; the Institute selected, trained and placed them in teaching positions under its own disciplinary authority, while the school\'s managers paid their salaries and retained day-to-day control.',
+    judgment:'The Supreme Court held the Institute vicariously liable for the Brothers\' abusive acts, jointly with the school\'s management body.',
+    ratio:'Vicarious liability is not confined to relationships of employment. It can arise wherever a defendant is in a relationship with the wrongdoer that is "akin to employment" — assessed by asking whether the defendant (1) benefited from the wrongdoer\'s activities, (2) had authority to direct how those activities were performed, (3) created or significantly enhanced the risk of abuse, and (4) the activities were conducted as part of the defendant\'s enterprise. This two-stage test — (i) qualifying relationship and (ii) close connection — applies equally to quasi-employment relationships.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKSC/2012/56.html' },
+
+  // ── Tort — case ──
+  { id:'m13', type:'curated', cat:'case-law', area:'Tort',
+    title:'Stovin v Wise [1996] UKHL 15',
+    court:'House of Lords',
+    facts:'A motorcyclist was seriously injured when a car pulled out of a junction where a bank of earth on adjoining land obscured the driver\'s sightlines. The local highway authority had identified the obstruction as dangerous eighteen months earlier and had negotiated with the landowner to have it removed, but had done nothing further. The motorcyclist sued the authority in negligence for failing to act on its statutory powers to secure removal of the hazard.',
+    judgment:'The House of Lords held, by a majority of three to two, that the highway authority owed no duty of care for its failure to exercise its statutory powers and dismissed the claim against it.',
+    ratio:'A statutory power to act does not, of itself, generate a common law duty to exercise that power. Where a public authority has a mere discretion under statute — as opposed to a statutory duty — it will not ordinarily be liable for an omission to exercise that discretion unless it has assumed a specific responsibility to the claimant or there are exceptional circumstances justifying the imposition of a duty. The bare fact that a body could have prevented harm does not make it responsible for the harm that resulted.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1996/15.html' },
+
+  // ── Tort — case ──
+  { id:'m14', type:'curated', cat:'case-law', area:'Tort',
+    title:'Paris v Stepney Borough Council [1950] UKHL 3',
+    court:'House of Lords',
+    facts:'The claimant was employed by the council as a garage mechanic. He had full sight in only one eye; his employer was aware of this disability. The council supplied protective goggles only to employees engaged in welding or grinding, not to those performing routine maintenance. While working with a hammer and chisel, a metal fragment struck his one sighted eye and he was blinded completely.',
+    judgment:'The House of Lords allowed the claimant\'s appeal and found the council in breach of its duty of care.',
+    ratio:'In assessing whether a defendant has taken reasonable care, the court must weigh the likelihood of injury against the gravity of the harm that might result in the particular circumstances of the claimant. Where an employer knows that an employee has a condition which would make a foreseeable injury catastrophically worse for that individual than for other workers, the standard of care required is correspondingly higher. The severity of potential consequences is a material factor in the negligence calculus even when the underlying risk of an accident is no greater.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1950/3.html' },
+
+  // ── Tort — case ──
+  { id:'m15', type:'curated', cat:'case-law', area:'Tort',
+    title:'Hotson v East Berkshire Area Health Authority [1988] UKHL 1',
+    court:'House of Lords',
+    facts:'A thirteen-year-old boy fell from a tree and suffered an acute traumatic fracture of his left femoral epiphysis. He was taken to hospital but the injury was negligently misdiagnosed and he was sent home without appropriate treatment. Five days later the correct diagnosis was made, but he had by then developed avascular necrosis causing a permanent disability of the hip joint. Medical evidence showed a 75% chance that avascular necrosis would have developed even with immediate correct treatment, because the fall had already severed most of the blood vessels. The trial judge awarded him 25% of the full damages as compensation for the lost 25% chance of recovery.',
+    judgment:'The House of Lords allowed the health authority\'s appeal and held the claimant was entitled to no damages for this aspect of his claim.',
+    ratio:'Causation in tort is determined on the balance of probabilities. If a claimant proves on that balance that the defendant\'s breach caused the injury, full damages are recoverable; if the claimant cannot prove causation on that standard, nothing is recoverable. There is no general principle in English law that damages may be reduced proportionately to reflect the statistical probability that the breach caused the loss — loss of a chance is not a head of damage in physical injury claims where causation is the issue.',
+    src:'BAILII', link:'https://www.bailii.org/uk/cases/UKHL/1988/1.html' },
+
   ];
 });
